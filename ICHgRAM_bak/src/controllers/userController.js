@@ -25,7 +25,16 @@ export const updateProfile = async (req, res) => {
     if (fullName) user.fullName = fullName;
     if (bio) user.bio = bio;
 
-     if (req.file) {
+    if (req.file) {
       const base64Image = req.file.buffer.toString("base64");
       user.avatar = `data:${req.file.mimetype};base64,${base64Image}`;
     }
+    await user.save();
+    res.json({
+      message: "Profile updated successfully",
+      user,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
