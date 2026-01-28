@@ -24,3 +24,8 @@ export const updateProfile = async (req, res) => {
     }
     if (fullName) user.fullName = fullName;
     if (bio) user.bio = bio;
+
+     if (req.file) {
+      const base64Image = req.file.buffer.toString("base64");
+      user.avatar = `data:${req.file.mimetype};base64,${base64Image}`;
+    }
