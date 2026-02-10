@@ -104,3 +104,20 @@ export const updatePost = async (req, res) => {
 };
 
 export const deletePost = async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.postId);
+
+    if (!post) {
+      return res.status(404).json({ message: "Пост не найден" });
+    }
+
+    if (!post.author.equals(req.user._id)) {
+      return res.status(403).json({ message: "Нет доступа" });
+    }
+
+    await post.remove();
+    res.json({ message: "Пост удален" });
+  } catch (error) {
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+};
