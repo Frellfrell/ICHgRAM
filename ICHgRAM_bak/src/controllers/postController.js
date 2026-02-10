@@ -53,3 +53,18 @@ export const getUserPost = async (req, res) => {
     res.status(500).json({ message: "Ошибка сервера" });
   }
 };
+
+export const getPostById = async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.postId).populate(
+      "author",
+      "username fullName avatar",
+    );
+    if (!post) {
+      return res.status(404).json({ message: "Пост не найден" });
+    }
+    res.json(post);
+  } catch (error) {
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+};
