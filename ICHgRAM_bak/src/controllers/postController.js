@@ -70,22 +70,22 @@ export const getPostById = async (req, res) => {
 };
 
 export const updatePost = async (req, res) => {
-    try {
-         const post = await Post.findById(req.params.postId);
+  try {
+    const post = await Post.findById(req.params.postId);
 
     if (!post) {
       return res.status(404).json({ message: "Пост не найден" });
     }
 
-     if (!post.author.equals(req.user._id)) {
+    if (!post.author.equals(req.user._id)) {
       return res.status(403).json({ message: "Нет доступа" });
     }
 
-     if (req.body.caption !== undefined) {
+    if (req.body.caption !== undefined) {
       post.caption = req.body.caption;
     }
 
-     if (req.file) {
+    if (req.file) {
       const base64Image = req.file.buffer.toString("base64");
       post.image = `data:${req.file.mimetype};base64,${base64Image}`;
     }
@@ -95,3 +95,10 @@ export const updatePost = async (req, res) => {
         message: "Пост не может быть пустым",
       });
     }
+
+    await post.save();
+    res.json(post);
+  } catch (error) {
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+};
