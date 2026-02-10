@@ -76,3 +76,11 @@ export const updatePost = async (req, res) => {
     if (!post) {
       return res.status(404).json({ message: "Пост не найден" });
     }
+
+     if (!post.author.equals(req.user._id)) {
+      return res.status(403).json({ message: "Нет доступа" });
+    }
+
+     if (req.body.caption !== undefined) {
+      post.caption = req.body.caption;
+    }
