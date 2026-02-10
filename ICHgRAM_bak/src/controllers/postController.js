@@ -84,3 +84,8 @@ export const updatePost = async (req, res) => {
      if (req.body.caption !== undefined) {
       post.caption = req.body.caption;
     }
+
+     if (req.file) {
+      const base64Image = req.file.buffer.toString("base64");
+      post.image = `data:${req.file.mimetype};base64,${base64Image}`;
+    }
