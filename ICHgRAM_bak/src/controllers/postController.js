@@ -41,3 +41,15 @@ export const getAllPosts = async (req, res) => {
     res.status(500).json({ message: "Ошибка сервера" });
   }
 };
+
+export const getUserPost = async (req, res) => {
+  try {
+    const posts = await Post.find({ author: req.params.userId })
+      .populate("author", "username")
+      .sort({ createdAt: -1 });
+
+    res.json(posts);
+  } catch (error) {
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+};
