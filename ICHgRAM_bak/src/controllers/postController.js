@@ -89,3 +89,9 @@ export const updatePost = async (req, res) => {
       const base64Image = req.file.buffer.toString("base64");
       post.image = `data:${req.file.mimetype};base64,${base64Image}`;
     }
+
+    if (!post.caption && !post.image) {
+      return res.status(400).json({
+        message: "Пост не может быть пустым",
+      });
+    }
