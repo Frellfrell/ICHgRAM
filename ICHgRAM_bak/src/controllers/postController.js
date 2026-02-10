@@ -102,3 +102,5 @@ export const updatePost = async (req, res) => {
     res.status(500).json({ message: "Ошибка сервера" });
   }
 };
+
+export const deletePost = async (req, res) => {
