@@ -8,6 +8,9 @@ export const createPost = async (req, res) => {
     }
 
     const base64Image = req.file.buffer.toString("base64");
-    
+
     const post = await Post.create({
-      text,
+      author: req.user._id,
+      caption,
+      image: `data:${req.file.mimetype};base64,${base64Image}`,
+    });
