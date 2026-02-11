@@ -8,3 +8,8 @@ export const toggleLike = async (req, res) => {
       post: postId,
       user: req.user._id,
     });
+
+    if (existingLike) {
+      await existingLike.deleteOne();
+      return res.json({ liked: false });
+    }
