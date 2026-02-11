@@ -20,3 +20,12 @@ export const addComment = async (req, res) => {
     res.status(500).json({ message: "Ошибка сервера" });
   }
 };
+
+
+export const getPostComments = async (req, res) => {
+  try {
+    const comments = await Comment.find({ post: req.params.postId })
+      .populate("author", "username avatar")
+      .sort({ createdAt: 1 });
+
+      
