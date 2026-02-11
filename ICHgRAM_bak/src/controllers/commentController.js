@@ -9,3 +9,9 @@ export const addComment = async (req, res) => {
      if (!text) {
       return res.status(400).json({ message: "Комментарий пустой" });
     }
+
+     const comment = await Comment.create({
+      text,
+      post: postId,
+      author: req.user._id,
+    });
