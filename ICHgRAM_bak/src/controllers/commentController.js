@@ -21,11 +21,14 @@ export const addComment = async (req, res) => {
   }
 };
 
-
 export const getPostComments = async (req, res) => {
   try {
     const comments = await Comment.find({ post: req.params.postId })
       .populate("author", "username avatar")
       .sort({ createdAt: 1 });
 
-      
+    res.json(comments);
+  } catch (error) {
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+};
