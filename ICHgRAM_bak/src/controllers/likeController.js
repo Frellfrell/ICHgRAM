@@ -13,3 +13,7 @@ export const toggleLike = async (req, res) => {
       await existingLike.deleteOne();
       return res.json({ liked: false });
     }
+     await Like.create({
+      post: postId,
+      user: req.user._id,
+    });
