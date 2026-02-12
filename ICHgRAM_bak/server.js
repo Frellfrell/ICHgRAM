@@ -4,9 +4,13 @@ import connectDB from "./src/config/db.js";
 import authRoutes from "./src/routes/authRoutes.js";
 import http from "http";
 import { Server } from "socket.io";
+import { socketHandler } from "./socket.js";
 
 dotenv.config();
 const app = express();
+
+// Middleware
+app.use(express.json());
 
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -19,9 +23,11 @@ const io = new Server(server, {
 connectDB();
 // Маршруты аутентификации
 app.use("/api/auth", authRoutes);
-app.use(express.json()); // Для работы с JSON
+// Обработчик Socket.IOio.on("connection", (socket) => {
+console.log("New client connected");
+socketHandler(io);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
