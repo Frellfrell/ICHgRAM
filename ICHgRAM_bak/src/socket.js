@@ -26,3 +26,7 @@ export const socketHandler = (io) => {
 
         // отправляем получателю
       io.to(receiverId).emit("receiveMessage", message);
+
+      // возвращаем отправителю
+      io.to(senderId).emit("receiveMessage", message);
+    });
