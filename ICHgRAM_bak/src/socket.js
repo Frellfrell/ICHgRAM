@@ -38,7 +38,8 @@ export const socketHandler = (io) => {
     });
 
     socket.on("disconnect", () => {
-      console.log("User disconnected");
+      console.log(`User disconnected: ${userId}`);
+      onlineUsers.delete(userId);
     });
   });
 };
