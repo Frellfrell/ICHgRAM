@@ -5,6 +5,7 @@ import authRoutes from "./src/routes/authRoutes.js";
 import http from "http";
 import { Server } from "socket.io";
 import { socketHandler } from "./socket.js";
+import jwt from "jsonwebtoken";
 
 dotenv.config();
 const app = express();
@@ -26,6 +27,22 @@ app.use("/api/auth", authRoutes);
 // Обработчик Socket.IOio.on("connection", (socket) => {
 console.log("New client connected");
 socketHandler(io);
+
+io.use((socket, next) => {
+  const token = socket.handshake.auth.token;
+
+  if (!token) {
+    return next(new Error("Нет токена"));
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    socket.user = decoded;
+    next();
+  } catch (err) {
+    next(new Error("Неверный токен"));
+  }
+});
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
