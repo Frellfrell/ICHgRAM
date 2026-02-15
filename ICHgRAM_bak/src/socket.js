@@ -16,16 +16,16 @@ export const socketHandler = (io) => {
     socket.join(userId);
 
     // отправка сообщения
-    socket.on("sendMessage", async (data) => {
-      const { senderId, receiverId, text } = data;
+    socket.on("sendMessage", async ({ receiverId, text }) => {
+      try {
+        if (!receiverId || !text) return;
 
-      // сохраняем в БД
-      const message = await Message.create({
-        sender: senderId,
-        receiver: receiverId,
-        text,
-      });
-
+        // Сохраняем сообщение в базе
+        const message = await Message.create({
+          sender: userId,
+          receiver: receiverId,
+          text,
+        });
       // отправляем получателю
       io.to(receiverId).emit("receiveMessage", message);
 
