@@ -24,4 +24,5 @@ export const socketHandler = (io) => {
         text,
       });
 
-      
+        // отправляем получателю
+      io.to(receiverId).emit("receiveMessage", message);
