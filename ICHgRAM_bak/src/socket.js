@@ -26,11 +26,15 @@ export const socketHandler = (io) => {
           receiver: receiverId,
           text,
         });
-      // отправляем получателю
-      io.to(receiverId).emit("receiveMessage", message);
 
-      // возвращаем отправителю
-      io.to(senderId).emit("receiveMessage", message);
+        // отправляем получателю
+        io.to(receiverId).emit("receiveMessage", message);
+
+        // возвращаем отправителю
+        io.to(userId).emit("receiveMessage", message);
+      } catch (error) {
+        console.error("Ошибка отправки сообщения:", error);
+      }
     });
 
     socket.on("disconnect", () => {
