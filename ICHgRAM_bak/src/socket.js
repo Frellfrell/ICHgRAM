@@ -13,4 +13,6 @@ export const socketHandler = (io) => {
       socket.join(userId); // комната = userId
     });
     
-    
+     // отправка сообщения
+    socket.on("sendMessage", async (data) => {
+      const { senderId, receiverId, text } = data;
