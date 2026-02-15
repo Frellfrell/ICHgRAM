@@ -16,3 +16,12 @@ export const socketHandler = (io) => {
      // отправка сообщения
     socket.on("sendMessage", async (data) => {
       const { senderId, receiverId, text } = data;
+
+      // сохраняем в БД
+      const message = await Message.create({
+        sender: senderId,
+        receiver: receiverId,
+        text,
+      });
+
+      
