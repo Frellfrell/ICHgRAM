@@ -4,13 +4,16 @@ const onlineUsers = new Map();
 
 export const socketHandler = (io) => {
   io.on("connection", (socket) => {
+    // userId берём из JWT (уже проверенного в server.js)
     const userId = socket.user.id;
 
-    // пользователь присылает свой userId
-    socket.on("join", (userId) => {
-      onlineUsers.set(userId, socket.id);
-      socket.join(userId); // комната = userId
-    });
+    console.log(`User connected: ${userId}`);
+
+    // Сохраняем пользователя как онлайн
+    onlineUsers.set(userId, socket.id);
+
+    // Добавляем пользователя в комнату с его ID
+    socket.join(userId);
 
     // отправка сообщения
     socket.on("sendMessage", async (data) => {
