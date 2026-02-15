@@ -3,17 +3,16 @@ import Message from "./models/messageModel.js";
 const onlineUsers = new Map();
 
 export const socketHandler = (io) => {
-
-     io.on("connection", (socket) => {
+  io.on("connection", (socket) => {
     console.log("User connected:", socket.id);
 
-   // пользователь присылает свой userId
+    // пользователь присылает свой userId
     socket.on("join", (userId) => {
       onlineUsers.set(userId, socket.id);
       socket.join(userId); // комната = userId
     });
-    
-     // отправка сообщения
+
+    // отправка сообщения
     socket.on("sendMessage", async (data) => {
       const { senderId, receiverId, text } = data;
 
@@ -24,9 +23,15 @@ export const socketHandler = (io) => {
         text,
       });
 
-        // отправляем получателю
+      // отправляем получателю
       io.to(receiverId).emit("receiveMessage", message);
 
       // возвращаем отправителю
       io.to(senderId).emit("receiveMessage", message);
     });
+
+    socket.on("disconnect", () => {
+      console.log("User disconnected");
+    });
+  });
+};
