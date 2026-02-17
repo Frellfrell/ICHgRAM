@@ -40,3 +40,9 @@ export const followUser = async (req, res) => {
     res.status(500).json({ message: "Ошибка сервера" });
   }
 };
+
+// Отписаться
+export const unfollowUser = async (req, res) => {
+  try {
+    const followerId = req.user.id;
+    const { userId } = req.params;
