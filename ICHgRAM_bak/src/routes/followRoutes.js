@@ -5,3 +5,5 @@ import {
   getFollowers,
   getFollowing,
 } from "../controllers/followController.js";
+
+const router = express.Router();
