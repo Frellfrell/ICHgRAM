@@ -57,3 +57,11 @@ export const unfollowUser = async (req, res) => {
     res.status(500).json({ message: "Ошибка сервера" });
   }
 };
+
+// Получить подписчиков
+export const getFollowers = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const followers = await Follow.find({
+      following: userId,
+    }).populate("follower", "username fullName");
