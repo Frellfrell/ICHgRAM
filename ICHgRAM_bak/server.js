@@ -6,6 +6,7 @@ import http from "http";
 import { Server } from "socket.io";
 import { socketHandler } from "./socket.js";
 import jwt from "jsonwebtoken";
+import followRoutes from "./src/routes/followRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -43,6 +44,8 @@ io.use((socket, next) => {
     next(new Error("Неверный токен"));
   }
 });
+
+app.use("/api/follow", followRoutes);
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
