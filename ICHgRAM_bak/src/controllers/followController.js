@@ -30,4 +30,13 @@ export const followUser = async (req, res) => {
       });
     }
 
-    
+    await Follow.create({
+      follower: followerId,
+      following: userId,
+    });
+
+     res.json({ message: "Подписка оформлена" });
+  } catch (error) {
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+};
