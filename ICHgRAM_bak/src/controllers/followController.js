@@ -46,3 +46,8 @@ export const unfollowUser = async (req, res) => {
   try {
     const followerId = req.user.id;
     const { userId } = req.params;
+
+    await Follow.findOneAndDelete({
+      follower: followerId,
+      following: userId,
+    });
