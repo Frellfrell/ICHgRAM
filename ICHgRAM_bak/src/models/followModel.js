@@ -1,14 +1,17 @@
 import mongoose from "mongoose";
 
-
 const followSchema = new mongoose.Schema(
-  {follower: {
+  {
+    follower: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
-     following: {
+    following: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
+  },
+  { timestamps: true },
+);
