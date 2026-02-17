@@ -18,3 +18,8 @@ export const followUser = async (req, res) => {
         message: "Нельзя подписаться на самого себя",
       });
     }
+
+    const existingFollow = await Follow.findOne({
+      follower: followerId,
+      following: userId,
+    });
