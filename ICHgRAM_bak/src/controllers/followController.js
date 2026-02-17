@@ -71,3 +71,8 @@ export const getFollowers = async (req, res) => {
     res.status(500).json({ message: "Ошибка сервера" });
   }
 };
+
+// Получить тех, на кого подписан
+export const getFollowing = async (req, res) => {
+  try {
+    const { userId } = req.params;
