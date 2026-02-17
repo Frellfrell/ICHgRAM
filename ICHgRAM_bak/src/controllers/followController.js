@@ -23,3 +23,11 @@ export const followUser = async (req, res) => {
       follower: followerId,
       following: userId,
     });
+
+     if (existingFollow) {
+      return res.status(400).json({
+        message: "Вы уже подписаны",
+      });
+    }
+
+    
