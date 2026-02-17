@@ -51,3 +51,9 @@ export const unfollowUser = async (req, res) => {
       follower: followerId,
       following: userId,
     });
+
+    res.json({ message: "Вы отписались" });
+  } catch (error) {
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+};
