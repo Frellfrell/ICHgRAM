@@ -80,3 +80,10 @@ export const getFollowing = async (req, res) => {
     const following = await Follow.find({
       follower: userId,
     }).populate("following", "username fullName");
+
+     res.json(following);
+  } catch (error) {
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+};
+ 
