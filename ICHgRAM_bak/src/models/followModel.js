@@ -7,3 +7,8 @@ const followSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+     following: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
