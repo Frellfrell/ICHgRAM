@@ -29,6 +29,12 @@ export const followUser = async (req, res) => {
       following: userId,
     });
 
+    await Notification.create({
+      recipient: userId, // на кого подписались
+      sender: req.user.id, // кто подписался
+      type: "follow",
+    });
+
     res.json({ message: "Подписка оформлена" });
   } catch (error) {
     res.status(500).json({ message: "Ошибка сервера" });
