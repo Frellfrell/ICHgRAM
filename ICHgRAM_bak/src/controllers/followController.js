@@ -1,4 +1,5 @@
 import Follow from "../models/followModel.js";
+import Notification from "../models/notificationModel.js";
 
 // Подписаться
 export const followUser = async (req, res) => {
