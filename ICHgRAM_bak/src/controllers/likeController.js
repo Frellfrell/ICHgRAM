@@ -18,6 +18,13 @@ export const toggleLike = async (req, res) => {
       user: req.user._id,
     });
 
+    await Notification.create({
+      recipient: post.author,
+      sender: req.user.id,
+      type: "like",
+      post: post._id,
+    });
+
     res.json({ liked: true });
   } catch (error) {
     res.status(500).json({ message: "Ошибка сервера" });
