@@ -33,11 +33,11 @@ export const register = async (req, res) => {
     });
 
     // 5. JWT
-    const token = generateToken(user._id);
+    const token = generateToken(user.id);
 
     res.status(201).json({
       user: {
-        id: user._id,
+        id: user.id,
         username: user.username,
         fullName: user.fullName,
         email: user.email,
@@ -71,11 +71,11 @@ export const login = async (req, res) => {
     }
 
     // 3. Генерируем токен
-    const token = generateToken(user._id);
+    const token = generateToken(user.id);
 
     res.json({
       user: {
-        id: user._id,
+        id: user.id,
         username: user.username,
         fullName: user.fullName,
         email: user.email,
