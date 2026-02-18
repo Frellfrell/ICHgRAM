@@ -14,6 +14,12 @@ export const addComment = async (req, res) => {
       post: postId,
       author: req.user._id,
     });
+    await Notification.create({
+      recipient: post.author,
+      sender: req.user.id,
+      type: "comment",
+      post: post._id,
+    });
 
     res.status(201).json(comment);
   } catch (error) {
