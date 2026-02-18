@@ -1,4 +1,5 @@
 import Follow from "../models/followModel.js";
+import Notification from "../models/notificationModel.js";
 
 // Подписаться
 export const followUser = async (req, res) => {
@@ -28,6 +29,12 @@ export const followUser = async (req, res) => {
       following: userId,
     });
 
+    await Notification.create({
+      recipient: userId, // на кого подписались
+      sender: req.user.id, // кто подписался
+      type: "follow",
+    });
+
     res.json({ message: "Подписка оформлена" });
   } catch (error) {
     res.status(500).json({ message: "Ошибка сервера" });
@@ -40,9 +47,21 @@ export const unfollowUser = async (req, res) => {
     const followerId = req.user.id;
     const { userId } = req.params;
 
-    await Follow.findOneAndDelete({
+    const deletedFollow = await Follow.findOneAndDelete({
       follower: followerId,
       following: userId,
+    });
+
+    if (!deletedFollow) {
+      return res.status(400).json({
+        message: "Вы не подписаны на этого пользователя",
+      });
+    }
+    // Удаляем уведомление
+    await Notification.findOneAndDelete({
+      recipient: userId,
+      sender: followerId,
+      type: "follow",
     });
 
     res.json({ message: "Вы отписались" });

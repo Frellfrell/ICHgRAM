@@ -7,6 +7,8 @@ import { Server } from "socket.io";
 import { socketHandler } from "./socket.js";
 import jwt from "jsonwebtoken";
 import followRoutes from "./src/routes/followRoutes.js";
+import notificationRoutes from "./src/routes/notificationRoutes.js";
+import messageRoutes from "./src/routes/messageRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -17,7 +19,7 @@ app.use(express.json());
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: "*", // "http://localhost:5173"
   },
 });
 
@@ -46,6 +48,8 @@ io.use((socket, next) => {
 });
 
 app.use("/api/follow", followRoutes);
+app.use("/api/notifications", notificationRoutes);
+app.use("/api/messages", messageRoutes);
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {

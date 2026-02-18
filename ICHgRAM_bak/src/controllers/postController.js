@@ -1,4 +1,5 @@
 import Post from "../models/postModel.js";
+
 export const createPost = async (req, res) => {
   try {
     const { caption } = req.body;
@@ -19,7 +20,7 @@ export const createPost = async (req, res) => {
     }
 
     const post = await Post.create({
-      author: req.user._id,
+      author: req.user.id,
       caption,
       image: `data:${req.file.mimetype};base64,${base64Image}`,
     });
@@ -77,7 +78,7 @@ export const updatePost = async (req, res) => {
       return res.status(404).json({ message: "Пост не найден" });
     }
 
-    if (!post.author.equals(req.user._id)) {
+    if (!post.author.equals(req.user.id)) {
       return res.status(403).json({ message: "Нет доступа" });
     }
 
@@ -111,7 +112,7 @@ export const deletePost = async (req, res) => {
       return res.status(404).json({ message: "Пост не найден" });
     }
 
-    if (!post.author.equals(req.user._id)) {
+    if (!post.author.equals(req.user.id)) {
       return res.status(403).json({ message: "Нет доступа" });
     }
 

@@ -1,6 +1,6 @@
 import express from "express";
-import authMiddleware from "../middleware/authMiddleware.js";
-import upload from "../middleware/uploadMiddleware.js";
+import authMiddleware from "../middlewares/authMiddleware.js";
+import upload from "../middlewares/uploadMiddleware.js";
 import {
   getUserProfile,
   updateProfile,
