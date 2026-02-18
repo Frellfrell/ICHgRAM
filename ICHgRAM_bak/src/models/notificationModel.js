@@ -6,21 +6,24 @@ const notificationSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-     sender: {
+    sender: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
-     type: {
+    type: {
       type: String,
       enum: ["follow", "like", "comment"],
       required: true,
     },
-     post: {
+    post: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Post",
     },
-     isRead: {
+    isRead: {
       type: Boolean,
       default: false,
     },
+  },
+  { timestamps: true },
+);
