@@ -20,7 +20,7 @@ export const createPost = async (req, res) => {
     }
 
     const post = await Post.create({
-      author: req.user._id,
+      author: req.user.id,
       caption,
       image: `data:${req.file.mimetype};base64,${base64Image}`,
     });
