@@ -9,6 +9,7 @@ import jwt from "jsonwebtoken";
 import followRoutes from "./src/routes/followRoutes.js";
 import notificationRoutes from "./src/routes/notificationRoutes.js";
 import messageRoutes from "./src/routes/messageRoutes.js";
+import searchRoutes from "./src/routes/searchRoutes.js";
 
 dotenv.config();
 const app = express();
