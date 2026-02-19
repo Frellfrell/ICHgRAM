@@ -9,6 +9,9 @@ import jwt from "jsonwebtoken";
 import followRoutes from "./src/routes/followRoutes.js";
 import notificationRoutes from "./src/routes/notificationRoutes.js";
 import messageRoutes from "./src/routes/messageRoutes.js";
+import searchRoutes from "./src/routes/searchRoutes.js";
+import postRoutes from "./src/routes/postRoutes.js";
+import userRoutes from "./src/routes/userRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -25,20 +28,15 @@ const io = new Server(server, {
 
 // Подключаемся к MongoDB
 connectDB();
-// Маршруты аутентификации
-app.use("/api/auth", authRoutes);
-// Обработчик Socket.IOio.on("connection", (socket) => {
-console.log("New client connected");
-socketHandler(io);
 
 io.use((socket, next) => {
-  const token = socket.handshake.auth.token;
-
-  if (!token) {
-    return next(new Error("Нет токена"));
-  }
-
   try {
+    const token = socket.handshake.auth?.token;
+
+    if (!token) {
+      return next(new Error("Нет токена"));
+    }
+
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     socket.user = decoded;
     next();
@@ -47,9 +45,16 @@ io.use((socket, next) => {
   }
 });
 
+socketHandler(io);
+
+// Маршруты API
+app.use("/api/auth", authRoutes);
 app.use("/api/follow", followRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/messages", messageRoutes);
+app.use("/api/posts", postRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/users/search", searchRoutes);
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {

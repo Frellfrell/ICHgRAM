@@ -1,0 +1,28 @@
+import User from "../models/userModel.js";
+
+// Контроллер для поиска пользователей
+export const searchUsers = async (req, res) => {
+  try {
+    const { query } = req.query;
+
+    if (!query) {
+      return res.status(400).json({ message: "Поисковый запрос не передан" });
+    }
+
+    const users = await User.find({
+      $or: [
+        { username: { $regex: query, $options: "i" } },
+        { fullName: { $regex: query, $options: "i" } },
+      ],
+    }).select("username fullName");
+
+    if (users.length === 0) {
+      return res.status(404).json({ message: "Пользователи не найдены" });
+    }
+
+    res.json(users);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+};
