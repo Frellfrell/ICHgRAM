@@ -135,6 +135,6 @@ export const getExplorePosts = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Ошибка сервера при получении постов для Эксплоера" });
+      .json({ message: "Ошибка сервера при получении постов для Explore" });
   }
 };
