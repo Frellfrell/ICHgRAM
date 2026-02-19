@@ -1,3 +1,18 @@
+import express from "express";
+import {
+  createPost,
+  getAllPosts,
+  getUserPosts,
+  getPostById,
+  updatePost,
+  deletePost,
+} from "../controllers/postController.js";
+
+import authMiddleware from "../middlewares/authMiddleware.js";
+import upload from "../middlewares/uploadMiddleware.js";
+
+const router = express.Router();
+
 router.post("/", authMiddleware, upload.single("image"), createPost);
 router.get("/", getAllPosts);
 router.get("/user/:userId", getUserPosts);
