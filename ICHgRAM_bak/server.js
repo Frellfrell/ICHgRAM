@@ -10,6 +10,7 @@ import followRoutes from "./src/routes/followRoutes.js";
 import notificationRoutes from "./src/routes/notificationRoutes.js";
 import messageRoutes from "./src/routes/messageRoutes.js";
 import searchRoutes from "./src/routes/searchRoutes.js";
+import postRoutes from "./src/routes/postRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -47,7 +48,7 @@ io.use((socket, next) => {
     next(new Error("Неверный токен"));
   }
 });
-
+app.use("/api/posts", postRoutes);
 app.use("/api/follow", followRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/messages", messageRoutes);
