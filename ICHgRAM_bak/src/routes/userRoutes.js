@@ -8,8 +8,10 @@ import {
 
 const router = express.Router();
 
-router.get("/profile", authMiddleware, getUserProfile);
+// Получить профиль пользователя по ID
+router.get("/:userId", authMiddleware, getUserProfile);
 
-// Update user profile
-router.put("/profile", authMiddleware, upload.single("avatar"), updateProfile);
+// Обновить профиль пользователя
+router.put("/", authMiddleware, upload.single("avatar"), updateUserProfile);
+
 export default router;
