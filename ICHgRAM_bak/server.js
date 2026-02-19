@@ -51,6 +51,7 @@ io.use((socket, next) => {
 app.use("/api/follow", followRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/messages", messageRoutes);
+app.use("/api/users/search", searchRoutes);
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
