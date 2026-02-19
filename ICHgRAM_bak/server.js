@@ -38,7 +38,7 @@ io.use((socket, next) => {
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    socket.userId = decoded.id;
+    socket.user = decoded;
     next();
   } catch (err) {
     next(new Error("Неверный токен"));
