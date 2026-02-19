@@ -21,7 +21,7 @@ router.get("/:postId", getPostById);
 router.delete("/:postId", authMiddleware, deletePost);
 router.put("/:postId", authMiddleware, upload.single("image"), updatePost);
 
-// Эксплоер — случайные посты
+// Explore — случайные посты
 router.get("/explore", authMiddleware, getExplorePosts);
 
 export default router;
