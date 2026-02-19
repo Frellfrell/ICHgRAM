@@ -122,3 +122,19 @@ export const deletePost = async (req, res) => {
     res.status(500).json({ message: "Ошибка сервера" });
   }
 };
+
+export const getExplorePosts = async (req, res) => {
+  try {
+    const posts = await Post.aggregate([
+      { $sample: { size: 10 } }, // Выбираем случайные 10 постов
+    ])
+      .populate("author", "username fullName")
+      .sort({ createdAt: -1 }); // можно добавлять сортировку по времени, если нужно
+
+    res.json(posts);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Ошибка сервера при получении постов для Эксплоера" });
+  }
+};
