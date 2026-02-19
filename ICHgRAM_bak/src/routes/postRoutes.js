@@ -19,3 +19,5 @@ router.get("/user/:userId", getUserPosts);
 router.get("/:postId", getPostById);
 router.delete("/:postId", authMiddleware, deletePost);
 router.put("/:postId", authMiddleware, upload.single("image"), updatePost);
+
+export default router;
