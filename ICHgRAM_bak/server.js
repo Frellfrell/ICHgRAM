@@ -49,8 +49,6 @@ socketHandler(io);
 
 // Маршруты API
 app.use("/api/auth", authRoutes);
-console.log("New client connected");
-
 app.use("/api/follow", followRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/messages", messageRoutes);
