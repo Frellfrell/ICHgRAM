@@ -12,6 +12,6 @@ const router = express.Router();
 router.get("/:userId", authMiddleware, getUserProfile);
 
 // Обновить профиль пользователя
-router.put("/", authMiddleware, upload.single("avatar"), updateUserProfile);
+router.put("/", authMiddleware, upload.single("avatar"), updateProfile);
 
 export default router;
