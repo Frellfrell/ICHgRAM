@@ -9,7 +9,7 @@ export const searchUsers = async (req, res) => {
       return res.status(400).json({ message: "Поисковый запрос не передан" });
     }
 
-     const users = await User.find({
+    const users = await User.find({
       $or: [
         { username: { $regex: query, $options: "i" } },
         { fullName: { $regex: query, $options: "i" } },
@@ -19,3 +19,10 @@ export const searchUsers = async (req, res) => {
     if (users.length === 0) {
       return res.status(404).json({ message: "Пользователи не найдены" });
     }
+
+    res.json(users);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+};
