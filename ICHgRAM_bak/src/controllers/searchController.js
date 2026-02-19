@@ -16,4 +16,6 @@ export const searchUsers = async (req, res) => {
       ],
     }).select("username fullName");
 
-    
+    if (users.length === 0) {
+      return res.status(404).json({ message: "Пользователи не найдены" });
+    }
