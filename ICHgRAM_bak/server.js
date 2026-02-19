@@ -55,7 +55,6 @@ app.use("/api/follow", followRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/posts", postRoutes);
-
 app.use("/api/users", userRoutes);
 app.use("/api/users/search", searchRoutes);
 
