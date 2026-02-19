@@ -6,6 +6,7 @@ import {
   getPostById,
   updatePost,
   deletePost,
+  getExplorePosts,
 } from "../controllers/postController.js";
 
 import authMiddleware from "../middlewares/authMiddleware.js";
