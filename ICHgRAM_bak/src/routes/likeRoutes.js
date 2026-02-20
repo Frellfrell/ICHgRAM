@@ -7,3 +7,5 @@ const router = express.Router();
 router.get("/:postId", authMiddleware, getPostLikes);
 
 router.post("/:postId", authMiddleware, toggleLike);
+
+export default router;
