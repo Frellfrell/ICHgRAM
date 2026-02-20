@@ -12,6 +12,8 @@ import messageRoutes from "./src/routes/messageRoutes.js";
 import searchRoutes from "./src/routes/searchRoutes.js";
 import postRoutes from "./src/routes/postRoutes.js";
 import userRoutes from "./src/routes/userRoutes.js";
+import likeRoutes from "./src/routes/likeRoutes.js";
+import commentRoutes from "./src/routes/commentRoutes.js";
 
 dotenv.config();
 const app = express();
