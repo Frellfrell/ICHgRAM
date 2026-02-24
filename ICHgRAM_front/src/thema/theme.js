@@ -7,3 +7,11 @@ export const theme = createTheme({
   shape: {
     borderRadius: 8,
   },
+  typography: {
+    fontFamily: 'Roboto, Inter, sans-serif',
+
+     h6: {
+      fontWeight: 700,
+      fontSize: '16px',
+      lineHeight: '20px',
+    },
