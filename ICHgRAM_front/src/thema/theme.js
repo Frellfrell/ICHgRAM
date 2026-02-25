@@ -28,6 +28,13 @@ export const theme = createTheme({
       lineHeight: "16px",
     },
 
+    message: {
+      fontFamily: "Inter, sans-serif",
+      fontWeight: 400,
+      fontSize: "12px",
+      lineHeight: "15.5px",
+    },
+
     button: {
       fontWeight: 600,
       fontSize: "14px",
