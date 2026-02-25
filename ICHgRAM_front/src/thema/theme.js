@@ -8,7 +8,7 @@ export const theme = createTheme({
     borderRadius: 8,
   },
   typography: {
-    fontFamily: "Roboto, Inter, sans-serif",
+    fontFamily: "Roboto, sans-serif",
 
     h6: {
       fontWeight: 700,
@@ -27,6 +27,14 @@ export const theme = createTheme({
       fontSize: "12px",
       lineHeight: "16px",
     },
+
+    message: {
+      fontFamily: "Inter, sans-serif",
+      fontWeight: 400,
+      fontSize: "12px",
+      lineHeight: "15.5px",
+    },
+
     button: {
       fontWeight: 600,
       fontSize: "14px",

@@ -22,7 +22,7 @@ export const palette = {
     secondary: "rgba(115,115,115,1)",
   },
 
-  divider: "rgba(219,219,219,1)",
+  borders: "rgba(219,219,219,1)",
 
   grey: {
     50: "rgba(250,250,250,1)",
