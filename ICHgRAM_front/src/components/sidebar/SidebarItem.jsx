@@ -15,10 +15,8 @@ const SidebarItem = ({ label, to }) => {
           alignItems: "center",
           cursor: "pointer",
         }}
-          >
-        <AppTypography variant="body1">
-          {label}
-        </AppTypography>
+      >
+        <AppTypography variant="body1">{label}</AppTypography>
       </Box>
     );
   }
@@ -32,7 +30,7 @@ const SidebarItem = ({ label, to }) => {
           ? theme.palette.primary.main
           : theme.palette.text.primary,
       })}
-       >
+    >
       {({ isActive }) => (
         <Box
           sx={{
@@ -40,11 +38,15 @@ const SidebarItem = ({ label, to }) => {
             display: "flex",
             alignItems: "center",
           }}
-          >
+        >
           <AppTypography
             variant="body1"
             sx={{ fontWeight: isActive ? 600 : 400 }}
           >
             {label}
-            </AppTypography>
-            
+          </AppTypography>
+        </Box>
+      )}
+    </NavLink>
+  );
+};
