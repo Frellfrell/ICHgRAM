@@ -5,3 +5,13 @@ import { useTheme } from "@mui/material/styles";
 
 const SidebarItem = ({ label, to }) => {
   const theme = useTheme();
+
+  if (!to) {
+    return (
+      <Box
+        sx={{
+          height: "48px",
+          display: "flex",
+          alignItems: "center",
+          cursor: "pointer",
+        }}
