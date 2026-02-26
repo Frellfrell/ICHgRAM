@@ -1,12 +1,11 @@
 import { Box } from "@mui/material";
 import SidebarItem from "./SidebarItem";
-import { useTheme } from "@mui/material/styles"
+import { useTheme } from "@mui/material/styles";
 
 const Sidebar = () => {
   const theme = useTheme();
 
-
- return (
+  return (
     <Box
       sx={{
         position: "fixed",
@@ -19,7 +18,7 @@ const Sidebar = () => {
         display: "flex",
         flexDirection: "column",
       }}
-      >
+    >
       {/* Logo */}
       <Box
         sx={{
@@ -31,7 +30,7 @@ const Sidebar = () => {
         LOGO
       </Box>
 
-        {/* Navigation */}
+      {/* Navigation */}
       <Box sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
         <SidebarItem label="Home" to="/" />
         <SidebarItem label="Search" />
@@ -41,4 +40,13 @@ const Sidebar = () => {
         <SidebarItem label="Create" />
       </Box>
 
-   
+      {/* Spacer */}
+      <Box sx={{ flexGrow: 1 }} />
+
+      {/* Profile */}
+      <Box sx={{ marginTop: "47px" }}>
+        <SidebarItem label="Profile" to="/profile" />
+      </Box>
+    </Box>
+  );
+};
