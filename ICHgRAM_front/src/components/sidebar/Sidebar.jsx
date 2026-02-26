@@ -19,3 +19,26 @@ const Sidebar = () => {
         display: "flex",
         flexDirection: "column",
       }}
+      >
+      {/* Logo */}
+      <Box
+        sx={{
+          width: "196px",
+          height: "37px",
+          marginBottom: "5px",
+        }}
+      >
+        LOGO
+      </Box>
+
+        {/* Navigation */}
+      <Box sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <SidebarItem label="Home" to="/" />
+        <SidebarItem label="Search" />
+        <SidebarItem label="Explore" to="/explore" />
+        <SidebarItem label="Message" to="/messages" />
+        <SidebarItem label="Notification" />
+        <SidebarItem label="Create" />
+      </Box>
+
+   
