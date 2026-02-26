@@ -40,3 +40,11 @@ const SidebarItem = ({ label, to }) => {
             display: "flex",
             alignItems: "center",
           }}
+          >
+          <AppTypography
+            variant="body1"
+            sx={{ fontWeight: isActive ? 600 : 400 }}
+          >
+            {label}
+            </AppTypography>
+            
