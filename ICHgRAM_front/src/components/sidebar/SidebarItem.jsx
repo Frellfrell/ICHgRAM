@@ -32,3 +32,11 @@ const SidebarItem = ({ label, to }) => {
           ? theme.palette.primary.main
           : theme.palette.text.primary,
       })}
+       >
+      {({ isActive }) => (
+        <Box
+          sx={{
+            height: "48px",
+            display: "flex",
+            alignItems: "center",
+          }}
