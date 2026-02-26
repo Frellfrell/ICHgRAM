@@ -50,3 +50,5 @@ const SidebarItem = ({ label, to }) => {
     </NavLink>
   );
 };
+
+export default SidebarItem;
