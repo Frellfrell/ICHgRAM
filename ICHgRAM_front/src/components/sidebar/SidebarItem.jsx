@@ -22,3 +22,13 @@ const SidebarItem = ({ label, to }) => {
       </Box>
     );
   }
+
+  return (
+    <NavLink
+      to={to}
+      style={({ isActive }) => ({
+        textDecoration: "none",
+        color: isActive
+          ? theme.palette.primary.main
+          : theme.palette.text.primary,
+      })}
