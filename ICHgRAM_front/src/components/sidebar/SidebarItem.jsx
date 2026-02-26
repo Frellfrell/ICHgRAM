@@ -15,3 +15,10 @@ const SidebarItem = ({ label, to }) => {
           alignItems: "center",
           cursor: "pointer",
         }}
+          >
+        <AppTypography variant="body1">
+          {label}
+        </AppTypography>
+      </Box>
+    );
+  }
