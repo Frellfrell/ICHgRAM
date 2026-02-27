@@ -1,4 +1,7 @@
+import React from "react";
 import { Box } from "@mui/material";
+import Sidebar from "../components/navbar/Sidebar";
+import Footer from "../components/footer/Footer";
 
 const Layout = ({ children }) => {
   return (
