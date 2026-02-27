@@ -21,4 +21,18 @@ const links = [
       display="flex"
       flexDirection="column"
       alignItems="center"
-    ></Box>
+    >
+         {/* Верхняя часть футера: ссылки */}
+      <Box display="flex" justifyContent="center" gap={4} flexWrap="wrap">
+        {links.map((link, index) =>
+          link.href ? (
+            <Link key={index} href={link.href} underline="none" color="text.secondary">
+              {link.label}
+            </Link>
+          ) : (
+            <Typography key={index} color="text.secondary">
+              {link.label}
+            </Typography>
+          )
+        )}
+    </Box>
