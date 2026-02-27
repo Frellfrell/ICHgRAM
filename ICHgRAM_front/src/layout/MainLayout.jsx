@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import Sidebar from "../components/navbar/Sidebar";
 import Footer from "../components/footer/Footer";
 
-const Layout = ({ children }) => {
+const MainLayout = ({ children }) => {
   return (
     <Box sx={{ display: "flex", minHeight: "100vh" }}>
       <Sidebar />
@@ -17,9 +17,10 @@ const Layout = ({ children }) => {
         }}
       >
         {children}
+        <Footer />
       </Box>
     </Box>
   );
 };
 
-export default Layout;
+export default MainLayout;
