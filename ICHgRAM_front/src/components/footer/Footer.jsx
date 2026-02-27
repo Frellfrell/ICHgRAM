@@ -11,3 +11,14 @@ const links = [
     { label: "Text5", href: null }, // просто текст
     { label: "Link6", href: "#" },
   ];
+
+  return (
+    <Box
+      component="footer"
+      mt={4}
+      py={4}
+      bgcolor="background.paper"
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+    ></Box>
