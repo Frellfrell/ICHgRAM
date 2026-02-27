@@ -1,22 +1,27 @@
+import React from "react";
 import { Box } from "@mui/material";
+import Sidebar from "../components/navbar/Sidebar";
+import Footer from "../components/footer/Footer";
 
-const Layout = ({ children }) => {
+const MainLayout = ({ children }) => {
   return (
     <Box sx={{ display: "flex", minHeight: "100vh" }}>
       <Sidebar />
+      {/* Контент справа */}
       <Box
         component="main"
-        sx={{
-          flexGrow: 1,
-          paddingTop: "33px",
-          paddingLeft: "24px",
-          paddingRight: "24px",
-        }}
+        flexGrow={1}
+        p={{ xs: 2, md: 3 }}
+        minHeight="100vh"
+        display="flex"
+        flexDirection="column"
       >
-        {children}
+        {/* Основной контент страницы */}
+        <Box flexGrow={1}>{children}</Box>
+        <Footer />
       </Box>
     </Box>
   );
 };
 
-export default Layout;
+export default MainLayout;
