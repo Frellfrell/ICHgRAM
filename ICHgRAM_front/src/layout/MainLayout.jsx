@@ -7,16 +7,17 @@ const MainLayout = ({ children }) => {
   return (
     <Box sx={{ display: "flex", minHeight: "100vh" }}>
       <Sidebar />
+      {/* Контент справа */}
       <Box
         component="main"
-        sx={{
-          flexGrow: 1,
-          paddingTop: "33px",
-          paddingLeft: "24px",
-          paddingRight: "24px",
-        }}
+        flexGrow={1}
+        p={{ xs: 2, md: 3 }}
+        minHeight="100vh"
+        display="flex"
+        flexDirection="column"
       >
-        {children}
+        {/* Основной контент страницы */}
+        <Box flexGrow={1}>{children}</Box>
         <Footer />
       </Box>
     </Box>
