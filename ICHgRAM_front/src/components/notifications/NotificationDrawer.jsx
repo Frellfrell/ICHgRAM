@@ -69,3 +69,9 @@ export const NotificationDrawer = ({ open, onClose, notifications }) => {
                 alt={item.username}
                 sx={{ width: 40, height: 40, borderRadius: "50%" }}
               />
+               <Box>
+                <Typography variant="body1">{item.username}</Typography>
+                <Typography variant="body2">{item.action}</Typography>
+              </Box>
+            </Box>
+          ))}
