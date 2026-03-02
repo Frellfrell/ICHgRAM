@@ -43,3 +43,20 @@ export const SearchDrawer = ({ open, onClose, results }) => {
             alignItems: "center",
             mb: 2,
           }}
+           >
+          <Typography variant="h6">Search</Typography>
+          <IconButton onClick={onClose}>
+            <CloseIcon />
+          </IconButton>
+        </Box>
+         {/* Input */}
+        <Box
+          sx={{
+            mb: 3,
+            display: "flex",
+            alignItems: "center",
+            border: "1px solid rgba(219,219,219,1)",
+            borderRadius: 1,
+            p: 1,
+          }}
+        ></Box>
