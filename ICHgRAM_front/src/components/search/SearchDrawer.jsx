@@ -20,3 +20,18 @@ export const SearchDrawer = ({ open, onClose, results }) => {
           zIndex: 999,
         }}
       />
+      {/* Drawer */}
+      <Box
+        sx={{
+          position: "fixed",
+          top: 0,
+          left: 245,
+          width: 397,
+          height: 900,
+          backgroundColor: "#fff",
+          padding: 2,
+          zIndex: 1000,
+          boxShadow: "2px 0 8px rgba(0,0,0,0.2)",
+          overflowY: "auto",
+        }}
+      ></Box>
