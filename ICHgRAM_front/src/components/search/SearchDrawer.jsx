@@ -59,4 +59,9 @@ export const SearchDrawer = ({ open, onClose, results }) => {
             borderRadius: 1,
             p: 1,
           }}
-        ></Box>
+        >
+             <InputBase
+            placeholder="Search"
+            sx={{ ml: 1, flex: 1 }}
+          />
+        </Box>
