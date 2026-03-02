@@ -34,4 +34,12 @@ export const SearchDrawer = ({ open, onClose, results }) => {
           boxShadow: "2px 0 8px rgba(0,0,0,0.2)",
           overflowY: "auto",
         }}
-      ></Box>
+      >
+         {/* Header */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            mb: 2,
+          }}
