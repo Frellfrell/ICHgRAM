@@ -62,4 +62,10 @@ export const NotificationDrawer = ({ open, onClose, notifications }) => {
                 mb: 1,
                 borderBottom: "1px solid rgba(219,219,219,1)",
               }}
-            ></Box>
+            >
+                 <Box
+                component="img"
+                src={item.avatar}
+                alt={item.username}
+                sx={{ width: 40, height: 40, borderRadius: "50%" }}
+              />
