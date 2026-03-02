@@ -2,13 +2,12 @@ import React from "react";
 import { Box, Typography, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-
 export const NotificationDrawer = ({ open, onClose, notifications }) => {
   if (!open) return null;
 
   return (
     <>
-   <Box
+      <Box
         onClick={onClose}
         sx={{
           position: "fixed",
@@ -36,7 +35,7 @@ export const NotificationDrawer = ({ open, onClose, notifications }) => {
           overflowY: "auto",
         }}
       >
-         <Box
+        <Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
@@ -63,15 +62,20 @@ export const NotificationDrawer = ({ open, onClose, notifications }) => {
                 borderBottom: "1px solid rgba(219,219,219,1)",
               }}
             >
-                 <Box
+              <Box
                 component="img"
                 src={item.avatar}
                 alt={item.username}
                 sx={{ width: 40, height: 40, borderRadius: "50%" }}
               />
-               <Box>
+              <Box>
                 <Typography variant="body1">{item.username}</Typography>
                 <Typography variant="body2">{item.action}</Typography>
               </Box>
             </Box>
           ))}
+        </Box>
+      </Box>
+    </>
+  );
+};
