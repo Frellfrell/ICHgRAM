@@ -36,3 +36,30 @@ export const NotificationDrawer = ({ open, onClose, notifications }) => {
           overflowY: "auto",
         }}
       >
+         <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            mb: 2,
+          }}
+        >
+          <Typography variant="h6">Notification</Typography>
+          <IconButton onClick={onClose}>
+            <CloseIcon />
+          </IconButton>
+        </Box>
+
+        <Box>
+          {notifications?.map((item, idx) => (
+            <Box
+              key={idx}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                height: 60,
+                mb: 1,
+                borderBottom: "1px solid rgba(219,219,219,1)",
+              }}
+            ></Box>
