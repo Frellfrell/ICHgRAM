@@ -67,3 +67,5 @@ export const SearchDrawer = ({ open, onClose, results }) => {
         </Box>
 
          {/* Results */}
+          <Box>
+          {results?.map((item, idx) => (
