@@ -2,13 +2,12 @@ import React from "react";
 import { Box, Typography, IconButton, InputBase } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-
 export const SearchDrawer = ({ open, onClose, results }) => {
   if (!open) return null;
 
   return (
     <>
-    <Box
+      <Box
         onClick={onClose}
         sx={{
           position: "fixed",
@@ -35,7 +34,7 @@ export const SearchDrawer = ({ open, onClose, results }) => {
           overflowY: "auto",
         }}
       >
-         {/* Header */}
+        {/* Header */}
         <Box
           sx={{
             display: "flex",
@@ -43,13 +42,13 @@ export const SearchDrawer = ({ open, onClose, results }) => {
             alignItems: "center",
             mb: 2,
           }}
-           >
+        >
           <Typography variant="h6">Search</Typography>
           <IconButton onClick={onClose}>
             <CloseIcon />
           </IconButton>
         </Box>
-         {/* Input */}
+        {/* Input */}
         <Box
           sx={{
             mb: 3,
@@ -60,16 +59,13 @@ export const SearchDrawer = ({ open, onClose, results }) => {
             p: 1,
           }}
         >
-             <InputBase
-            placeholder="Search"
-            sx={{ ml: 1, flex: 1 }}
-          />
+          <InputBase placeholder="Search" sx={{ ml: 1, flex: 1 }} />
         </Box>
 
-         {/* Results */}
-          <Box>
+        {/* Results */}
+        <Box>
           {results?.map((item, idx) => (
-             <Box
+            <Box
               key={idx}
               sx={{
                 display: "flex",
@@ -80,7 +76,7 @@ export const SearchDrawer = ({ open, onClose, results }) => {
                 borderBottom: "1px solid rgba(219,219,219,1)",
               }}
             >
-               <Box
+              <Box
                 component="img"
                 src={item.avatar}
                 alt={item.username}
@@ -88,4 +84,9 @@ export const SearchDrawer = ({ open, onClose, results }) => {
               />
               <Typography variant="body1">{item.username}</Typography>
             </Box>
-            
+          ))}
+        </Box>
+      </Box>
+    </>
+  );
+};
