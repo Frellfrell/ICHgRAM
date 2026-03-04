@@ -1,14 +1,15 @@
 import React from "react";
+import { Link as RouterLink } from "react-router-dom";
 import { Box, Typography, Link } from "@mui/material";
 
 const Footer = () => {
   const links = [
-    { label: "Link1", href: "#" },
-    { label: "Link2", href: "#" },
-    { label: "Link3", href: "#" },
-    { label: "Link4", href: "#" },
-    { label: "Text5", href: null }, // просто текст
-    { label: "Link6", href: "#" },
+    { label: "Home", type: "link", path: "/home" },
+    { label: "Explore", type: "link", path: "/explore" },
+    { label: "Message", type: "link", path: "/message" },
+    { label: "Search", type: "action", action: "search" },
+    { label: "Notification", type: "text" },
+    { label: "Create", type: "action", action: "create" },
   ];
 
   return (
@@ -26,8 +27,8 @@ const Footer = () => {
         {links.map((link, index) =>
           link.href ? (
             <Link
-              key={index}
-              href={link.href}
+              component={RouterLink}
+              to={link.path}
               underline="none"
               color="text.secondary"
             >
