@@ -65,3 +65,5 @@ export const SearchDrawer = ({ open, onClose, results }) => {
             sx={{ ml: 1, flex: 1 }}
           />
         </Box>
+
+         {/* Results */}
