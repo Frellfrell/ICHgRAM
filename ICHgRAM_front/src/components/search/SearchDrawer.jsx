@@ -79,4 +79,13 @@ export const SearchDrawer = ({ open, onClose, results }) => {
                 mb: 1,
                 borderBottom: "1px solid rgba(219,219,219,1)",
               }}
-            ></Box>
+            >
+               <Box
+                component="img"
+                src={item.avatar}
+                alt={item.username}
+                sx={{ width: 40, height: 40, borderRadius: "50%" }}
+              />
+              <Typography variant="body1">{item.username}</Typography>
+            </Box>
+            
