@@ -69,3 +69,14 @@ export const SearchDrawer = ({ open, onClose, results }) => {
          {/* Results */}
           <Box>
           {results?.map((item, idx) => (
+             <Box
+              key={idx}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                height: 56,
+                mb: 1,
+                borderBottom: "1px solid rgba(219,219,219,1)",
+              }}
+            ></Box>
