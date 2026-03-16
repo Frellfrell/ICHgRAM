@@ -39,4 +39,10 @@ const LoginPage = () => {
             <Typography sx={{ px: 2, color: "text.secondary", fontSize: 13, fontWeight: 600 }}>
               OR
             </Typography>
-            
+            <Box sx={{ flex: 1, height: "1px", bgcolor: "#dbdbdb" }} />
+          </Box>
+
+          <Link href="#" underline="none" sx={{ fontSize: 12, color: "#00376b" }}>
+            Forgot password?
+          </Link>
+        </Paper>
