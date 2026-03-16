@@ -51,4 +51,11 @@ const LoginPage = () => {
         <Paper 
           variant="outlined" 
           sx={{ p: 3, textAlign: "center", borderRadius: 1 }}
-        ></Paper>
+        >
+            <Typography variant="body2">
+            Don't have an account?{" "}
+            <Link href="/signup" underline="none" sx={{ fontWeight: 600, color: "primary.main" }}>
+              Sign up
+            </Link>
+          </Typography>
+          </Paper>
