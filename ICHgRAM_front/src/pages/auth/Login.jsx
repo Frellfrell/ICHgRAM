@@ -12,3 +12,10 @@ const LoginPage = () => {
         flexDirection: "column", 
         justifyContent: "center" 
       }}
+      >
+      <Container maxWidth="xs">
+        
+        {/* Верхний блок с формой */}
+        <Paper 
+          variant="outlined" 
+          sx={{ p: 4, mb: 2, textAlign: "center", borderRadius: 1 }}
