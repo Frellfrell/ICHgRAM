@@ -46,3 +46,9 @@ const LoginPage = () => {
             Forgot password?
           </Link>
         </Paper>
+
+        {/* Нижний блок с переходом */}
+        <Paper 
+          variant="outlined" 
+          sx={{ p: 3, textAlign: "center", borderRadius: 1 }}
+        ></Paper>
