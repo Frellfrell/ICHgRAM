@@ -14,8 +14,16 @@ const LoginPage = () => {
       }}
       >
       <Container maxWidth="xs">
-        
+
         {/* Верхний блок с формой */}
         <Paper 
           variant="outlined" 
           sx={{ p: 4, mb: 2, textAlign: "center", borderRadius: 1 }}
+          >
+          <Typography 
+            variant="h4" 
+            sx={{ fontFamily: "cursive", mb: 4, fontWeight: "bold" }}
+          >
+            ICHGRAM
+          </Typography>
+          
