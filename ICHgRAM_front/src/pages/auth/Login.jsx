@@ -33,3 +33,10 @@ const LoginPage = () => {
             
             <AppButton type="submit">Log in</AppButton>
           </form>
+
+          <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
+            <Box sx={{ flex: 1, height: "1px", bgcolor: "#dbdbdb" }} />
+            <Typography sx={{ px: 2, color: "text.secondary", fontSize: 13, fontWeight: 600 }}>
+              OR
+            </Typography>
+            
