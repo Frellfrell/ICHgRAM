@@ -26,4 +26,10 @@ const LoginPage = () => {
           >
             ICHGRAM
           </Typography>
-          
+
+          <form>
+            <AppInput placeholder="Username, or email" />
+            <AppInput placeholder="Password" type="password" />
+            
+            <AppButton type="submit">Log in</AppButton>
+          </form>
