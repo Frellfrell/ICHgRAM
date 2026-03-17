@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Box, Link } from "@mui/material";
 import { useNavigate } from "react-router-dom"; // Для перенаправления
 import { registerUser } from "../../api/auth";
@@ -7,13 +7,17 @@ import AppButton from "../../components/UI/AppButton";
 import AppTypography from "../../components/UI/AppTypography";
 
 const Register = () => {
-  // Состояния для полей  для бэкенда
+  //   для бэкенда
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     fullName: "",
     username: "",
     password: "",
   });
+
+  const [error, setError] = useState(null); // Для хранения ошибок бэкенда
+  const [loading, setLoading] = useState(false); // Для блокировки кнопки при запросе
 
   // Функция для обновления полей
   const handleChange = (e) => {
@@ -22,14 +26,27 @@ const Register = () => {
       ...prev,
       [name]: value,
     }));
+    if (error) setError(null);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Останавливаем перезагрузку страницы
+    setLoading(true);
+    setError(null);
 
-    console.log("Данные для отправки:", formData);
+    try {
+      const data = await registerUser(formData);
+      console.log("Успешная регистрация:", data);
+
+      // Если регистрация прошла успешно, отправляем на логин
+      navigate("/login");
+    } catch (err) {
+      // ловим  ошибку "Username taken"
+      setError(err.message || "Something went wrong");
+    } finally {
+      setLoading(false);
+    }
   };
-
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
       <Box
@@ -74,6 +91,8 @@ const Register = () => {
             placeholder="Username"
             value={formData.username}
             onChange={handleChange}
+            error={!!error} // Если error не null, поле станет красным
+            helperText={error} // Текст ошибки из бэкенда
           />
           <AppInput
             name="password"
@@ -107,7 +126,9 @@ const Register = () => {
             .
           </AppTypography>
 
-          <AppButton type="submit">Sign up</AppButton>
+          <AppButton type="submit" disabled={loading}>
+            {loading ? "Signing up..." : "Sign up"}
+          </AppButton>
         </form>
       </Box>
 
