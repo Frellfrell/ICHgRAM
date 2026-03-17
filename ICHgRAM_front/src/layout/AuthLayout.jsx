@@ -6,13 +6,12 @@ const AuthLayout = ({ children }) => {
   return (
     <Box
       sx={{
-        width: "1440px",
-        height: "900px",
         mx: "auto",
         display: "flex",
-        justifyConte: "flex-start",
+        justifyContent: "center",
+        alignItems: "center",
         bgcolor: "background.default",
-        minwidth: "100%",
+        width: "100%",
         minHeight: "100vh",
       }}
     >
@@ -23,9 +22,8 @@ const AuthLayout = ({ children }) => {
           height: "733px",
           display: "flex",
           flexDirection: "row",
+          alignItems: "flex-start",
           position: "relative",
-          gap: "32px",
-          mt: 0,
         }}
       >
         {/* Левая колонка: Имиджи телефонов  */}
@@ -33,7 +31,7 @@ const AuthLayout = ({ children }) => {
           sx={{
             width: "380.31px",
             height: "581.14px",
-            position: "relative",
+            position: "absolute",
             top: "53.92px",
             left: "86.34px",
           }}
@@ -66,7 +64,16 @@ const AuthLayout = ({ children }) => {
 
         {/* Правая колонка: форма (Login или Register) */}
         {/* ПРАВАЯ ЧАСТЬ: СЮДА ПРИДЕТ ВЕСЬ LOGIN.JSX */}
-        <Box sx={{ mr: "86px" }}>{children}</Box>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "65px",
+            left: "498.65px", //  положение начала формы (86.34 + 380.31 + 32)
+            width: "350px",
+          }}
+        >
+          {children}
+        </Box>
       </Box>
     </Box>
   );
