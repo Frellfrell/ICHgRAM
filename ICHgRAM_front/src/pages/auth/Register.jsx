@@ -13,6 +13,21 @@ const Register = () => {
     password: "",
   });
 
+  // Функция для обновления полей
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log("Данные для отправки:", formData);
+  };
+
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
       <Box
@@ -39,11 +54,32 @@ const Register = () => {
           Sign up to see photos and videos from your friends.
         </AppTypography>
 
-        <form>
-          <AppInput placeholder="Email" />
-          <AppInput placeholder="Full Name" />
-          <AppInput placeholder="Username" />
-          <AppInput placeholder="Password" type="password" />
+        <form onSubmit={handleSubmit}>
+          <AppInput
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          <AppInput
+            name="fullName"
+            placeholder="Full Name"
+            value={formData.fullName}
+            onChange={handleChange}
+          />
+          <AppInput
+            name="username"
+            placeholder="Username"
+            value={formData.username}
+            onChange={handleChange}
+          />
+          <AppInput
+            name="password"
+            placeholder="Password"
+            type="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
 
           <AppTypography variant="body2" color="text.secondary" sx={{ my: 2 }}>
             People who use our service may have uploaded your contact
