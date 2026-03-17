@@ -1,9 +1,6 @@
 import { Box } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 
-const DividerLine = ({ sx }) => {
-  const theme = useTheme();
-
+const DividerLine = () => {
   return (
     <Box
       sx={{
