@@ -35,12 +35,32 @@ const AuthLayout = ({ children }) => {
             left: "86.34px",
           }}
         >
-          <img
-            src="/src/assets/phones-mockup.png"
-            alt="Phones"
-            style={{ width: "100%" }}
+          {/* Корпус телефона */}
+          <Box
+            component="img"
+            src="/src/assets/phones-frame.png"
+            sx={{
+              width: "100%",
+              height: "100%",
+              position: "absolute",
+              zIndex: 2,
+            }}
+          />
+          {/* Скриншот внутри  */}
+          <Box
+            component="img"
+            src="/src/assets/screenshot1.png"
+            sx={{
+              width: "250px",
+              height: "538.83px",
+              position: "absolute",
+              top: "21.08px",
+              left: "113.16px",
+              zIndex: 1,
+            }}
           />
         </Box>
+
         {/* Правая колонка: форма (Login или Register) */}
         <Box
           sx={{
