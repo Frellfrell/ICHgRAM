@@ -29,13 +29,18 @@ const Login = () => {
     setLoading(true);
     setError(null);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+    try {
+      const result = await loginUser(formData);
+      console.log("Вход выполнен успешно:", result);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    // Логика отправки на бэкенд для получения JWT
-    console.log("Login attempt", { email, password });
+      // После логина перенаправляем на главную страницу (ленту)
+      navigate("/");
+    } catch (err) {
+      // Если пароль неверный или пользователя нет
+      setError(err.message || "Invalid username or password");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
