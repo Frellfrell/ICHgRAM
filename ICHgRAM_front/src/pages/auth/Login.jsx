@@ -1,8 +1,20 @@
+import React, { useState } from 'react';
 import { Box, Typography, Container, Paper, Link } from "@mui/material";
-import AppInput from "../components/UI/AppInput";
-import AppButton from "../components/UI/AppButton";
+import AppInput from "../components/ui/AppInput.jsx";
+import AppButton from "../components/ui/AppButton.jsx";
+import AppTypography from '../../components/UI/AppTypography'; 
+import DividerLine from '../../components/UI/DividerLine';
 
-const LoginPage = () => {
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // Логика отправки на бэкенд для получения JWT
+    console.log("Login attempt", { email, password });
+  };
+
   return (
     <Box
       sx={{
@@ -13,24 +25,31 @@ const LoginPage = () => {
         justifyContent: "center",
       }}
     >
-      <Container maxWidth="xs">
-        {/* Верхний блок с формой */}
-        <Paper
-          variant="outlined"
-          sx={{ p: 4, mb: 2, textAlign: "center", borderRadius: 1 }}
-        >
-          <Typography
-            variant="h4"
-            sx={{ fontFamily: "cursive", mb: 4, fontWeight: "bold" }}
-          >
-            ICHGRAM
-          </Typography>
+      {/* Основной блок формы */}
+      <Box sx={{ 
+        width: 350, 
+        border: '1px solid #dbdbdb', 
+        bgcolor: 'white', 
+        p: '40px 20px', 
+        textAlign: 'center' 
+      }}>
+         <Box 
+          component="img" 
+          src="/assets/logo/ICHGRA 5.svg" 
+          sx={{ width: 190, height: 106, mb: 3, objectFit: 'contain' }} 
+        />
 
-          <form>
-            <AppInput placeholder="Username, or email" />
-            <AppInput placeholder="Password" type="password" />
+          <form onSubmit={handleLogin}>
+            <AppInput placeholder="Username, or email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)} />
+            <AppInput placeholder="Password" type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)} />
 
-            <AppButton type="submit">Log in</AppButton>
+            <AppButton type="submit" sx={{ mt: 1 }}>
+              Log in
+              </AppButton>
           </form>
 
           <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
