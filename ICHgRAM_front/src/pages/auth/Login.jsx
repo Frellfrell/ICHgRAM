@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Box, Link } from "@mui/material";
 import AppInput from "../components/ui/AppInput.jsx";
 import AppButton from "../components/ui/AppButton.jsx";
-import AppTypography from "../../components/UI/AppTypography";
-import DividerLine from "../../components/UI/DividerLine";
+import AppTypography from "../../components/ui/AppTypography.jsx";
+import DividerLine from "../../components/ui/DividerLine.jsx";
 
 const Login = () => {
   const [email, setEmail] = useState("");
