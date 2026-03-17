@@ -64,8 +64,6 @@ const AuthLayout = ({ children }) => {
         {/* Правая колонка: форма (Login или Register) */}
         <Box
           sx={{
-            width: "350px",
-            position: "relative",
             top: "12px",
             left: "117px", // Gap 31px + отступ
           }}
