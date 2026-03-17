@@ -43,3 +43,12 @@ const ResetPassword = () => {
         </Box>
 
         <DividerLine />
+
+
+        <Link href="/register" underline="none">
+          <AppTypography variant="body2" sx={{ fontWeight: 600, mb: 2 }}>
+            Create new account
+          </AppTypography>
+        </Link>
+
+        
