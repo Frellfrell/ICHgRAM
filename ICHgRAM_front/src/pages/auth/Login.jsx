@@ -67,7 +67,11 @@ const Login = () => {
 
         <DividerLine />
 
-        <Link href="#" underline="none" sx={{ fontSize: 12, color: "#00376b" }}>
+        <Link
+          href="/reset-password"
+          underline="none"
+          sx={{ fontSize: 12, color: "#00376b" }}
+        >
           Forgot password?
         </Link>
       </Box>
