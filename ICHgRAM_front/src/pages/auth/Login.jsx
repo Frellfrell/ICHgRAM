@@ -65,12 +65,15 @@ const Login = () => {
           </Link>
       </Box>
 
-        {/* Нижний блок с переходом */}
-        <Paper
-          variant="outlined"
-          sx={{ p: 3, textAlign: "center", borderRadius: 1 }}
-        >
-          <Typography variant="body2">
+        {/* Нижний блок с переходом на регистрацию*/}
+       <Box sx={{ 
+        width: 350, 
+        border: '1px solid #dbdbdb', 
+        bgcolor: 'white', 
+        py: 2, 
+        textAlign: 'center' 
+      }}>
+        <AppTypography variant="body2">
             Don't have an account?{" "}
             <Link
               href="/signup"
