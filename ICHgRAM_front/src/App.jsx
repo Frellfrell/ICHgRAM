@@ -42,6 +42,15 @@ function App() {
 
           <Route path="/" element={<Navigate to="/login" />} />
 
+          <Route
+            path="/reset-password"
+            element={
+              <AuthLayout>
+                <ResetPassword />
+              </AuthLayout>
+            }
+          />
+
           {/* Страница 404 */}
           <Route path="*" element={<NotFound />} />
         </Routes>
