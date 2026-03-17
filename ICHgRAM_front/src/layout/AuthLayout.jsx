@@ -65,29 +65,8 @@ const AuthLayout = ({ children }) => {
         </Box>
 
         {/* Правая колонка: форма (Login или Register) */}
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "12px",
-            mr: "86px", // Отступ справа
-            mt: "65px", // Отступ сверху для формы
-          }}
-        >
-          <Box
-            sx={{
-              width: "350px",
-              height: "411.98px", // Высота из твоего скриншота
-              bgcolor: "#ffffff",
-              border: "1px solid #dbdbdb",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              pt: "49.5px", // Отступ от верха до логотипа
-            }}
-          ></Box>
-          {children}
-        </Box>
+        {/* ПРАВАЯ ЧАСТЬ: СЮДА ПРИДЕТ ВЕСЬ LOGIN.JSX */}
+        <Box sx={{ mr: "86px" }}>{children}</Box>
       </Box>
     </Box>
   );
