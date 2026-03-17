@@ -1,4 +1,6 @@
 import { Box } from "@mui/material";
+import PhoneFrame from "../assets/foto/phones-frame.png";
+import ScreenShot from "../assets/foto/screenshot1.png";
 
 const AuthLayout = ({ children }) => {
   return (
@@ -38,7 +40,7 @@ const AuthLayout = ({ children }) => {
           {/* Корпус телефона */}
           <Box
             component="img"
-            src="/src/assets/phones-frame.png"
+            src={PhoneFrame}
             sx={{
               width: "100%",
               height: "100%",
@@ -49,7 +51,7 @@ const AuthLayout = ({ children }) => {
           {/* Скриншот внутри  */}
           <Box
             component="img"
-            src="/src/assets/screenshot1.png"
+            src={ScreenShot}
             sx={{
               width: "250px",
               height: "538.83px",
