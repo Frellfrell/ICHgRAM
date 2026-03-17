@@ -10,10 +10,10 @@ const AuthLayout = ({ children }) => {
         height: "900px",
         mx: "auto",
         display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        justifyConte: "flex-start",
         bgcolor: "background.default",
-        position: "relative",
+        minwidth: "100%",
+        minHeight: "100vh",
       }}
     >
       {/* Контейнер 935x733 */}
@@ -24,7 +24,8 @@ const AuthLayout = ({ children }) => {
           display: "flex",
           flexDirection: "row",
           position: "relative",
-          gap: "31px",
+          gap: "32px",
+          mt: 0,
         }}
       >
         {/* Левая колонка: Имиджи телефонов  */}
