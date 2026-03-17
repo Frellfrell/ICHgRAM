@@ -24,6 +24,11 @@ const Login = () => {
     if (error) setError(null); // Убираем ошибку при новом вводе
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
