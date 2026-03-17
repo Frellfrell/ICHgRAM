@@ -1,5 +1,5 @@
 import { Box, Link } from "@mui/material";
-import AppInput from "../../components/UI/AppInput";
-import AppButton from "../../components/UI/AppButton";
-import AppTypography from "../../components/UI/AppTypography";
-import DividerLine from "../../components/UI/DividerLine";
+import AppInput from "../../components/ui/AppInput.jsx";
+import AppButton from "../../components/ui/AppButton.jsx";
+import AppTypography from "../../components/ui/AppTypography.jsx";
+import DividerLine from "../../components/ui/DividerLine.jsx";
