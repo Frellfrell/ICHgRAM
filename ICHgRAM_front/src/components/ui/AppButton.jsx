@@ -8,7 +8,7 @@ const AppButton = ({ children, ...props }) => {
       disableElevation
       {...props}
       sx={{
-        py: "6px",
+        height: "32px",
         ...props.sx,
       }}
     >
