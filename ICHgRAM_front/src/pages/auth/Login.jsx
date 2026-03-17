@@ -98,8 +98,8 @@ const Login = () => {
             </AppTypography>
           )}
 
-          <AppButton type="submit" sx={{ mt: 1 }}>
-            Log in
+          <AppButton type="submit" disabled={loading} sx={{ mt: 1 }}>
+            {loading ? "Logging in..." : "Log in"}
           </AppButton>
         </form>
 
