@@ -22,7 +22,7 @@ const AppInput = ({
         mb: "6px",
         "& .MuiOutlinedInput-root": {
           height: "38px",
-          backgroundColor: "#fafafa",
+          backgroundColor: "background.default",
           fontSize: "12px",
         },
       }}
