@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Box, Link } from "@mui/material";
 import { useNavigate } from "react-router-dom"; // Для перенаправления
 import { registerUser } from "../../api/auth";
-import AppInput from "../../components/UI/AppInput";
-import AppButton from "../../components/UI/AppButton";
-import AppTypography from "../../components/UI/AppTypography";
+import AppInput from "../../components/ui/AppInput.jsx";
+import AppButton from "../../components/ui/AppButton.jsx";
+import AppTypography from "../../components/ui/AppTypography.jsx";
 
 const Register = () => {
   //   для бэкенда
