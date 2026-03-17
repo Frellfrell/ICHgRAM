@@ -84,6 +84,7 @@ const Login = () => {
           bgcolor: "white",
           py: 2,
           textAlign: "center",
+          mt: "10px",
         }}
       >
         <AppTypography variant="body2">
