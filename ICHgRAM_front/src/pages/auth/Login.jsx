@@ -75,18 +75,28 @@ const Login = () => {
           }}
         />
 
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleSubmit}>
           <AppInput
             placeholder="Username, or email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
           />
           <AppInput
+            name="password"
             placeholder="Password"
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={formData.password}
+            onChange={handleChange}
+            error={!!error} // Подсветим поле, если данные неверныe
+            required
           />
+          {/* Если есть ошибка логина */}
+          {error && (
+            <AppTypography variant="body2" sx={{ color: "error.main", my: 1 }}>
+              {error}
+            </AppTypography>
+          )}
 
           <AppButton type="submit" sx={{ mt: 1 }}>
             Log in
