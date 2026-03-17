@@ -1,11 +1,29 @@
 import { useState } from "react";
 import { Box, Link } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { loginUser } from "../../api/authApi.js";
 import AppInput from "../components/ui/AppInput.jsx";
 import AppButton from "../components/ui/AppButton.jsx";
 import AppTypography from "../../components/ui/AppTypography.jsx";
 import DividerLine from "../../components/ui/DividerLine.jsx";
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (error) setError(null); // Убираем ошибку при новом вводе
+  };
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
