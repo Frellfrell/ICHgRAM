@@ -39,9 +39,17 @@ const Register = () => {
           <AppInput placeholder="Full Name" />
           <AppInput placeholder="Username" />
           <AppInput placeholder="Password" type="password" />
+
+          <AppTypography variant="body2" color="text.secondary" sx={{ my: 2 }}>
+           People who use our service may have uploaded 
+           your contact information to Instagram. <Link href="#" underline="none" sx={{ color: 'primary.main' }}>Learn More</Link>
+          </AppTypography>
           
           <AppTypography variant="body2" color="text.secondary" sx={{ my: 2 }}>
-            By signing up, you agree to our Terms, Privacy Policy and Cookies Policy.
+           By signing up, you agree to our <Link href="#" underline="none" sx={{ color: 'primary.main' }}>Terms</Link>,<Link href="#" underline="none" sx={{ color: 'primary.main' }}>Private
+            Policy</Link> and <Link href="#" underline="none" sx={{ color: 'primary.main' }}>
+            Cookies Policy
+            </Link>.
           </AppTypography>
 
           <AppButton type="submit">
