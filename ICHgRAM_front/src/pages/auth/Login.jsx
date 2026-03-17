@@ -6,6 +6,7 @@ import AppInput from "../../components/ui/AppInput.jsx";
 import AppButton from "../../components/ui/AppButton.jsx";
 import AppTypography from "../../components/ui/AppTypography.jsx";
 import DividerLine from "../../components/ui/DividerLine.jsx";
+import LOGO5 from "../../assets/logo/ICHGRA 5.svg";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -65,7 +66,7 @@ const Login = () => {
       >
         <Box
           component="img"
-          src="/assets/logo/ICHGRA 5.svg"
+          src={LOGO5}
           sx={{
             width: 190,
             height: 106,
