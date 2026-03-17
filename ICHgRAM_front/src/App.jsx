@@ -7,7 +7,6 @@ import {
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import { theme } from "./theme/theme.js";
-import "./styles/global.css";
 
 // Импорт страниц
 import Login from "./pages/auth/Login.jsx";
