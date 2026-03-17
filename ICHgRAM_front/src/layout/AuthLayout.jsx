@@ -22,6 +22,7 @@ const AuthLayout = ({ children }) => {
           display: "flex",
           flexDirection: "row",
           position: "relative",
+          gap: "31px",
         }}
       >
         {/* Левая колонка: Имиджи телефонов  */}
