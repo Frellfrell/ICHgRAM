@@ -36,5 +36,10 @@ const ResetPassword = () => {
             Enter your email, phone, or username and we'll send you a link to get back into your account.
           </AppTypography>
         </Box>
+
+         <Box sx={{ px: '40px' }}>
+          <AppInput placeholder="Email, Phone, or Username" />
+          <AppButton sx={{ mt: 1 }}>Send login link</AppButton>
+        </Box>
+
         
-         
