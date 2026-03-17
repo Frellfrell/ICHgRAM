@@ -29,4 +29,12 @@ const ResetPassword = () => {
 
         <AppTypography variant="h6" sx={{ fontWeight: 600, mb: 1 }}>
           Trouble logging in?
-        </AppTypography> 
+        </AppTypography>
+
+        <Box sx={{ px: '40px', mb: 2 }}>
+          <AppTypography variant="body2" color="text.secondary">
+            Enter your email, phone, or username and we'll send you a link to get back into your account.
+          </AppTypography>
+        </Box>
+        
+         
