@@ -1,18 +1,31 @@
 import { Box } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 
-const DividerLine = ({ sx }) => {
-  const theme = useTheme();
-
+const DividerLine = () => {
   return (
     <Box
       sx={{
-        height: "1px",
-        backgroundColor: theme.palette.borders,
+        display: "flex",
+        alignItems: "center",
+        my: "20px",
         width: "100%",
-        ...sx,
+        px: "40px", // Чтобы линия не прилипала к краям формы 350px
       }}
-    />
+    >
+      <Box sx={{ flex: 1, height: "1px", bgcolor: "divider" }} />
+
+      <Typography
+        sx={{
+          px: 2,
+          color: "text.secondary",
+          fontSize: "13px",
+          fontWeight: 600,
+        }}
+      >
+        OR
+      </Typography>
+
+      <Box sx={{ flex: 1, height: "1px", bgcolor: "divider" }} />
+    </Box>
   );
 };
 

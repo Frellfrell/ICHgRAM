@@ -1,8 +1,8 @@
 import { Typography } from "@mui/material";
 
-const AppTypography = ({ variant = "body1", children, ...props }) => {
+const AppTypography = ({ variant = "body1", children, color, sx }) => {
   return (
-    <Typography variant={variant} {...props}>
+    <Typography variant={variant} sx={{ color: color, ...sx }}>
       {children}
     </Typography>
   );

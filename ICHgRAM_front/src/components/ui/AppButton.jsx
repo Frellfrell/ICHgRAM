@@ -1,8 +1,17 @@
 import { Button } from "@mui/material";
 
-const AppButton = ({ children, variant = "contained", ...props }) => {
+const AppButton = ({ children, ...props }) => {
   return (
-    <Button variant={variant} {...props}>
+    <Button
+      variant="contained"
+      fullWidth
+      disableElevation
+      {...props}
+      sx={{
+        height: "32px",
+        ...props.sx,
+      }}
+    >
       {children}
     </Button>
   );

@@ -1,22 +1,31 @@
 import { TextField } from "@mui/material";
 
-const AppInput = (props) => {
+const AppInput = ({
+  placeholder,
+  type,
+  value,
+  onChange,
+  error,
+  helperText,
+}) => {
   return (
     <TextField
       fullWidth
       size="small"
-      variant="outlined"
+      placeholder={placeholder}
+      type={type}
+      value={value}
+      onChange={onChange}
+      error={error}
+      helperText={helperText}
       sx={{
-        mb: 1.5,
+        mb: "6px",
         "& .MuiOutlinedInput-root": {
-          backgroundColor: "#fafafa",
+          height: "38px",
+          backgroundColor: "background.default",
           fontSize: "12px",
-          "& fieldset": {
-            borderColor: "#dbdbdb",
-          },
         },
       }}
-      {...props}
     />
   );
 };
