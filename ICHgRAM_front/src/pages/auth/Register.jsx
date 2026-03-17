@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Box, Link } from "@mui/material";
+import { useNavigate } from "react-router-dom"; // Для перенаправления
+import { registerUser } from "../../api/auth";
 import AppInput from "../../components/UI/AppInput";
 import AppButton from "../../components/UI/AppButton";
 import AppTypography from "../../components/UI/AppTypography";
