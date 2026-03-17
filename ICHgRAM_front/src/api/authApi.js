@@ -18,11 +18,16 @@ export const loginUser = async (credentials) => {
     const response = await axios.post(`${BASE_URL}/auth/login`, credentials);
 
     if (response.data.token) {
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("token", response.data.token); //сохраняем
     }
 
     return response.data;
   } catch (error) {
     throw error.response?.data || { message: "Invalid credentials" };
   }
+};
+
+// 3.  выход
+export const logout = () => {
+  localStorage.removeItem("token");
 };
