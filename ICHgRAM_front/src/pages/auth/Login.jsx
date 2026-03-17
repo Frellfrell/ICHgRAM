@@ -52,20 +52,9 @@ const Login = () => {
               </AppButton>
           </form>
 
-          <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
-            <Box sx={{ flex: 1, height: "1px", bgcolor: "#dbdbdb" }} />
-            <Typography
-              sx={{
-                px: 2,
-                color: "text.secondary",
-                fontSize: 13,
-                fontWeight: 600,
-              }}
-            >
-              OR
-            </Typography>
-            <Box sx={{ flex: 1, height: "1px", bgcolor: "#dbdbdb" }} />
-          </Box>
+          <DividerLine />
+
+          
 
           <Link
             href="#"
@@ -74,7 +63,7 @@ const Login = () => {
           >
             Forgot password?
           </Link>
-        </Paper>
+      </Box>
 
         {/* Нижний блок с переходом */}
         <Paper
