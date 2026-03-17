@@ -42,4 +42,4 @@ const ResetPassword = () => {
           <AppButton sx={{ mt: 1 }}>Send login link</AppButton>
         </Box>
 
-        
+        <DividerLine />
