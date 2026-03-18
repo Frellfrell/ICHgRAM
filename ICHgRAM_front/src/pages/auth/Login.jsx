@@ -45,16 +45,7 @@ const Login = () => {
   };
 
   return (
-    <Box
-      sx={{
-        bgcolor: "background.default",
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        gap: "12px",
-      }}
-    >
+    <AuthLayout isLogin={true}>
       {/* Основной блок формы */}
       <Box
         sx={{
@@ -62,12 +53,11 @@ const Login = () => {
           height: "411.98px",
           border: "1px solid #dbdbdb",
           bgcolor: "white",
-          p: "40px 20px",
           textAlign: "center",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          pt: "49.5px",
+          marginTop: "49.5px",
         }}
       >
         <Box
@@ -120,15 +110,15 @@ const Login = () => {
           </AppButton>
 
           <DividerLine />
-
-          <Link
-            href="/reset-password"
-            underline="none"
-            sx={{ fontSize: 12, color: "#00376b" }}
-          >
-            Forgot password?
-          </Link>
         </Box>
+
+        <Link
+          href="/reset-password"
+          underline="none"
+          sx={{ fontSize: 12, color: "#00376b" }}
+        >
+          Forgot password?
+        </Link>
       </Box>
 
       {/* Нижний блок с переходом на регистрацию*/}
@@ -154,7 +144,7 @@ const Login = () => {
           </Link>
         </AppTypography>
       </Box>
-    </Box>
+    </AuthLayout>
   );
 };
 
