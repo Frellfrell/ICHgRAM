@@ -59,6 +59,7 @@ const Login = () => {
           flexDirection: "column",
           alignItems: "center",
           marginTop: "49.5px",
+          gap: "10px",
         }}
       >
         <Box
