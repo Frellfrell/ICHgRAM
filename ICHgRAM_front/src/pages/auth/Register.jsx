@@ -57,6 +57,7 @@ const Register = () => {
           bgcolor: "white",
           p: "20px 40px",
           textAlign: "center",
+          alignItems: "center",
         }}
       >
         {/* Логотип */}
