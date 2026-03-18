@@ -11,7 +11,7 @@ const AuthLayout = ({ children, isLogin = false }) => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        bgcolor: "#fafafa",
+        bgcolor: "white",
         margin: 0,
         padding: 0,
       }}
@@ -24,7 +24,6 @@ const AuthLayout = ({ children, isLogin = false }) => {
           justifyContent: "center",
           alignItems: "center",
           position: "relative",
-          border: "1px solid red",
         }}
       >
         {/* Контейнер 935x733 */}
