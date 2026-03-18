@@ -11,7 +11,7 @@ const AuthLayout = ({ children, isLogin = false, isReset = false }) => {
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
+
         alignItems: "center",
         bgcolor: "white",
         margin: 0,
