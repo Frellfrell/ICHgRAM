@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import PhoneFrame from "../assets/foto/phones-frame.png";
 import ScreenShot from "../assets/foto/screenshot1.png";
-import LOGO5 from "../../assets/logo/ICHGRA 5.svg";
+import LOGO5 from "../assets/logo/ICHGRA 5.svg";
 
 const AuthLayout = ({ children, isLogin = false, isReset = false }) => {
   return (
