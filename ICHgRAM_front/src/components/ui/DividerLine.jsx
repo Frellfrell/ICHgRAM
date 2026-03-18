@@ -9,7 +9,6 @@ const DividerLine = () => {
         alignItems: "center",
         my: "20px",
         width: "100%",
-        px: "40px", // Чтобы линия не прилипала к краям формы 350px
       }}
     >
       <Box sx={{ flex: 1, height: "1px", bgcolor: "divider" }} />
