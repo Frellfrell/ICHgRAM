@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import PhoneFrame from "../assets/foto/phones-frame.png";
 import ScreenShot from "../assets/foto/screenshot1.png";
 
-const AuthLayout = ({ children }) => {
+const AuthLayout = ({ children, isLogin = false }) => {
   return (
     <Box
       sx={{
@@ -82,6 +82,11 @@ const AuthLayout = ({ children }) => {
               display: "flex",
               flexDirection: "column",
               gap: "10px",
+              // Если Логин: отступ 12px до основного контейнера + зазор 32px от фото
+              // Если НЕ Логин: центрируем форму внутри 935 и ставим mt 81px
+              marginTop: isLogin ? "12px" : "81px",
+              marginLeft: isLogin ? "32px" : "auto",
+              mr: isLogin ? "0px" : "auto",
             }}
           >
             {children}
