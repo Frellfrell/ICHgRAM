@@ -82,7 +82,7 @@ const Login = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            bgcolor: "grey.50",
+
             gap: "6px", // Расстояние между инпутами
           }}
         >
