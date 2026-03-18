@@ -81,7 +81,7 @@ const AuthLayout = ({ children, isLogin = false }) => {
           <Box
             sx={{
               width: "350px",
-              height: "869px",
+              height: "689px",
               display: "flex",
               flexDirection: "column",
               position: "relative",
