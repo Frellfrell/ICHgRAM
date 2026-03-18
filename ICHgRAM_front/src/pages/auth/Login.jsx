@@ -1,18 +1,47 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Box, Link } from "@mui/material";
-import AppInput from "../components/ui/AppInput.jsx";
-import AppButton from "../components/ui/AppButton.jsx";
-import AppTypography from "../../components/UI/AppTypography";
-import DividerLine from "../../components/UI/DividerLine";
+import { useNavigate } from "react-router-dom";
+import { loginUser } from "../../api/authApi.js";
+import AppInput from "../../components/ui/AppInput.jsx";
+import AppButton from "../../components/ui/AppButton.jsx";
+import AppTypography from "../../components/ui/AppTypography.jsx";
+import DividerLine from "../../components/ui/DividerLine.jsx";
+import LOGO5 from "../../assets/logo/ICHGRA 5.svg";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (error) setError(null); // Убираем ошибку при новом вводе
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Логика отправки на бэкенд для получения JWT
-    console.log("Login attempt", { email, password });
+    setLoading(true);
+    setError(null);
+
+    try {
+      const result = await loginUser(formData);
+      console.log("Вход выполнен успешно:", result);
+
+      // После логина перенаправляем на главную страницу (ленту)
+      navigate("/");
+    } catch (err) {
+      // Если пароль неверный или пользователя нет
+      setError(err.message || "Invalid username or password");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -23,21 +52,27 @@ const Login = () => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
+        gap: "12px",
       }}
     >
       {/* Основной блок формы */}
       <Box
         sx={{
           width: 350,
+          height: "411.98px",
           border: "1px solid #dbdbdb",
           bgcolor: "white",
           p: "40px 20px",
           textAlign: "center",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          pt: "49.5px",
         }}
       >
         <Box
           component="img"
-          src="/assets/logo/ICHGRA 5.svg"
+          src={LOGO5}
           sx={{
             width: 190,
             height: 106,
@@ -47,27 +82,41 @@ const Login = () => {
           }}
         />
 
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleSubmit}>
           <AppInput
             placeholder="Username, or email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
           />
           <AppInput
+            name="password"
             placeholder="Password"
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={formData.password}
+            onChange={handleChange}
+            error={!!error} // Подсветим поле, если данные неверныe
+            required
           />
+          {/* Если есть ошибка логина */}
+          {error && (
+            <AppTypography variant="body2" sx={{ color: "error.main", my: 1 }}>
+              {error}
+            </AppTypography>
+          )}
 
-          <AppButton type="submit" sx={{ mt: 1 }}>
-            Log in
+          <AppButton type="submit" disabled={loading} sx={{ mt: 1 }}>
+            {loading ? "Logging in..." : "Log in"}
           </AppButton>
         </form>
 
         <DividerLine />
 
-        <Link href="#" underline="none" sx={{ fontSize: 12, color: "#00376b" }}>
+        <Link
+          href="/reset-password"
+          underline="none"
+          sx={{ fontSize: 12, color: "#00376b" }}
+        >
           Forgot password?
         </Link>
       </Box>
@@ -80,6 +129,7 @@ const Login = () => {
           bgcolor: "white",
           py: 2,
           textAlign: "center",
+          mt: "10px",
         }}
       >
         <AppTypography variant="body2">

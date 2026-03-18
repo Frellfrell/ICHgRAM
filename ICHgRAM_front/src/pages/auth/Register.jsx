@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Box, Link } from "@mui/material";
 import { useNavigate } from "react-router-dom"; // Для перенаправления
-import { registerUser } from "../../api/auth";
-import AppInput from "../../components/UI/AppInput";
-import AppButton from "../../components/UI/AppButton";
-import AppTypography from "../../components/UI/AppTypography";
+import { registerUser } from "../../api/authApi.js";
+import AppInput from "../../components/ui/AppInput.jsx";
+import AppButton from "../../components/ui/AppButton.jsx";
+import AppTypography from "../../components/ui/AppTypography.jsx";
+import LOGO5 from "../../assets/logo/ICHGRA 5.svg";
 
 const Register = () => {
   //   для бэкенда
@@ -59,11 +60,7 @@ const Register = () => {
         }}
       >
         {/* Логотип */}
-        <Box
-          component="img"
-          src="/src/assets/ICHGRA 5.svg"
-          sx={{ width: 175, my: 3 }}
-        />
+        <Box component="img" src={LOGO5} sx={{ width: 175, my: 3 }} />
 
         <AppTypography
           variant="h6"
