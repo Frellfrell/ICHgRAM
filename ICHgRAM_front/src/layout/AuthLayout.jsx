@@ -36,55 +36,56 @@ const AuthLayout = ({ children, isLogin = false }) => {
           }}
         >
           {/* Левая колонка: Имиджи телефонов  */}
-          <Box
-            sx={{
-              width: "380.31px",
-              height: "581.14px",
-              position: "relative",
-              top: "53.92px",
-              left: "86.34px",
-              flexShrink: 0,
-            }}
-          >
-            {/* Корпус телефона */}
+          {isLogin && (
             <Box
-              component="img"
-              src={PhoneFrame}
               sx={{
-                width: "100%",
-                height: "100%",
-                position: "absolute",
-                zIndex: 2,
+                width: "380.31px",
+                height: "581.14px",
+                position: "relative",
+                top: "53.92px",
+                left: "86.34px",
+                flexShrink: 0,
               }}
-            />
-            {/* Скриншот внутри  */}
-            <Box
-              component="img"
-              src={ScreenShot}
-              sx={{
-                width: "250px",
-                height: "538.83px",
-                position: "absolute",
-                top: "21.08px",
-                left: "113.16px",
-                zIndex: 1,
-              }}
-            />
-          </Box>
+            >
+              {/* Корпус телефона */}
+              <Box
+                component="img"
+                src={PhoneFrame}
+                sx={{
+                  width: "100%",
+                  height: "100%",
+                  position: "absolute",
+                  zIndex: 2,
+                }}
+              />
+              {/* Скриншот внутри  */}
+              <Box
+                component="img"
+                src={ScreenShot}
+                sx={{
+                  width: "250px",
+                  height: "538.83px",
+                  position: "absolute",
+                  top: "21.08px",
+                  left: "113.16px",
+                  zIndex: 1,
+                }}
+              />
+            </Box>
+          )}
 
           {/* Правая колонка: форма (Login или Register) */}
           {/* ПРАВАЯ ЧАСТЬ: СЮДА ПРИДЕТ ВЕСЬ LOGIN.JSX */}
           <Box
             sx={{
-              ml: "32px",
-              mt: "65px",
               width: "350px",
               display: "flex",
               flexDirection: "column",
+              position: "relative",
               gap: "10px",
               // Если Логин: отступ 12px до основного контейнера + зазор 32px от фото
               // Если НЕ Логин: центрируем форму внутри 935 и ставим mt 81px
-              marginTop: isLogin ? "12px" : "81px",
+              //marginTop: isLogin ? "12px" : "81px",
               marginLeft: isLogin ? "32px" : "auto",
               mr: isLogin ? "0px" : "auto",
             }}
