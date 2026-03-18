@@ -1,78 +1,134 @@
 import { Box } from "@mui/material";
 import PhoneFrame from "../assets/foto/phones-frame.png";
 import ScreenShot from "../assets/foto/screenshot1.png";
+import LOGO5 from "../assets/logo/ICHGRA 5.svg";
 
-const AuthLayout = ({ children }) => {
+const AuthLayout = ({ children, isLogin = false, isReset = false }) => {
   return (
     <Box
       sx={{
-        mx: "auto",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        bgcolor: "background.default",
         width: "100%",
         minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+
+        alignItems: "center",
+        bgcolor: "white",
+        margin: 0,
+        padding: 0,
       }}
     >
-      {/* Контейнер 935x733 */}
+      {isReset && (
+        <Box
+          sx={{
+            width: "1440px",
+            height: "60px",
+            display: "flex",
+            alignItems: "center",
+            borderBottom: "1px solid",
+            borderColor: "grey.50",
+            bgcolor: "white",
+            flexShrink: 0,
+          }}
+        >
+          <Box
+            sx={{
+              width: "97px",
+              height: "54px",
+              ml: "44px",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Box
+              component="img"
+              src={LOGO5}
+              sx={{ width: "100%", objectFit: "contain" }}
+            />
+          </Box>
+        </Box>
+      )}
+
       <Box
         sx={{
-          width: "935px",
-          height: "733px",
+          width: "1440px",
+          height: "760px",
           display: "flex",
-          flexDirection: "row",
-          alignItems: "flex-start",
+          justifyContent: "center",
+          alignItems: "center",
           position: "relative",
         }}
       >
-        {/* Левая колонка: Имиджи телефонов  */}
+        {/* Контейнер 935x733 */}
         <Box
           sx={{
-            width: "380.31px",
-            height: "581.14px",
-            position: "absolute",
-            top: "53.92px",
-            left: "86.34px",
+            width: "935px",
+            height: "733px",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "flex-start",
+            justifyContent: "center",
           }}
         >
-          {/* Корпус телефона */}
-          <Box
-            component="img"
-            src={PhoneFrame}
-            sx={{
-              width: "100%",
-              height: "100%",
-              position: "absolute",
-              zIndex: 2,
-            }}
-          />
-          {/* Скриншот внутри  */}
-          <Box
-            component="img"
-            src={ScreenShot}
-            sx={{
-              width: "250px",
-              height: "538.83px",
-              position: "absolute",
-              top: "21.08px",
-              left: "113.16px",
-              zIndex: 1,
-            }}
-          />
-        </Box>
+          {/* Левая колонка: Имиджи телефонов  */}
+          {isLogin && (
+            <Box
+              sx={{
+                width: "380.31px",
+                height: "581.14px",
+                position: "relative",
+                top: "53.92px",
+                // left: "86.34px",
+                flexShrink: 0,
+              }}
+            >
+              {/* Корпус телефона */}
+              <Box
+                component="img"
+                src={PhoneFrame}
+                sx={{
+                  width: "100%",
+                  height: "100%",
+                  position: "absolute",
+                  zIndex: 2,
+                }}
+              />
+              {/* Скриншот внутри  */}
+              <Box
+                component="img"
+                src={ScreenShot}
+                sx={{
+                  width: "250px",
+                  height: "538.83px",
+                  position: "absolute",
+                  top: "21.08px",
+                  left: "113.16px",
+                  zIndex: 1,
+                }}
+              />
+            </Box>
+          )}
 
-        {/* Правая колонка: форма (Login или Register) */}
-        {/* ПРАВАЯ ЧАСТЬ: СЮДА ПРИДЕТ ВЕСЬ LOGIN.JSX */}
-        <Box
-          sx={{
-            position: "absolute",
-            top: "65px",
-            left: "498.65px", //  положение начала формы (86.34 + 380.31 + 32)
-            width: "350px",
-          }}
-        >
-          {children}
+          {/* Правая колонка: форма (Login или Register) */}
+          {/* ПРАВАЯ ЧАСТЬ: СЮДА ПРИДЕТ ВЕСЬ LOGIN.JSX */}
+          <Box
+            sx={{
+              width: "350px",
+              height: "689px",
+              display: "flex",
+              flexDirection: "column",
+              position: "relative",
+              marginTop: "12px",
+              flexShrink: 0,
+              // Если Логин: отступ 12px до основного контейнера + зазор 32px от фото
+              // Если НЕ Логин: центрируем форму внутри 935 и ставим mt 81px
+              //marginTop: isLogin ? "12px" : "81px",
+              marginLeft: isLogin ? "32px" : "0px",
+              //mr: isLogin ? "12px" : "81px",
+            }}
+          >
+            {children}
+          </Box>
         </Box>
       </Box>
     </Box>

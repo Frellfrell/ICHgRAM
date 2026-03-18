@@ -7,6 +7,7 @@ import AppButton from "../../components/ui/AppButton.jsx";
 import AppTypography from "../../components/ui/AppTypography.jsx";
 import DividerLine from "../../components/ui/DividerLine.jsx";
 import LOGO5 from "../../assets/logo/ICHGRA 5.svg";
+import AuthLayout from "../../layout/AuthLayout.jsx";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -45,29 +46,20 @@ const Login = () => {
   };
 
   return (
-    <Box
-      sx={{
-        bgcolor: "background.default",
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        gap: "12px",
-      }}
-    >
+    <AuthLayout isLogin={true}>
       {/* Основной блок формы */}
       <Box
         sx={{
-          width: 350,
+          width: "350px",
           height: "411.98px",
           border: "1px solid #dbdbdb",
           bgcolor: "white",
-          p: "40px 20px",
           textAlign: "center",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          pt: "49.5px",
+          marginTop: "49.5px",
+          gap: "10px",
         }}
       >
         <Box
@@ -82,7 +74,18 @@ const Login = () => {
           }}
         />
 
-        <form onSubmit={handleSubmit}>
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          sx={{
+            width: "268px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+
+            gap: "6px", // Расстояние между инпутами
+          }}
+        >
           <AppInput
             placeholder="Username, or email"
             name="email"
@@ -108,9 +111,9 @@ const Login = () => {
           <AppButton type="submit" disabled={loading} sx={{ mt: 1 }}>
             {loading ? "Logging in..." : "Log in"}
           </AppButton>
-        </form>
 
-        <DividerLine />
+          <DividerLine />
+        </Box>
 
         <Link
           href="/reset-password"
@@ -124,11 +127,13 @@ const Login = () => {
       {/* Нижний блок с переходом на регистрацию*/}
       <Box
         sx={{
-          width: 350,
+          width: "350px",
+          height: "63px",
           border: "1px solid #dbdbdb",
           bgcolor: "white",
-          py: 2,
-          textAlign: "center",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
           mt: "10px",
         }}
       >
@@ -143,7 +148,7 @@ const Login = () => {
           </Link>
         </AppTypography>
       </Box>
-    </Box>
+    </AuthLayout>
   );
 };
 
