@@ -127,6 +127,7 @@ const Login = () => {
       <Box
         sx={{
           width: 350,
+          heigth: 64,
           border: "1px solid #dbdbdb",
           bgcolor: "white",
           display: "flex",
