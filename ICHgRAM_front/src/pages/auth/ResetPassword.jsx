@@ -59,22 +59,22 @@ const ResetPassword = () => {
               Create new account
             </AppTypography>
           </Link>
-        </Box>
 
-        {/* Футер формы */}
-        <Box
-          sx={{
-            bgcolor: "#fafafa",
-            borderTop: "1px solid #dbdbdb",
-            py: "12px",
-            mt: 2,
-          }}
-        >
-          <Link href="/login" underline="none">
-            <AppTypography variant="body2" sx={{ fontWeight: 600 }}>
-              Back to login
-            </AppTypography>
-          </Link>
+          {/* Футер формы */}
+          <Box
+            sx={{
+              bgcolor: "#fafafa",
+              borderTop: "1px solid #dbdbdb",
+              py: "12px",
+              mt: 2,
+            }}
+          >
+            <Link href="/login" underline="none">
+              <AppTypography variant="body2" sx={{ fontWeight: 600 }}>
+                Back to login
+              </AppTypography>
+            </Link>
+          </Box>
         </Box>
       </Box>
     </AuthLayout>
