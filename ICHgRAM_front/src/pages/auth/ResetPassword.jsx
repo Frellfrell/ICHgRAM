@@ -9,7 +9,8 @@ const ResetPassword = () => {
     <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
       <Box
         sx={{
-          width: 350,
+          width: "390px",
+          minHeight: "400px",
           border: "1px solid #dbdbdb",
           bgcolor: "white",
           pt: "24px",
