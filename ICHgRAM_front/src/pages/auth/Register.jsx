@@ -65,10 +65,10 @@ const Register = () => {
           component="img"
           src={LOGO5}
           sx={{
-            width: 175,
+            width: 190,
             my: 3,
-            mt: "30px",
-            mb: "24px",
+            mt: "19px",
+
             objectFit: "contain",
           }}
         />
