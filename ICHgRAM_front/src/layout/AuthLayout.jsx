@@ -7,7 +7,7 @@ const AuthLayout = ({ children, isLogin = false }) => {
     <Box
       sx={{
         width: "100%",
-        minHeight: "100vh",
+        // minHeight: "100vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
