@@ -61,7 +61,17 @@ const Register = () => {
         }}
       >
         {/* Логотип */}
-        <Box component="img" src={LOGO5} sx={{ width: 175, my: 3 }} />
+        <Box
+          component="img"
+          src={LOGO5}
+          sx={{
+            width: 175,
+            my: 3,
+            mt: "30px",
+            mb: "24px",
+            objectFit: "contain",
+          }}
+        />
 
         <AppTypography
           variant="h6"
