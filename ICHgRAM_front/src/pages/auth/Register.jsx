@@ -68,10 +68,12 @@ const Register = () => {
             src={LOGO5}
             sx={{
               width: 190,
-              my: 3,
+              height: "auto",
               mt: "19px",
 
-              objectFit: "contain",
+              display: "block",
+              marginLeft: "auto",
+              marginRight: "auto",
             }}
           />
 
