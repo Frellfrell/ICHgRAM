@@ -3,6 +3,7 @@ import AppInput from "../../components/ui/AppInput.jsx";
 import AppButton from "../../components/ui/AppButton.jsx";
 import AppTypography from "../../components/ui/AppTypography.jsx";
 import DividerLine from "../../components/ui/DividerLine.jsx";
+import AuthLayout from "../../layout/AuthLayout.jsx";
 
 const ResetPassword = () => {
   return (
