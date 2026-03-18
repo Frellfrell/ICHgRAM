@@ -1,14 +1,16 @@
 import { Box } from "@mui/material";
 import PhoneFrame from "../assets/foto/phones-frame.png";
 import ScreenShot from "../assets/foto/screenshot1.png";
+import LOGO5 from "../../assets/logo/ICHGRA 5.svg";
 
-const AuthLayout = ({ children, isLogin = false }) => {
+const AuthLayout = ({ children, isLogin = false, isReset = false }) => {
   return (
     <Box
       sx={{
         width: "100%",
-        // minHeight: "100vh",
+        minHeight: "100vh",
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
         bgcolor: "white",
@@ -16,6 +18,37 @@ const AuthLayout = ({ children, isLogin = false }) => {
         padding: 0,
       }}
     >
+      {isReset && (
+        <Box
+          sx={{
+            width: "1440px",
+            height: "60px",
+            display: "flex",
+            alignItems: "center",
+            borderBottom: "1px solid",
+            borderColor: "grey.50",
+            bgcolor: "white",
+            flexShrink: 0,
+          }}
+        >
+          <Box
+            sx={{
+              width: "97px",
+              height: "54px",
+              ml: "44px",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Box
+              component="img"
+              src={LOGO5}
+              sx={{ width: "100%", objectFit: "contain" }}
+            />
+          </Box>
+        </Box>
+      )}
+
       <Box
         sx={{
           width: "1440px",
