@@ -126,8 +126,8 @@ const Login = () => {
       {/* Нижний блок с переходом на регистрацию*/}
       <Box
         sx={{
-          width: 350,
-          heigth: 64,
+          width: "350px",
+          height: "64px",
           border: "1px solid #dbdbdb",
           bgcolor: "white",
           display: "flex",
