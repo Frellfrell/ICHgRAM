@@ -82,7 +82,17 @@ const Login = () => {
           }}
         />
 
-        <form onSubmit={handleSubmit}>
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          sx={{
+            width: "268px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "6px", // Расстояние между инпутами
+          }}
+        >
           <AppInput
             placeholder="Username, or email"
             name="email"
@@ -108,17 +118,17 @@ const Login = () => {
           <AppButton type="submit" disabled={loading} sx={{ mt: 1 }}>
             {loading ? "Logging in..." : "Log in"}
           </AppButton>
-        </form>
 
-        <DividerLine />
+          <DividerLine />
 
-        <Link
-          href="/reset-password"
-          underline="none"
-          sx={{ fontSize: 12, color: "#00376b" }}
-        >
-          Forgot password?
-        </Link>
+          <Link
+            href="/reset-password"
+            underline="none"
+            sx={{ fontSize: 12, color: "#00376b" }}
+          >
+            Forgot password?
+          </Link>
+        </Box>
       </Box>
 
       {/* Нижний блок с переходом на регистрацию*/}
@@ -127,8 +137,9 @@ const Login = () => {
           width: 350,
           border: "1px solid #dbdbdb",
           bgcolor: "white",
-          py: 2,
-          textAlign: "center",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
           mt: "10px",
         }}
       >
