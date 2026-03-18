@@ -24,6 +24,7 @@ const AuthLayout = ({ children, isLogin = false }) => {
           justifyContent: "center",
           alignItems: "center",
           position: "relative",
+          border: "1px solid red",
         }}
       >
         {/* Контейнер 935x733 */}
