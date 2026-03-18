@@ -86,10 +86,11 @@ const AuthLayout = ({ children, isLogin = false }) => {
               flexDirection: "column",
               position: "relative",
               marginTop: "12px",
+              flexShrink: 0,
               // Если Логин: отступ 12px до основного контейнера + зазор 32px от фото
               // Если НЕ Логин: центрируем форму внутри 935 и ставим mt 81px
               //marginTop: isLogin ? "12px" : "81px",
-              // marginLeft: isLogin ? "32px" : "0px",
+              marginLeft: isLogin ? "32px" : "0px",
               //mr: isLogin ? "12px" : "81px",
             }}
           >
