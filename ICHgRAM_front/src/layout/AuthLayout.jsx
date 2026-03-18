@@ -46,7 +46,7 @@ const AuthLayout = ({ children, isLogin = false }) => {
                 height: "581.14px",
                 position: "relative",
                 top: "53.92px",
-                left: "86.34px",
+                // left: "86.34px",
                 flexShrink: 0,
               }}
             >
