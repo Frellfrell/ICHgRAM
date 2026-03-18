@@ -10,7 +10,7 @@ const ResetPassword = () => {
       <Box
         sx={{
           width: "390px",
-          minHeight: "400px",
+          minHeight: "537px",
           border: "1px solid #dbdbdb",
           bgcolor: "white",
           pt: "24px",
