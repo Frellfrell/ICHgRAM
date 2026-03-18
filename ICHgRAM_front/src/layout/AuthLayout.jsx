@@ -79,6 +79,7 @@ const AuthLayout = ({ children, isLogin = false }) => {
           <Box
             sx={{
               width: "350px",
+              height: "869px",
               display: "flex",
               flexDirection: "column",
               position: "relative",
@@ -86,8 +87,8 @@ const AuthLayout = ({ children, isLogin = false }) => {
               // Если Логин: отступ 12px до основного контейнера + зазор 32px от фото
               // Если НЕ Логин: центрируем форму внутри 935 и ставим mt 81px
               //marginTop: isLogin ? "12px" : "81px",
-              marginLeft: isLogin ? "32px" : "auto",
-              mr: isLogin ? "0px" : "auto",
+              marginLeft: isLogin ? "32px" : "0px",
+              mr: isLogin ? "12px" : "81px",
             }}
           >
             {children}
