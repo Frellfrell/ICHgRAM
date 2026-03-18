@@ -52,9 +52,9 @@ const ResetPassword = () => {
           <Box sx={{ px: "40px" }}>
             <AppInput placeholder="Email or Username" />
             <AppButton sx={{ mt: 1 }}>Send login link</AppButton>
-          </Box>
 
-          <DividerLine />
+            <DividerLine />
+          </Box>
 
           <Link href="/register" underline="none">
             <AppTypography variant="body2" sx={{ fontWeight: 600, mb: 2 }}>
