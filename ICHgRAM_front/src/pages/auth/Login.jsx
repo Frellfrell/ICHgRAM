@@ -112,40 +112,40 @@ const Login = () => {
           </AppButton>
 
           <DividerLine />
+
+          <Link
+            href="/reset-password"
+            underline="none"
+            sx={{ fontSize: 12, color: "#00376b" }}
+          >
+            Forgot password?
+          </Link>
         </Box>
 
-        <Link
-          href="/reset-password"
-          underline="none"
-          sx={{ fontSize: 12, color: "#00376b" }}
+        {/* Нижний блок с переходом на регистрацию*/}
+        <Box
+          sx={{
+            width: "350px",
+            height: "63px",
+            border: "1px solid #dbdbdb",
+            bgcolor: "white",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            mt: "10px",
+          }}
         >
-          Forgot password?
-        </Link>
-      </Box>
-
-      {/* Нижний блок с переходом на регистрацию*/}
-      <Box
-        sx={{
-          width: "350px",
-          height: "63px",
-          border: "1px solid #dbdbdb",
-          bgcolor: "white",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          mt: "10px",
-        }}
-      >
-        <AppTypography variant="body2">
-          Don't have an account?{" "}
-          <Link
-            href="/register"
-            underline="none"
-            sx={{ fontWeight: 600, color: "primary.main" }}
-          >
-            Sign up
-          </Link>
-        </AppTypography>
+          <AppTypography variant="body2">
+            Don't have an account?{" "}
+            <Link
+              href="/register"
+              underline="none"
+              sx={{ fontWeight: 600, color: "primary.main" }}
+            >
+              Sign up
+            </Link>
+          </AppTypography>
+        </Box>
       </Box>
     </AuthLayout>
   );
