@@ -50,7 +50,7 @@ const ResetPassword = () => {
           </Box>
 
           <Box sx={{ px: "40px" }}>
-            <AppInput placeholder="Email, Phone, or Username" />
+            <AppInput placeholder="Email or Username" />
             <AppButton sx={{ mt: 1 }}>Send login link</AppButton>
           </Box>
 
