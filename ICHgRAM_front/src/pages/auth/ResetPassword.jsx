@@ -17,6 +17,8 @@ const ResetPassword = () => {
             bgcolor: "white",
             pt: "24px",
             textAlign: "center",
+            display: "flex",
+            flexDirection: "column",
           }}
         >
           {/* Иконка замка  */}
@@ -66,7 +68,7 @@ const ResetPassword = () => {
               bgcolor: "#fafafa",
               borderTop: "1px solid #dbdbdb",
               py: "12px",
-              mt: 2,
+              mt: "auto",
             }}
           >
             <Link href="/login" underline="none">
