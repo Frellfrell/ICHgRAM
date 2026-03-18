@@ -8,7 +8,15 @@ import AuthLayout from "../../layout/AuthLayout.jsx";
 const ResetPassword = () => {
   return (
     <AuthLayout isReset={true} isLogin={false}>
-      <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          margin: 0,
+          padding: 0,
+          gap: "10px",
+        }}
+      >
         <Box
           sx={{
             width: "390px",
