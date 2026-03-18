@@ -6,73 +6,86 @@ const AuthLayout = ({ children }) => {
   return (
     <Box
       sx={{
-        mx: "auto",
+        width: "100%",
+        minHeight: "100vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        bgcolor: "background.default",
-        width: "100%",
-        minHeight: "100vh",
+        bgcolor: "#fafafa",
       }}
     >
-      {/* Контейнер 935x733 */}
       <Box
         sx={{
-          width: "935px",
-          height: "733px",
+          width: "1440px",
+          height: "760px",
           display: "flex",
-          flexDirection: "row",
-          alignItems: "flex-start",
+          justifyContent: "center",
+          alignItems: "center",
           position: "relative",
         }}
       >
-        {/* Левая колонка: Имиджи телефонов  */}
+        {/* Контейнер 935x733 */}
         <Box
           sx={{
-            width: "380.31px",
-            height: "581.14px",
-            position: "absolute",
-            top: "53.92px",
-            left: "86.34px",
+            width: "935px",
+            height: "733px",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "flex-start",
+            position: "relative",
           }}
         >
-          {/* Корпус телефона */}
+          {/* Левая колонка: Имиджи телефонов  */}
           <Box
-            component="img"
-            src={PhoneFrame}
             sx={{
-              width: "100%",
-              height: "100%",
-              position: "absolute",
-              zIndex: 2,
+              width: "380.31px",
+              height: "581.14px",
+              position: "relative",
+              top: "53.92px",
+              left: "86.34px",
+              flexShrink: 0,
             }}
-          />
-          {/* Скриншот внутри  */}
-          <Box
-            component="img"
-            src={ScreenShot}
-            sx={{
-              width: "250px",
-              height: "538.83px",
-              position: "absolute",
-              top: "21.08px",
-              left: "113.16px",
-              zIndex: 1,
-            }}
-          />
-        </Box>
+          >
+            {/* Корпус телефона */}
+            <Box
+              component="img"
+              src={PhoneFrame}
+              sx={{
+                width: "100%",
+                height: "100%",
+                position: "absolute",
+                zIndex: 2,
+              }}
+            />
+            {/* Скриншот внутри  */}
+            <Box
+              component="img"
+              src={ScreenShot}
+              sx={{
+                width: "250px",
+                height: "538.83px",
+                position: "absolute",
+                top: "21.08px",
+                left: "113.16px",
+                zIndex: 1,
+              }}
+            />
+          </Box>
 
-        {/* Правая колонка: форма (Login или Register) */}
-        {/* ПРАВАЯ ЧАСТЬ: СЮДА ПРИДЕТ ВЕСЬ LOGIN.JSX */}
-        <Box
-          sx={{
-            position: "absolute",
-            top: "65px",
-            left: "498.65px", //  положение начала формы (86.34 + 380.31 + 32)
-            width: "350px",
-          }}
-        >
-          {children}
+          {/* Правая колонка: форма (Login или Register) */}
+          {/* ПРАВАЯ ЧАСТЬ: СЮДА ПРИДЕТ ВЕСЬ LOGIN.JSX */}
+          <Box
+            sx={{
+              ml: "32px",
+              mt: "65px",
+              width: "350px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
+            }}
+          >
+            {children}
+          </Box>
         </Box>
       </Box>
     </Box>
