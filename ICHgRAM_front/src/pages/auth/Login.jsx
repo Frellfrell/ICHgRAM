@@ -7,6 +7,7 @@ import AppButton from "../../components/ui/AppButton.jsx";
 import AppTypography from "../../components/ui/AppTypography.jsx";
 import DividerLine from "../../components/ui/DividerLine.jsx";
 import LOGO5 from "../../assets/logo/ICHGRA 5.svg";
+import AuthLayout from "../../layout/AuthLayout.jsx";
 
 const Login = () => {
   const navigate = useNavigate();
