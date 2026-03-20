@@ -35,7 +35,7 @@ const ResetPassword = () => {
             component="img"
             src="/src/assets/icons/Img - Trouble logging in_.svg"
             sx={{
-              width: { xs: "100%", sm: "96px", lg: "96px" },
+              width: "96px",
               height: "auto",
               border: "2px solid black",
               borderRadius: "50%",
