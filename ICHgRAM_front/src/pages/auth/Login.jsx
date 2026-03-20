@@ -54,112 +54,116 @@ const Login = () => {
           gap: "10px",
           width: "100%",
         }}
-      ></Box>
-      {/* Основной блок формы */}
-      <Box
-        sx={{
-          width: "100%",
-          //maxWidth: { xs: "100%", sm: "none" },
-          //width: { xs: "100%", sm: "350px" },
-          height: "411.98px",
-          border: "1px solid #dbdbdb",
-          bgcolor: "white",
-          textAlign: "center",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          marginTop: "49.5px",
-          gap: "10px",
-          mx: "auto",
-        }}
       >
+        {/* Основной блок формы */}
         <Box
-          component="img"
-          src={LOGO5}
-          sx={{
-            width: { xs: "100%", lg: "190px" },
-            height: "auto",
-            mt: "30px",
-            mb: "24px",
-            objectFit: "contain",
-          }}
-        />
-
-        <Box
-          component="form"
-          onSubmit={handleSubmit}
           sx={{
             width: "100%",
+            //maxWidth: { xs: "100%", sm: "none" },
+            //width: { xs: "100%", sm: "350px" },
+            height: "411.98px",
+            border: "1px solid #dbdbdb",
+            bgcolor: "white",
+            textAlign: "center",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-
-            gap: "6px", // Расстояние между инпутами
+            marginTop: "49.5px",
+            gap: "10px",
+            mx: "auto",
           }}
         >
-          <AppInput
-            placeholder="Username, or email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
+          <Box
+            component="img"
+            src={LOGO5}
+            sx={{
+              width: { xs: "100%", lg: "190px" },
+              height: "auto",
+              mt: "30px",
+              mb: "24px",
+              objectFit: "contain",
+            }}
           />
-          <AppInput
-            name="password"
-            placeholder="Password"
-            type="password"
-            value={formData.password}
-            onChange={handleChange}
-            error={!!error} // Подсветим поле, если данные неверныe
-            required
-          />
-          {/* Если есть ошибка логина */}
-          {error && (
-            <AppTypography variant="body2" sx={{ color: "error.main", my: 1 }}>
-              {error}
-            </AppTypography>
-          )}
 
-          <AppButton type="submit" disabled={loading} sx={{ mt: 1 }}>
-            {loading ? "Logging in..." : "Log in"}
-          </AppButton>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            sx={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
 
-          <DividerLine />
+              gap: "6px", // Расстояние между инпутами
+            }}
+          >
+            <AppInput
+              placeholder="Username, or email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+            <AppInput
+              name="password"
+              placeholder="Password"
+              type="password"
+              value={formData.password}
+              onChange={handleChange}
+              error={!!error} // Подсветим поле, если данные неверныe
+              required
+            />
+            {/* Если есть ошибка логина */}
+            {error && (
+              <AppTypography
+                variant="body2"
+                sx={{ color: "error.main", my: 1 }}
+              >
+                {error}
+              </AppTypography>
+            )}
+
+            <AppButton type="submit" disabled={loading} sx={{ mt: 1 }}>
+              {loading ? "Logging in..." : "Log in"}
+            </AppButton>
+
+            <DividerLine />
+          </Box>
+
+          <Link
+            href="/reset-password"
+            underline="none"
+            sx={{ fontSize: 12, color: "#00376b" }}
+          >
+            Forgot password?
+          </Link>
         </Box>
 
-        <Link
-          href="/reset-password"
-          underline="none"
-          sx={{ fontSize: 12, color: "#00376b" }}
+        {/* Нижний блок с переходом на регистрацию*/}
+        <Box
+          sx={{
+            width: "100%",
+            //maxWidth: { xs: "100%", sm: "390px" },
+            height: "63px",
+            border: "1px solid #dbdbdb",
+            bgcolor: "white",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            mt: "10px",
+            mx: "auto",
+          }}
         >
-          Forgot password?
-        </Link>
-      </Box>
-
-      {/* Нижний блок с переходом на регистрацию*/}
-      <Box
-        sx={{
-          width: "100%",
-          //maxWidth: { xs: "100%", sm: "390px" },
-          height: "63px",
-          border: "1px solid #dbdbdb",
-          bgcolor: "white",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          mt: "10px",
-          mx: "auto",
-        }}
-      >
-        <AppTypography variant="body2">
-          Don't have an account?{" "}
-          <Link
-            href="/register"
-            underline="none"
-            sx={{ fontWeight: 600, color: "primary.main" }}
-          >
-            Sign up
-          </Link>
-        </AppTypography>
+          <AppTypography variant="body2">
+            Don't have an account?{" "}
+            <Link
+              href="/register"
+              underline="none"
+              sx={{ fontWeight: 600, color: "primary.main" }}
+            >
+              Sign up
+            </Link>
+          </AppTypography>
+        </Box>
       </Box>
     </AuthLayout>
   );
