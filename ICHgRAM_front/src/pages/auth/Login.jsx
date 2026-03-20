@@ -62,6 +62,7 @@ const Login = () => {
           alignItems: "center",
           marginTop: "49.5px",
           gap: "10px",
+          mx: "auto",
         }}
       >
         <Box
