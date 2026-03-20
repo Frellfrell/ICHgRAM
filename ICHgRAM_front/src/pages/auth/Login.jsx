@@ -50,7 +50,8 @@ const Login = () => {
       {/* Основной блок формы */}
       <Box
         sx={{
-          width: "350px",
+          width: "100%",
+          maxWidth: "350px",
           height: "411.98px",
           border: "1px solid #dbdbdb",
           bgcolor: "white",
