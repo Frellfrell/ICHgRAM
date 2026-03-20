@@ -46,13 +46,21 @@ const Login = () => {
   };
 
   return (
-    <AuthLayout isLogin={true}>
+    <AuthLayout isLogin={true} isReset={false}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px",
+          width: "100%",
+        }}
+      ></Box>
       {/* Основной блок формы */}
       <Box
         sx={{
-          maxWidth: "100%",
+          width: "100%",
           //maxWidth: { xs: "100%", sm: "none" },
-          width: { xs: "100%", sm: "350px" },
+          //width: { xs: "100%", sm: "350px" },
           height: "411.98px",
           border: "1px solid #dbdbdb",
           bgcolor: "white",
@@ -131,7 +139,7 @@ const Login = () => {
       <Box
         sx={{
           width: "100%",
-          maxWidth: { xs: "100%", sm: "390px" },
+          //maxWidth: { xs: "100%", sm: "390px" },
           height: "63px",
           border: "1px solid #dbdbdb",
           bgcolor: "white",
