@@ -23,7 +23,7 @@ const ResetPassword = () => {
             minHeight: "537px",
             border: "1px solid #dbdbdb",
             bgcolor: "white",
-            pt: "24px",
+            p: "24px 40px",
             textAlign: "center",
             display: "flex",
             flexDirection: "column",
