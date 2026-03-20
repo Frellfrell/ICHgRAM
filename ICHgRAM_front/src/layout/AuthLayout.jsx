@@ -70,20 +70,20 @@ const AuthLayout = ({ children, isLogin = false, isReset = false }) => {
         <Box
           sx={{
             width: "100%",
-            maxWidth: "935px",
+            //maxWidth: "935px",
             height: "733px",
             display: "flex",
             flexDirection: "row",
             alignItems: "flex-start",
             justifyContent: "center",
-            px: { xs: "20px", md: "0px" }, // Боковые отступы на мобилках
+            px: { xs: "20px", sm: "20px", md: "0px" }, // Боковые отступы на мобилках
           }}
         >
           {/* Левая колонка: Имиджи телефонов  */}
           {isLogin && (
             <Box
               sx={{
-                display: { xs: "none", lineHeightStep: "block" }, // Скрыто на маленьких экранах
+                display: { xs: "none", sm: "block" }, // Скрыто на маленьких экранах
                 width: "380.31px",
                 height: "581.14px",
                 position: "relative",
