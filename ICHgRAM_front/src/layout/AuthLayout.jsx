@@ -83,7 +83,7 @@ const AuthLayout = ({ children, isLogin = false, isReset = false }) => {
           {isLogin && (
             <Box
               sx={{
-                display: { xs: "none", sm: "block" }, // Скрыто на маленьких экранах
+                display: { xs: "none", lg: "block" }, // Скрыто на маленьких экранах
                 width: "380.31px",
                 height: "581.14px",
                 position: "relative",
