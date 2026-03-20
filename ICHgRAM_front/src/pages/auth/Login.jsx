@@ -69,8 +69,8 @@ const Login = () => {
           component="img"
           src={LOGO5}
           sx={{
-            width: "190px",
-            height: "106px",
+            width: "100%",
+            height: "auto",
             mt: "30px",
             mb: "24px",
             objectFit: "contain",
