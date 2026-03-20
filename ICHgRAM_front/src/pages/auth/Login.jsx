@@ -79,7 +79,7 @@ const Login = () => {
           component="form"
           onSubmit={handleSubmit}
           sx={{
-            width: "268px",
+            width: "100%",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
