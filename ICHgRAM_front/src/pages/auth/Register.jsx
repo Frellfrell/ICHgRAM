@@ -54,7 +54,7 @@ const Register = () => {
       <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
         <Box
           sx={{
-            width: 350,
+            width: "100%",
             border: "1px solid #dbdbdb",
             bgcolor: "white",
             p: "20px 40px",
@@ -67,7 +67,7 @@ const Register = () => {
             component="img"
             src={LOGO5}
             sx={{
-              width: 190,
+              width: "100%",
               height: "auto",
               mt: "19px",
 
@@ -155,7 +155,7 @@ const Register = () => {
         {/* Блок перехода */}
         <Box
           sx={{
-            width: 350,
+            width: "100%",
             border: "1px solid #dbdbdb",
             bgcolor: "white",
             py: 2,
