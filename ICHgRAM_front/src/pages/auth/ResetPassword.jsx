@@ -28,6 +28,7 @@ const ResetPassword = () => {
             textAlign: "center",
             display: "flex",
             flexDirection: "column",
+            mx: "auto",
           }}
         >
           {/* Иконка замка  */}
