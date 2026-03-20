@@ -69,6 +69,7 @@ const Login = () => {
             flexDirection: "column",
             alignItems: "center",
             marginTop: "49.5px",
+            p: "20px 40px",
             gap: "10px",
             mx: "auto",
           }}
