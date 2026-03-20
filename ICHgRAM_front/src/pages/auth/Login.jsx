@@ -139,6 +139,7 @@ const Login = () => {
           justifyContent: "center",
           alignItems: "center",
           mt: "10px",
+          mx: "auto",
         }}
       >
         <AppTypography variant="body2">
