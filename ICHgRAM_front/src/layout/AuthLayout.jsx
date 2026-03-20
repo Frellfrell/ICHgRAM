@@ -54,29 +54,35 @@ const AuthLayout = ({ children, isLogin = false, isReset = false }) => {
 
       <Box
         sx={{
-          width: "1440px",
-          height: "760px",
+          maxWidth: "1440px",
+          width: "100%",
+          flexGrow: 1,
           display: "flex",
           justifyContent: "center",
-          alignItems: "center",
+          alignItems: { xs: "flex-start", md: "center" }, // На мобилках прижимаем к верху
+          pt: { xs: isReset ? "20px" : "10px", md: "0px" },
+
           position: "relative",
         }}
       >
         {/* Контейнер 935x733 */}
         <Box
           sx={{
-            width: "935px",
+            width: "100%",
+            maxWidth: "935px",
             height: "733px",
             display: "flex",
             flexDirection: "row",
             alignItems: "flex-start",
             justifyContent: "center",
+            px: { xs: "10px", md: "0px" }, // Боковые отступы на мобилках
           }}
         >
           {/* Левая колонка: Имиджи телефонов  */}
           {isLogin && (
             <Box
               sx={{
+                display: { xs: "none", md: "block" }, // Скрыто на маленьких экранах
                 width: "380.31px",
                 height: "581.14px",
                 position: "relative",
@@ -121,7 +127,7 @@ const AuthLayout = ({ children, isLogin = false, isReset = false }) => {
               display: "flex",
               flexDirection: "column",
               position: "relative",
-              marginTop: "12px",
+              marginTop: isReset ? { xs: "20px", md: "12px" } : "12px",
               flexShrink: 0,
               // Если Логин: отступ 12px до основного контейнера + зазор 32px от фото
               // Если НЕ Логин: центрируем форму внутри 935 и ставим mt 81px
