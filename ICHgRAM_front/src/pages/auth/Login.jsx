@@ -80,7 +80,6 @@ const Login = () => {
             sx={{
               width: { xs: "100%", lg: "190px" },
               height: "auto",
-              mt: "30px",
               mb: "24px",
               objectFit: "contain",
             }}
