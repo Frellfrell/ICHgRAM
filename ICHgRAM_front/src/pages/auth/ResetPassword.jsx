@@ -8,6 +8,7 @@ import AuthLayout from "../../layout/AuthLayout.jsx";
 const ResetPassword = () => {
   return (
     <AuthLayout isReset={true} isLogin={false}>
+      {/* Контейнер 935x733 */}
       <Box
         sx={{
           display: "flex",
