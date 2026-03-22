@@ -45,7 +45,7 @@ function App() {
           <Route
             path="/reset-password"
             element={
-              <AuthLayout isReset>
+              <AuthLayout isReset={true}>
                 <ResetPassword />
               </AuthLayout>
             }
