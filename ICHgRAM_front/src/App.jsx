@@ -26,7 +26,7 @@ function App() {
           <Route
             path="/login"
             element={
-              <AuthLayout isLogin>
+              <AuthLayout isLogin={true} isReset={false}>
                 <Login />
               </AuthLayout>
             }
