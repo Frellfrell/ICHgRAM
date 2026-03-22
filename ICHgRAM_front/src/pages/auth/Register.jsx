@@ -67,7 +67,7 @@ const Register = () => {
             component="img"
             src={LOGO5}
             sx={{
-              width: "100%",
+              width: "190px",
               height: "auto",
               mt: "19px",
 
