@@ -70,7 +70,7 @@ const AuthLayout = ({ children, isLogin = false, isReset = false }) => {
           justifyContent: "center",
           alignItems: { xs: "flex-start", md: "center" }, // На мобилках прижимаем к верху
           pt: { xs: isReset ? "20px" : "10px", md: "0px" },
-
+          px: { xs: "20px", sm: "20px", md: "0px" }, // Боковые отступы на мобилках
           position: "relative",
         }}
       >
@@ -132,9 +132,9 @@ const AuthLayout = ({ children, isLogin = false, isReset = false }) => {
           <Box
             sx={{
               width: "100%",
-              maxWidth: isReset
-                ? { xs: "90%", md: "390px" }
-                : { xs: "90%", md: "350px" },
+              // maxWidth: isReset
+              // ? { xs: "90%", md: "390px" },
+              //: { xs: "90%", md: "350px" },
               height: isReset ? "auto" : "689px",
               display: "flex",
               flexDirection: "column",
