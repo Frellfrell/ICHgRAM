@@ -78,13 +78,16 @@ const AuthLayout = ({ children, isLogin = false, isReset = false }) => {
         <Box
           sx={{
             width: "100%",
-            maxWidth: "935px",
+            maxWidth: "1440px",
             height: "733px",
             display: "flex",
             flexDirection: "row",
             alignItems: "flex-start",
-            justifyContent: "center",
+            //justifyContent: "center",
+            justifyContent: isLogin ? "flex-start" : "center",
+            gap: isLogin ? { xs: "0px", md: "32px" } : "0px",
             px: { xs: "20px", sm: "20px", md: "0px" }, // Боковые отступы на мобилках
+            mx: "auto",
           }}
         >
           {/* Левая колонка: Имиджи телефонов  */}
@@ -143,8 +146,8 @@ const AuthLayout = ({ children, isLogin = false, isReset = false }) => {
               // Если Логин: отступ 12px до основного контейнера + зазор 32px от фото
               // Если НЕ Логин: центрируем форму внутри 935 и ставим mt 81px
               //marginTop: isLogin ? "12px" : "81px",
-              marginLeft: isLogin ? { xs: "auto", md: "32px" } : "auto",
-              mr: "auto",
+              //marginLeft: isLogin ? { xs: "auto", md: "32px" } : "auto",
+              //mr: "auto",
               mx: "auto",
             }}
           >
