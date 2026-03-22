@@ -12,7 +12,7 @@ const AuthLayout = ({ children, isLogin = false, isReset = false }) => {
         display: "flex",
         flexDirection: "column",
 
-        alignItems: "center",
+        //alignItems: "center",
         bgcolor: "white",
       }}
     >
@@ -47,7 +47,6 @@ const AuthLayout = ({ children, isLogin = false, isReset = false }) => {
               sx={{
                 width: "97px",
                 height: "54px",
-                ml: "44px",
                 display: "flex",
                 alignItems: "center",
               }}
