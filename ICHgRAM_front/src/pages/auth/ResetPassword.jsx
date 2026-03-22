@@ -8,6 +8,7 @@ import AuthLayout from "../../layout/AuthLayout.jsx";
 const ResetPassword = () => {
   return (
     <AuthLayout isReset={true} isLogin={false}>
+      {/* Контейнер 935x733 */}
       <Box
         sx={{
           display: "flex",
@@ -19,7 +20,7 @@ const ResetPassword = () => {
       >
         <Box
           sx={{
-            width: "390px",
+            width: "100%",
             minHeight: "537px",
             border: "1px solid #dbdbdb",
             bgcolor: "white",
@@ -27,6 +28,7 @@ const ResetPassword = () => {
             textAlign: "center",
             display: "flex",
             flexDirection: "column",
+            mx: "auto",
           }}
         >
           {/* Иконка замка  */}
@@ -35,7 +37,7 @@ const ResetPassword = () => {
             src="/src/assets/icons/Img - Trouble logging in_.svg"
             sx={{
               width: "96px",
-              height: "96px",
+              height: "auto",
               border: "2px solid black",
               borderRadius: "50%",
               mx: "auto",

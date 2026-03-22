@@ -12,68 +12,89 @@ const AuthLayout = ({ children, isLogin = false, isReset = false }) => {
         display: "flex",
         flexDirection: "column",
 
-        alignItems: "center",
+        //alignItems: "center",
         bgcolor: "white",
-        margin: 0,
-        padding: 0,
       }}
     >
       {isReset && (
         <Box
           sx={{
-            width: "1440px",
+            width: "100%",
+            maxWidth: "1440px",
             height: "60px",
             display: "flex",
-            alignItems: "center",
+
             borderBottom: "1px solid",
             borderColor: "grey.50",
             bgcolor: "white",
-            flexShrink: 0,
+            justifyContent: "center",
+            //flexShrink: 0,
+            // На мобилках отступ  (16px), на компах (44px)
+
+            mx: "auto",
           }}
         >
           <Box
             sx={{
-              width: "97px",
-              height: "54px",
-              ml: "44px",
+              width: "100%",
+              maxWidth: "1440px",
               display: "flex",
               alignItems: "center",
+              px: { xs: "16px", md: "44px" },
             }}
           >
             <Box
-              component="img"
-              src={LOGO5}
-              sx={{ width: "100%", objectFit: "contain" }}
-            />
+              sx={{
+                width: "97px",
+                height: "54px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <Box
+                component="img"
+                src={LOGO5}
+                sx={{ width: "100%", objectFit: "contain" }}
+              />
+            </Box>
           </Box>
         </Box>
       )}
 
       <Box
         sx={{
-          width: "1440px",
-          height: "760px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          //maxWidth: "1440px",
+          width: "100%",
+          flexGrow: 1,
+          display: "block",
+          //justifyContent: "center",
+          alignItems: { xs: "flex-start", md: "center" }, // На мобилках прижимаем к верху
+          pt: { xs: isReset ? "20px" : "10px", md: "0px" },
+          px: { xs: "20px", sm: "20px", md: "0px" }, // Боковые отступы на мобилках
           position: "relative",
         }}
       >
         {/* Контейнер 935x733 */}
         <Box
           sx={{
-            width: "935px",
-            height: "733px",
+            width: "100%",
+            maxWidth: "935px",
+            //height: "733px",
             display: "flex",
             flexDirection: "row",
             alignItems: "flex-start",
             justifyContent: "center",
+            mt: { xs: "40px", md: "81px" }, // На мобилках отступ 40px, на компах 81px
+            gap: isLogin ? { xs: "0px", md: "32px" } : "0px",
+            px: { xs: "20px", sm: "20px", md: "0px" }, // Боковые отступы на мобилках
+            mx: "auto",
           }}
         >
           {/* Левая колонка: Имиджи телефонов  */}
           {isLogin && (
             <Box
               sx={{
+                display: { xs: "none", lg: "block" }, // Скрыто на маленьких экранах
                 width: "380.31px",
                 height: "581.14px",
                 position: "relative",
@@ -113,18 +134,21 @@ const AuthLayout = ({ children, isLogin = false, isReset = false }) => {
           {/* ПРАВАЯ ЧАСТЬ: СЮДА ПРИДЕТ ВЕСЬ LOGIN.JSX */}
           <Box
             sx={{
-              width: "350px",
-              height: "689px",
+              width: "100%",
+              maxWidth: { xs: "90%", md: "390px" },
+              //: { xs: "90%", md: "350px" },
+              height: isReset ? "auto" : "689px",
               display: "flex",
               flexDirection: "column",
               position: "relative",
-              marginTop: "12px",
+              marginTop: isReset ? { xs: "20px", md: "12px" } : "12px",
               flexShrink: 0,
               // Если Логин: отступ 12px до основного контейнера + зазор 32px от фото
               // Если НЕ Логин: центрируем форму внутри 935 и ставим mt 81px
               //marginTop: isLogin ? "12px" : "81px",
-              marginLeft: isLogin ? "32px" : "0px",
-              //mr: isLogin ? "12px" : "81px",
+              //marginLeft: isLogin ? { xs: "auto", md: "32px" } : "auto",
+              //mr: "auto",
+              mx: "auto",
             }}
           >
             {children}
