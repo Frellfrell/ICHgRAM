@@ -14,8 +14,6 @@ const AuthLayout = ({ children, isLogin = false, isReset = false }) => {
 
         alignItems: "center",
         bgcolor: "white",
-        margin: 0,
-        padding: 0,
       }}
     >
       {isReset && (
