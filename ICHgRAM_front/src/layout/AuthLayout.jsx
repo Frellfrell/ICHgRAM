@@ -63,7 +63,7 @@ const AuthLayout = ({ children, isLogin = false, isReset = false }) => {
 
       <Box
         sx={{
-          maxWidth: "1440px",
+          //maxWidth: "1440px",
           width: "100%",
           flexGrow: 1,
           display: "flex",
@@ -78,7 +78,7 @@ const AuthLayout = ({ children, isLogin = false, isReset = false }) => {
         <Box
           sx={{
             width: "100%",
-            //maxWidth: "935px",
+            maxWidth: "935px",
             height: "733px",
             display: "flex",
             flexDirection: "row",
