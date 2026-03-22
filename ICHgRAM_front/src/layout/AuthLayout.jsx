@@ -22,33 +22,44 @@ const AuthLayout = ({ children, isLogin = false, isReset = false }) => {
         <Box
           sx={{
             width: "100%",
-            maxWidth: "1440px",
+            //maxWidth: "1440px",
             height: "60px",
             display: "flex",
-            alignItems: "center",
+            //alignItems: "center",
             borderBottom: "1px solid",
             borderColor: "grey.50",
             bgcolor: "white",
-            flexShrink: 0,
+            justifyContent: "center",
+            //flexShrink: 0,
             // На мобилках отступ  (16px), на компах (44px)
-            px: { xs: "16px", md: "44px" },
-            mx: "auto",
+            //px: { xs: "16px", md: "44px" },
+            //mx: "auto",
           }}
         >
           <Box
             sx={{
-              width: "97px",
-              height: "54px",
-              ml: "44px",
+              width: "100%",
+              maxWidth: "1440px",
               display: "flex",
               alignItems: "center",
+              px: { xs: "16px", md: "44px" },
             }}
           >
             <Box
-              component="img"
-              src={LOGO5}
-              sx={{ width: "100%", objectFit: "contain" }}
-            />
+              sx={{
+                width: "97px",
+                height: "54px",
+                ml: "44px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <Box
+                component="img"
+                src={LOGO5}
+                sx={{ width: "100%", objectFit: "contain" }}
+              />
+            </Box>
           </Box>
         </Box>
       )}
