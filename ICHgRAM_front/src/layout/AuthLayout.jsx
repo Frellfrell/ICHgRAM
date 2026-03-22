@@ -132,8 +132,7 @@ const AuthLayout = ({ children, isLogin = false, isReset = false }) => {
           <Box
             sx={{
               width: "100%",
-              // maxWidth: isReset
-              // ? { xs: "90%", md: "390px" },
+              maxWidth: { xs: "90%", md: "390px" },
               //: { xs: "90%", md: "350px" },
               height: isReset ? "auto" : "689px",
               display: "flex",
