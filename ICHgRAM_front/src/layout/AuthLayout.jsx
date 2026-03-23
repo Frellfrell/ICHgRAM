@@ -84,7 +84,7 @@ const AuthLayout = ({ children, isLogin = false, isReset = false }) => {
             flexDirection: "row",
             alignItems: "flex-start",
             justifyContent: "center",
-            mt: { xs: "40px", md: "81px" }, // На мобилках отступ 40px, на компах 81px
+            pt: { xs: "30px", md: "61px" }, // На мобилках отступ 40px, на компах 81px
             gap: isLogin ? { xs: "0px", md: "32px" } : "0px",
             px: { xs: "20px", sm: "20px", md: "0px" }, // Боковые отступы на мобилках
             mx: "auto",

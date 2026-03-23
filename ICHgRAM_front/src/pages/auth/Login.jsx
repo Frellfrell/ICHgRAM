@@ -28,11 +28,18 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!formData.email || !formData.password) {
+      return setError("Please fill in all fields");
+    }
+
     setLoading(true);
     setError(null);
 
     try {
       const result = await loginUser(formData);
+      localStorage.setItem("token", result.token); // Сохраняем токен
+      localStorage.setItem("user", JSON.stringify(result.user)); // Данные юзера
       console.log("Вход выполнен успешно:", result);
 
       // После логина перенаправляем на главную страницу (ленту)

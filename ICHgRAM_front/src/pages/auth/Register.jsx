@@ -33,6 +33,14 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Останавливаем перезагрузку страницы
+
+    if (formData.password.length < 6) {
+      return setError("Password must be at least 6 characters long");
+    }
+    if (!formData.email.includes("@")) {
+      return setError("Please enter a valid email address");
+    }
+
     setLoading(true);
     setError(null);
 

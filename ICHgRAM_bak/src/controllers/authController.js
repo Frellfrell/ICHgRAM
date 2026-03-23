@@ -59,7 +59,9 @@ export const login = async (req, res) => {
     }
 
     // 1. Ищем пользователя
-    const user = await User.findOne({ email });
+    const user = await User.findOne({
+      $or: [{ email: email.toLowerCase() }, { username: email }],
+    });
     if (!user) {
       return res.status(401).json({ message: "Неверные данные" });
     }
@@ -86,4 +88,12 @@ export const login = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: "Ошибка сервера" });
   }
+};
+
+export const resetPassword = async (req, res) => {
+  const { email } = req.body;
+  if (!email) return res.status(400).json({ message: "Email is required" });
+
+  // Здесь в будущем будет логика отправки письма на почту
+  res.json({ message: "If this email exists, a reset link has been sent." });
 };
