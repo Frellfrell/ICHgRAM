@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import bcrypt from "bcryptjs";
 import User from "./models/userModel.js";
 import Post from "./models/postModel.js";
-import connectDB from "./src/config/db.js";
+import connectDB from "./config/db.js";
 
 dotenv.config();
 
