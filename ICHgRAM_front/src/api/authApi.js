@@ -34,8 +34,20 @@ export const loginUser = async (credentials) => {
   }
 };
 
-// 3.  выход
+//   выход
 export const logout = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("user"); // Очищаем всё
+};
+
+// 4. Сброс пароля
+export const resetPassword = async (email) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/api/auth/reset-password`, {
+      email,
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || { message: "Failed to send reset link" };
+  }
 };
