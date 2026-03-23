@@ -59,7 +59,9 @@ export const login = async (req, res) => {
     }
 
     // 1. Ищем пользователя
-    const user = await User.findOne({ email });
+    const user = await User.findOne({
+      $or: [{ email: email.toLowerCase() }, { username: email }],
+    });
     if (!user) {
       return res.status(401).json({ message: "Неверные данные" });
     }
