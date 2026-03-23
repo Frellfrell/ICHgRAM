@@ -14,3 +14,6 @@ const seedData = async () => {
     // Очищаем базу перед заполнением
     await User.deleteMany();
     await Post.deleteMany();
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedEmailPassword = await bcrypt.hash("password123", salt);
