@@ -7,9 +7,9 @@ const Footer = () => {
     { label: "Home", type: "link", path: "/home" },
     { label: "Explore", type: "link", path: "/explore" },
     { label: "Message", type: "link", path: "/message" },
-    { label: "Search", type: "action", action: "search" },
+    { label: "Search", type: "action", path: "/search" },
     { label: "Notification", type: "text" },
-    { label: "Create", type: "action", action: "create" },
+    { label: "Create", type: "action", path: "/create" },
   ];
 
   return (
