@@ -5,20 +5,27 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 // 1.  регистрация
 export const registerUser = async (userData) => {
   try {
-    const response = await axios.post(`${BASE_URL}/auth/register`, userData);
+    const response = await axios.post(
+      `${BASE_URL}/api/auth/register`,
+      userData,
+    );
     return response.data; // Возвращаем данные { message, token }
   } catch (error) {
-    throw error.response?.data || { message: "Server error" }; // Выбрасываем ошибку дальше, чтобы компонент её поймал
+    throw error.response?.data || { message: "Registration failed" }; // Выбрасываем ошибку дальше, чтобы компонент её поймал
   }
 };
 
 // 2. логин
 export const loginUser = async (credentials) => {
   try {
-    const response = await axios.post(`${BASE_URL}/auth/login`, credentials);
+    const response = await axios.post(
+      `${BASE_URL}/api/auth/login`,
+      credentials,
+    );
 
     if (response.data.token) {
       localStorage.setItem("token", response.data.token); //сохраняем
+      localStorage.setItem("user", JSON.stringify(response.data.user)); // сохраняем данные юзера
     }
 
     return response.data;
@@ -30,4 +37,5 @@ export const loginUser = async (credentials) => {
 // 3.  выход
 export const logout = () => {
   localStorage.removeItem("token");
+  localStorage.removeItem("user"); // Очищаем всё
 };
