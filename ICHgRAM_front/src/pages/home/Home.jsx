@@ -11,6 +11,11 @@ const Home = () => {
 
 useEffect(() => {
     const getPosts = async () => {
+      try {
+        const data = await fetchAllPosts();
+        setPosts(data);
+      } catch (err) {
+        console.error("Failed to load posts", err);
 
   return (
     <MainLayout>
