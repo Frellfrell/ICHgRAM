@@ -46,7 +46,7 @@ export const getAllPosts = async (req, res) => {
 export const getUserPost = async (req, res) => {
   try {
     const posts = await Post.find({ author: req.params.userId })
-      .populate("author", "username")
+      .populate("author", "username avatar")
       .sort({ createdAt: -1 });
 
     res.json(posts);
