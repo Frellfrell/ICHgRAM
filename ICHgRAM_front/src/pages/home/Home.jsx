@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MainLayout from "../../layout/MainLayout";
 import PostCard from "../../components/post/PostCard";
 import { fetchAllPosts } from "../../api/postApi";
