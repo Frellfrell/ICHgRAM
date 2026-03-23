@@ -25,7 +25,15 @@ const Home = () => {
 
   return (
     <MainLayout>
-      <div>Здесь будет лента постов</div>
+      <Box sx={{ maxWidth: "470px", mx: "auto", pt: 5 }}>
+        {loading ? (
+          <Box sx={{ display: "flex", justifyContent: "center", mt: 5 }}>
+            <CircularProgress />
+          </Box>
+        ) : (
+          posts.map((post) => <PostCard key={post._id} post={post} />)
+        )}
+      </Box>
     </MainLayout>
   );
 };
