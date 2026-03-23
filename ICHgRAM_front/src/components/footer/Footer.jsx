@@ -7,9 +7,9 @@ const Footer = () => {
     { label: "Home", type: "link", path: "/home" },
     { label: "Explore", type: "link", path: "/explore" },
     { label: "Message", type: "link", path: "/message" },
-    { label: "Search", type: "action", action: "search" },
+    { label: "Search", type: "action", path: "/search" },
     { label: "Notification", type: "text" },
-    { label: "Create", type: "action", action: "create" },
+    { label: "Create", type: "action", path: "/create" },
   ];
 
   return (
@@ -23,32 +23,35 @@ const Footer = () => {
       alignItems="center"
     >
       {/* Верхняя часть футера: ссылки */}
-      <Box display="flex" justifyContent="center" gap={4} flexWrap="wrap">
-        {links.map((link, index) =>
-          link.href ? (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          gap: 4,
+          flexWrap: "wrap",
+        }}
+      >
+        {links.map((item, index) =>
+          item.type === "link" ? (
             <Link
+              key={index}
               component={RouterLink}
-              to={link.path}
+              to={item.path}
               underline="none"
               color="text.secondary"
             >
-              {link.label}
+              {item.label}
             </Link>
           ) : (
             <Typography key={index} color="text.secondary">
-              {link.label}
+              {item.label}
             </Typography>
           ),
         )}
       </Box>
 
       {/* Нижняя часть футера: копирайт */}
-      <Typography
-        mt={2}
-        fontSize={14}
-        color="text.secondary"
-        textAlign="center"
-      >
+      <Typography sx={{ fontSize: "12px", color: "text.secondary" }}>
         © 2026 Your Project Name. Все права защищены.
       </Typography>
     </Box>
