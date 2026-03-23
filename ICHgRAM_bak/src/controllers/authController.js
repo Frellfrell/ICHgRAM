@@ -89,3 +89,11 @@ export const login = async (req, res) => {
     res.status(500).json({ message: "Ошибка сервера" });
   }
 };
+
+export const resetPassword = async (req, res) => {
+  const { email } = req.body;
+  if (!email) return res.status(400).json({ message: "Email is required" });
+
+  // Здесь в будущем будет логика отправки письма на почту
+  res.json({ message: "If this email exists, a reset link has been sent." });
+};
