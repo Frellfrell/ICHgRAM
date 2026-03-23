@@ -25,8 +25,8 @@ const seedData = async () => {
         fullName: "sashaa",
         email: "sashaa@example.com",
         password: hashedEmailPassword,
-        avatar: "/public/avatar/avatar_mess2.svg", 
-        bio: "UI/UX Designer from Figma world"
+        avatar: "/public/avatar/avatar_mess2.svg",
+        bio: "UI/UX Designer from Figma world",
       },
       {
         username: "nikiita_artist",
@@ -34,7 +34,7 @@ const seedData = async () => {
         email: "nikita@example.com",
         password: hashedEmailPassword,
         avatar: "/public/avatar/avatar_mess1.svg",
-        bio: "Exploring the world one pixel at a time"
+        bio: "Exploring the world one pixel at a time",
       },
       {
         username: "ICHgRAM_official",
@@ -42,7 +42,7 @@ const seedData = async () => {
         email: "ICHgRAM@example.com",
         password: hashedEmailPassword,
         avatar: "/public/avatar/ICH.svg",
-        bio: "Exploring the world one pixel at a time"
+        bio: "Exploring the world one pixel at a time",
       },
       {
         username: "coach.tonia",
@@ -50,7 +50,7 @@ const seedData = async () => {
         email: "tonia@example.com",
         password: hashedEmailPassword,
         avatar: "/public/avatar/avatar4.svg",
-        bio: "Exploring the world one pixel at a time"
+        bio: "Exploring the world one pixel at a time",
       },
       {
         username: "fsssociety",
@@ -58,8 +58,33 @@ const seedData = async () => {
         email: "fsssociety@example.com",
         password: hashedEmailPassword,
         avatar: "/public/avatar/avatar5.svg",
-        bio: "Exploring the world one pixel at a time"
-      }
+        bio: "Exploring the world one pixel at a time",
+      },
     ]);
 
     console.log("✅ Users created");
+
+    // 2. Создаем посты для  пользователей
+    await Post.insertMany([
+      {
+        author: users[0]._id,
+        image: "/posts/post1.png",
+        caption: "My new design project! #figma #ichgram",
+      },
+      {
+        author: users[1]._id,
+        image: "/posts/post2.png",
+        caption: "What a beautiful morning!",
+      },
+    ]);
+
+    console.log("✅ Posts created");
+    console.log("🚀 Database successfully seeded!");
+    process.exit();
+  } catch (error) {
+    console.error("❌ Error seeding database:", error);
+    process.exit(1);
+  }
+};
+
+seedData();
