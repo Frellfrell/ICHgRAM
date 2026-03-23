@@ -25,7 +25,7 @@ const seedData = async () => {
         fullName: "sashaa",
         email: "sashaa@example.com",
         password: hashedEmailPassword,
-        avatar: "/avatars/avatar1.jpg", // Ссылка на твою папку public/avatar
+        avatar: "/public/avatar/avatar_mess2.svg", 
         bio: "UI/UX Designer from Figma world"
       },
       {
@@ -33,31 +33,31 @@ const seedData = async () => {
         fullName: "nikiita",
         email: "nikita@example.com",
         password: hashedEmailPassword,
-        avatar: "/avatars/avatar2.jpg",
+        avatar: "/public/avatar/avatar_mess1.svg",
         bio: "Exploring the world one pixel at a time"
-      }
+      },
       {
         username: "ICHgRAM_official",
         fullName: "itcareerhub",
         email: "ICHgRAM@example.com",
         password: hashedEmailPassword,
-        avatar: "/avatars/avatar2.jpg",
+        avatar: "/public/avatar/ICH.svg",
         bio: "Exploring the world one pixel at a time"
-      }
+      },
       {
         username: "coach.tonia",
         fullName: "tonia",
         email: "tonia@example.com",
         password: hashedEmailPassword,
-        avatar: "/avatars/avatar2.jpg",
+        avatar: "/public/avatar/avatar4.svg",
         bio: "Exploring the world one pixel at a time"
-      }
+      },
       {
         username: "fsssociety",
         fullName: "fsssociety",
         email: "fsssociety@example.com",
         password: hashedEmailPassword,
-        avatar: "/avatars/avatar2.jpg",
+        avatar: "/public/avatar/avatar5.svg",
         bio: "Exploring the world one pixel at a time"
       }
     ]);
