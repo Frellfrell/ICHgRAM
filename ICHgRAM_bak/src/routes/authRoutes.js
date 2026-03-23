@@ -7,8 +7,7 @@ const router = express.Router();
 router.post("/register", register);
 // Login route
 router.post("/login", login);
-// Reset password route (в разработке)
-router.post("/reset-password", (req, res) => {
-  res.json({ message: "Инструкции отправлены на email (в разработке)" });
-});
+// Reset password route
+router.post("/reset-password", resetPassword);
+
 export default router;
