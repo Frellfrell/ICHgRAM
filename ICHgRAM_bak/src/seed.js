@@ -68,12 +68,28 @@ const seedData = async () => {
     await Post.insertMany([
       {
         author: users[0]._id,
-        image: "/posts/post1.png",
+        image: "/public/avatar/avatar_mess2.svg",
         caption: "My new design project! #figma #ichgram",
       },
       {
         author: users[1]._id,
-        image: "/posts/post2.png",
+        image: "/public/avatar/avatar_mess1.svg",
+        caption: "What a beautiful morning!",
+      },
+      {
+        author: users[2]._id,
+        image: "/public/avatar/ICH.svg",
+        caption:
+          "Потрясающие новости пришли к нам из Черногории! Проект по поддержке бездомных животных TailBook, в разработке которого участвуют сразу 9 наших стажёров, будет представлен на Web Summit 2024 в Португалии🔥 Мы поздравляем наших студентов, приглашаем вас на Web Summit и предлагаем стать частью огромного сообщества крутых специалистов, помогающих развивать и очищать нашу планету. Занимайте место на бесплатной консультации по ссылке в шапке профиля и давайте вместе делать мир лучше! 🌍",
+      },
+      {
+        author: users[3]._id,
+        image: "/public/avatar/avatar4.svg",
+        caption: "What a beautiful morning!",
+      },
+      {
+        author: users[4]._id,
+        image: "/public/avatar/avatar5.svg",
         caption: "What a beautiful morning!",
       },
     ]);
