@@ -3,9 +3,38 @@ import AppInput from "../../components/ui/AppInput.jsx";
 import AppButton from "../../components/ui/AppButton.jsx";
 import AppTypography from "../../components/ui/AppTypography.jsx";
 import DividerLine from "../../components/ui/DividerLine.jsx";
-import AuthLayout from "../../layout/AuthLayout.jsx";
+//import AuthLayout from "../../layout/AuthLayout.jsx";
+import { resetPassword } from "../../api/authApi.js";
 
 const ResetPassword = () => {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState({ type: "", message: "" });
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!email)
+      return setStatus({ type: "error", message: "Email is required" });
+
+    setLoading(true);
+    setStatus({ type: "", message: "" });
+
+    try {
+      const response = await resetPassword(email);
+      setStatus({
+        type: "success",
+        message: response.message || "Link sent to your email!",
+      });
+    } catch (err) {
+      setStatus({
+        type: "error",
+        message: err.message || "Something went wrong",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -55,9 +84,27 @@ const ResetPassword = () => {
           </AppTypography>
         </Box>
 
-        <Box sx={{ px: "40px" }}>
-          <AppInput placeholder="Email or Username" />
-          <AppButton sx={{ mt: 1 }}>Send login link</AppButton>
+        <Box component="form" onSubmit={handleSubmit} sx={{ px: "40px" }}>
+          <AppInput
+            placeholder="Email or Username"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          {status.message && (
+            <AppTypography
+              variant="body2"
+              sx={{
+                color: status.type === "error" ? "error.main" : "success.main",
+                mt: 1,
+              }}
+            >
+              {status.message}
+            </AppTypography>
+          )}
+
+          <AppButton type="submit" disabled={loading} sx={{ mt: 1 }}>
+            {loading ? "Sending..." : "Send login link"}
+          </AppButton>
 
           <DividerLine />
         </Box>
