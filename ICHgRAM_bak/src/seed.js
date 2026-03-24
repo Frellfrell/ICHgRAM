@@ -6,7 +6,7 @@ import connectDB from "./config/db.js";
 
 dotenv.config();
 
-const seedData = async () => {
+const seed = async () => {
   try {
     await connectDB();
 
@@ -20,7 +20,7 @@ const seedData = async () => {
         username: "sashaa_designer",
         fullName: "sashaa",
         email: "sashaa@example.com",
-        password: hashedEmailPassword,
+        password: "password123",
         avatar: "/avatar/avatar_mess2.svg",
         bio: "UI/UX Designer from Figma world",
       },
@@ -28,7 +28,7 @@ const seedData = async () => {
         username: "nikiita_artist",
         fullName: "nikiita",
         email: "nikita@example.com",
-        password: hashedEmailPassword,
+        password: "password123",
         avatar: "/avatar/avatar_mess1.svg",
         bio: "Exploring the world one pixel at a time",
       },
@@ -36,7 +36,7 @@ const seedData = async () => {
         username: "ICHgRAM_official",
         fullName: "itcareerhub",
         email: "ICHgRAM@example.com",
-        password: hashedEmailPassword,
+        password: "password123",
         avatar: "/avatar/ICH.svg",
         bio: "Exploring the world one pixel at a time",
       },
@@ -44,7 +44,7 @@ const seedData = async () => {
         username: "coach.tonia",
         fullName: "tonia",
         email: "tonia@example.com",
-        password: hashedEmailPassword,
+        password: "password123",
         avatar: "/avatar/avatar4.svg",
         bio: "Exploring the world one pixel at a time",
       },
@@ -52,7 +52,7 @@ const seedData = async () => {
         username: "fsssociety",
         fullName: "fsssociety",
         email: "fsssociety@example.com",
-        password: hashedEmailPassword,
+        password: "password123",
         avatar: "/avatar/avatar5.svg",
         bio: "Exploring the world one pixel at a time",
       },
@@ -94,8 +94,8 @@ const seedData = async () => {
       },
     ]);
 
-    console.log("✅ Posts created");
-    console.log("🚀 Database successfully seeded!");
+    console.log("Posts created");
+    console.log("Database successfully seeded!");
     process.exit();
   } catch (error) {
     console.error("❌ Error seeding database:", error);
@@ -103,4 +103,4 @@ const seedData = async () => {
   }
 };
 
-seedData();
+seed();
