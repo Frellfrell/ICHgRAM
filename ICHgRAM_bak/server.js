@@ -61,9 +61,7 @@ app.use("/api/users", userRoutes);
 //app.use("/api/users/search", searchRoutes);
 //app.use("/api/likes", likeRoutes);
 //app.use("/api/comments", commentRoutes);
-app.use("/avatar", express.static("Avatar"));
-app.use("/posts", express.static("Posts"));
-app.use("/content", express.static("Content"));
+app.use(express.static("public"));
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
