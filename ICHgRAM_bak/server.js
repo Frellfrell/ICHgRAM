@@ -5,7 +5,7 @@ import connectDB from "./src/config/db.js";
 import authRoutes from "./src/routes/authRoutes.js";
 import http from "http";
 import { Server } from "socket.io";
-import { socketHandler } from "./socket.js";
+import { socketHandler } from "./src/socket.js";
 import jwt from "jsonwebtoken";
 import followRoutes from "./src/routes/followRoutes.js";
 import notificationRoutes from "./src/routes/notificationRoutes.js";
