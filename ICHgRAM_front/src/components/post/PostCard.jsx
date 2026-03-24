@@ -32,3 +32,25 @@ return (
           {post.author.username}
         </AppTypography>
       </Box>
+
+      {/* 2. Фото поста */}
+      <Box
+        component="img"
+        src={`${BE_URL}${post.image}`}
+        alt="post content"
+        sx={{
+          width: "100%",
+          borderRadius: "4px",
+          display: "block",
+          objectFit: "cover"
+        }}
+      />
+
+      {/* 3. Кнопки действий */}
+      <Box sx={{ display: "flex", alignItems: "center", gap: 1, mt: 1 }}>
+        <IconButton sx={{ color: "text.primary", p: 0.5, ml: -0.5 }}>
+          <FavoriteBorderIcon />
+        </IconButton>
+        <IconButton sx={{ color: "text.primary", p: 0.5 }}>
+          <ChatBubbleOutlineIcon />
+        </IconButton>
