@@ -7,7 +7,7 @@ import AppAvatar from "../ui/AppAvatar";
 import AppButton from "../ui/AppButton";
 
 const PostCard = ({ post }) => {
-  const BE_URL = process.env.VITE_APP_URL || "http://localhost:5000";
+  const BE_URL = import.meta.env.VITE_APP_URL || "http://localhost:5000";
 
   return (
     <Box
