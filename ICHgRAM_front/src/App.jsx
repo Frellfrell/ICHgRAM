@@ -7,6 +7,7 @@ import {
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import { theme } from "./theme/theme.js";
+import { useState, useEffect } from "react";
 
 // Импорт страниц
 import Login from "./pages/auth/Login.jsx";
@@ -20,8 +21,15 @@ import MainLayout from "./layout/MainLayout.jsx";
 import "./App.css";
 
 function App() {
-  // Проверка наличия токена для  аутентификации
-  const isAuthenticated = !!localStorage.getItem("token");
+  const [isAuth, setIsAuth] = useState(!!localStorage.getItem("token"));
+
+  useEffect(() => {
+    const checkToken = () => {
+      setIsAuth(!!localStorage.getItem("token"));
+    };
+    // Проверяем токен при каждом рендере App
+    checkToken();
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -32,29 +40,27 @@ function App() {
           <Route
             path="/login"
             element={
-              !isAuthenticated ? (
-                <AuthLayout>
+              !isAuth ? (
+                <AuthLayout isLogin={true} isReset={false}>
                   <Login />
                 </AuthLayout>
               ) : (
-                <Navigate to="/home" />
+                <Navigate to="/home" replace />
               )
             }
           />
           <Route
             path="/register"
             element={
-              !isAuthenticated ? (
-                <AuthLayout>
+              !isAuth ? (
+                <AuthLayout isLogin={false} isReset={false}>
                   <Register />
                 </AuthLayout>
               ) : (
-                <Navigate to="/home" />
+                <Navigate to="/home" replace />
               )
             }
           />
-
-          <Route path="/" element={<Navigate to="/login" />} />
 
           <Route
             path="/reset-password"
@@ -64,16 +70,16 @@ function App() {
               </AuthLayout>
             }
           />
-          {/* Приватные роуты (Контент) */}
+          {/* Главная страница (Лента) */}
           <Route
             path="/home"
             element={
-              isAuthenticated ? (
+              isAuth ? (
                 <MainLayout>
                   <Home />
                 </MainLayout>
               ) : (
-                <Navigate to="/login" />
+                <Navigate to="/login" replace />
               )
             }
           />
@@ -81,7 +87,7 @@ function App() {
           {/* Редирект с главной */}
           <Route
             path="/"
-            element={<Navigate to={isAuthenticated ? "/home" : "/login"} />}
+            element={<Navigate to={isAuth ? "/home" : "/login"} replace />}
           />
 
           {/* Страница 404 */}
