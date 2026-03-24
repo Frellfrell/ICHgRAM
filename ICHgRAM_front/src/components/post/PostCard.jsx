@@ -7,26 +7,25 @@ import AppAvatar from "../ui/AppAvatar";
 import AppButton from "../ui/AppButton";
 
 const PostCard = ({ post }) => {
+  const BE_URL = process.env.VITE_APP_URL || "http://localhost:5000";
 
-    const BE_URL = process.env.VITE_APP_URL || "http://localhost:5000";
-
-return (
-    <Box 
-      sx={{ 
-        maxWidth: "470px", 
-        mb: 4, 
-        mx: "auto", 
-        borderBottom: "1px solid", 
-        borderColor: "divider", 
-        pb: 2 
+  return (
+    <Box
+      sx={{
+        maxWidth: "470px",
+        mb: 4,
+        mx: "auto",
+        borderBottom: "1px solid",
+        borderColor: "divider",
+        pb: 2,
       }}
     >
       {/* 1. Шапка: AppAvatar и Имя */}
       <Box sx={{ display: "flex", alignItems: "center", py: 1.5, gap: 1.5 }}>
-        <AppAvatar 
-          src={`${BE_URL}${post.author.avatar}`} 
-          alt={post.author.username} 
-          size={32} 
+        <AppAvatar
+          src={`${BE_URL}${post.author.avatar}`}
+          alt={post.author.username}
+          size={32}
         />
         <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>
           {post.author.username}
@@ -42,7 +41,7 @@ return (
           width: "100%",
           borderRadius: "4px",
           display: "block",
-          objectFit: "cover"
+          objectFit: "cover",
         }}
       />
 
@@ -54,4 +53,17 @@ return (
         <IconButton sx={{ color: "text.primary", p: 0.5 }}>
           <ChatBubbleOutlineIcon />
         </IconButton>
-        </Box>
+      </Box>
+
+      {/* 4. Текст поста */}
+      <Box sx={{ mt: 1 }}>
+        <AppTypography variant="body2">
+          <span style={{ fontWeight: 700, marginRight: "8px" }}>
+            {post.author.username}
+          </span>
+          {post.caption}
+        </AppTypography>
+      </Box>
+    </Box>
+  );
+};
