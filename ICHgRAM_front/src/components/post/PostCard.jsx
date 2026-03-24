@@ -67,3 +67,4 @@ const PostCard = ({ post }) => {
     </Box>
   );
 };
+export default PostCard;
