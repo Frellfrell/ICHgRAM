@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import bcrypt from "bcryptjs";
 import User from "./models/userModel.js";
 import Post from "./models/postModel.js";
 import connectDB from "./config/db.js";
@@ -15,11 +14,8 @@ const seedData = async () => {
     await User.deleteMany();
     await Post.deleteMany();
 
-    const salt = await bcrypt.genSalt(10);
-    const hashedEmailPassword = await bcrypt.hash("password123", salt);
-
     // 1. Создаем "ботов" из Figma
-    const users = await User.insertMany([
+    const users = await User.create([
       {
         username: "sashaa_designer",
         fullName: "sashaa",
