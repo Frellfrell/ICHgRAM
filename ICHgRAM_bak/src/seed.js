@@ -84,30 +84,12 @@ const seed = async () => {
         image: "/posts/Post mainOt.svg",
         caption: "𝘐𝘵’𝘴 𝒈𝒐𝒍𝒅𝒆𝒏, 𝘗𝘰𝘯𝘺𝘣𝘰𝘺!",
       },
-      {
-        /*
-        author: users[1]._id,
-        image: "/posts/avatar_mess1.svg",
-        caption: "What a beautiful morning!",
-      */
-      },
+
       {
         author: ichgram._id,
         image: "/posts/ICH.svg",
         caption:
           "Потрясающие новости пришли к нам из Черногории! Проект по поддержке бездомных животных TailBook, в разработке которого участвуют сразу 9 наших стажёров, будет представлен на Web Summit 2024 в Португалии🔥 Мы поздравляем наших студентов, приглашаем вас на Web Summit и предлагаем стать частью огромного сообщества крутых специалистов, помогающих развивать и очищать нашу планету. Занимайте место на бесплатной консультации по ссылке в шапке профиля и давайте вместе делать мир лучше! 🌍",
-      },
-      {
-        /*
-        author: users[3]._id,
-        image: "/posts/avatar4.svg",
-        caption: "What a beautiful morning!",
-      },
-      {
-        author: users[4]._id,
-        image: "/posts/avatar5.svg",
-        caption: "What a beautiful morning!",
-      */
       },
     ]);
 
