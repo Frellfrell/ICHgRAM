@@ -70,6 +70,21 @@ const seed = async () => {
         caption: "𝘐𝘵’𝘴 𝒈𝒐𝒍𝒅𝒆𝒏, 𝘗𝘰𝘯𝘺𝘣𝘰𝘺!",
       },
       {
+        author: sasha._id,
+        image: "/posts/Post mainOt.svg",
+        caption: "𝘐𝘵’𝘴 𝒈𝒐𝒍𝒅𝒆𝒏, 𝘗𝘰𝘯𝘺𝘣𝘰𝘺!",
+      },
+      {
+        author: sasha._id,
+        image: "/posts/Post mainOt.svg",
+        caption: "𝘐𝘵’𝘴 𝒈𝒐𝒍𝒅𝒆𝒏, 𝘗𝘰𝘯𝘺𝘣𝘰𝘺!",
+      },
+      {
+        author: sasha._id,
+        image: "/posts/Post mainOt.svg",
+        caption: "𝘐𝘵’𝘴 𝒈𝒐𝒍𝒅𝒆𝒏, 𝘗𝘰𝘯𝘺𝘣𝘰𝘺!",
+      },
+      {
         /*
         author: users[1]._id,
         image: "/posts/avatar_mess1.svg",
