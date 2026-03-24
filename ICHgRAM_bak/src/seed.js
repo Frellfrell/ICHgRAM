@@ -15,48 +15,50 @@ const seed = async () => {
     await Post.deleteMany();
 
     // 1. Создаем "ботов" из Figma
-    const users = await User.create([
-      {
-        username: "sashaa_designer",
-        fullName: "sashaa",
-        email: "sashaa@example.com",
-        password: "password123",
-        avatar: "/avatar/avatar_mess2.svg",
-        bio: "UI/UX Designer from Figma world",
-      },
-      {
-        username: "nikiita_artist",
-        fullName: "nikiita",
-        email: "nikita@example.com",
-        password: "password123",
-        avatar: "/avatar/avatar_mess1.svg",
-        bio: "Exploring the world one pixel at a time",
-      },
-      {
-        username: "ICHgRAM_official",
-        fullName: "itcareerhub",
-        email: "ICHgRAM@example.com",
-        password: "password123",
-        avatar: "/avatar/ICH.svg",
-        bio: "Exploring the world one pixel at a time",
-      },
-      {
-        username: "coach.tonia",
-        fullName: "tonia",
-        email: "tonia@example.com",
-        password: "password123",
-        avatar: "/avatar/avatar4.svg",
-        bio: "Exploring the world one pixel at a time",
-      },
-      {
-        username: "fsssociety",
-        fullName: "fsssociety",
-        email: "fsssociety@example.com",
-        password: "password123",
-        avatar: "/avatar/avatar5.svg",
-        bio: "Exploring the world one pixel at a time",
-      },
-    ]);
+    const sasha = await User.create({
+      username: "sashaa_designer",
+      fullName: "sashaa",
+      email: "sashaa@example.com",
+      password: "password123",
+      avatar: "/avatar/avatar_mess2.svg",
+      bio: "UI/UX Designer from Figma world",
+    });
+
+    const nikita = await User.create({
+      username: "nikiita_artist",
+      fullName: "nikiita",
+      email: "nikita@example.com",
+      password: "password123",
+      avatar: "/avatar/avatar_mess1.svg",
+      bio: "Exploring the world one pixel at a time",
+    });
+
+    const ichgram = await User.create({
+      username: "ICHgRAM_official",
+      fullName: "itcareerhub",
+      email: "ICHgRAM@example.com",
+      password: "password123",
+      avatar: "/avatar/ICH.svg",
+      bio: "Exploring the world one pixel at a time",
+    });
+
+    const tonia = await User.create({
+      username: "coach.tonia",
+      fullName: "tonia",
+      email: "tonia@example.com",
+      password: "password123",
+      avatar: "/avatar/avatar4.svg",
+      bio: "Exploring the world one pixel at a time",
+    });
+
+    const fsssociety = await User.create({
+      username: "fsssociety",
+      fullName: "fsssociety",
+      email: "fsssociety@example.com",
+      password: "password123",
+      avatar: "/avatar/avatar5.svg",
+      bio: "Exploring the world one pixel at a time",
+    });
 
     console.log("✅ Users created");
 
