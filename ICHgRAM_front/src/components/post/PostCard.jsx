@@ -10,3 +10,25 @@ const PostCard = ({ post }) => {
 
     const BE_URL = process.env.VITE_APP_URL || "http://localhost:5000";
 
+return (
+    <Box 
+      sx={{ 
+        maxWidth: "470px", 
+        mb: 4, 
+        mx: "auto", 
+        borderBottom: "1px solid", 
+        borderColor: "divider", 
+        pb: 2 
+      }}
+    >
+      {/* 1. Шапка: AppAvatar и Имя */}
+      <Box sx={{ display: "flex", alignItems: "center", py: 1.5, gap: 1.5 }}>
+        <AppAvatar 
+          src={`${BE_URL}${post.author.avatar}`} 
+          alt={post.author.username} 
+          size={32} 
+        />
+        <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>
+          {post.author.username}
+        </AppTypography>
+      </Box>
