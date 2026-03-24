@@ -49,7 +49,7 @@ io.use((socket, next) => {
   }
 });
 
-socketHandler(io);
+//socketHandler(io);
 
 // Маршруты API
 app.use("/api/auth", authRoutes);
