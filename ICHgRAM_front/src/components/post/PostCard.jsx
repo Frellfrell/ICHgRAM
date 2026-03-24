@@ -54,3 +54,4 @@ return (
         <IconButton sx={{ color: "text.primary", p: 0.5 }}>
           <ChatBubbleOutlineIcon />
         </IconButton>
+        </Box>
