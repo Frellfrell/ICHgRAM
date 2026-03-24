@@ -116,7 +116,7 @@ export const deletePost = async (req, res) => {
       return res.status(403).json({ message: "Нет доступа" });
     }
 
-    await post.remove();
+    await post.deleteOne({ _id: req.params.postId });
     res.json({ message: "Пост удален" });
   } catch (error) {
     res.status(500).json({ message: "Ошибка сервера" });
