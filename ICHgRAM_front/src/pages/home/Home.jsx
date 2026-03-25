@@ -13,11 +13,11 @@ const Home = () => {
       try {
         const data = await fetchAllPosts();
         console.log("Все посты из БД:", data);
-        const sashaOnly = data.filter(
-          (post) => post.author?.username === "sasha",
+        const sashaaOnly = data.filter(
+          (post) => post.author?.username === "sashaa_designer",
         );
-        console.log("Посты Саши после фильтра:", sashaOnly);
-        setPosts(sashaOnly);
+        console.log("Посты Саши после фильтра:", sashaaOnly);
+        setPosts(sashaaOnly);
         //setPosts(data);
       } catch (err) {
         console.error("Failed to load posts", err);
