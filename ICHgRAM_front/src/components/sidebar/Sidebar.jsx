@@ -12,7 +12,7 @@ const Sidebar = () => {
       sx={{
         position: "fixed",
         width: "245px",
-        height: "100vh",
+        height: "calc(100vh - 158px)",
         borderRight: `1px solid ${theme.palette.borders}`,
         paddingTop: "33px",
         paddingLeft: "24px",
