@@ -44,12 +44,12 @@ const Sidebar = () => {
 
       {/* Navigation */}
       <Box sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-        <SidebarItem label="Home" to="/" />
-        <SidebarItem label="Search" />
+        <SidebarItem label="Home" to="/home" />
+        <SidebarItem label="Search" to="/search" />
         <SidebarItem label="Explore" to="/explore" />
         <SidebarItem label="Message" to="/messages" />
-        <SidebarItem label="Notification" />
-        <SidebarItem label="Create" />
+        <SidebarItem label="Notification" to="/notifications" />
+        <SidebarItem label="Create" to="/create" />
       </Box>
 
       {/* Spacer */}
