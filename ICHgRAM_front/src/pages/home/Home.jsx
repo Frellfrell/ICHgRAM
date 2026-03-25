@@ -38,11 +38,11 @@ const Home = () => {
   }
 
   return (
-    <Box sx={{ width: "100%", maxWidth: "935px", mx: "auto", pt: 5 }}>
+    <Box sx={{ width: "1195px", pt: "58px", px: "78px" }}>
       {/* Сетка по 2 поста в ряд (xs=12 для мобилки, sm=6 для десктопа) */}
-      <Grid container spacing={4}>
+      <Grid container columnSpacing="39px" rowSpacing="39px">
         {posts.map((post) => (
-          <Grid item xs={6} sm={4} key={post._id}>
+          <Grid item xs={6} key={post._id}>
             <PostCard post={post} />
           </Grid>
         ))}
