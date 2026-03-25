@@ -15,19 +15,24 @@ const Footer = () => {
   return (
     <Box
       component="footer"
-      mt={4}
-      py={4}
-      bgcolor="background.paper"
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
+      sx={{
+        height: "158px",
+        mt: 4,
+        py: 4,
+        bgcolor: "background.paper",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
     >
       {/* Верхняя часть футера: ссылки */}
       <Box
         sx={{
           display: "flex",
           justifyContent: "center",
-          gap: 4,
+          gap: "25px",
+          mb: "25px",
           flexWrap: "wrap",
         }}
       >
