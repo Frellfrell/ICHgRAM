@@ -12,9 +12,11 @@ const Home = () => {
     const getPosts = async () => {
       try {
         const data = await fetchAllPosts();
+        console.log("Все посты из БД:", data);
         const sashaOnly = data.filter(
           (post) => post.author?.username === "sasha",
         );
+        console.log("Посты Саши после фильтра:", sashaOnly);
         setPosts(sashaOnly);
         //setPosts(data);
       } catch (err) {
