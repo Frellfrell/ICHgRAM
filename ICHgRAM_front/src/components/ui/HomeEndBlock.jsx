@@ -7,7 +7,7 @@ const HomeEndBlock = () => {
       sx={{
         width: "404px",
         height: "216px",
-        mx: "auto",
+        ml: "301px",
         mt: "80px", // Отступ от постов
         mb: "40px",
         display: "flex",
