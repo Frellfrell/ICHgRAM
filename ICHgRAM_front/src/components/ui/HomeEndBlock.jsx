@@ -24,7 +24,7 @@ const HomeEndBlock = () => {
       </Typography>
       <Typography
         variant="h10"
-        sx={{ textAlign: "center", color: "grey.100", mt: "4px" }}
+        sx={{ textAlign: "center", color: "text.secondary", mt: "4px" }}
       >
         You have viewed all new publications
       </Typography>
