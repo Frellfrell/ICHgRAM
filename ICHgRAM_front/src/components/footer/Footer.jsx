@@ -15,19 +15,24 @@ const Footer = () => {
   return (
     <Box
       component="footer"
-      mt={4}
-      py={4}
-      bgcolor="background.paper"
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
+      sx={{
+        height: "158px",
+        mt: 4,
+        py: 4,
+        bgcolor: "background.paper",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
     >
       {/* Верхняя часть футера: ссылки */}
       <Box
         sx={{
           display: "flex",
           justifyContent: "center",
-          gap: 4,
+          gap: "40px",
+          mb: "25px",
           flexWrap: "wrap",
         }}
       >
@@ -51,7 +56,9 @@ const Footer = () => {
       </Box>
 
       {/* Нижняя часть футера: копирайт */}
-      <Typography sx={{ fontSize: "12px", color: "text.secondary" }}>
+      <Typography
+        sx={{ fontSize: "12px", fontWeight: "400", color: "text.secondary" }}
+      >
         © 2026 Your Project Name. Все права защищены.
       </Typography>
     </Box>

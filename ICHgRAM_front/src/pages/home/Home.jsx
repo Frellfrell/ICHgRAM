@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import MainLayout from "../../layout/MainLayout";
 import PostCard from "../../components/post/PostCard.jsx";
 import { fetchAllPosts } from "../../api/postApi";
-import { Box, CircularProgress } from "@mui/material";
+import { Box, CircularProgress, Grid } from "@mui/material";
+import HomeEndBlock from "../../components/ui/HomeEndBlock.jsx";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -12,7 +12,13 @@ const Home = () => {
     const getPosts = async () => {
       try {
         const data = await fetchAllPosts();
-        setPosts(data);
+        console.log("Все посты из БД:", data);
+        const sashaaOnly = data.filter(
+          (post) => post.author?.username === "sashaa_designer",
+        );
+        console.log("Посты Саши после фильтра:", sashaaOnly);
+        setPosts(sashaaOnly);
+        //setPosts(data);
       } catch (err) {
         console.error("Failed to load posts", err);
       } finally {
@@ -23,18 +29,26 @@ const Home = () => {
     getPosts();
   }, []);
 
-  return (
-    <MainLayout>
-      <Box sx={{ maxWidth: "470px", mx: "auto", pt: 5 }}>
-        {loading ? (
-          <Box sx={{ display: "flex", justifyContent: "center", mt: 5 }}>
-            <CircularProgress />
-          </Box>
-        ) : (
-          posts.map((post) => <PostCard key={post._id} post={post} />)
-        )}
+  if (loading) {
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 10 }}>
+        <CircularProgress />
       </Box>
-    </MainLayout>
+    );
+  }
+
+  return (
+    <Box sx={{ width: "1195px", pt: "58px", px: "78px" }}>
+      {/* Сетка по 2 поста в ряд (xs=12 для мобилки, sm=6 для десктопа) */}
+      <Grid container columnSpacing="39px" rowSpacing="23px">
+        {posts.map((post) => (
+          <Grid item xs={6} key={post._id}>
+            <PostCard post={post} />
+          </Grid>
+        ))}
+      </Grid>
+      <HomeEndBlock />
+    </Box>
   );
 };
 
