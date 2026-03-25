@@ -3,7 +3,12 @@ import SidebarItem from "./SidebarItem";
 import { useTheme } from "@mui/material/styles";
 import logo from "../../assets/logo/ICHGRA 5.svg";
 import HomeIcon from "../../assets/logo/Home.svg";
-import SearchIcon from "../../assets/logo/earch.svg";
+import SearchIcon from "../../assets/logo/Search.svg";
+import ExploreIcon from "../../assets/logo/Explore.svg";
+import MessageIcon from "../../assets/logo/Message.svg";
+import NotificationIcon from "../../assets/logo/Notification.svg";
+import CreateIcon from "../../assets/logo/Create.svg";
+import ProfileIcon from "../../assets/logo/Profile.svg";
 import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
