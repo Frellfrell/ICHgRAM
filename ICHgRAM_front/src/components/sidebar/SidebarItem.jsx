@@ -70,9 +70,11 @@ const SidebarItem = ({ icon, label, to, extraMargin = 0 }) => {
           <AppTypography
             variant="body1"
             sx={{
-              fontWeight: isActive ? 600 : 400,
+              fontWeight: isActive ? 700 : 400,
               fontSize: "16px",
               width: "159.3px",
+              transition: "font-weight 0.2s ease",
+              text: "primary",
             }}
           >
             {label}
