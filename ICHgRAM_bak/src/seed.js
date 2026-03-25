@@ -16,9 +16,9 @@ const seed = async () => {
 
     // 1. Создаем "ботов" из Figma
     const sasha = await User.create({
-      username: "sashaa_designer",
-      fullName: "sashaa",
-      email: "sashaa@example.com",
+      username: "sasha_designer",
+      fullName: "sasha",
+      email: "sasha@example.com",
       password: "password123",
       avatar: "/avatar/avatar_mess2.svg",
       bio: "UI/UX Designer from Figma world",
