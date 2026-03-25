@@ -34,11 +34,22 @@ const SidebarItem = ({ label, to }) => {
       {({ isActive }) => (
         <Box
           sx={{
+            width: "220px",
             height: "48px",
             display: "flex",
             alignItems: "center",
+            px: "12px", // left: 12px для иконки
+            borderRadius: "8px",
+            "&:hover": { bgcolor: "#f2f2f2" },
           }}
         >
+          {/* Иконка 24x24 */}
+          <Box
+            sx={{ width: "24px", height: "24px", display: "flex", mr: "12px" }}
+          >
+            {item.icon}
+          </Box>
+
           <AppTypography
             variant="body1"
             sx={{ fontWeight: isActive ? 600 : 400 }}
