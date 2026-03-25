@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import MainLayout from "../../layout/MainLayout";
 import PostCard from "../../components/post/PostCard.jsx";
 import { fetchAllPosts } from "../../api/postApi";
-import { Box, CircularProgress } from "@mui/material";
+import { Box, CircularProgress, Grid } from "@mui/material";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -23,18 +22,25 @@ const Home = () => {
     getPosts();
   }, []);
 
-  return (
-    <MainLayout>
-      <Box sx={{ maxWidth: "470px", mx: "auto", pt: 5 }}>
-        {loading ? (
-          <Box sx={{ display: "flex", justifyContent: "center", mt: 5 }}>
-            <CircularProgress />
-          </Box>
-        ) : (
-          posts.map((post) => <PostCard key={post._id} post={post} />)
-        )}
+  if (loading) {
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 10 }}>
+        <CircularProgress />
       </Box>
-    </MainLayout>
+    );
+  }
+
+  return (
+    <Box sx={{ width: "100%", maxWidth: "935px", mx: "auto", pt: 5 }}>
+      {/* Сетка по 2 поста в ряд (xs=12 для мобилки, sm=6 для десктопа) */}
+      <Grid container spacing={3}>
+        {posts.map((post) => (
+          <Grid item xs={12} sm={6} key={post._id}>
+            <PostCard post={post} />
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 };
 
