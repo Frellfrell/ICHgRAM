@@ -1,6 +1,8 @@
 import { Box } from "@mui/material";
 import SidebarItem from "./SidebarItem";
 import { useTheme } from "@mui/material/styles";
+import logo from "../../assets/logo/ICHGRA 5.svg";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   const theme = useTheme();
@@ -21,13 +23,21 @@ const Sidebar = () => {
     >
       {/* Logo */}
       <Box
+        component={NavLink}
+        to="/home"
         sx={{
           width: "196px",
           height: "37px",
           marginBottom: "5px",
+          display: "block",
+          textDecoration: "none",
         }}
       >
-        LOGO
+        <img
+          src={logo}
+          alt="ICHGRAM Logo"
+          style={{ width: "100%", height: "100%", objectFit: "contain" }}
+        />
       </Box>
 
       {/* Navigation */}
