@@ -31,7 +31,7 @@ const Footer = () => {
         sx={{
           display: "flex",
           justifyContent: "center",
-          gap: "25px",
+          gap: "40px",
           mb: "25px",
           flexWrap: "wrap",
         }}
@@ -56,7 +56,9 @@ const Footer = () => {
       </Box>
 
       {/* Нижняя часть футера: копирайт */}
-      <Typography sx={{ fontSize: "12px", color: "text.secondary" }}>
+      <Typography
+        sx={{ fontSize: "12px", fontWeight: "400", color: "text.secondary" }}
+      >
         © 2026 Your Project Name. Все права защищены.
       </Typography>
     </Box>
