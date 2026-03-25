@@ -5,14 +5,24 @@ import Footer from "../components/footer/Footer";
 
 const MainLayout = ({ children }) => {
   return (
-    <Box sx={{ display: "flex", minHeight: "100vh" }}>
-      <Sidebar />
+    <Box
+      sx={{
+        display: "flex",
+        minHeight: "100vh",
+        width: "1440px",
+        mx: "auto",
+        position: "relative",
+      }}
+    >
+      <Box sx={{ width: "245px", flexShrink: 0 }}>
+        <Sidebar />
+      </Box>
       {/* Контент справа */}
       <Box
         component="main"
         sx={{
           flexGrow: 1,
-          marginLeft: "245px",
+          width: "1195px",
           p: { xs: 2, md: 3 },
           minHeight: "100vh",
           display: "flex",
