@@ -28,7 +28,8 @@ const Sidebar = () => {
         sx={{
           width: "196px",
           height: "37px",
-          marginBottom: "5px",
+          mt: "28px",
+          ml: "25px",
           display: "block",
           textDecoration: "none",
         }}
