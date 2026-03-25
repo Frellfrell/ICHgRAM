@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import AppTypography from "../ui/AppTypography.jsx";
 import { useTheme } from "@mui/material/styles";
 
-const SidebarItem = ({ label, to }) => {
+const SidebarItem = ({ icon, label, to, extraMargin = 0 }) => {
   const theme = useTheme();
 
   if (!to) {
@@ -14,6 +14,7 @@ const SidebarItem = ({ label, to }) => {
           display: "flex",
           alignItems: "center",
           cursor: "pointer",
+          mt: `${extraMargin}px`,
         }}
       >
         <AppTypography variant="body1">{label}</AppTypography>
@@ -40,19 +41,39 @@ const SidebarItem = ({ label, to }) => {
             alignItems: "center",
             px: "12px", // left: 12px для иконки
             borderRadius: "8px",
+            mt: `${extraMargin}px`,
             "&:hover": { bgcolor: "#f2f2f2" },
           }}
         >
           {/* Иконка 24x24 */}
           <Box
-            sx={{ width: "24px", height: "24px", display: "flex", mr: "12px" }}
+            sx={{
+              width: "24px",
+              height: "24px",
+              display: "flex",
+              mr: "12px",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
-            {item.icon}
+            {typeof icon === "string" ? (
+              <img
+                src={icon}
+                alt={label}
+                style={{ width: "24px", height: "24px" }}
+              />
+            ) : (
+              icon
+            )}
           </Box>
 
           <AppTypography
             variant="body1"
-            sx={{ fontWeight: isActive ? 600 : 400 }}
+            sx={{
+              fontWeight: isActive ? 600 : 400,
+              fontSize: "16px",
+              width: "159.3px",
+            }}
           >
             {label}
           </AppTypography>
