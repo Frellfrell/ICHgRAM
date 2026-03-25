@@ -7,14 +7,19 @@ import AppAvatar from "../ui/AppAvatar";
 import AppButton from "../ui/AppButton";
 
 const PostCard = ({ post }) => {
-  const BE_URL = import.meta.env.VITE_APP_URL || "http://localhost:5000";
+  const BE_URL =
+    import.meta.env.VITE_APP_URL?.replace("/api", "") ||
+    "http://localhost:5000";
+
+  // Проверяем, как называется поле автора: post.author или post.user
+  const author = post.author || post.user;
 
   return (
     <Box
       sx={{
-        maxWidth: "470px",
+        width: "100%",
         mb: 4,
-        mx: "auto",
+        //mx: "auto",
         borderBottom: "1px solid",
         borderColor: "divider",
         pb: 2,
@@ -23,12 +28,12 @@ const PostCard = ({ post }) => {
       {/* 1. Шапка: AppAvatar и Имя */}
       <Box sx={{ display: "flex", alignItems: "center", py: 1.5, gap: 1.5 }}>
         <AppAvatar
-          src={`${BE_URL}${post.author.avatar}`}
-          alt={post.author.username}
+          src={`${BE_URL}${author?.avatar}`}
+          alt={author?.username}
           size={32}
         />
         <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>
-          {post.author.username}
+          {author?.username}
         </AppTypography>
       </Box>
 
@@ -59,7 +64,7 @@ const PostCard = ({ post }) => {
       <Box sx={{ mt: 1 }}>
         <AppTypography variant="body2">
           <span style={{ fontWeight: 700, marginRight: "8px" }}>
-            {post.author.username}
+            {author?.username}
           </span>
           {post.caption}
         </AppTypography>
