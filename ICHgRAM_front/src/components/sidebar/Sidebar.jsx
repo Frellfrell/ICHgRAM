@@ -27,9 +27,8 @@ const Sidebar = () => {
         to="/home"
         sx={{
           width: "196px",
-          height: "37px",
+          height: "54px",
           mt: "28px",
-          ml: "25px",
           display: "block",
           textDecoration: "none",
         }}
