@@ -51,12 +51,16 @@ const Sidebar = () => {
 
       {/* Navigation */}
       <Box sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-        <SidebarItem label="Home" to="/home" />
-        <SidebarItem label="Search" to="/search" />
-        <SidebarItem label="Explore" to="/explore" />
-        <SidebarItem label="Message" to="/messages" />
-        <SidebarItem label="Notification" to="/notifications" />
-        <SidebarItem label="Create" to="/create" />
+        <SidebarItem label="Home" to="/home" icon={HomeIcon} />
+        <SidebarItem label="Search" to="/search" icon={SearchIcon} />
+        <SidebarItem label="Explore" to="/explore" icon={ExploreIcon} />
+        <SidebarItem label="Message" to="/messages" icon={MessageIcon} />
+        <SidebarItem
+          label="Notification"
+          to="/notifications"
+          icon={NotificationIcon}
+        />
+        <SidebarItem label="Create" to="/create" icon={CreateIcon} />
       </Box>
 
       {/* Spacer */}
@@ -64,7 +68,12 @@ const Sidebar = () => {
 
       {/* Profile */}
       <Box sx={{ marginTop: "47px" }}>
-        <SidebarItem label="Profile" to="/profile" />
+        <SidebarItem
+          icon={ProfileIcon}
+          extraMargin={47}
+          label="Profile"
+          to="/profile"
+        />
       </Box>
     </Box>
   );
