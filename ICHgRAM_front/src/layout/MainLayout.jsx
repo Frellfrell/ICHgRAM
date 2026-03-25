@@ -17,21 +17,25 @@ const MainLayout = ({ children }) => {
       <Box sx={{ width: "245px", flexShrink: 0 }}>
         <Sidebar />
       </Box>
-      {/* Контент справа */}
+
+      {/* Правая колонка: Контент + Футер */}
       <Box
-        component="main"
         sx={{
-          flexGrow: 1,
-          width: "1195px",
-          p: { xs: 2, md: 3 },
-          minHeight: "100vh",
           display: "flex",
           flexDirection: "column",
+          width: "1195px", // 1440 - 245
+          minHeight: "100vh",
         }}
       >
-        {/* Основной контент страницы */}
-        <Box flexGrow={1}>{children}</Box>
-        <Footer />
+        {/* Область контента */}
+        <Box component="main" sx={{ flexGrow: 1 }}>
+          {children}
+        </Box>
+
+        {/* Футер */}
+        <Box sx={{ height: "158px", width: "100%", zIndex: 11 }}>
+          <Footer />
+        </Box>
       </Box>
     </Box>
   );
