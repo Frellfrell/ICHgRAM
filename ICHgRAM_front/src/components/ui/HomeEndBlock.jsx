@@ -8,8 +8,8 @@ const HomeEndBlock = () => {
         width: "404px",
         height: "216px",
         mx: "auto",
-        mt: 8,
-        mb: 4,
+        mt: "80px", // Отступ от постов
+        mb: "40px",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
