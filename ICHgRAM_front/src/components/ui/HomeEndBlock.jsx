@@ -19,10 +19,10 @@ const HomeEndBlock = () => {
       }}
     >
       <img src={EndIcon} alt="End" style={{ width: "83px" }} />
-      <Typography variant="h4" sx={{ textAlign: "center", mt: "11px" }}>
+      <Typography variant="h6" sx={{ textAlign: "center", mt: "11px" }}>
         You've seen all the updates
       </Typography>
-      <Typography variant="h6" sx={{ textAlign: "center", mt: "2px" }}>
+      <Typography variant="h10" sx={{ textAlign: "center", mt: "4px" }}>
         You have viewed all new publications
       </Typography>
     </Box>
