@@ -2,6 +2,8 @@ import { Box } from "@mui/material";
 import SidebarItem from "./SidebarItem";
 import { useTheme } from "@mui/material/styles";
 import logo from "../../assets/logo/ICHGRA 5.svg";
+import HomeIcon from "../../assets/logo/Home.svg";
+import SearchIcon from "../../assets/logo/earch.svg";
 import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
