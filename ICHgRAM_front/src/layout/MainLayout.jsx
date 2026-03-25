@@ -10,11 +10,14 @@ const MainLayout = ({ children }) => {
       {/* Контент справа */}
       <Box
         component="main"
-        flexGrow={1}
-        p={{ xs: 2, md: 3 }}
-        minHeight="100vh"
-        display="flex"
-        flexDirection="column"
+        sx={{
+          flexGrow: 1,
+          marginLeft: "245px",
+          p: { xs: 2, md: 3 },
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+        }}
       >
         {/* Основной контент страницы */}
         <Box flexGrow={1}>{children}</Box>
