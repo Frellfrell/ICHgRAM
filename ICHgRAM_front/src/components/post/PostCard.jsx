@@ -36,11 +36,16 @@ const PostCard = ({ post }) => {
   // Состояние для лайка
   const [isLiked, setIsLiked] = useState(false);
 
+  //если Base64, отдаем как есть, если путь - клеим BE_URL
+  const formatUrl = (url) => {
+    if (!url) return "";
+    if (url.startsWith("data:") || url.startsWith("http")) return url;
+    return `${BE_URL}${url.startsWith("/") ? url : "/" + url}`;
+  };
+
   // полные пути
-  const avatarSrc = author?.avatar
-    ? `${BE_URL}${author.avatar}`
-    : `${BE_URL}/avatar/default.svg`;
-  const postImgSrc = post.image ? `${BE_URL}${post.image}` : "";
+  const avatarSrc = formatUrl(author?.avatar) || `${BE_URL}/avatar/default.svg`;
+  const postImgSrc = formatUrl(post.image);
 
   return (
     <Box
@@ -68,12 +73,9 @@ const PostCard = ({ post }) => {
           {author?.username}
         </AppTypography>
         <AppTypography sx={{ color: "text.secondary", fontSize: "14px" }}>
-          {post.timestamp}
+          • {timeAgo(post.createdAt)}
         </AppTypography>
-        •{" "}
-        {post.createdAt
-          ? new Date(post.createdAt).toLocaleDateString()
-          : "just now"}
+
         {/* Кнопка Follow (показываем только если не подписан) */}
         {!author?.isFollowed && (
           <AppTypography
