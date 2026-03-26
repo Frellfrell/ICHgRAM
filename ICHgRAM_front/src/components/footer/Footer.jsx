@@ -59,7 +59,7 @@ const Footer = () => {
       <Typography
         sx={{ fontSize: "12px", fontWeight: "400", color: "text.secondary" }}
       >
-        © 2026 Your Project Name. Все права защищены.
+        © 2026 ICHgRAM
       </Typography>
     </Box>
   );

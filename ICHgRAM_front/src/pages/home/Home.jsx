@@ -13,11 +13,8 @@ const Home = () => {
       try {
         const data = await fetchAllPosts();
         console.log("Все посты из БД:", data);
-        const sashaaOnly = data.filter(
-          (post) => post.author?.username === "sashaa_designer",
-        );
-        console.log("Посты Саши после фильтра:", sashaaOnly);
-        setPosts(sashaaOnly);
+
+        setPosts(data);
         //setPosts(data);
       } catch (err) {
         console.error("Failed to load posts", err);
@@ -38,9 +35,16 @@ const Home = () => {
   }
 
   return (
-    <Box sx={{ width: "1195px", pt: "58px", px: "78px" }}>
+    <>
       {/* Сетка по 2 поста в ряд (xs=12 для мобилки, sm=6 для десктопа) */}
-      <Grid container columnSpacing="39px" rowSpacing="23px">
+      <Grid
+        container
+        columnSpacing="39px"
+        rowSpacing="23px"
+        sx={{
+          width: "847px",
+        }}
+      >
         {posts.map((post) => (
           <Grid item xs={6} key={post._id}>
             <PostCard post={post} />
@@ -48,7 +52,7 @@ const Home = () => {
         ))}
       </Grid>
       <HomeEndBlock />
-    </Box>
+    </>
   );
 };
 

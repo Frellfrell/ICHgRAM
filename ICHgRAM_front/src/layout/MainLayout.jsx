@@ -9,33 +9,47 @@ const MainLayout = ({ children }) => {
       sx={{
         display: "flex",
         minHeight: "100vh",
-        width: "1440px",
+        overflow: "hidden",
+        width: "100%",
+        maxWidth: "1440px",
         mx: "auto",
         position: "relative",
+        flexDirection: "column",
       }}
     >
-      <Box sx={{ width: "245px", flexShrink: 0 }}>
-        <Sidebar />
-      </Box>
+      <Box sx={{ display: "flex", flexGrow: 1 }}>
+        <Box sx={{ width: "245px", flexShrink: 0, position: "sticky", top: 0 }}>
+          <Sidebar />
+        </Box>
 
-      {/* Правая колонка: Контент + Футер */}
-      <Box
+        {/* Правая колонка: Контент  */}
+        {/*<Box
         sx={{
           display: "flex",
           flexDirection: "column",
           width: "1195px", // 1440 - 245
           minHeight: "100vh",
         }}
-      >
+      >*/}
         {/* Область контента */}
-        <Box component="main" sx={{ flexGrow: 1 }}>
+        <Box
+          component="main"
+          sx={{ width: "1195px", flexGrow: 1, pt: "58px", px: "78px" }}
+        >
           {children}
         </Box>
+      </Box>
 
-        {/* Футер */}
-        <Box sx={{ height: "158px", width: "100%", zIndex: 11 }}>
-          <Footer />
-        </Box>
+      {/* Футер */}
+      <Box
+        sx={{
+          maxWidth: "1440px",
+          width: "100%",
+          bottom: 0, // В самый низ
+          mt: "auto", // Отодвигаем футер вниз, если контента мало
+        }}
+      >
+        <Footer />
       </Box>
     </Box>
   );

@@ -22,6 +22,7 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use("/public", express.static("public"));
 
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -61,7 +62,6 @@ app.use("/api/users", userRoutes);
 //app.use("/api/users/search", searchRoutes);
 //app.use("/api/likes", likeRoutes);
 //app.use("/api/comments", commentRoutes);
-app.use(express.static("public"));
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {

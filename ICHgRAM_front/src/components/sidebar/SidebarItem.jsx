@@ -28,8 +28,8 @@ const SidebarItem = ({ icon, label, to, extraMargin = 0 }) => {
       style={({ isActive }) => ({
         textDecoration: "none",
         color: isActive
-          ? theme.palette.primary.main
-          : theme.palette.text.primary,
+          ? theme.palette.text.primary
+          : theme.palette.text.secondary,
       })}
     >
       {({ isActive }) => (

@@ -36,16 +36,18 @@ const Sidebar = () => {
           width: "196px",
           height: "54px",
           mt: "28px",
-          textAlign: "left",
+          pl: "12px",
+          mb: "33px",
+          justifyContent: "flex-start",
           margin: "0 ",
-          display: "block",
+          display: "flex",
           textDecoration: "none",
         }}
       >
         <img
           src={logo}
           alt="ICHGRAM Logo"
-          style={{ width: "100%", height: "100%", objectFit: "contain" }}
+          style={{ width: "97px", height: "100%", objectFit: "contain" }}
         />
       </Box>
 
@@ -61,20 +63,19 @@ const Sidebar = () => {
           icon={NotificationIcon}
         />
         <SidebarItem label="Create" to="/create" icon={CreateIcon} />
+
+        <Box sx={{ marginTop: "47px" }}>
+          <SidebarItem
+            icon={ProfileIcon}
+            extraMargin={47}
+            label="Profile"
+            to="/profile"
+          />
+        </Box>
       </Box>
 
       {/* Spacer */}
       <Box sx={{ flexGrow: 1 }} />
-
-      {/* Profile */}
-      <Box sx={{ marginTop: "47px" }}>
-        <SidebarItem
-          icon={ProfileIcon}
-          extraMargin={47}
-          label="Profile"
-          to="/profile"
-        />
-      </Box>
     </Box>
   );
 };
