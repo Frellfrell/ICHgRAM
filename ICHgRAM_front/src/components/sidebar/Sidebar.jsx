@@ -33,14 +33,14 @@ const Sidebar = () => {
         component={NavLink}
         to="/home"
         sx={{
-          width: "196px",
+          width: "100%",
           height: "54px",
           mt: "28px",
           pl: "12px",
           mb: "33px",
-          textAlign: "left",
+          justifyContent: "flex-start",
           margin: "0 ",
-          display: "block",
+          display: "flex",
           textDecoration: "none",
         }}
       >
