@@ -1,4 +1,5 @@
 import Post from "../models/postModel.js";
+import Like from "../models/likeModel.js";
 
 export const createPost = async (req, res) => {
   try {
@@ -22,7 +23,7 @@ export const createPost = async (req, res) => {
     const post = await Post.create({
       author: req.user.id,
       caption,
-      image: `data:${req.file.mimetype};base64,${base64Image}`,
+      image: image,
     });
 
     res.status(201).json(post);
@@ -37,7 +38,18 @@ export const getAllPosts = async (req, res) => {
       .populate("author", "username avatar")
       .sort({ createdAt: -1 });
 
-    res.json(posts);
+    // Добавляем подсчет лайков из LikeModel для каждого поста
+    const postsWithLikes = await Promise.all(
+      posts.map(async (post) => {
+        const likesCount = await Like.countDocuments({ post: post._id });
+        return {
+          ...post._doc,
+          likesCount: likesCount,
+        };
+      }),
+    );
+
+    res.json(postsWithLikes);
   } catch (error) {
     res.status(500).json({ message: "Ошибка сервера" });
   }
