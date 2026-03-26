@@ -35,6 +35,17 @@ const PostCard = ({ post }) => {
   const author = post.author || post.user;
   // Состояние для лайка
   const [isLiked, setIsLiked] = useState(false);
+  const [likesCount, setLikesCount] = useState(post.likesCount || 0);
+
+  const handleLike = () => {
+    if (isLiked) {
+      setIsLiked(false);
+      setLikesCount((prev) => prev - 1);
+    } else {
+      setIsLiked(true);
+      setLikesCount((prev) => prev + 1);
+    }
+  };
 
   //если Base64, отдаем как есть, если путь - клеим BE_URL
   const formatUrl = (url) => {
