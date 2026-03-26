@@ -11,31 +11,33 @@ const MainLayout = ({ children }) => {
         minHeight: "100vh",
         width: "1440px",
         mx: "auto",
-        position: "relative",
+        //position: "relative",
+        flexDirection: "column",
       }}
     >
-      <Box sx={{ width: "245px", flexShrink: 0 }}>
-        <Sidebar />
-      </Box>
+      <Box sx={{ display: "flex", flexGrow: 1 }}>
+        <Box sx={{ width: "245px", flexShrink: 0 }}>
+          <Sidebar />
+        </Box>
 
-      {/* Правая колонка: Контент  */}
-      <Box
+        {/* Правая колонка: Контент  */}
+        {/*<Box
         sx={{
           display: "flex",
           flexDirection: "column",
           width: "1195px", // 1440 - 245
           minHeight: "100vh",
         }}
-      >
+      >*/}
         {/* Область контента */}
-        <Box component="main" sx={{ flexGrow: 1 }}>
+        <Box component="main" sx={{ width: "1195px", flexGrow: 1 }}>
           {children}
         </Box>
+      </Box>
 
-        {/* Футер */}
-        <Box sx={{ height: "158px", width: "100%", zIndex: 11 }}>
-          <Footer />
-        </Box>
+      {/* Футер */}
+      <Box sx={{ height: "158px", width: "1440px", zIndex: 11 }}>
+        <Footer />
       </Box>
     </Box>
   );
