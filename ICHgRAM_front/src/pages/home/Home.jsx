@@ -3,7 +3,7 @@ import PostCard from "../../components/post/PostCard.jsx";
 import { fetchAllPosts } from "../../api/postApi";
 import { Box, CircularProgress } from "@mui/material";
 import HomeEndBlock from "../../components/ui/HomeEndBlock.jsx";
-import { Grid } from "@mui/material/Grid2";
+import Grid from "@mui/material/Grid2";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
