@@ -18,7 +18,7 @@ const MainLayout = ({ children }) => {
       }}
     >
       <Box sx={{ display: "flex", flexGrow: 1 }}>
-        <Box sx={{ width: "245px", flexShrink: 0 }}>
+        <Box sx={{ width: "245px", flexShrink: 0, position: "sticky" }}>
           <Sidebar />
         </Box>
 
