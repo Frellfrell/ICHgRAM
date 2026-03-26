@@ -18,7 +18,7 @@ const MainLayout = ({ children }) => {
         <Sidebar />
       </Box>
 
-      {/* Правая колонка: Контент + Футер */}
+      {/* Правая колонка: Контент  */}
       <Box
         sx={{
           display: "flex",
@@ -31,11 +31,10 @@ const MainLayout = ({ children }) => {
         <Box component="main" sx={{ flexGrow: 1 }}>
           {children}
         </Box>
-
-        {/* Футер */}
-        <Box sx={{ height: "158px", width: "100%", zIndex: 11 }}>
-          <Footer />
-        </Box>
+      </Box>
+      {/* Футер */}
+      <Box sx={{ height: "158px", width: "100%", zIndex: 11 }}>
+        <Footer />
       </Box>
     </Box>
   );
