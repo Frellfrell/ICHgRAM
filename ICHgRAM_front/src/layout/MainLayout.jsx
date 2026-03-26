@@ -9,6 +9,7 @@ const MainLayout = ({ children }) => {
       sx={{
         display: "flex",
         minHeight: "100vh",
+        overflow: "hidden",
         width: "100%",
         maxWidth: "1440px",
         mx: "auto",
@@ -31,13 +32,23 @@ const MainLayout = ({ children }) => {
         }}
       >*/}
         {/* Область контента */}
-        <Box component="main" sx={{ width: "1195px", flexGrow: 1 }}>
+        <Box
+          component="main"
+          sx={{ width: "1195px", flexGrow: 1, overflowY: "auto" }}
+        >
           {children}
         </Box>
       </Box>
 
       {/* Футер */}
-      <Box sx={{ height: "158px", width: "1440px", zIndex: 11 }}>
+      <Box
+        sx={{
+          maxWidth: "1440px",
+          position: "fixed", // Прибиваем к экрану
+          bottom: 0, // В самый низ
+          zIndex: 1000,
+        }}
+      >
         <Footer />
       </Box>
     </Box>
