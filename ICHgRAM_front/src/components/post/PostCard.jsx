@@ -17,8 +17,8 @@ const PostCard = ({ post }) => {
     <Box
       sx={{
         width: "404px",
-        height: "716.6px",
-        mb: "23px",
+        //height: "716.6px",
+        //mb: "23px",
         borderBottom: "1px solid",
         borderColor: "divider",
         pb: 2,
