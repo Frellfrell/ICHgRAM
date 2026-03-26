@@ -36,6 +36,7 @@ const Sidebar = () => {
           width: "196px",
           height: "54px",
           mt: "28px",
+          pl: "12px",
           textAlign: "left",
           margin: "0 ",
           display: "block",
