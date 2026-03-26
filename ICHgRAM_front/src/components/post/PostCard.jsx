@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, IconButton } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
@@ -16,15 +16,14 @@ const PostCard = ({ post }) => {
   const BE_URL = "http://localhost:5000";
 
   const author = post.author || post.user;
+  // Состояние для лайка
+  const [isLiked, setIsLiked] = useState(false);
 
   // полные пути
   const avatarSrc = author?.avatar
     ? `${BE_URL}${author.avatar}`
     : `${BE_URL}/avatar/default.svg`;
   const postImgSrc = post.image ? `${BE_URL}${post.image}` : "";
-
-  // Состояние для лайка
-  const [isLiked, setIsLiked] = React.useState(false);
 
   return (
     <Box
@@ -54,6 +53,10 @@ const PostCard = ({ post }) => {
         <AppTypography sx={{ color: "text.secondary", fontSize: "14px" }}>
           {post.timestamp}
         </AppTypography>
+        •{" "}
+        {post.createdAt
+          ? new Date(post.createdAt).toLocaleDateString()
+          : "just now"}
         {/* Кнопка Follow (показываем только если не подписан) */}
         {!author?.isFollowed && (
           <AppTypography
@@ -64,7 +67,7 @@ const PostCard = ({ post }) => {
               cursor: "pointer",
             }}
           >
-            Follow
+            follow
           </AppTypography>
         )}
       </Box>
@@ -118,4 +121,5 @@ const PostCard = ({ post }) => {
     </Box>
   );
 };
+
 export default PostCard;
