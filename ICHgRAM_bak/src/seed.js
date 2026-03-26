@@ -20,7 +20,7 @@ const seed = async () => {
       fullName: "sashaa",
       email: "sashaa@example.com",
       password: "password123",
-      avatar: "/avatar/avatar_mess2.svg",
+      avatar: "/public/avatar/avatar_mess2.svg",
       bio: "UI/UX Designer from Figma world",
     });
 
@@ -29,7 +29,7 @@ const seed = async () => {
       fullName: "nikiita",
       email: "nikita@example.com",
       password: "password123",
-      avatar: "/avatar/avatar_mess1.svg",
+      avatar: "/public/avatar/avatar_mess1.svg",
       bio: "Exploring the world one pixel at a time",
     });
 
@@ -38,7 +38,7 @@ const seed = async () => {
       fullName: "itcareerhub",
       email: "ICHgRAM@example.com",
       password: "password123",
-      avatar: "/avatar/ICH.svg",
+      avatar: "/public/avatar/ICH.svg",
       bio: "Exploring the world one pixel at a time",
     });
 
@@ -47,7 +47,7 @@ const seed = async () => {
       fullName: "tonia",
       email: "tonia@example.com",
       password: "password123",
-      avatar: "/avatar/avatar4.svg",
+      avatar: "/public/avatar/avatar4.svg",
       bio: "Exploring the world one pixel at a time",
     });
 
@@ -56,7 +56,7 @@ const seed = async () => {
       fullName: "fsssociety",
       email: "fsssociety@example.com",
       password: "password123",
-      avatar: "/avatar/avatar5.svg",
+      avatar: "/public/avatar/avatar5.svg",
       bio: "Exploring the world one pixel at a time",
     });
 
@@ -66,30 +66,30 @@ const seed = async () => {
     await Post.insertMany([
       {
         author: sasha._id,
-        image: "/posts/Post mainOt.svg",
+        image: "/public/posts/Post mainOt.svg",
         caption: "𝘐𝘵’𝘴 𝒈𝒐𝒍𝒅𝒆𝒏, 𝘗𝘰𝘯𝘺𝘣𝘰𝘺!",
         likes: [nikita._id, tonia._id],
       },
       {
         author: sasha._id,
-        image: "/posts/Post mainOt.svg",
+        image: "/public/posts/Post mainOt.svg",
         caption: "𝘐𝘵’𝘴 𝒈𝒐𝒍𝒅𝒆𝒏, 𝘗𝘰𝘯𝘺𝘣𝘰𝘺!",
       },
       {
         author: sasha._id,
-        image: "/posts/Post mainOt.svg",
+        image: "/public/posts/Post mainOt.svg",
         caption: "𝘐𝘵’𝘴 𝒈𝒐𝒍𝒅𝒆𝒏, 𝘗𝘰𝘯𝘺𝘣𝘰𝘺!",
       },
       {
         author: sasha._id,
-        image: "/posts/Post mainOt.svg",
+        image: "/public/posts/Post mainOt.svg",
         caption: "𝘐𝘵’𝘴 𝒈𝒐𝒍𝒅𝒆𝒏, 𝘗𝘰𝘯𝘺𝘣𝘰𝘺!",
         likes: [nikita._id, tonia._id],
       },
 
       {
         author: ichgram._id,
-        image: "/posts/ICH.svg",
+        image: "/public/posts/ICH.svg",
         //caption:
         //"Потрясающие новости пришли к нам из Черногории! Проект по поддержке бездомных животных TailBook,
         //  в разработке которого участвуют сразу 9 наших стажёров,
