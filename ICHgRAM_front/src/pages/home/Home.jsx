@@ -38,7 +38,7 @@ const Home = () => {
   }
 
   return (
-    <Box sx={{ width: "1195px", pt: "58px", px: "78px" }}>
+    <>
       {/* Сетка по 2 поста в ряд (xs=12 для мобилки, sm=6 для десктопа) */}
       <Grid
         container
@@ -55,7 +55,7 @@ const Home = () => {
         ))}
       </Grid>
       <HomeEndBlock />
-    </Box>
+    </>
   );
 };
 
