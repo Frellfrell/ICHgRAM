@@ -45,20 +45,12 @@ const Home = () => {
         columnSpacing="39px"
         rowSpacing="23px"
         sx={{
-          maxWidth: "847px",
-          width: "100%",
+          width: "847px",
         }}
       >
         {posts.map((post) => (
           <Grid item xs={6} key={post._id}>
-            <Box
-              sx={{
-                maxWidth: "404px",
-                width: "100%",
-              }}
-            >
-              <PostCard post={post} />
-            </Box>
+            <PostCard post={post} />
           </Grid>
         ))}
       </Grid>
