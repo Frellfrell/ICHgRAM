@@ -50,12 +50,11 @@ const Home = () => {
         }}
       >
         {posts.map((post) => (
-          <Grid item xs={12} sm={6} key={post._id}>
+          <Grid item xs={6} key={post._id}>
             <Box
               sx={{
                 maxWidth: "404px",
                 width: "100%",
-                mx: "auto",
               }}
             >
               <PostCard post={post} />
