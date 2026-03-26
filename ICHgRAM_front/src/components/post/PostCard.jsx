@@ -7,7 +7,7 @@ import AppAvatar from "../ui/AppAvatar";
 
 const PostCard = ({ post }) => {
   const BE_URL =
-    import.meta.env.VITE_APP_URL?.replace("/api", "") ||
+    import.meta.env.VITE_API_URL?.replace("/api", "") ||
     "http://localhost:5000";
 
   // Проверяем, как называется поле автора: post.author или post.user
