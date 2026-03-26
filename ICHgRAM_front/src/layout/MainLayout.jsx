@@ -9,7 +9,8 @@ const MainLayout = ({ children }) => {
       sx={{
         display: "flex",
         minHeight: "100vh",
-        width: "1440px",
+        width: "100%",
+        maxWidth: "1440px",
         mx: "auto",
         //position: "relative",
         flexDirection: "column",
