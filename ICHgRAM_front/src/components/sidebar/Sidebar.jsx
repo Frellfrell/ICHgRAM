@@ -36,7 +36,7 @@ const Sidebar = () => {
           width: "196px",
           height: "54px",
           mt: "28px",
-          pl: "24px",
+          pl: "12px",
           mb: "33px",
           justifyContent: "flex-start",
           margin: "0 ",
@@ -49,33 +49,33 @@ const Sidebar = () => {
           alt="ICHGRAM Logo"
           style={{ width: "97px", height: "100%", objectFit: "contain" }}
         />
-
-        {/* Navigation */}
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-          <SidebarItem label="Home" to="/home" icon={HomeIcon} />
-          <SidebarItem label="Search" to="/search" icon={SearchIcon} />
-          <SidebarItem label="Explore" to="/explore" icon={ExploreIcon} />
-          <SidebarItem label="Message" to="/messages" icon={MessageIcon} />
-          <SidebarItem
-            label="Notification"
-            to="/notifications"
-            icon={NotificationIcon}
-          />
-          <SidebarItem label="Create" to="/create" icon={CreateIcon} />
-
-          <Box sx={{ marginTop: "47px" }}>
-            <SidebarItem
-              icon={ProfileIcon}
-              extraMargin={47}
-              label="Profile"
-              to="/profile"
-            />
-          </Box>
-        </Box>
-
-        {/* Spacer */}
-        <Box sx={{ flexGrow: 1 }} />
       </Box>
+
+      {/* Navigation */}
+      <Box sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <SidebarItem label="Home" to="/home" icon={HomeIcon} />
+        <SidebarItem label="Search" to="/search" icon={SearchIcon} />
+        <SidebarItem label="Explore" to="/explore" icon={ExploreIcon} />
+        <SidebarItem label="Message" to="/messages" icon={MessageIcon} />
+        <SidebarItem
+          label="Notification"
+          to="/notifications"
+          icon={NotificationIcon}
+        />
+        <SidebarItem label="Create" to="/create" icon={CreateIcon} />
+
+        <Box sx={{ marginTop: "47px" }}>
+          <SidebarItem
+            icon={ProfileIcon}
+            extraMargin={47}
+            label="Profile"
+            to="/profile"
+          />
+        </Box>
+      </Box>
+
+      {/* Spacer */}
+      <Box sx={{ flexGrow: 1 }} />
     </Box>
   );
 };
