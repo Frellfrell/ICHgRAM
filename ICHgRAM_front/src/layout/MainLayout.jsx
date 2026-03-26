@@ -31,10 +31,11 @@ const MainLayout = ({ children }) => {
         <Box component="main" sx={{ flexGrow: 1 }}>
           {children}
         </Box>
-      </Box>
-      {/* Футер */}
-      <Box sx={{ height: "158px", width: "100%", zIndex: 11 }}>
-        <Footer />
+
+        {/* Футер */}
+        <Box sx={{ height: "158px", width: "100%", zIndex: 11 }}>
+          <Footer />
+        </Box>
       </Box>
     </Box>
   );
