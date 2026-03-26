@@ -6,12 +6,22 @@ import AppTypography from "../ui/AppTypography";
 import AppAvatar from "../ui/AppAvatar";
 
 const PostCard = ({ post }) => {
-  const BE_URL =
-    import.meta.env.VITE_API_URL?.replace("/api", "") ||
-    "http://localhost:5000";
+  //const BE_URL =
+  // import.meta.env.VITE_API_URL?.replace("/api", "") ||
+  // "http://localhost:5000";
 
   // Проверяем, как называется поле автора: post.author или post.user
+  // const author = post.author || post.user;
+
+  const BE_URL = "http://localhost:5000";
+
   const author = post.author || post.user;
+
+  // Формируем полные пути
+  const avatarSrc = author?.avatar
+    ? `${BE_URL}/${author.avatar}`
+    : `${BE_URL}/avatar/default.svg`;
+  const postImgSrc = post.image ? `${BE_URL}/${post.image}` : "";
 
   return (
     <Box
@@ -30,7 +40,8 @@ const PostCard = ({ post }) => {
       {/* 1. Шапка: AppAvatar и Имя */}
       <Box sx={{ display: "flex", alignItems: "center", gap: "12px" }}>
         <AppAvatar
-          src={`${BE_URL}${author?.avatar}`}
+          //src={`${BE_URL}${author?.avatar}`}
+          src={avatarSrc}
           alt={author?.username}
           size={27}
         />
@@ -42,7 +53,8 @@ const PostCard = ({ post }) => {
       {/* 2. Фото поста */}
       <Box
         component="img"
-        src={`${BE_URL}${post.image}`}
+        //src={`${BE_URL}${post.image}`}
+        src={postImgSrc}
         alt="post content"
         sx={{
           width: "403.8px",
