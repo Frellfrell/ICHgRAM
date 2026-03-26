@@ -13,7 +13,7 @@ const MainLayout = ({ children }) => {
         width: "100%",
         maxWidth: "1440px",
         mx: "auto",
-        //position: "relative",
+        position: "relative",
         flexDirection: "column",
       }}
     >
