@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import PostCard from "../../components/post/PostCard.jsx";
 import { fetchAllPosts } from "../../api/postApi";
-import { Box, CircularProgress, Grid } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 import HomeEndBlock from "../../components/ui/HomeEndBlock.jsx";
+import { Grid } from "@mui/material/Grid2";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -40,9 +41,24 @@ const Home = () => {
   return (
     <Box sx={{ width: "1195px", pt: "58px", px: "78px" }}>
       {/* Сетка по 2 поста в ряд (xs=12 для мобилки, sm=6 для десктопа) */}
-      <Grid container columnSpacing="39px" rowSpacing="23px">
+      <Grid
+        container
+        columnSpacing="39px"
+        rowSpacing="23px"
+        sx={{
+          maxWidth: "847px",
+          width: "100%",
+        }}
+      >
         {posts.map((post) => (
-          <Grid item xs={6} key={post._id}>
+          <Grid key={post._id} size={{ xs: 12, sm: 6 }}>
+            <Box
+              sx={{
+                maxWidth: "404px",
+                width: "100%",
+                mx: "auto",
+              }}
+            ></Box>
             <PostCard post={post} />
           </Grid>
         ))}
