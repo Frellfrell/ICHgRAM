@@ -34,7 +34,7 @@ const MainLayout = ({ children }) => {
         {/* Область контента */}
         <Box
           component="main"
-          sx={{ width: "1195px", flexGrow: 1, overflowY: "auto" }}
+          sx={{ width: "1195px", flexGrow: 1, pt: "58px", px: "78px" }}
         >
           {children}
         </Box>
@@ -44,9 +44,9 @@ const MainLayout = ({ children }) => {
       <Box
         sx={{
           maxWidth: "1440px",
-          position: "fixed", // Прибиваем к экрану
+          width: "100%",
           bottom: 0, // В самый низ
-          zIndex: 1000,
+          mt: "auto", // Отодвигаем футер вниз, если контента мало
         }}
       >
         <Footer />
