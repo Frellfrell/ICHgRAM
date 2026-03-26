@@ -6,6 +6,23 @@ import AppTypography from "../ui/AppTypography";
 import AppAvatar from "../ui/AppAvatar";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
+// Функция  отображения времени
+const timeAgo = (date) => {
+  if (!date) return "just now";
+  const seconds = Math.floor((new Date() - new Date(date)) / 1000);
+  let interval = seconds / 31536000;
+  if (interval > 1) return Math.floor(interval) + " years ago";
+  interval = seconds / 2592000;
+  if (interval > 1) return Math.floor(interval) + " months ago";
+  interval = seconds / 604800;
+  if (interval > 1) return Math.floor(interval) + " weeks ago";
+  interval = seconds / 86400;
+  if (interval > 1) return Math.floor(interval) + " days ago";
+  interval = seconds / 3600;
+  if (interval > 1) return Math.floor(interval) + " hours ago";
+  return Math.floor(seconds / 60) + " minutes ago";
+};
+
 const PostCard = ({ post }) => {
   //const BE_URL =
   // import.meta.env.VITE_API_URL?.replace("/api", "") ||
