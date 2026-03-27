@@ -7,6 +7,7 @@ import http from "http";
 import { Server } from "socket.io";
 //import { socketHandler } from "./src/socket.js";
 import jwt from "jsonwebtoken";
+import { fileURLToPath } from "url";
 //import followRoutes from "./src/routes/followRoutes.js";
 //import notificationRoutes from "./src/routes/notificationRoutes.js";
 //import messageRoutes from "./src/routes/messageRoutes.js";
