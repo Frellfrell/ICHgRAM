@@ -14,7 +14,7 @@ export const toggleLike = async (req, res) => {
 
     if (existingLike) {
       await existingLike.deleteOne();
-      const post = await Post.findById(postId);
+      //const post = await Post.findById(postId);
       const likesCount = await Like.countDocuments({ post: postId }); // Пересчитываем количество лайков
 
       return res.json({ liked: false, likesCount }); // Отдаем обновленное количество лайков
@@ -26,7 +26,7 @@ export const toggleLike = async (req, res) => {
       user: userId,
     });
 
-    const post = await Post.findById(postId);
+    //const post = await Post.findById(postId);
     const likesCount = await Like.countDocuments({ post: postId }); // Пересчитываем количество лайков
 
     return res.json({ liked: true, likesCount }); // Отдаем обновленное количество лайков
@@ -51,14 +51,13 @@ export const toggleLike = async (req, res) => {
 };*/
 }
 
-{
-  /*export const getLikes = async (req, res) => {
+export const getPostLikes = async (req, res) => {
   try {
     const { postId } = req.params;
     const likesCount = await Like.countDocuments({ post: postId });
     res.json({ likesCount });
   } catch (error) {
+    console.error("Ошибка при получении лайков:", error);
     res.status(500).json({ message: "Ошибка сервера" });
   }
-};*/
-}
+};
