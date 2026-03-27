@@ -49,13 +49,18 @@ const PostCard = ({ post }) => {
 
   //если Base64, отдаем как есть, если путь - клеим BE_URL
   const formatUrl = (url) => {
-    if (!url) return "";
-    if (url.startsWith("data:") || url.startsWith("http")) return url;
+    if (!url || typeof url !== "string") return "";
+
+    if (url.startsWith("data:") || url.startsWith("http")) {
+      return url;
+    }
+
     return `${BE_URL}${url.startsWith("/") ? url : "/" + url}`;
   };
 
   // полные пути
-  const avatarSrc = formatUrl(author?.avatar) || `${BE_URL}/avatar/default.svg`;
+  const avatarSrc =
+    formatUrl(author?.avatar) || `${BE_URL}/public/avatar/default.svg`;
   const postImgSrc = formatUrl(post.image);
 
   return (
@@ -120,7 +125,7 @@ const PostCard = ({ post }) => {
       {/* 3. Кнопки действий */}
       <Box sx={{ display: "flex", alignItems: "center", gap: 1, mt: 1 }}>
         <IconButton
-          onClick={() => setIsLiked(!isLiked)}
+          onClick={handleLike}
           sx={{ color: "text.primary", p: 0.5, ml: -0.5 }}
         >
           {isLiked ? (
@@ -129,6 +134,7 @@ const PostCard = ({ post }) => {
             <FavoriteBorderIcon />
           )}
         </IconButton>
+
         <IconButton sx={{ color: "text.primary", p: 0.5 }}>
           <ChatBubbleOutlineIcon />
         </IconButton>
@@ -137,7 +143,7 @@ const PostCard = ({ post }) => {
       {/* 4. Текст поста */}
       <Box sx={{ display: "flex", flexDirection: "column", gap: "4px" }}>
         <AppTypography sx={{ fontWeight: 700, fontSize: "14px" }}>
-          {post.likesCount || 0} likes
+          {likesCount} likes
         </AppTypography>
         <Box sx={{ mt: 1 }}>
           <AppTypography variant="body2">
