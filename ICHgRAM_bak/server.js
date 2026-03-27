@@ -13,7 +13,7 @@ import jwt from "jsonwebtoken";
 //import searchRoutes from "./src/routes/searchRoutes.js";
 import postRoutes from "./src/routes/postRoutes.js";
 import userRoutes from "./src/routes/userRoutes.js";
-//import likeRoutes from "./src/routes/likeRoutes.js";
+import likeRoutes from "./src/routes/likeRoutes.js";
 //import commentRoutes from "./src/routes/commentRoutes.js";
 
 dotenv.config();
@@ -60,7 +60,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/users", userRoutes);
 //app.use("/api/users/search", searchRoutes);
-//app.use("/api/likes", likeRoutes);
+app.use("/api/likes", likeRoutes);
 //app.use("/api/comments", commentRoutes);
 
 const PORT = process.env.PORT || 5000;
