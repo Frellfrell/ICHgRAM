@@ -6,7 +6,7 @@ import AppTypography from "../ui/AppTypography";
 import AppAvatar from "../ui/AppAvatar";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useEffect } from "react";
-import { axiosInstance } from "../../api/axiosInstance";
+import axiosInstance from "../../api/axiosInstance";
 
 // Функция  отображения времени
 const timeAgo = (date) => {
