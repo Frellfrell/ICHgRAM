@@ -15,6 +15,7 @@ import postRoutes from "./src/routes/postRoutes.js";
 import userRoutes from "./src/routes/userRoutes.js";
 import likeRoutes from "./src/routes/likeRoutes.js";
 //import commentRoutes from "./src/routes/commentRoutes.js";
+import path from "path";
 
 dotenv.config();
 const app = express();
@@ -62,6 +63,8 @@ app.use("/api/users", userRoutes);
 //app.use("/api/users/search", searchRoutes);
 app.use("/api/likes", likeRoutes);
 //app.use("/api/comments", commentRoutes);
+app.use("/avatar", express.static(path.resolve("public/avatar")));
+app.use("/posts", express.static(path.resolve("public/posts")));
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
