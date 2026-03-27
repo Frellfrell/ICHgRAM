@@ -45,7 +45,7 @@ const PostCard = ({ post }) => {
   useEffect(() => {
     const fetchLikes = async () => {
       try {
-        const response = await axiosInstance.get(`/likes/${post._id}`);
+        const response = await axiosInstance.get(`/api/likes/${post._id}`);
         setLikesCount(response.data.likesCount);
         setIsLiked(response.data.liked); // сохраняем состояние лайка
       } catch (error) {
@@ -62,7 +62,7 @@ const PostCard = ({ post }) => {
   const handleLike = async () => {
     try {
       const response = await axiosInstance.post(
-        `/likes/${post._id}`,
+        `/api/likes/${post._id}`,
         {},
         {
           headers: {
