@@ -6,7 +6,6 @@ import AppTypography from "../ui/AppTypography";
 import AppAvatar from "../ui/AppAvatar";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useEffect } from "react";
-import { fetchLikes } from "../../api/likesApi";
 import { axiosInstance } from "../../api/axiosInstance";
 
 // Функция  отображения времени
@@ -42,13 +41,18 @@ const PostCard = ({ post }) => {
 
   // Загружаем, если нужно, количество лайков
   useEffect(() => {
-    const loadLikes = async () => {
-      const likes = await fetchLikes(post._id); // запрос к API для получения лайков
-      setLikesCount(likes);
+    const fetchLikes = async () => {
+      try {
+        const response = await axiosInstance.get(`/likes/${post._id}`);
+        setLikesCount(response.data.likesCount);
+        setIsLiked(response.data.liked); // сохраняем состояние лайка
+      } catch (error) {
+        console.error("Ошибка при получении лайков:", error);
+      }
     };
 
-    loadLikes();
-  }, [post._id]); // запускаем только при изменении поста
+    fetchLikes();
+  }, [post._id]); // При изменении поста перезагружаем информацию о лайках
 
   const token = localStorage.getItem("token");
 
@@ -67,10 +71,10 @@ const PostCard = ({ post }) => {
 
       if (response.data.liked) {
         setIsLiked(true); // Лайк поставлен
-        setLikesCount(likesCount + 1);
+        setLikesCount(response.data.likesCount); // Обновляем количество лайков
       } else {
         setIsLiked(false); // Лайк удалён
-        setLikesCount(likesCount - 1);
+        setLikesCount(response.data.likesCount); // Обновляем количество лайков
       }
     } catch (error) {
       console.error("Ошибка при постановке/удалении лайка:", error);
