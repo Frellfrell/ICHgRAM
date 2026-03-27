@@ -32,12 +32,12 @@ const PostCard = ({ post }) => {
 
   // Проверяем, как называется поле автора: post.author или post.user
 
-  const BE_URL = "http://localhost:5000";
-
-  const author = post.author || post.user;
+  const BE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
   // Состояние для лайка
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(post.likesCount || 0);
+
+  const author = post.author || post.user || {}; // Если нет author, берем user или пустой объект
 
   // Загружаем, если нужно, количество лайков
   useEffect(() => {
