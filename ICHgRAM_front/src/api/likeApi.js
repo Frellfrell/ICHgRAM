@@ -12,3 +12,9 @@ export const toggleLike = async (postId, token) => {
   );
   return response.data;
 };
+export const getPostLikes = async (postId, token) => {
+  const response = await axios.get(`${API_URL}/${postId}/likes`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response.data;
+};
