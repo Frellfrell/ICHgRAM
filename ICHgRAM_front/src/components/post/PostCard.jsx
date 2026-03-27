@@ -5,6 +5,9 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import AppTypography from "../ui/AppTypography";
 import AppAvatar from "../ui/AppAvatar";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useEffect } from "react";
+import { fetchLikes } from "../../api/likesApi";
+import { axiosInstance } from "../../api/axiosInstance";
 
 // Функция  отображения времени
 const timeAgo = (date) => {
@@ -37,13 +40,40 @@ const PostCard = ({ post }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(post.likesCount || 0);
 
-  const handleLike = () => {
-    if (isLiked) {
-      setIsLiked(false);
-      setLikesCount((prev) => prev - 1);
-    } else {
-      setIsLiked(true);
-      setLikesCount((prev) => prev + 1);
+  // Загружаем, если нужно, количество лайков
+  useEffect(() => {
+    const loadLikes = async () => {
+      const likes = await fetchLikes(post._id); // запрос к API для получения лайков
+      setLikesCount(likes);
+    };
+
+    loadLikes();
+  }, [post._id]); // запускаем только при изменении поста
+
+  const token = localStorage.getItem("token");
+
+  // Функция обработки лайка
+  const handleLike = async () => {
+    try {
+      const response = await axiosInstance.post(
+        `/likes/${post._id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Токен авторизации
+          },
+        },
+      );
+
+      if (response.data.liked) {
+        setIsLiked(true); // Лайк поставлен
+        setLikesCount(likesCount + 1);
+      } else {
+        setIsLiked(false); // Лайк удалён
+        setLikesCount(likesCount - 1);
+      }
+    } catch (error) {
+      console.error("Ошибка при постановке/удалении лайка:", error);
     }
   };
 
