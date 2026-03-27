@@ -93,8 +93,7 @@ const PostCard = ({ post }) => {
   };
 
   // полные пути
-  const avatarSrc =
-    formatUrl(author?.avatar) || `${BE_URL}/public/avatar/default.svg`;
+  const avatarSrc = formatUrl(author?.avatar) || `${BE_URL}/avatar/default.svg`;
   const postImgSrc = formatUrl(post.image);
 
   return (
