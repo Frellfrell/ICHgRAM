@@ -32,9 +32,7 @@ const PostCard = ({ post }) => {
 
   // Проверяем, как называется поле автора: post.author или post.user
 
-  const BE_URL =
-    import.meta.env.VITE_API_URL?.replace("/api", "") ||
-    "http://localhost:5000";
+  const BE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
   // Состояние для лайка
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(post.likesCount || 0);
