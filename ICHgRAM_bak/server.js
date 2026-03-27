@@ -66,6 +66,7 @@ app.use("/api/users", userRoutes);
 //app.use("/api/users/search", searchRoutes);
 app.use("/api/likes", likeRoutes);
 //app.use("/api/comments", commentRoutes);
+
 app.use("/avatar", express.static(path.join(__dirname, "public", "avatar")));
 app.use("/posts", express.static(path.join(__dirname, "public", "posts")));
 
