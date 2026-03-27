@@ -66,18 +66,18 @@ const seed = async () => {
     await Post.insertMany([
       {
         author: sasha._id,
-        image: "/public/posts/Post mainOt.svg",
+        image: "/public/posts/post_mainOt.svg",
         caption: "𝘐𝘵’𝘴 𝒈𝒐𝒍𝒅𝒆𝒏, 𝘗𝘰𝘯𝘺𝘣𝘰𝘺!",
         likes: [nikita._id, tonia._id],
       },
       {
         author: sasha._id,
-        image: "/public/posts/Post mainOt.svg",
+        image: "/public/posts/post_mainOt.svg",
         caption: "𝘐𝘵’𝘴 𝒈𝒐𝒍𝒅𝒆𝒏, 𝘗𝘰𝘯𝘺𝘣𝘰𝘺!",
       },
       {
         author: sasha._id,
-        image: "/public/posts/Post mainOt.svg",
+        image: "/public/posts/post_mainOt.svg",
         caption: "𝘐𝘵’𝘴 𝒈𝒐𝒍𝒅𝒆𝒏, 𝘗𝘰𝘯𝘺𝘣𝘰𝘺!",
       },
       {
