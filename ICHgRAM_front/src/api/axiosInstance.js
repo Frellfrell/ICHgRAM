@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const instance = axios.create({
+const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
 });
 
 // Автоматически добавляем токен в каждый запрос, если он есть в localStorage
-instance.interceptors.request.use((config) => {
+axiosInstance.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
@@ -13,4 +13,4 @@ instance.interceptors.request.use((config) => {
   return config;
 });
 
-export default instance;
+export default axiosInstance;
