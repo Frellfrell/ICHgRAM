@@ -21,7 +21,7 @@ export const createPost = async (req, res) => {
     }
 
     const post = await Post.create({
-      author: req.user.id,
+      author: req.user._id,
       caption,
       image: image,
     });
@@ -139,9 +139,16 @@ export const getExplorePosts = async (req, res) => {
   try {
     const posts = await Post.aggregate([
       { $sample: { size: 10 } }, // Выбираем случайные 10 постов
-    ])
-      .populate("author", "username fullName")
-      .sort({ createdAt: -1 }); // можно добавлять сортировку по времени, если нужно
+      {
+        $lookup: {
+          from: "users",
+          localField: "author",
+          foreignField: "_id",
+          as: "author",
+        },
+      },
+      { $unwind: "$author" },
+    ]);
 
     res.json(posts);
   } catch (error) {

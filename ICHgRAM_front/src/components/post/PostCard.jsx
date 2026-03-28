@@ -5,6 +5,8 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import AppTypography from "../ui/AppTypography";
 import AppAvatar from "../ui/AppAvatar";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useEffect } from "react";
+import axiosInstance from "../../api/axiosInstance";
 
 // Функция  отображения времени
 const timeAgo = (date) => {
@@ -30,32 +32,70 @@ const PostCard = ({ post }) => {
 
   // Проверяем, как называется поле автора: post.author или post.user
 
-  const BE_URL = "http://localhost:5000";
-
-  const author = post.author || post.user;
+  const BE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
   // Состояние для лайка
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(post.likesCount || 0);
 
-  const handleLike = () => {
-    if (isLiked) {
-      setIsLiked(false);
-      setLikesCount((prev) => prev - 1);
-    } else {
-      setIsLiked(true);
-      setLikesCount((prev) => prev + 1);
+  const author = post.author || post.user || {}; // Если нет author, берем user или пустой объект
+
+  // Загружаем, если нужно, количество лайков
+  useEffect(() => {
+    const fetchLikes = async () => {
+      try {
+        const response = await axiosInstance.get(`/api/likes/${post._id}`);
+        setLikesCount(response.data.likesCount);
+        setIsLiked(response.data.liked); // сохраняем состояние лайка
+      } catch (error) {
+        console.error("Ошибка при получении лайков:", error);
+      }
+    };
+
+    fetchLikes();
+  }, [post._id]); // При изменении поста перезагружаем информацию о лайках
+
+  const token = localStorage.getItem("token");
+
+  // Функция обработки лайка
+  const handleLike = async () => {
+    try {
+      const response = await axiosInstance.post(
+        `/api/likes/${post._id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Токен авторизации
+          },
+        },
+      );
+
+      if (response.data.liked) {
+        setIsLiked(true); // Лайк поставлен
+        setLikesCount(response.data.likesCount); // Обновляем количество лайков
+      } else {
+        setIsLiked(false); // Лайк удалён
+        setLikesCount(response.data.likesCount); // Обновляем количество лайков
+      }
+    } catch (error) {
+      console.error("Ошибка при постановке/удалении лайка:", error);
     }
   };
 
   //если Base64, отдаем как есть, если путь - клеим BE_URL
   const formatUrl = (url) => {
-    if (!url) return "";
-    if (url.startsWith("data:") || url.startsWith("http")) return url;
-    return `${BE_URL}${url.startsWith("/") ? url : "/" + url}`;
+    if (!url || typeof url !== "string") return "";
+
+    if (url.startsWith("data:") || url.startsWith("http")) {
+      return url;
+    }
+
+    return `${BE_URL.replace(/\/$/, "")}${url.startsWith("/") ? url : "/" + url}`;
   };
 
   // полные пути
-  const avatarSrc = formatUrl(author?.avatar) || `${BE_URL}/avatar/default.svg`;
+  const avatarSrc =
+    formatUrl(author?.avatar) ||
+    `${BE_URL.replace(/\/$/, "")}/avatar/default.svg`;
   const postImgSrc = formatUrl(post.image);
 
   return (
@@ -120,7 +160,7 @@ const PostCard = ({ post }) => {
       {/* 3. Кнопки действий */}
       <Box sx={{ display: "flex", alignItems: "center", gap: 1, mt: 1 }}>
         <IconButton
-          onClick={() => setIsLiked(!isLiked)}
+          onClick={handleLike}
           sx={{ color: "text.primary", p: 0.5, ml: -0.5 }}
         >
           {isLiked ? (
@@ -129,6 +169,7 @@ const PostCard = ({ post }) => {
             <FavoriteBorderIcon />
           )}
         </IconButton>
+
         <IconButton sx={{ color: "text.primary", p: 0.5 }}>
           <ChatBubbleOutlineIcon />
         </IconButton>
@@ -137,7 +178,7 @@ const PostCard = ({ post }) => {
       {/* 4. Текст поста */}
       <Box sx={{ display: "flex", flexDirection: "column", gap: "4px" }}>
         <AppTypography sx={{ fontWeight: 700, fontSize: "14px" }}>
-          {post.likesCount || 0} likes
+          {likesCount} likes
         </AppTypography>
         <Box sx={{ mt: 1 }}>
           <AppTypography variant="body2">

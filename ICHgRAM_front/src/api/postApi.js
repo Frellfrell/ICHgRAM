@@ -12,7 +12,7 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const fetchAllPosts = async () => {
   try {
-    const response = await axiosInstance.get("/posts");
+    const response = await axiosInstance.get("/api/posts");
     return response.data;
   } catch (error) {
     console.error("Error fetching posts:", error);
