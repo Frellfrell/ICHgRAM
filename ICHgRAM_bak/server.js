@@ -67,8 +67,8 @@ app.use("/api/users", userRoutes);
 app.use("/api/likes", likeRoutes);
 //app.use("/api/comments", commentRoutes);
 
-app.use("/avatar", express.static(path.join(__dirname, "public", "avatar")));
-app.use("/posts", express.static(path.join(__dirname, "public", "posts")));
+app.use("/avatar", express.static(path.join(__dirname, "pablic", "avatar")));
+app.use("/posts", express.static(path.join(__dirname, "pablic", "posts")));
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
