@@ -89,11 +89,13 @@ const PostCard = ({ post }) => {
       return url;
     }
 
-    return `${BE_URL}${url.startsWith("/") ? url : "/" + url}`;
+    return `${BE_URL.replace(/\/$/, "")}${url.startsWith("/") ? url : "/" + url}`;
   };
 
   // полные пути
-  const avatarSrc = formatUrl(author?.avatar) || `${BE_URL}/avatar/default.svg`;
+  const avatarSrc =
+    formatUrl(author?.avatar) ||
+    `${BE_URL.replace(/\/$/, "")}/avatar/default.svg`;
   const postImgSrc = formatUrl(post.image);
 
   return (
