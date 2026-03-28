@@ -89,7 +89,7 @@ const seed = async () => {
 
       {
         author: ichgram._id,
-        image: "/posts/ICH.svg",
+        image: "/posts/ICHmainPost.svg",
         //caption:
         //"Потрясающие новости пришли к нам из Черногории! Проект по поддержке бездомных животных TailBook,
         //  в разработке которого участвуют сразу 9 наших стажёров,
