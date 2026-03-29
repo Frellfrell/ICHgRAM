@@ -14,6 +14,12 @@ const MainLayout = ({ children }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [notifications, setNotifications] = useState([]);
 
+  // Закрыть всё
+  const closeAllDrawers = () => {
+    setOpenSearch(false);
+    setOpenNotifications(false);
+  };
+
   return (
     <Box
       sx={{
