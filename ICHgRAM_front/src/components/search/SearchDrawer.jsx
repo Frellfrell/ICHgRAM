@@ -83,16 +83,17 @@ export const SearchDrawer = ({ open, onClose, results, setResults }) => {
         </Box>
 
         {/* Results */}
-        <Box>
-          {results?.map((item, idx) => (
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          {results?.map((user) => (
             <Box
-              key={idx}
+              key={user._id}
               sx={{
                 display: "flex",
                 alignItems: "center",
                 gap: 1,
                 height: 56,
                 mb: 1,
+                cursor: "pointer", "&:hover": { opacity: 0.7 },
                 borderBottom: "1px solid rgba(219,219,219,1)",
               }}
             >
