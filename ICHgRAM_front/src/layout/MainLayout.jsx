@@ -3,8 +3,13 @@ import { Box } from "@mui/material";
 import Sidebar from "../components/sidebar/Sidebar";
 import Footer from "../components/footer/Footer";
 import axios from "axios";
+import { NotificationDrawer } from "./NotificationDrawer";
+import { SearchDrawer } from "./SearchDrawer";
 
 const MainLayout = ({ children }) => {
+  const [openSearch, setOpenSearch] = useState(false);
+  const [openNotifications, setOpenNotifications] = useState(false);
+
   return (
     <Box
       sx={{
