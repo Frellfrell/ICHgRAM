@@ -4,6 +4,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import AppAvatar from "../ui/AppAvatar";
 
 export const NotificationDrawer = ({ open, onClose, notifications }) => {
+  const BE_URL = "http://localhost:5000";
+
   if (!open) return null;
 
   return (
