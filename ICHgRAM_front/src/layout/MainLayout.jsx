@@ -10,6 +10,10 @@ const MainLayout = ({ children }) => {
   const [openSearch, setOpenSearch] = useState(false);
   const [openNotifications, setOpenNotifications] = useState(false);
 
+  // Данные для Search и Notifications
+  const [searchResults, setSearchResults] = useState([]);
+  const [notifications, setNotifications] = useState([]);
+
   return (
     <Box
       sx={{
