@@ -2,6 +2,7 @@ import React from "react";
 import { Box } from "@mui/material";
 import Sidebar from "../components/sidebar/Sidebar";
 import Footer from "../components/footer/Footer";
+import axios from "axios";
 
 const MainLayout = ({ children }) => {
   return (
