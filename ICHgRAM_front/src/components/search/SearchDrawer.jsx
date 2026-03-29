@@ -18,6 +18,8 @@ export const SearchDrawer = ({ open, onClose, results, setResults }) => {
       //искать по буквам
       const response = await axios.get(`${BE_URL}/api/search?query=${query}`);
       setResults(response.data);
+    } catch (error) {
+      console.error("Ошибка при поиске:", error);
     }
 
   if (!open) return null;
