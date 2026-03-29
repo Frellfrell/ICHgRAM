@@ -7,6 +7,13 @@ import axios from "axios";
 export const SearchDrawer = ({ open, onClose, results, setResults }) => {
   const BE_URL = "http://localhost:5000";
 
+  const handleSearch = async (e) => {
+    const query = e.target.value;
+    if (query.length === 0) {
+      setResults([]);
+      return;
+    }
+
   if (!open) return null;
 
   return (
