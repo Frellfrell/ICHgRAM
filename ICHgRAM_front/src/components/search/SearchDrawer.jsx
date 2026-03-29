@@ -14,6 +14,12 @@ export const SearchDrawer = ({ open, onClose, results, setResults }) => {
       return;
     }
 
+    try {
+      //искать по буквам
+      const response = await axios.get(`${BE_URL}/api/search?query=${query}`);
+      setResults(response.data);
+    }
+
   if (!open) return null;
 
   return (
