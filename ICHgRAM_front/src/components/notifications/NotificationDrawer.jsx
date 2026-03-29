@@ -52,32 +52,49 @@ export const NotificationDrawer = ({ open, onClose, notifications }) => {
           </IconButton>
         </Box>
 
-        <Box>
-          {notifications?.map((item, idx) => (
-            <Box
-              key={idx}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-                height: 60,
-                mb: 1,
-                borderBottom: "1px solid rgba(219,219,219,1)",
-              }}
-            >
+        {notifications.length === 0 ? (
+          <Typography sx={{ color: "gray", textAlign: "center", mt: 10 }}>
+            No notifications yet.
+          </Typography>
+        ) : (
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            {notifications?.map((note) => (
               <Box
+                key={note._id}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                  height: 60,
+                  mb: 1,
+                  borderBottom: "1px solid rgba(219,219,219,1)",
+                }}
+              >
+                <AppAvatar
+                  src={
+                    note.fromUser.avatar?.startsWith("data")
+                      ? note.fromUser.avatar
+                      : `${BE_URL}${note.fromUser.avatar}`
+                  }
+                />
+
+                {/*<Box
                 component="img"
                 src={item.avatar}
                 alt={item.username}
                 sx={{ width: 40, height: 40, borderRadius: "50%" }}
-              />
-              <Box>
-                <Typography variant="body1">{item.username}</Typography>
-                <Typography variant="body2">{item.action}</Typography>
+              />}*/}
+
+                <Typography sx={{ fontSize: "14px" }}>
+                  <b>{note.fromUser.username}</b>{" "}
+                  {note.type === "like"
+                    ? "liked your post"
+                    : "started following you"}
+                </Typography>
               </Box>
-            </Box>
-          ))}
-        </Box>
+            ))}
+          </Box>
+        )}
       </Box>
     </>
   );
