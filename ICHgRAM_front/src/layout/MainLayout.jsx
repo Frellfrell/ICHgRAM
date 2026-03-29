@@ -5,6 +5,7 @@ import Footer from "../components/footer/Footer";
 import axios from "axios";
 import { NotificationDrawer } from "./NotificationDrawer";
 import { SearchDrawer } from "./SearchDrawer";
+import { useState } from "react";
 
 const MainLayout = ({ children }) => {
   const [openSearch, setOpenSearch] = useState(false);
@@ -53,6 +54,13 @@ const MainLayout = ({ children }) => {
           onClose={closeAllDrawers}
           results={searchResults}
           setResults={setSearchResults}
+        />
+
+        <NotificationDrawer
+          open={openNotifications}
+          onClose={closeAllDrawers}
+          notifications={notifications}
+          setNotifications={setNotifications}
         />
 
         {/* Правая колонка: Контент  */}
