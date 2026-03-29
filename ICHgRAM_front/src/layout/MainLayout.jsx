@@ -47,6 +47,14 @@ const MainLayout = ({ children }) => {
           />
         </Box>
 
+        {/* Выезжающие панели */}
+        <SearchDrawer
+          open={openSearch}
+          onClose={closeAllDrawers}
+          results={searchResults}
+          setResults={setSearchResults}
+        />
+
         {/* Правая колонка: Контент  */}
         {/*<Box
         sx={{
