@@ -2,8 +2,25 @@ import React from "react";
 import { Box } from "@mui/material";
 import Sidebar from "../components/sidebar/Sidebar";
 import Footer from "../components/footer/Footer";
+import axios from "axios";
+import { NotificationDrawer } from "./NotificationDrawer";
+import { SearchDrawer } from "./SearchDrawer";
+import { useState } from "react";
 
 const MainLayout = ({ children }) => {
+  const [openSearch, setOpenSearch] = useState(false);
+  const [openNotifications, setOpenNotifications] = useState(false);
+
+  // Данные для Search и Notifications
+  const [searchResults, setSearchResults] = useState([]);
+  const [notifications, setNotifications] = useState([]);
+
+  // Закрыть всё
+  const closeAllDrawers = () => {
+    setOpenSearch(false);
+    setOpenNotifications(false);
+  };
+
   return (
     <Box
       sx={{
@@ -19,8 +36,32 @@ const MainLayout = ({ children }) => {
     >
       <Box sx={{ display: "flex", flexGrow: 1 }}>
         <Box sx={{ width: "245px", flexShrink: 0, position: "sticky", top: 0 }}>
-          <Sidebar />
+          <Sidebar
+            onSearchClick={() => {
+              closeAllDrawers();
+              setOpenSearch(true);
+            }}
+            onNotifClick={() => {
+              closeAllDrawers();
+              setOpenNotifications(true);
+            }}
+          />
         </Box>
+
+        {/* Выезжающие панели */}
+        <SearchDrawer
+          open={openSearch}
+          onClose={closeAllDrawers}
+          results={searchResults}
+          setResults={setSearchResults}
+        />
+
+        <NotificationDrawer
+          open={openNotifications}
+          onClose={closeAllDrawers}
+          notifications={notifications}
+          setNotifications={setNotifications}
+        />
 
         {/* Правая колонка: Контент  */}
         {/*<Box

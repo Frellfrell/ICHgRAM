@@ -1,8 +1,28 @@
 import React from "react";
 import { Box, Typography, IconButton, InputBase } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import AppAvatar from "../ui/AppAvatar";
+import axios from "axios";
 
-export const SearchDrawer = ({ open, onClose, results }) => {
+export const SearchDrawer = ({ open, onClose, results, setResults }) => {
+  const BE_URL = "http://localhost:5000";
+
+  const handleSearch = async (e) => {
+    const query = e.target.value;
+    if (query.length === 0) {
+      setResults([]);
+      return;
+    }
+
+    try {
+      //искать по буквам
+      const response = await axios.get(`${BE_URL}/api/search?query=${query}`);
+      setResults(response.data);
+    } catch (error) {
+      console.error("Ошибка при поиске:", error);
+    }
+  };
+
   if (!open) return null;
 
   return (
@@ -59,30 +79,48 @@ export const SearchDrawer = ({ open, onClose, results }) => {
             p: 1,
           }}
         >
-          <InputBase placeholder="Search" sx={{ ml: 1, flex: 1 }} />
+          <InputBase
+            placeholder="Search"
+            sx={{ ml: 1, flex: 1 }}
+            onChange={handleSearch}
+          />
         </Box>
 
         {/* Results */}
-        <Box>
-          {results?.map((item, idx) => (
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          {results?.map((user) => (
             <Box
-              key={idx}
+              key={user._id}
               sx={{
                 display: "flex",
                 alignItems: "center",
                 gap: 1,
                 height: 56,
                 mb: 1,
+                cursor: "pointer",
+                "&:hover": { opacity: 0.7 },
                 borderBottom: "1px solid rgba(219,219,219,1)",
               }}
             >
-              <Box
+              {/*<Box
                 component="img"
                 src={item.avatar}
                 alt={item.username}
                 sx={{ width: 40, height: 40, borderRadius: "50%" }}
+              />*/}
+              <AppAvatar
+                src={
+                  user.avatar?.startsWith("data")
+                    ? user.avatar
+                    : `${BE_URL}${user.avatar}`
+                }
               />
-              <Typography variant="body1">{item.username}</Typography>
+
+              <Box>
+                <Typography sx={{ fontWeight: 600, fontSize: "14px" }}>
+                  {user.username}
+                </Typography>
+              </Box>
             </Box>
           ))}
         </Box>
