@@ -21,6 +21,7 @@ export const SearchDrawer = ({ open, onClose, results, setResults }) => {
     } catch (error) {
       console.error("Ошибка при поиске:", error);
     }
+  };
 
   if (!open) return null;
 
@@ -78,8 +79,11 @@ export const SearchDrawer = ({ open, onClose, results, setResults }) => {
             p: 1,
           }}
         >
-          <InputBase placeholder="Search" sx={{ ml: 1, flex: 1 }}
-          onChange={handleSearch} />
+          <InputBase
+            placeholder="Search"
+            sx={{ ml: 1, flex: 1 }}
+            onChange={handleSearch}
+          />
         </Box>
 
         {/* Results */}
@@ -93,7 +97,8 @@ export const SearchDrawer = ({ open, onClose, results, setResults }) => {
                 gap: 1,
                 height: 56,
                 mb: 1,
-                cursor: "pointer", "&:hover": { opacity: 0.7 },
+                cursor: "pointer",
+                "&:hover": { opacity: 0.7 },
                 borderBottom: "1px solid rgba(219,219,219,1)",
               }}
             >
@@ -103,10 +108,18 @@ export const SearchDrawer = ({ open, onClose, results, setResults }) => {
                 alt={item.username}
                 sx={{ width: 40, height: 40, borderRadius: "50%" }}
               />*/}
-              <AppAvatar src={user.avatar?.startsWith('data') ? user.avatar : `${BE_URL}${user.avatar}`}  />
+              <AppAvatar
+                src={
+                  user.avatar?.startsWith("data")
+                    ? user.avatar
+                    : `${BE_URL}${user.avatar}`
+                }
+              />
 
               <Box>
-              <Typography sx={{ fontWeight: 600, fontSize: "14px" }}>{user.username}</Typography>
+                <Typography sx={{ fontWeight: 600, fontSize: "14px" }}>
+                  {user.username}
+                </Typography>
               </Box>
             </Box>
           ))}
@@ -115,4 +128,3 @@ export const SearchDrawer = ({ open, onClose, results, setResults }) => {
     </>
   );
 };
-
