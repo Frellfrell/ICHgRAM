@@ -97,13 +97,17 @@ export const SearchDrawer = ({ open, onClose, results, setResults }) => {
                 borderBottom: "1px solid rgba(219,219,219,1)",
               }}
             >
-              <Box
+              {/*<Box
                 component="img"
                 src={item.avatar}
                 alt={item.username}
                 sx={{ width: 40, height: 40, borderRadius: "50%" }}
-              />
-              <Typography variant="body1">{item.username}</Typography>
+              />*/}
+              <AppAvatar src={user.avatar?.startsWith('data') ? user.avatar : `${BE_URL}${user.avatar}`}  />
+
+              <Box>
+              <Typography sx={{ fontWeight: 600, fontSize: "14px" }}>{user.username}</Typography>
+              </Box>
             </Box>
           ))}
         </Box>
@@ -111,3 +115,4 @@ export const SearchDrawer = ({ open, onClose, results, setResults }) => {
     </>
   );
 };
+
