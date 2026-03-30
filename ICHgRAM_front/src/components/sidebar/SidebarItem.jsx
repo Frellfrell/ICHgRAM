@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import AppTypography from "../ui/AppTypography.jsx";
 import { useTheme } from "@mui/material/styles";
 
-const SidebarItem = ({ icon, label, to, extraMargin = 0 }) => {
+const SidebarItem = ({ icon, label, to, onClick, extraMargin = 0 }) => {
   const theme = useTheme();
 
   if (!to) {
