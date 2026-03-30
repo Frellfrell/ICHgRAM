@@ -58,7 +58,7 @@ export const SearchDrawer = ({ open, onClose, results, onSearchChange }) => {
           <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "24px" }}>
             Search
           </Typography>
-          <IconButton onClick={onClose}>
+          <IconButton onClick={onClose} sx={{ p: 0 }}>
             <CloseIcon />
           </IconButton>
         </Box>
@@ -73,6 +73,7 @@ export const SearchDrawer = ({ open, onClose, results, onSearchChange }) => {
             p: 1,
           }}
         >
+          <SearchIcon sx={{ color: "#8E8E8E", fontSize: "20px", mr: "12px" }} />
           <InputBase
             placeholder="Search"
             sx={{ ml: 1, flex: 1 }}
