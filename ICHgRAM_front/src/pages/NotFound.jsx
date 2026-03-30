@@ -11,4 +11,7 @@ const NotFound = () => {
 
     return (
         <MainLayout>
-            
+            sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "flex-start",
