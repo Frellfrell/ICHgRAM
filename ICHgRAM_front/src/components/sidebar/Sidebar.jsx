@@ -55,20 +55,16 @@ const Sidebar = ({ onSearchClick, onNotifClick }) => {
       <Box sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
         <SidebarItem label="Home" to="/home" icon={HomeIcon} />
 
-        <Box onClick={onSearchClick} sx={{ cursor: "pointer" }}>
-          <SidebarItem label="Search" to="/search" icon={SearchIcon} />
-        </Box>
+        <SidebarItem label="Search" onClick={onSearchClick} icon={SearchIcon} />
 
         <SidebarItem label="Explore" to="/explore" icon={ExploreIcon} />
         <SidebarItem label="Message" to="/messages" icon={MessageIcon} />
 
-        <Box onClick={onNotifClick} sx={{ cursor: "pointer" }}>
-          <SidebarItem
-            label="Notification"
-            to="/notifications"
-            icon={NotificationIcon}
-          />
-        </Box>
+        <SidebarItem
+          label="Notification"
+          onClick={onNotifOpen}
+          icon={NotificationIcon}
+        />
 
         <SidebarItem label="Create" to="/create" icon={CreateIcon} />
 
