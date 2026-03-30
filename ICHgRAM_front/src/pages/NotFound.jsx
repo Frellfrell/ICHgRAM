@@ -58,4 +58,8 @@ const NotFound = () => {
         <Box
           sx={{
             ml: "97px", // Расстояние между фото и текстом
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            height: "460px",
 
