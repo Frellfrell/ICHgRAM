@@ -11,3 +11,4 @@ const SearchResults = ({ results, onUserClick }) => {
               {results?.map((user) => (
                 <Box
                   key={user._id}
+                  onClick={() => onUserClick(user._id)}
