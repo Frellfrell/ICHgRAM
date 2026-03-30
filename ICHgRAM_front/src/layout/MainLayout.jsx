@@ -46,7 +46,9 @@ const MainLayout = ({ children }) => {
   };
 
   useEffect(() => {
-    if (openNotif) fetchNotifications();
+    if (openNotif) {
+      fetchNotifications();
+    }
   }, [openNotif]);
 
   return (
