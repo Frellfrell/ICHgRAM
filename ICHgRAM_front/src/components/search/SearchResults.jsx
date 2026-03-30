@@ -6,4 +6,4 @@ import AppAvatar from "../ui/AppAvatar";
 const SearchResults = ({ results, onUserClick }) => {
   const BE_URL = "http://localhost:5000";
 
-  
+  return (
