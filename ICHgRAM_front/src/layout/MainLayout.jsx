@@ -2,7 +2,7 @@ import React from "react";
 import { Box } from "@mui/material";
 import Sidebar from "../components/sidebar/Sidebar";
 import Footer from "../components/footer/Footer";
-import axios from "axios";
+import axiosInstance from "../api/axiosInstance.js";
 import { NotificationDrawer } from "../components/notifications/NotificationDrawer.jsx";
 import { SearchDrawer } from "../components/search/SearchDrawer.jsx";
 import { useState, useEffect } from "react";
@@ -20,7 +20,7 @@ const MainLayout = ({ children }) => {
     if (!query) return setSearchResults([]);
     try {
       const token = localStorage.getItem("token"); // если есть авторизация
-      const res = await axios.get(
+      const res = await axiosInstance.get(
         `http://localhost:5000/api/search?query=${query}`,
         {
           headers: { Authorization: `Bearer ${token}` },
