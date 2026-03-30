@@ -23,4 +23,10 @@ const NotFound = () => {
         <Box
           sx={{
             width: "301px",
+            height: "460px",
+            position: "relative",
+            flexShrink: 0,
+          }}
+        >
             
+
