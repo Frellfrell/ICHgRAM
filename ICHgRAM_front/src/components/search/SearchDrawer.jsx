@@ -73,6 +73,7 @@ export const SearchDrawer = ({ open, onClose, results, onSearchChange }) => {
           <InputBase
             placeholder="Search"
             sx={{ ml: 1, flex: 1 }}
+            value={searchValue} // контролируемый компонент
             onChange={handleChange} // проверка по букве
           />
         </Box>
