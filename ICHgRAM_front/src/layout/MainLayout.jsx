@@ -46,7 +46,9 @@ const MainLayout = ({ children }) => {
   };
 
   useEffect(() => {
-    if (openNotif) {
+    // Добавляем условие: запрашиваем только если панель открыта
+    if (openNotif === true) {
+       
       fetchNotifications();
     }
   }, [openNotif]);
@@ -67,11 +69,11 @@ const MainLayout = ({ children }) => {
       <Box sx={{ display: "flex", flexGrow: 1 }}>
         <Box sx={{ width: "245px", flexShrink: 0, position: "sticky", top: 0 }}>
           <Sidebar
-            onSearchOpen={() => {
+            onSearchClick={() => {
               setOpenNotif(false);
               setOpenSearch(!openSearch);
             }}
-            onNotifOpen={() => {
+            onNotifClick={() => {
               setOpenSearch(false);
               setOpenNotif(!openNotif);
             }}
