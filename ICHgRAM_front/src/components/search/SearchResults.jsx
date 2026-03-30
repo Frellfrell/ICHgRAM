@@ -43,3 +43,5 @@ const SearchResults = ({ results, onUserClick }) => {
     </Box>
   );
 };
+
+export default SearchResults;
