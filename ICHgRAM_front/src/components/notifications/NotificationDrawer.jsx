@@ -44,17 +44,16 @@ export const NotificationDrawer = ({ open, onClose, notifications }) => {
             mb: 2,
           }}
         >
-          <Typography variant="h6"sx={{ fontWeight: 700, fontSize: "24px" }}>
+          <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "24px" }}>
             Notification
-            </Typography>
+          </Typography>
           <IconButton onClick={onClose}>
             <CloseIcon />
           </IconButton>
         </Box>
 
-
-{/* SUBHEADER: Слово "New" */}
-       {notifications.length > 0 && (
+        {/* SUBHEADER: Слово "New" */}
+        {notifications.length > 0 && (
           <Typography sx={{ fontWeight: 700, fontSize: "16px", mb: 2, mt: 4 }}>
             New
           </Typography>
@@ -63,17 +62,10 @@ export const NotificationDrawer = ({ open, onClose, notifications }) => {
         {/* LIST: Сам список уведомлений */}
         {notifications.length > 0 ? (
           <NotificationList notifications={notifications} />
-                
-
-                <Typography sx={{ fontSize: "14px" }}>
-                  <b>{note.fromUser.username}</b>{" "}
-                  {note.type === "like"
-                    ? "liked your post"
-                    : "started following you"}
-                </Typography>
-              </Box>
-            ))}
-          </Box>
+        ) : (
+          <Typography sx={{ color: "gray", textAlign: "center", mt: 10 }}>
+            No new notifications
+          </Typography>
         )}
       </Box>
     </>
