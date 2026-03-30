@@ -5,20 +5,20 @@ import MainLayout from "../layouts/MainLayout";
 import PhoneFrame from "../assets/foto/phones-frame.png";
 import ScreenShot from "../assets/foto/screenshot1.png";
 
-
 const NotFound = () => {
   const theme = useTheme();
 
-    return (
-        <MainLayout>
-            sx={{
+  return (
+    <MainLayout>
+      <Box
+        sx={{
           display: "flex",
           flexDirection: "row",
           alignItems: "flex-start",
           pt: "94px",
           pl: "41px",
         }}
-        >
+      >
         {/* ЛЕВАЯ ЧАСТЬ: ИЗОБРАЖЕНИЕ */}
         <Box
           sx={{
@@ -28,7 +28,7 @@ const NotFound = () => {
             flexShrink: 0,
           }}
         >
-           <Box
+          <Box
             component="img"
             src={ScreenShot}
             sx={{
@@ -39,7 +39,7 @@ const NotFound = () => {
               left: "89px",
               zIndex: 1,
             }}
-          /> 
+          />
           {/* Корпус телефона */}
           <Box
             component="img"
@@ -49,7 +49,7 @@ const NotFound = () => {
               height: "100%",
               position: "absolute",
               zIndex: 2,
-              objectFit: "contain"
+              objectFit: "contain",
             }}
           />
         </Box>
@@ -62,9 +62,9 @@ const NotFound = () => {
             flexDirection: "column",
             justifyContent: "center",
             height: "460px",
-            }}
+          }}
         >
-            <Typography
+          <Typography
             variant="h4"
             sx={{
               width: "625px",
@@ -74,11 +74,13 @@ const NotFound = () => {
               lineHeight: "normal",
               color: theme.palette.text.primary,
             }}
-          >Oops! Page Not Found (404 Error)</Typography>
+          >
+            Oops! Page Not Found (404 Error)
+          </Typography>
 
           <Typography
             sx={{
-              mt: "10px", // Отступ сверху 
+              mt: "10px", // Отступ сверху
               width: "475px",
               height: "66px",
               fontSize: "16px",
@@ -87,9 +89,17 @@ const NotFound = () => {
               color: theme.palette.text.secondary,
               whiteSpace: "pre-line", //переносы строк
             }}
-            >We're sorry, but the page you're looking for doesn't seem to exist.{"\n"}
-            If you typed the URL manually, please double-check the spelling.{"\n"}
+          >
+            We're sorry, but the page you're looking for doesn't seem to exist.
+            {"\n"}
+            If you typed the URL manually, please double-check the spelling.
+            {"\n"}
             If you clicked on a link, it may be outdated or broken.
-            </Typography>
+          </Typography>
         </Box>
+      </Box>
+    </MainLayout>
+  );
+};
 
+export default NotFound;
