@@ -62,7 +62,7 @@ const Sidebar = ({ onSearchClick, onNotifClick }) => {
 
         <SidebarItem
           label="Notification"
-          onClick={onNotifOpen}
+          onClick={onNotifClick}
           icon={NotificationIcon}
         />
 
