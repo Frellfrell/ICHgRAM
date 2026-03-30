@@ -33,7 +33,7 @@ const MainLayout = ({ children }) => {
     }
   };
   // Получение уведомлений
-
+  const fetchNotifications = async () => {
   return (
     <Box
       sx={{
