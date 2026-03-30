@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+
 import SidebarItem from "./SidebarItem";
 import { useTheme } from "@mui/material/styles";
 import logo from "../../assets/logo/ICHGRA 5.svg";
@@ -11,7 +12,7 @@ import CreateIcon from "../../assets/icons/Create.svg";
 import ProfileIcon from "../../assets/icons/Profile.svg";
 import { NavLink } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({ onSearchClick, onNotifClick }) => {
   const theme = useTheme();
 
   return (
@@ -54,14 +55,18 @@ const Sidebar = () => {
       {/* Navigation */}
       <Box sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
         <SidebarItem label="Home" to="/home" icon={HomeIcon} />
-        <SidebarItem label="Search" to="/search" icon={SearchIcon} />
+
+        <SidebarItem label="Search" onClick={onSearchClick} icon={SearchIcon} />
+
         <SidebarItem label="Explore" to="/explore" icon={ExploreIcon} />
         <SidebarItem label="Message" to="/messages" icon={MessageIcon} />
+
         <SidebarItem
           label="Notification"
-          to="/notifications"
+          onClick={onNotifClick}
           icon={NotificationIcon}
         />
+
         <SidebarItem label="Create" to="/create" icon={CreateIcon} />
 
         <Box sx={{ marginTop: "47px" }}>

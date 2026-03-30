@@ -1,11 +1,9 @@
 import React from "react";
 import { Box, Typography, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import AppAvatar from "../ui/AppAvatar";
+import NotificationList from "./NotificationList.jsx";
 
 export const NotificationDrawer = ({ open, onClose, notifications }) => {
-  const BE_URL = "http://localhost:5000";
-
   if (!open) return null;
 
   return (
@@ -15,9 +13,9 @@ export const NotificationDrawer = ({ open, onClose, notifications }) => {
         sx={{
           position: "fixed",
           top: 0,
-          left: 0,
+          left: "245px",
           width: "100vw",
-          height: "100vh",
+          height: "calc(100vh - 158px)",
           backgroundColor: "rgba(0,0,0,0.65)",
           zIndex: 999,
         }}
@@ -28,10 +26,12 @@ export const NotificationDrawer = ({ open, onClose, notifications }) => {
         sx={{
           position: "fixed",
           top: 0,
-          left: 245, // справа от Sidebar
-          width: 397,
-          height: 900,
+          left: "245px", // справа от Sidebar
+          width: "397px",
+          height: "calc(100vh - 158px)",
           backgroundColor: "#fff",
+          borderTopRightRadius: "16px",
+          borderBottomRightRadius: "16px",
           padding: 2,
           zIndex: 1000,
           boxShadow: "2px 0 8px rgba(0,0,0,0.2)",
@@ -46,54 +46,28 @@ export const NotificationDrawer = ({ open, onClose, notifications }) => {
             mb: 2,
           }}
         >
-          <Typography variant="h6">Notification</Typography>
+          <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "24px" }}>
+            Notification
+          </Typography>
           <IconButton onClick={onClose}>
             <CloseIcon />
           </IconButton>
         </Box>
 
-        {notifications.length === 0 ? (
-          <Typography sx={{ color: "gray", textAlign: "center", mt: 10 }}>
-            No notifications yet.
+        {/* SUBHEADER: Слово "New" */}
+        {notifications.length > 0 && (
+          <Typography sx={{ fontWeight: 700, fontSize: "16px", mb: 2, mt: 4 }}>
+            New
           </Typography>
+        )}
+
+        {/* LIST: Сам список уведомлений */}
+        {notifications.length > 0 ? (
+          <NotificationList notifications={notifications} />
         ) : (
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            {notifications?.map((note) => (
-              <Box
-                key={note._id}
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 1,
-                  height: 60,
-                  mb: 1,
-                  borderBottom: "1px solid rgba(219,219,219,1)",
-                }}
-              >
-                <AppAvatar
-                  src={
-                    note.fromUser.avatar?.startsWith("data")
-                      ? note.fromUser.avatar
-                      : `${BE_URL}${note.fromUser.avatar}`
-                  }
-                />
-
-                {/*<Box
-                component="img"
-                src={item.avatar}
-                alt={item.username}
-                sx={{ width: 40, height: 40, borderRadius: "50%" }}
-              />}*/}
-
-                <Typography sx={{ fontSize: "14px" }}>
-                  <b>{note.fromUser.username}</b>{" "}
-                  {note.type === "like"
-                    ? "liked your post"
-                    : "started following you"}
-                </Typography>
-              </Box>
-            ))}
-          </Box>
+          <Typography sx={{ color: "gray", textAlign: "center", mt: 10 }}>
+            No new notifications
+          </Typography>
         )}
       </Box>
     </>

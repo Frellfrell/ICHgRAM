@@ -1,26 +1,18 @@
 import React from "react";
 import { Box, Typography, IconButton, InputBase } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
-import AppAvatar from "../ui/AppAvatar";
-import axios from "axios";
+import SearchResults from "./SearchResults.jsx";
 
-export const SearchDrawer = ({ open, onClose, results, setResults }) => {
-  const BE_URL = "http://localhost:5000";
+import { useState } from "react";
 
-  const handleSearch = async (e) => {
-    const query = e.target.value;
-    if (query.length === 0) {
-      setResults([]);
-      return;
-    }
+export const SearchDrawer = ({ open, onClose, results, onSearchChange }) => {
+  const [searchValue, setSearchValue] = useState("");
+  const handleChange = (e) => {
+    const value = e.target.value;
 
-    try {
-      //искать по буквам
-      const response = await axios.get(`${BE_URL}/api/search?query=${query}`);
-      setResults(response.data);
-    } catch (error) {
-      console.error("Ошибка при поиске:", error);
-    }
+    setSearchValue(value);
+    onSearchChange(value); // Вызываем функцию из MainLayout для обновления результатов
   };
 
   if (!open) return null;
@@ -32,9 +24,9 @@ export const SearchDrawer = ({ open, onClose, results, setResults }) => {
         sx={{
           position: "fixed",
           top: 0,
-          left: 0,
+          left: "245px",
           width: "100vw",
-          height: "100vh",
+          height: "calc(100vh - 158px)",
           backgroundColor: "rgba(0,0,0,0.65)",
           zIndex: 999,
         }}
@@ -44,10 +36,12 @@ export const SearchDrawer = ({ open, onClose, results, setResults }) => {
         sx={{
           position: "fixed",
           top: 0,
-          left: 245,
-          width: 397,
-          height: 900,
+          left: "245px",
+          width: "397px",
+          height: "calc(100vh - 158px)",
           backgroundColor: "#fff",
+          borderTopRightRadius: "16px",
+          borderBottomRightRadius: "16px",
           padding: 2,
           zIndex: 1000,
           boxShadow: "2px 0 8px rgba(0,0,0,0.2)",
@@ -63,8 +57,10 @@ export const SearchDrawer = ({ open, onClose, results, setResults }) => {
             mb: 2,
           }}
         >
-          <Typography variant="h6">Search</Typography>
-          <IconButton onClick={onClose}>
+          <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "24px" }}>
+            Search
+          </Typography>
+          <IconButton onClick={onClose} sx={{ p: 0 }}>
             <CloseIcon />
           </IconButton>
         </Box>
@@ -79,51 +75,16 @@ export const SearchDrawer = ({ open, onClose, results, setResults }) => {
             p: 1,
           }}
         >
+          <SearchIcon sx={{ color: "#8E8E8E", fontSize: "20px", mr: "12px" }} />
           <InputBase
             placeholder="Search"
             sx={{ ml: 1, flex: 1 }}
-            onChange={handleSearch}
+            value={searchValue} // контролируемый компонент
+            onChange={handleChange} // проверка по букве
           />
         </Box>
 
-        {/* Results */}
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          {results?.map((user) => (
-            <Box
-              key={user._id}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-                height: 56,
-                mb: 1,
-                cursor: "pointer",
-                "&:hover": { opacity: 0.7 },
-                borderBottom: "1px solid rgba(219,219,219,1)",
-              }}
-            >
-              {/*<Box
-                component="img"
-                src={item.avatar}
-                alt={item.username}
-                sx={{ width: 40, height: 40, borderRadius: "50%" }}
-              />*/}
-              <AppAvatar
-                src={
-                  user.avatar?.startsWith("data")
-                    ? user.avatar
-                    : `${BE_URL}${user.avatar}`
-                }
-              />
-
-              <Box>
-                <Typography sx={{ fontWeight: 600, fontSize: "14px" }}>
-                  {user.username}
-                </Typography>
-              </Box>
-            </Box>
-          ))}
-        </Box>
+        <SearchResults results={results} />
       </Box>
     </>
   );

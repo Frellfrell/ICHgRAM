@@ -2,24 +2,58 @@ import React from "react";
 import { Box } from "@mui/material";
 import Sidebar from "../components/sidebar/Sidebar";
 import Footer from "../components/footer/Footer";
-import axios from "axios";
-import { NotificationDrawer } from "./NotificationDrawer";
-import { SearchDrawer } from "./SearchDrawer";
-import { useState } from "react";
+import axiosInstance from "../api/axiosInstance.js";
+import { NotificationDrawer } from "../components/notifications/NotificationDrawer.jsx";
+import { SearchDrawer } from "../components/search/SearchDrawer.jsx";
+import { useState, useEffect } from "react";
 
 const MainLayout = ({ children }) => {
   const [openSearch, setOpenSearch] = useState(false);
-  const [openNotifications, setOpenNotifications] = useState(false);
+  const [openNotif, setOpenNotif] = useState(false);
 
   // Данные для Search и Notifications
   const [searchResults, setSearchResults] = useState([]);
   const [notifications, setNotifications] = useState([]);
 
-  // Закрыть всё
-  const closeAllDrawers = () => {
-    setOpenSearch(false);
-    setOpenNotifications(false);
+  // Поиск пользователей
+  const handleSearchChange = async (query) => {
+    if (!query) return setSearchResults([]);
+    try {
+      const token = localStorage.getItem("token"); // если есть авторизация
+      const res = await axiosInstance.get(
+        `http://localhost:5000/api/search?query=${query}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
+      setSearchResults(res.data);
+    } catch (err) {
+      console.error("Search error:", err);
+      setSearchResults([]);
+    }
   };
+  // Получение уведомлений
+  const fetchNotifications = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const res = await axiosInstance.get(
+        `http://localhost:5000/api/notifications`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
+      setNotifications(res.data);
+    } catch (err) {
+      console.error("Notifications error:", err);
+    }
+  };
+
+  useEffect(() => {
+    // Добавляем условие: запрашиваем только если панель открыта
+    if (openNotif === true) {
+      fetchNotifications();
+    }
+  }, [openNotif]);
 
   return (
     <Box
@@ -38,12 +72,12 @@ const MainLayout = ({ children }) => {
         <Box sx={{ width: "245px", flexShrink: 0, position: "sticky", top: 0 }}>
           <Sidebar
             onSearchClick={() => {
-              closeAllDrawers();
-              setOpenSearch(true);
+              setOpenNotif(false);
+              setOpenSearch(!openSearch);
             }}
             onNotifClick={() => {
-              closeAllDrawers();
-              setOpenNotifications(true);
+              setOpenSearch(false);
+              setOpenNotif(!openNotif);
             }}
           />
         </Box>
@@ -51,16 +85,15 @@ const MainLayout = ({ children }) => {
         {/* Выезжающие панели */}
         <SearchDrawer
           open={openSearch}
-          onClose={closeAllDrawers}
+          onClose={() => setOpenSearch(false)}
           results={searchResults}
-          setResults={setSearchResults}
+          onSearchChange={handleSearchChange}
         />
 
         <NotificationDrawer
-          open={openNotifications}
-          onClose={closeAllDrawers}
+          open={openNotif}
+          onClose={() => setOpenNotif(false)}
           notifications={notifications}
-          setNotifications={setNotifications}
         />
 
         {/* Правая колонка: Контент  */}
