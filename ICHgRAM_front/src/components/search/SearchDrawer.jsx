@@ -3,17 +3,17 @@ import { Box, Typography, IconButton, InputBase } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import SearchResults from "./SearchResults.jsx";
 import axios from "axios";
+import { useState } from "react";
 
 export const SearchDrawer = ({ open, onClose, results, onSearchChange }) => {
-  
-const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState("");
   const handleChange = (e) => {
     const value = e.target.value;
 
     setSearchValue(value);
     onSearchChange(value); // Вызываем функцию из MainLayout для обновления результатов
   };
-   
+
   if (!open) return null;
 
   return (
@@ -73,13 +73,11 @@ const [searchValue, setSearchValue] = useState("");
           <InputBase
             placeholder="Search"
             sx={{ ml: 1, flex: 1 }}
-            onChange={handleChange}  // проверка по букве
+            onChange={handleChange} // проверка по букве
           />
         </Box>
 
-        
-          ))}
-        </Box>
+        <SearchResults results={results} />
       </Box>
     </>
   );
