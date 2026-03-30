@@ -75,5 +75,18 @@ const NotFound = () => {
               color: theme.palette.text.primary,
             }}
           >Oops! Page Not Found (404 Error)</Typography>
+
+          <Typography
+            sx={{
+              mt: "10px", // Отступ сверху 
+              width: "475px",
+              height: "66px",
+              fontSize: "16px",
+              fontWeight: 600,
+              lineHeight: "20px",
+              color: theme.palette.text.secondary,
+              whiteSpace: "pre-line", //переносы строк
+            }}
+            ></Typography>
         </Box>
 
