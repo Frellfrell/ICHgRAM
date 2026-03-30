@@ -3,8 +3,8 @@ import { Box } from "@mui/material";
 import Sidebar from "../components/sidebar/Sidebar";
 import Footer from "../components/footer/Footer";
 import axios from "axios";
-import { NotificationDrawer } from "./NotificationDrawer";
-import { SearchDrawer } from "./SearchDrawer";
+import { NotificationDrawer } from "../components/notifications/NotificationDrawer.jsx";
+import { SearchDrawer } from "../components/search/SearchDrawer.jsx";
 import { useState, useEffect } from "react";
 
 const MainLayout = ({ children }) => {
@@ -48,7 +48,6 @@ const MainLayout = ({ children }) => {
   useEffect(() => {
     // Добавляем условие: запрашиваем только если панель открыта
     if (openNotif === true) {
-       
       fetchNotifications();
     }
   }, [openNotif]);
