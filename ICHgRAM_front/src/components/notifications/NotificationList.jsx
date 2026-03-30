@@ -31,8 +31,23 @@ const NotificationList = ({ notifications }) => {
                         }}
                       >
 
+                        <AppAvatar 
+            src={note.sender?.avatar?.startsWith("data") 
+              ? note.sender.avatar 
+              : `${BE_URL}${note.sender?.avatar}`} 
+            size={44} 
+          />
+
+          <Box sx={{ flex: 1 }}>
+            <Typography sx={{ fontSize: "14px" }}>
+              <b>{note.sender?.username}</b> 
+              {note.type === "like" && " liked your photo."}
+              {note.type === "follow" && " started following ."}
+              {note.type === "comment" && " commented on your photo."}
+            </Typography>
+          </Box>
 
 
 
-                        
+
                       </Box>
