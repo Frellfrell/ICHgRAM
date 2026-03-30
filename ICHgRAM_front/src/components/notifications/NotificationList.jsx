@@ -17,3 +17,22 @@ const NotificationList = ({ notifications }) => {
   };
 
     return (
+         <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                    {notifications?.map((note) => (
+                      <Box
+                        key={note._id}
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 1,
+                          height: 60,
+                          mb: 1,
+                          borderBottom: "1px solid rgba(219,219,219,1)",
+                        }}
+                      >
+
+
+
+
+                        
+                      </Box>
