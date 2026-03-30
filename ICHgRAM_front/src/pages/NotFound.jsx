@@ -68,6 +68,12 @@ const NotFound = () => {
             variant="h4"
             sx={{
               width: "625px",
-              height: "57px"
+              height: "57px",
+              fontSize: "36px",
+              fontWeight: 700,
+              lineHeight: "normal",
+              color: theme.palette.text.primary,
+            }}
+          ></Typography>
         </Box>
 
