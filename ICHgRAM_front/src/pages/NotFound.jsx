@@ -74,6 +74,6 @@ const NotFound = () => {
               lineHeight: "normal",
               color: theme.palette.text.primary,
             }}
-          ></Typography>
+          >Oops! Page Not Found (404 Error)</Typography>
         </Box>
 
