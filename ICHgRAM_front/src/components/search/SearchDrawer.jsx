@@ -24,7 +24,7 @@ export const SearchDrawer = ({ open, onClose, results, onSearchChange }) => {
         sx={{
           position: "fixed",
           top: 0,
-          left: 0,
+          left: "245px",
           width: "100vw",
           height: "calc(100vh - 158px)",
           backgroundColor: "rgba(0,0,0,0.65)",
@@ -36,9 +36,9 @@ export const SearchDrawer = ({ open, onClose, results, onSearchChange }) => {
         sx={{
           position: "fixed",
           top: 0,
-          left: 245,
-          width: 397,
-          height: 900,
+          left: "245px",
+          maxWidth: "397px",
+          height: "100%",
           backgroundColor: "#fff",
           padding: 2,
           zIndex: 1000,
