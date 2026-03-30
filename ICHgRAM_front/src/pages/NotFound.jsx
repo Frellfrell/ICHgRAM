@@ -62,4 +62,6 @@ const NotFound = () => {
             flexDirection: "column",
             justifyContent: "center",
             height: "460px",
+            }}
+        ></Box>
 
