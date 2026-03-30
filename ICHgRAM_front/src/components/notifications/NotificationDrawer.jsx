@@ -63,20 +63,7 @@ export const NotificationDrawer = ({ open, onClose, notifications }) => {
         {/* LIST: Сам список уведомлений */}
         {notifications.length > 0 ? (
           <NotificationList notifications={notifications} />
-                <AppAvatar
-                  src={
-                    note.fromUser.avatar?.startsWith("data")
-                      ? note.fromUser.avatar
-                      : `${BE_URL}${note.fromUser.avatar}`
-                  }
-                />
-
-                {/*<Box
-                component="img"
-                src={item.avatar}
-                alt={item.username}
-                sx={{ width: 40, height: 40, borderRadius: "50%" }}
-              />}*/}
+                
 
                 <Typography sx={{ fontSize: "14px" }}>
                   <b>{note.fromUser.username}</b>{" "}
