@@ -9,17 +9,14 @@ import { useState } from "react";
 
 const MainLayout = ({ children }) => {
   const [openSearch, setOpenSearch] = useState(false);
-  const [openNotifications, setOpenNotifications] = useState(false);
+  const [openNotif, setOpenNotif] = useState(false);
 
   // Данные для Search и Notifications
   const [searchResults, setSearchResults] = useState([]);
   const [notifications, setNotifications] = useState([]);
 
-  // Закрыть всё
-  const closeAllDrawers = () => {
-    setOpenSearch(false);
-    setOpenNotifications(false);
-  };
+  // Поиск пользователей
+  const handleSearch = async (query) => {
 
   return (
     <Box
