@@ -17,7 +17,15 @@ const MainLayout = ({ children }) => {
 
   // Поиск пользователей
   const handleSearch = async (query) => {
+    if (!query) return setSearchResults([]);
+    try {
+      const token = localStorage.getItem("token"); // если есть авторизация
+      const res = await axios.get(`http://localhost:5000/api/search?query=${query}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
 
+
+      
   return (
     <Box
       sx={{
