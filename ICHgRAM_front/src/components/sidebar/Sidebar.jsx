@@ -11,7 +11,7 @@ import CreateIcon from "../../assets/icons/Create.svg";
 import ProfileIcon from "../../assets/icons/Profile.svg";
 import { NavLink } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({ onSearchClick, onNotifClick }) => {
   const theme = useTheme();
 
   return (
@@ -54,14 +54,22 @@ const Sidebar = () => {
       {/* Navigation */}
       <Box sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
         <SidebarItem label="Home" to="/home" icon={HomeIcon} />
-        <SidebarItem label="Search" to="/search" icon={SearchIcon} />
+
+        <Box onClick={onSearchClick} sx={{ cursor: "pointer" }}>
+          <SidebarItem label="Search" to="/search" icon={SearchIcon} />
+        </Box>
+
         <SidebarItem label="Explore" to="/explore" icon={ExploreIcon} />
         <SidebarItem label="Message" to="/messages" icon={MessageIcon} />
-        <SidebarItem
-          label="Notification"
-          to="/notifications"
-          icon={NotificationIcon}
-        />
+
+        <Box onClick={onNotifClick} sx={{ cursor: "pointer" }}>
+          <SidebarItem
+            label="Notification"
+            to="/notifications"
+            icon={NotificationIcon}
+          />
+        </Box>
+
         <SidebarItem label="Create" to="/create" icon={CreateIcon} />
 
         <Box sx={{ marginTop: "47px" }}>
