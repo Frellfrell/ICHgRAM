@@ -28,5 +28,16 @@ const NotFound = () => {
             flexShrink: 0,
           }}
         >
-            
+           <Box
+            component="img"
+            src={ScreenShot}
+            sx={{
+              width: "198px",
+              height: "426px",
+              position: "absolute",
+              top: "16px",
+              left: "89px",
+              zIndex: 1,
+            }}
+          /> 
 
