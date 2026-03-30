@@ -87,6 +87,9 @@ const NotFound = () => {
               color: theme.palette.text.secondary,
               whiteSpace: "pre-line", //переносы строк
             }}
-            ></Typography>
+            >We're sorry, but the page you're looking for doesn't seem to exist.{"\n"}
+            If you typed the URL manually, please double-check the spelling.{"\n"}
+            If you clicked on a link, it may be outdated or broken.
+            </Typography>
         </Box>
 
