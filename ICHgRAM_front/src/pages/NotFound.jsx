@@ -63,5 +63,11 @@ const NotFound = () => {
             justifyContent: "center",
             height: "460px",
             }}
-        ></Box>
+        >
+            <Typography
+            variant="h4"
+            sx={{
+              width: "625px",
+              height: "57px"
+        </Box>
 
