@@ -32,6 +32,7 @@ const MainLayout = ({ children }) => {
       setSearchResults([]);
     }
   };
+  // Получение уведомлений
 
   return (
     <Box
