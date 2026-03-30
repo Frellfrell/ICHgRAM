@@ -15,6 +15,7 @@ const NotFound = () => {
           display: "flex",
           flexDirection: "row",
           alignItems: "flex-start",
+          height: "897px",
           pt: "94px",
           pl: "41px",
         }}
