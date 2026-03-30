@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import AppAvatar from "../ui/AppAvatar";
+import NotificationList from "./NotificationList.jsx";
 
 export const NotificationDrawer = ({ open, onClose, notifications }) => {
   const BE_URL = "http://localhost:5000";
