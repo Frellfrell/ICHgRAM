@@ -8,3 +8,7 @@ import ScreenShot from "../assets/foto/screenshot1.png";
 
 const NotFound = () => {
   const theme = useTheme();
+
+    return (
+        <MainLayout>
+            
