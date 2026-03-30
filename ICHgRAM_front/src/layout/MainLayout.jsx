@@ -5,7 +5,7 @@ import Footer from "../components/footer/Footer";
 import axios from "axios";
 import { NotificationDrawer } from "./NotificationDrawer";
 import { SearchDrawer } from "./SearchDrawer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const MainLayout = ({ children }) => {
   const [openSearch, setOpenSearch] = useState(false);
@@ -16,7 +16,7 @@ const MainLayout = ({ children }) => {
   const [notifications, setNotifications] = useState([]);
 
   // Поиск пользователей
-  const handleSearch = async (query) => {
+  const handleSearchChange = async (query) => {
     if (!query) return setSearchResults([]);
     try {
       const token = localStorage.getItem("token"); // если есть авторизация
@@ -65,13 +65,13 @@ const MainLayout = ({ children }) => {
       <Box sx={{ display: "flex", flexGrow: 1 }}>
         <Box sx={{ width: "245px", flexShrink: 0, position: "sticky", top: 0 }}>
           <Sidebar
-            onSearchClick={() => {
-              closeAllDrawers();
-              setOpenSearch(true);
+            onSearchOpen={() => {
+              setOpenNotif(false);
+              setOpenSearch(!openSearch);
             }}
-            onNotifClick={() => {
-              closeAllDrawers();
-              setOpenNotifications(true);
+            onNotifOpen={() => {
+              setOpenSearch(false);
+              setOpenNotif(!openNotif);
             }}
           />
         </Box>
@@ -79,16 +79,15 @@ const MainLayout = ({ children }) => {
         {/* Выезжающие панели */}
         <SearchDrawer
           open={openSearch}
-          onClose={closeAllDrawers}
+          onClose={() => setOpenSearch(false)}
           results={searchResults}
-          setResults={setSearchResults}
+          onSearchChange={handleSearchChange}
         />
 
         <NotificationDrawer
-          open={openNotifications}
-          onClose={closeAllDrawers}
+          open={openNotif}
+          onClose={() => setOpenNotif(false)}
           notifications={notifications}
-          setNotifications={setNotifications}
         />
 
         {/* Правая колонка: Контент  */}
