@@ -44,30 +44,25 @@ export const NotificationDrawer = ({ open, onClose, notifications }) => {
             mb: 2,
           }}
         >
-          <Typography variant="h6">Notification</Typography>
+          <Typography variant="h6"sx={{ fontWeight: 700, fontSize: "24px" }}>
+            Notification
+            </Typography>
           <IconButton onClick={onClose}>
             <CloseIcon />
           </IconButton>
         </Box>
 
-        {notifications.length === 0 ? (
-          <Typography sx={{ color: "gray", textAlign: "center", mt: 10 }}>
-            No notifications yet.
+
+{/* SUBHEADER: Слово "New" */}
+       {notifications.length > 0 && (
+          <Typography sx={{ fontWeight: 700, fontSize: "16px", mb: 2, mt: 4 }}>
+            New
           </Typography>
-        ) : (
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            {notifications?.map((note) => (
-              <Box
-                key={note._id}
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 1,
-                  height: 60,
-                  mb: 1,
-                  borderBottom: "1px solid rgba(219,219,219,1)",
-                }}
-              >
+        )}
+
+        {/* LIST: Сам список уведомлений */}
+        {notifications.length > 0 ? (
+          <NotificationList notifications={notifications} />
                 <AppAvatar
                   src={
                     note.fromUser.avatar?.startsWith("data")
