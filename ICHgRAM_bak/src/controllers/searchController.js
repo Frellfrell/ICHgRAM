@@ -14,7 +14,7 @@ export const searchUsers = async (req, res) => {
         { username: { $regex: query, $options: "i" } },
         { fullName: { $regex: query, $options: "i" } },
       ],
-    }).select("username fullName");
+    }).select("username fullName avatar");
 
     if (users.length === 0) {
       return res.status(404).json({ message: "Пользователи не найдены" });
