@@ -73,7 +73,7 @@ const [searchValue, setSearchValue] = useState("");
           <InputBase
             placeholder="Search"
             sx={{ ml: 1, flex: 1 }}
-            onChange={handleSearch}
+            onChange={handleChange}  // проверка по букве
           />
         </Box>
 
