@@ -40,4 +40,17 @@ const NotFound = () => {
               zIndex: 1,
             }}
           /> 
+          {/* Корпус телефона */}
+          <Box
+            component="img"
+            src={PhoneFrame}
+            sx={{
+              width: "100%",
+              height: "100%",
+              position: "absolute",
+              zIndex: 2,
+              objectFit: "contain"
+            }}
+          />
+        </Box>
 
