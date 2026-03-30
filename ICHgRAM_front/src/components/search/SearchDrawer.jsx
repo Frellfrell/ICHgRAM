@@ -25,7 +25,7 @@ export const SearchDrawer = ({ open, onClose, results, onSearchChange }) => {
           top: 0,
           left: 0,
           width: "100vw",
-          height: "100vh",
+          height: "calc(100vh - 158px)",
           backgroundColor: "rgba(0,0,0,0.65)",
           zIndex: 999,
         }}
