@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography, IconButton, InputBase } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import SearchResults from "./SearchResults.jsx";
-import axios from "axios";
+
 import { useState } from "react";
 
 export const SearchDrawer = ({ open, onClose, results, onSearchChange }) => {
