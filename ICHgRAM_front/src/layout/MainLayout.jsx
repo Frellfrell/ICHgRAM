@@ -34,6 +34,21 @@ const MainLayout = ({ children }) => {
   };
   // Получение уведомлений
   const fetchNotifications = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const res = await axios.get(`http://localhost:5000/api/notifications`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setNotifications(res.data);
+    } catch (err) {
+      console.error("Notifications error:", err);
+    }
+  };
+
+  useEffect(() => {
+    if (openNotif) fetchNotifications();
+  }, [openNotif]);
+
   return (
     <Box
       sx={{
