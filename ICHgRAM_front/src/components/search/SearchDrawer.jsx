@@ -40,6 +40,8 @@ export const SearchDrawer = ({ open, onClose, results, onSearchChange }) => {
           width: "397px",
           height: "calc(100vh - 158px)",
           backgroundColor: "#fff",
+          borderTopRightRadius: "16px",
+          borderBottomRightRadius: "16px",
           padding: 2,
           zIndex: 1000,
           boxShadow: "2px 0 8px rgba(0,0,0,0.2)",
