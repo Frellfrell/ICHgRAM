@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Box, CircularProgress } from "@mui/material";
-import MainLayout from "../../layouts/MainLayout";
+import MainLayout from "../../layout/MainLayout";
 import axiosInstance from "../../api/axiosInstance";
-import PostModal from "../../components/posts/PostModal";
+import PostModal from "../../components/ui/PostModal";
 
-const Explorer = () => {
+const Explore = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedPost, setSelectedPost] = useState(null);
@@ -107,4 +107,4 @@ const Explorer = () => {
   );
 };
 
-export default Explorer;
+export default Explore;
