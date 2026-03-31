@@ -22,4 +22,9 @@ const FollowButton = ({ userId, initialIsFollowing }) => {
         await axiosInstance.post(`/api/follows/${userId}`);
         setIsFollowing(true);
       }
-      
+      } catch (error) {
+      console.error("Ошибка при подписке/отписке:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
