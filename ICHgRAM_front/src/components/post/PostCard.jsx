@@ -66,7 +66,7 @@ const PostCard = ({ post }) => {
           display: "flex",
           borderRadius: "4px",
           //display: "block",
-          aspectRatio: "3 / 4",
+          aspectRatio: "4 / 5",
           objectFit: "cover",
         }}
       />
