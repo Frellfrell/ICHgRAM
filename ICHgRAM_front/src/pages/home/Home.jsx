@@ -42,7 +42,9 @@ const Home = () => {
         columnSpacing="39px"
         rowSpacing="23px"
         sx={{
-          width: "847px",
+          width: "100%",
+          maxWidth: "847px",
+          mb: "23px",
         }}
       >
         {posts.map((post) => (
