@@ -58,7 +58,10 @@ const PostCard = ({ post }) => {
       <Box
         sx={{
           width: "100%",
-          aspectRatio: "4 / 5", // фиксированная форма поста
+          aspectRatio: {
+            xs: "1 / 1",
+            sm: "4 / 5",
+          },
           overflow: "hidden",
           borderRadius: "4px",
         }}
