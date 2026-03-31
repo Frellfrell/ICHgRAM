@@ -25,46 +25,47 @@ const NotFound = () => {
       >
         {/* ЛЕВАЯ ЧАСТЬ: ИЗОБРАЖЕНИЕ */}
         {!isMobile && (
-        <Box
-          sx={{
-            width: isTablet ? "250px" : "301px",
-            height: isTablet ? "380px" : "460px",
-            position: "relative",
-            flexShrink: 0,
-            transition: "all 0.3s ease", // Для плавности
-          }}
-        >
           <Box
-            component="img"
-            src={ScreenShot}
             sx={{
-              width: "66%",
-              height: "92%",
-              position: "absolute",
-              top: "3.5%",
-              left: "29.5%",
-              zIndex: 1,
-              objectFit: "cover"
+              width: isTablet ? "250px" : "301px",
+              height: isTablet ? "380px" : "460px",
+              position: "relative",
+              flexShrink: 0,
+              transition: "all 0.3s ease", // Для плавности
             }}
-          />
-          {/* Корпус телефона */}
-          <Box
-            component="img"
-            src={PhoneFrame}
-            sx={{
-              width: "100%",
-              height: "100%",
-              position: "absolute",
-              zIndex: 2,
-              objectFit: "contain",
-            }}
-          />
-        </Box>
+          >
+            <Box
+              component="img"
+              src={ScreenShot}
+              sx={{
+                width: "66%",
+                height: "92%",
+                position: "absolute",
+                top: "3.5%",
+                left: "29.5%",
+                zIndex: 1,
+                objectFit: "cover",
+              }}
+            />
+            {/* Корпус телефона */}
+            <Box
+              component="img"
+              src={PhoneFrame}
+              sx={{
+                width: "100%",
+                height: "100%",
+                position: "absolute",
+                zIndex: 2,
+                objectFit: "contain",
+              }}
+            />
+          </Box>
+        )}
 
         {/* ПРАВАЯ ЧАСТЬ: ТЕКСТОВЫЙ БЛОК */}
         <Box
           sx={{
-            ml: isMobile ? 0 : { md: "40px", lg:"97px" }, // Расстояние между фото и текстом
+            ml: isMobile ? 0 : { md: "40px", lg: "97px" }, // Расстояние между фото и текстом
             mt: isMobile ? "40px" : 0,
             display: "flex",
             textAlign: isMobile ? "center" : "left",
@@ -79,8 +80,8 @@ const NotFound = () => {
             variant="h4"
             sx={{
               //width: "625px",
-             // height: "57px",
-              fontSize: { xs: "24px", sm: "30px", md:"36px" },
+              // height: "57px",
+              fontSize: { xs: "24px", sm: "30px", md: "36px" },
               fontWeight: 700,
               lineHeight: "normal",
               color: theme.palette.text.primary,
@@ -92,7 +93,6 @@ const NotFound = () => {
 
           <Typography
             sx={{
-              
               //width: "475px",
               //height: "66px",
               fontSize: "16px",
