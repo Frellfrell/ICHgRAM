@@ -43,4 +43,10 @@ const Explorer = () => {
   };
 
 
-  
+  return (
+    <MainLayout>
+      <Box
+        sx={{
+            width: "100%",
+          maxWidth: "975px",
+          minHeight: "1376px",
