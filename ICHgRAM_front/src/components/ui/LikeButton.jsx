@@ -13,3 +13,13 @@ const LikeButton = ({ postId, initialLikesCount, showCount = true }) => {
   useEffect(() => {
     // Проверяем, лайкнул ли текущий юзер этот пост
     const checkStatus = async () => {
+        try {
+        const res = await axiosInstance.get(`/api/likes/${postId}`);
+        setLiked(res.data.liked);
+        if (res.data.likesCount !== undefined) setCount(res.data.likesCount);
+      } catch (err) {
+        console.error("Ошибка загрузки статуса лайка", err);
+      }
+    };
+    if (postId) checkStatus();
+  }, [postId]);
