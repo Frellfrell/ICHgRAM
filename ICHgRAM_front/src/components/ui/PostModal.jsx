@@ -125,7 +125,17 @@ const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
           {/* Поле ввода - скрываем на совсем маленьких экранах, если не хватает места */}
           {!isMobile && (
             <>
-            
+            <Divider />
+              <Box sx={{ height: "44.91px", display: "flex", alignItems: "center", px: 2, gap: 1 }}>
+                <SentimentSatisfiedAltIcon sx={{ color: "#262626" }} />
+                <TextField 
+                  placeholder="Add comment" 
+                  variant="standard" 
+                  fullWidth 
+                  InputProps={{ disableUnderline: true, sx: { fontSize: "14px" } }} 
+                />
+                <Button sx={{ color: "#0095F6", fontWeight: 600, textTransform: "none" }}>Send</Button>
+              </Box>
             
             
             </>
