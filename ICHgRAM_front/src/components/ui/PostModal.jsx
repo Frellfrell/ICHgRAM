@@ -26,3 +26,5 @@ const PostModal = ({ open, post, onClose }) => {
       checkLike();
     }
   }, [post]);
+
+  if (!post) return null;
