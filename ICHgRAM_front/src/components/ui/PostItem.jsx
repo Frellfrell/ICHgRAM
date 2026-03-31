@@ -18,6 +18,24 @@ const PostGridItem = ({ post, onClick }) => {
     
     >
 
+        <Box
+        component="img"
+        src={post.image.startsWith('data') ? post.image : `${BE_URL}${post.image}`}
+        sx={{ width: '100%', height: '100%', objectFit: 'cover' }}
+      />
+
+      {/* Overlay при наведении */}
+      <Box 
+        className="overlay"
+        sx={{
+          position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+          bgcolor: 'rgba(0,0,0,0.3)', display: 'flex', justifyContent: 'center',
+          alignItems: 'center', opacity: 0, transition: '0.3s', color: 'white', gap: 3
+        }}
+      >
+
+        
+
 
 
 
