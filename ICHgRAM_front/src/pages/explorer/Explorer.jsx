@@ -61,8 +61,28 @@ const Explorer = () => {
           </Box>
         ) : (
 
-
-
+            <Box
+            sx={{
+              display: "grid",
+              // Сетка 3 колонки по 316px
+              gridTemplateColumns: "repeat(3, 316px)",
+              // Базовая высота строки 316px
+              gridAutoRows: "316px",
+              gap: "13px",
+            }}
+          >
+            {posts.map((post) => (
+              <Box
+                key={post._id}
+                onClick={() => setSelectedPost(post)}
+                sx={{
+                  // Если layout vertical — занимаем 2 строки
+                  gridRow: post.layout === "vertical" ? "span 2" : "span 1",
+                  cursor: "pointer",
+                  overflow: "hidden",
+                  backgroundColor: "#f0f0f0",
+                }}
+          >
 
 
       </Box>
