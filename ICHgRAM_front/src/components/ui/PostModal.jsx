@@ -4,7 +4,6 @@ import {
   Box,
   IconButton,
   Divider,
-  Avatar,
   TextField,
   Button,
 } from "@mui/material";
@@ -14,7 +13,7 @@ import AppTypography from "../ui/AppTypography";
 import AppAvatar from "../ui/AppAvatar";
 import LikeButton from "../ui/LikeButton";
 import FollowButton from "../ui/FollowButton";
-import CommentItem from "../post/CommentItem";
+import CommentItem from "../comment/CommentItem";
 import axiosInstance from "../../api/axiosInstance";
 import { formatUrl } from "../ui/helpers";
 
