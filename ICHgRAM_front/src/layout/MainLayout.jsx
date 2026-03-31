@@ -18,6 +18,9 @@ const MainLayout = ({ children }) => {
   // Поиск пользователей
   const handleSearchChange = async (query) => {
     if (!query) return setSearchResults([]);
+     return;
+    }
+    
     try {
       const token = localStorage.getItem("token"); // если есть авторизация
       const res = await axiosInstance.get(
