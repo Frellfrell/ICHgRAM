@@ -42,7 +42,7 @@ const PostCard = ({ post }) => {
           {author?.username}
         </AppTypography>
         <AppTypography sx={{ color: "text.secondary", fontSize: "14px" }}>
-          • {timeAgo(post.createdAt)}
+          • {timeAgo(post.createdAt)} •
         </AppTypography>
 
         {/* Кнопка Follow (показываем только если не подписан) */}
