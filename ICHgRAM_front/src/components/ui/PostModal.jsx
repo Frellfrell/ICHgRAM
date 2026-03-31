@@ -90,6 +90,21 @@ const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
             <Divider />
 
             {/* Комментарии */}
-    
+         <Box sx={{ 
+            p: 2, 
+            flexGrow: 1, 
+            overflowY: "auto", 
+            maxHeight: isMobile ? "200px" : "none" // Ограничиваем скролл на мобилке
+          }}>
+            <Box sx={{ display: "flex", gap: "14px", mb: 2 }}>
+              <Avatar src={formatUrl(author.avatar)} sx={{ width: 32, height: 32 }} />
+              <AppTypography variant="body2" sx={{ fontSize: "14px" }}>
+                <span style={{ fontWeight: 700, marginRight: "8px" }}>{author.username}</span>
+                {post.caption}
+              </AppTypography>
+            </Box>
+
+
+          </Box>
     
             </Box>
