@@ -21,8 +21,6 @@ const PostModal = ({ open, post, onClose }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
 
-  const author = post.author || {};
-
   // 1. Загружаем комментарии при открытии модалки
   useEffect(() => {
     if (open && post?._id) {
@@ -51,8 +49,9 @@ const PostModal = ({ open, post, onClose }) => {
       console.error("Ошибка отправки комментария:", err);
     }
   };
-
   if (!post) return null;
+
+  const author = post.author || {};
 
   return (
     <Modal
