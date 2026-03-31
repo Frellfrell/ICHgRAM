@@ -50,3 +50,19 @@ const Explorer = () => {
             width: "100%",
           maxWidth: "975px",
           minHeight: "1376px",
+          pl: "103px",
+          pt: "41px",
+          boxSizing: "border-box",
+        }}
+      >
+        {loading ? (
+          <Box sx={{ display: "flex", justifyContent: "center", mt: 10 }}>
+            <CircularProgress />
+          </Box>
+        ) : (
+
+
+
+
+
+      </Box>
