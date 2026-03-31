@@ -13,5 +13,16 @@ const PostModal = ({ open, post, onClose }) => {
   const [likesCount, setLikesCount] = useState(0);
   const BE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
-  +
-  
+  useEffect(() => {
+    if (post) {
+      setLikesCount(post.likesCount || 0);
+      // Если нужно проверить состояние лайка конкретно для юзера:
+      const checkLike = async () => {
+        try {
+          const res = await axiosInstance.get(`/api/likes/${post._id}`);
+          setIsLiked(res.data.liked);
+        } catch (e) { console.error(e); }
+      };
+      checkLike();
+    }
+  }, [post]);
