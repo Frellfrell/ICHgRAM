@@ -28,3 +28,5 @@ const PostModal = ({ open, post, onClose }) => {
   }, [post]);
 
   if (!post) return null;
+  
+  const author = post.author || {};
