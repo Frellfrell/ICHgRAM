@@ -22,3 +22,16 @@ const Explorer = () => {
         
         // Добавляем разметку: каждый 3-й пост будет высоким (span 2)
         const masonryPosts = res.data.map((post, index) => ({
+            ...post,
+          layout: (index + 1) % 3 === 0 ? "vertical" : "square",
+        }));
+        
+        setPosts(masonryPosts);
+      } catch (err) {
+        console.error("Ошибка при загрузке Explorer:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPosts();
+  }, []);
