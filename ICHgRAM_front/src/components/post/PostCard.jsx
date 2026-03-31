@@ -26,13 +26,14 @@ const PostCard = ({ post }) => {
         width: "100%",
         maxWidth: "404px",
         //height: "716.6px",
-        //mb: "23px",
+        mb: "23px",
         borderBottom: "1px solid",
         borderColor: "divider",
         pb: 2,
         display: "flex",
         flexDirection: "column",
         position: "relative",
+        mx: "auto",
       }}
     >
       {/* 1. Шапка: AppAvatar, Имя, Время, Follow */}
@@ -76,7 +77,9 @@ const PostCard = ({ post }) => {
         <LikeButton postId={post._id} initialLikesCount={post.likesCount} />
 
         <IconButton sx={{ color: "text.primary", p: 0.5 }}>
-          <ChatBubbleOutlineIcon />
+          <ChatBubbleOutlineIcon
+            sx={{ fontSize: "24px", color: "text.primary" }}
+          />
         </IconButton>
       </Box>
 
