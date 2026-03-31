@@ -14,7 +14,7 @@ import AppTypography from "../ui/AppTypography";
 import AppAvatar from "../ui/AppAvatar";
 import LikeButton from "../ui/LikeButton";
 import FollowButton from "../ui/FollowButton";
-import CommentItem from "../comment/CommentItem";
+import CommentItem from "../post/CommentItem";
 import axiosInstance from "../../api/axiosInstance";
 import { formatUrl } from "../ui/helpers";
 
