@@ -2,16 +2,10 @@ import React from "react";
 import { Box } from "@mui/material";
 import AppAvatar from "../ui/AppAvatar";
 import AppTypography from "../ui/AppTypography";
+import { formatUrl, timeAgo } from "../../ui/helpers";
 
 const CommentItem = ({ comment }) => {
-  const BE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
   const author = comment.author || {};
-
-  const formatUrl = (url) => {
-    if (!url) return "";
-    if (url.startsWith("data:") || url.startsWith("http")) return url;
-    return `${BE_URL.replace(/\/$/, "")}${url.startsWith("/") ? url : "/" + url}`;
-  };
 
   return (
     <Box
@@ -33,7 +27,7 @@ const CommentItem = ({ comment }) => {
           {comment.text}
         </AppTypography>
         <AppTypography sx={{ fontSize: "14px", color: "#8e8e8e", mt: "4px" }}>
-          {formatCommentDate(comment.createdAt)}
+          {timeAgo(comment.createdAt)}
         </AppTypography>
       </Box>
     </Box>
