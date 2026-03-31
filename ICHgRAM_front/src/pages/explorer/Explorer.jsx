@@ -45,8 +45,9 @@ const Explorer = () => {
           width: "100%",
           maxWidth: "975px",
           minHeight: "1376px",
-          pl: "103px",
+          pl: { xs: 2, md: "103px" },
           pt: "41px",
+          mx: "auto",
           boxSizing: "border-box",
         }}
       >
