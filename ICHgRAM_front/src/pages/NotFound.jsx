@@ -92,14 +92,15 @@ const NotFound = () => {
 
           <Typography
             sx={{
-              mt: "10px", // Отступ сверху
-              width: "475px",
-              height: "66px",
+              
+              //width: "475px",
+              //height: "66px",
               fontSize: "16px",
               fontWeight: 600,
-              lineHeight: "20px",
+              lineHeight: "1.4",
               color: theme.palette.text.secondary,
               whiteSpace: "pre-line", //переносы строк
+              mx: isMobile ? "auto" : 0, // Центрируем текст на мобилке
             }}
           >
             We're sorry, but the page you're looking for doesn't seem to exist.
