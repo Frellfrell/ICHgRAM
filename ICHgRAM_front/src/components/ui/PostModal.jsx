@@ -15,8 +15,26 @@ import LikeButton from "../ui/LikeButton";
 import FollowButton from "../ui/FollowButton";
 
 const PostModal = ({ open, post, onClose }) => {
+  const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState("");
+
   const BE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
   const author = post.author || {};
+
+  // 1. Загружаем комментарии при открытии модалки
+  useEffect(() => {
+    if (open && post?._id) {
+      const fetchComments = async () => {
+        try {
+          const res = await axiosInstance.get(`/api/comments/${post._id}`);
+          setComments(res.data);
+        } catch (err) {
+          console.error("Ошибка загрузки комментариев:", err);
+        }
+      };
+      fetchComments();
+    }
+  }, [open, post?._id]);
 
   const formatUrl = (url) => {
     if (!url) return "";
@@ -91,6 +109,7 @@ const PostModal = ({ open, post, onClose }) => {
             <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>
               {author.username}
             </AppTypography>
+            <FollowButton userId={author._id} />
             <IconButton onClick={onClose} sx={{ ml: "auto" }}>
               <CloseIcon />
             </IconButton>
@@ -105,15 +124,18 @@ const PostModal = ({ open, post, onClose }) => {
               overflowY: "auto",
             }}
           >
-            <Box sx={{ display: "flex", gap: "14px", mb: 2 }}>
-              <AppAvatar src={formatUrl(author.avatar)} size={32} />
-              <AppTypography variant="body2" sx={{ fontSize: "14px" }}>
-                <span style={{ fontWeight: 700, marginRight: "8px" }}>
-                  {author.username}
-                </span>
-                {post.caption}
-              </AppTypography>
-            </Box>
+            <CommentItem
+              comment={{
+                text: post.caption,
+                author: author,
+                createdAt: post.createdAt,
+              }}
+            />
+
+            {/* Сами комментарии из базы */}
+            {comments.map((c) => (
+              <CommentItem key={c._id} comment={c} />
+            ))}
           </Box>
           <Divider />
 
@@ -140,10 +162,9 @@ const PostModal = ({ open, post, onClose }) => {
               placeholder="Add comment"
               variant="standard"
               fullWidth
-              InputProps={{
-                disableUnderline: true,
-                sx: { fontSize: "14px" },
-              }}
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              InputProps={{ disableUnderline: true }}
             />
             <Button
               sx={{
