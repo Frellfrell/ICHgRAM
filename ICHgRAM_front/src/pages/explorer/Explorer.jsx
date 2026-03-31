@@ -35,3 +35,9 @@ const Explorer = () => {
     };
     fetchPosts();
   }, []);
+
+  const formatUrl = (url) => {
+    if (!url) return "";
+    if (url.startsWith("data:") || url.startsWith("http")) return url;
+    return `${BE_URL.replace(/\/$/, "")}${url.startsWith("/") ? url : "/" + url}`;
+  };
