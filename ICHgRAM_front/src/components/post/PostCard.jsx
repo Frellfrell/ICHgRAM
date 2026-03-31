@@ -1,10 +1,7 @@
 import { Box, IconButton } from "@mui/material";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import AppTypography from "../ui/AppTypography";
 import AppAvatar from "../ui/AppAvatar";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-
 import { formatUrl, timeAgo, BE_URL } from "../ui/helpers";
 import FollowButton from "../ui/FollowButton";
 import LikeButton from "../ui/LikeButton";
