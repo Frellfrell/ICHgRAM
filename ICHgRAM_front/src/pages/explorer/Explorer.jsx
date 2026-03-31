@@ -18,3 +18,7 @@ const Explorer = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
+        const res = await axiosInstance.get("/api/posts");
+        
+        // Добавляем разметку: каждый 3-й пост будет высоким (span 2)
+        const masonryPosts = res.data.map((post, index) => ({
