@@ -10,6 +10,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
@@ -69,10 +70,10 @@ const PostModal = ({ open, post, onClose }) => {
           transform: "translate(-50%, -50%)",
           display: "flex",
           // АДАПТИВНАЯ ШИРИНА
-          flexDirection: isMobile ? "column" : "row",
-          width: isMobile ? "95vw" : "1112px",
-          height: isMobile ? "auto" : "722px",
-          maxHeight: isMobile ? "90vh" : "722px",
+          flexDirection: isTablet ? "column" : "row",
+          width: isTablet ? "95vw" : "1112px",
+          height: isTablet ? "auto" : "722px",
+          maxHeight: isTablet ? "90vh" : "722px",
 
           bgcolor: "background.paper",
           outline: "none",
