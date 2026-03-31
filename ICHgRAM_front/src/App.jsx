@@ -17,7 +17,7 @@ import AuthLayout from "./layout/AuthLayout.jsx";
 import ResetPassword from "./pages/auth/ResetPassword.jsx";
 import Home from "./pages/home/Home.jsx";
 import MainLayout from "./layout/MainLayout.jsx";
-import Explorer from "./pages/explorer/Explorer";
+import Explore from "./pages/explorer/Explorer";
 
 import "./App.css";
 
@@ -91,7 +91,7 @@ function App() {
             element={<Navigate to={isAuth ? "/home" : "/login"} replace />}
           />
 
-          <Route path="/explorer" element={<Explorer />} />
+          <Route path="/explore" element={<Explore />} />
 
           {/* Страница 404 */}
           <Route path="*" element={<NotFound />} />
