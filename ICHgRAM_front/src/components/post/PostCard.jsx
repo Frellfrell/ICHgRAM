@@ -56,24 +56,24 @@ const PostCard = ({ post }) => {
 
       {/* 2. Фото поста */}
       <Box
-        component="img"
-        src={postImgSrc}
-        alt="post content"
         sx={{
           width: "100%",
-          height: "auto",
+          aspectRatio: "4 / 5", // фиксированная форма поста
           overflow: "hidden",
-          display: "flex",
           borderRadius: "4px",
-          //display: "block",
-          aspectRatio: "4 / 5",
-          "@media (max-width: 600px)": {
-            aspectRatio: "1 / 1", // Квадратное изображение на мобильных
-          },
-          objectFit: "cover",
         }}
-      />
-
+      >
+        <Box
+          component="img"
+          src={postImgSrc}
+          alt="post"
+          sx={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
+        />
+      </Box>
       {/* 3. Кнопки действий */}
       <Box
         sx={{ display: "flex", alignItems: "center", gap: "8px", ml: "-8px" }}
