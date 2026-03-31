@@ -16,12 +16,12 @@ import LikeButton from "../ui/LikeButton";
 import FollowButton from "../ui/FollowButton";
 import CommentItem from "../comment/CommentItem";
 import axiosInstance from "../../api/axiosInstance";
+import { formatUrl, BE_URL } from "../../ui/helpers";
 
 const PostModal = ({ open, post, onClose }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
 
-  const BE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
   const author = post.author || {};
 
   // 1. Загружаем комментарии при открытии модалки
@@ -54,12 +54,6 @@ const PostModal = ({ open, post, onClose }) => {
   };
 
   if (!post) return null;
-
-  const formatUrl = (url) => {
-    if (!url) return "";
-    if (url.startsWith("data:") || url.startsWith("http")) return url;
-    return `${BE_URL.replace(/\/$/, "")}${url.startsWith("/") ? url : "/" + url}`;
-  };
 
   return (
     <Modal
