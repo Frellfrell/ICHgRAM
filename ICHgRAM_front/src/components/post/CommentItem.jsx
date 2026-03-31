@@ -2,7 +2,7 @@ import React from "react";
 import { Box } from "@mui/material";
 import AppAvatar from "../ui/AppAvatar";
 import AppTypography from "../ui/AppTypography";
-import { formatUrl, timeAgo } from "../../ui/helpers";
+import { formatUrl, timeAgo } from "../ui/helpers";
 
 const CommentItem = ({ comment }) => {
   const author = comment.author || {};
