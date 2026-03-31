@@ -67,13 +67,16 @@ const PostCard = ({ post }) => {
           borderRadius: "4px",
           //display: "block",
           aspectRatio: "4 / 5",
+          "@media (max-width: 600px)": {
+            aspectRatio: "1 / 1", // Квадратное изображение на мобильных
+          },
           objectFit: "cover",
         }}
       />
 
       {/* 3. Кнопки действий */}
       <Box
-        sx={{ display: "flex", alignItems: "center", gap: "4px", ml: "-8px" }}
+        sx={{ display: "flex", alignItems: "center", gap: "8px", ml: "-8px" }}
       >
         <LikeButton postId={post._id} initialLikesCount={post.likesCount} />
 
