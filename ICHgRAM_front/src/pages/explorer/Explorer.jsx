@@ -4,14 +4,10 @@ import MainLayout from "../../layouts/MainLayout";
 import axiosInstance from "../../api/axiosInstance";
 import PostModal from "../../components/posts/PostModal";
 
-
-
 const Explorer = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedPost, setSelectedPost] = useState(null);
-
-
 
   const BE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
@@ -19,13 +15,13 @@ const Explorer = () => {
     const fetchPosts = async () => {
       try {
         const res = await axiosInstance.get("/api/posts");
-        
+
         // Добавляем разметку: каждый 3-й пост будет высоким (span 2)
         const masonryPosts = res.data.map((post, index) => ({
-            ...post,
+          ...post,
           layout: (index + 1) % 3 === 0 ? "vertical" : "square",
         }));
-        
+
         setPosts(masonryPosts);
       } catch (err) {
         console.error("Ошибка при загрузке Explorer:", err);
@@ -42,12 +38,11 @@ const Explorer = () => {
     return `${BE_URL.replace(/\/$/, "")}${url.startsWith("/") ? url : "/" + url}`;
   };
 
-
   return (
     <MainLayout>
       <Box
         sx={{
-            width: "100%",
+          width: "100%",
           maxWidth: "975px",
           minHeight: "1376px",
           pl: "103px",
@@ -60,8 +55,7 @@ const Explorer = () => {
             <CircularProgress />
           </Box>
         ) : (
-
-            <Box
+          <Box
             sx={{
               display: "grid",
               // Сетка 3 колонки по 316px
@@ -82,8 +76,8 @@ const Explorer = () => {
                   overflow: "hidden",
                   backgroundColor: "#f0f0f0",
                 }}
-          >
-            <Box
+              >
+                <Box
                   component="img"
                   src={formatUrl(post.image)}
                   alt="post"
@@ -92,19 +86,18 @@ const Explorer = () => {
                     height: "100%",
                     objectFit: "cover",
                     transition: "transform 0.2s",
-                    "&:hover": { transform: "scale(1.02)" }
+                    "&:hover": { transform: "scale(1.02)" },
                   }}
                 />
-            </Box>
+              </Box>
             ))}
-            </Box>
+          </Box>
         )}
-        </Box>
+      </Box>
 
-        {/* Модалка с постом */}
+      {/* Модалка с постом */}
 
-
-<PostModal
+      <PostModal
         open={!!selectedPost}
         post={selectedPost}
         onClose={() => setSelectedPost(null)}
@@ -113,4 +106,4 @@ const Explorer = () => {
   );
 };
 
-export 
+export default Explorer;
