@@ -86,9 +86,6 @@ const PostCard = ({ post }) => {
 
       {/* 4. Текст поста */}
       <Box sx={{ px: 0.5, mt: -0.5 }}>
-        <AppTypography sx={{ fontWeight: 700, fontSize: "14px", mb: 0.5 }}>
-          {post.likesCount || 0} likes
-        </AppTypography>
         <AppTypography variant="body2">
           <span style={{ fontWeight: 700, marginRight: "8px" }}>
             {author?.username}
