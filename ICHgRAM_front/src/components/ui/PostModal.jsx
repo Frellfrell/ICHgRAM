@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   Modal,
   Box,
@@ -13,6 +14,8 @@ import AppTypography from "../ui/AppTypography";
 import AppAvatar from "../ui/AppAvatar";
 import LikeButton from "../ui/LikeButton";
 import FollowButton from "../ui/FollowButton";
+import CommentItem from "../comment/CommentItem";
+import axiosInstance from "../../api/axiosInstance";
 
 const PostModal = ({ open, post, onClose }) => {
   const [comments, setComments] = useState([]);
@@ -35,6 +38,22 @@ const PostModal = ({ open, post, onClose }) => {
       fetchComments();
     }
   }, [open, post?._id]);
+
+  // 2. Функция отправки нового комментария
+  const handleAddComment = async () => {
+    if (!newComment.trim()) return;
+    try {
+      const res = await axiosInstance.post(`/api/comments/${post._id}`, {
+        text: newComment,
+      });
+      setComments((prev) => [...prev, res.data]); // Добавляем в список локально
+      setNewComment(""); // Очищаем поле
+    } catch (err) {
+      console.error("Ошибка отправки комментария:", err);
+    }
+  };
+
+  if (!post) return null;
 
   const formatUrl = (url) => {
     if (!url) return "";
@@ -167,6 +186,7 @@ const PostModal = ({ open, post, onClose }) => {
               InputProps={{ disableUnderline: true }}
             />
             <Button
+              onClick={handleAddComment}
               sx={{
                 color: "#0095F6",
                 fontWeight: 600,
