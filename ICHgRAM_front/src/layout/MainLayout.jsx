@@ -108,7 +108,13 @@ const MainLayout = ({ children }) => {
         {/* Область контента */}
         <Box
           component="main"
-          sx={{ width: "1195px", flexGrow: 1, pt: "58px", px: "78px" }}
+          sx={{
+            width: "100%",
+            maxWidth: "1195px",
+            flexGrow: 1,
+            pt: "58px",
+            px: { xs: "20px", md: "78px" },
+          }}
         >
           {children}
         </Box>
