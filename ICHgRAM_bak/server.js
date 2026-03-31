@@ -58,7 +58,7 @@ io.use((socket, next) => {
 
 // Маршруты API
 app.use("/api/auth", authRoutes);
-app.use("/api/follow", followRoutes);
+app.use("/api/follows", followRoutes);
 app.use("/api/notifications", notificationRoutes);
 //app.use("/api/messages", messageRoutes);
 app.use("/api/posts", postRoutes);
