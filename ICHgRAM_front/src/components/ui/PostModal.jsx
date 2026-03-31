@@ -45,18 +45,30 @@ const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
   return (
     <Modal open={open} onClose={onClose} sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
       <Box sx={{
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
         display: "flex",
-        width: "90%",
-        maxWidth: "900px",
-        minHeight: "600px",
-        height: "80vh",
+        // АДАПТИВНАЯ ШИРИНА 
+        flexDirection: isMobile ? "column" : "row",
+        width: isMobile ? "95vw" : "1112px",
+        height: isMobile ? "auto" : "722px",
+        maxHeight: isMobile ? "90vh" : "722px",
+        
         bgcolor: "background.paper",
         outline: "none",
-        borderRadius: "4px",
+        borderRadius: "3.39px",
         overflow: "hidden"
       }}>
         {/* ЛЕВАЯ ЧАСТЬ: ИЗОБРАЖЕНИЕ */}
-        <Box sx={{ flex: 1.5, bgcolor: "#000", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <Box sx={{ width: isMobile ? "100%" : "577.6px", 
+          height: isMobile ? "300px" : "722px", // На мобилке ограничиваем высоту фото
+          bgcolor: "#000", 
+          display: "flex", 
+          alignItems: "center", 
+          justifyContent: "center" 
+        }}>
           <img src={formatUrl(post.image)} alt="post" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
         </Box>
 
