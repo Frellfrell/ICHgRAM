@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import MainLayout from "../layout/MainLayout";
 import PhoneFrame from "../assets/foto/phones-frame.png";
@@ -7,6 +7,9 @@ import ScreenShot from "../assets/foto/screenshot1.png";
 
 const NotFound = () => {
   const theme = useTheme();
+
+  const isTablet = useMediaQuery(theme.breakpoints.down("lg")); // Меньше 1200px
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <MainLayout>
