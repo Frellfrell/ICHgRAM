@@ -12,24 +12,26 @@ const NotFound = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
-    <MainLayout>
+    <MainLayout isNotFoundPage={true}>
       <Box
         sx={{
           display: "flex",
-          flexDirection: "row",
-          alignItems: "flex-start",
-          height: "897px",
-          pt: "94px",
-          pl: "41px",
+          flexDirection: isMobile ? "column" : "row",
+          alignItems: isMobile ? "center" : "flex-start",
+          minHeight: isMobile ? "740px" : "897px",
+          pt: { xs: "40px", md: "94px" },
+          pl: { xs: "18px", md: "41px" },
         }}
       >
         {/* ЛЕВАЯ ЧАСТЬ: ИЗОБРАЖЕНИЕ */}
+        {!isMobile && (
         <Box
           sx={{
-            width: "301px",
-            height: "460px",
+            width: isTablet ? "250px" : "301px",
+            height: isTablet ? "380px" : "460px",
             position: "relative",
             flexShrink: 0,
+            transition: "all 0.3s ease", // Для плавности
           }}
         >
           <Box
