@@ -105,6 +105,8 @@ const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
             </Box>
 
 
+
           </Box>
+          <Divider />
     
             </Box>
