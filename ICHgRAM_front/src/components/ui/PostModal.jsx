@@ -9,6 +9,11 @@ import axiosInstance from "../../api/axiosInstance";
 
 
 const PostModal = ({ open, post, onClose }) => {
+const theme = useTheme();
+
+const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+    
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(0);
   const BE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
@@ -56,4 +61,8 @@ const PostModal = ({ open, post, onClose }) => {
         </Box>
 
         {/* ПРАВАЯ ЧАСТЬ: КОНТЕНТ */}
+        <Box sx={{ flex: 1, display: "flex", flexDirection: "column" }}>
+          {/* Header */}
+          <Box sx={{ p: 2, display: "flex", alignItems: "center", gap: 1.5 }}>
+            <Avatar src={formatUrl(author.avatar)} sx={{ width: 32, height: 32 }} />
       </Box>
