@@ -17,7 +17,7 @@ import AuthLayout from "./layout/AuthLayout.jsx";
 import ResetPassword from "./pages/auth/ResetPassword.jsx";
 import Home from "./pages/home/Home.jsx";
 import MainLayout from "./layout/MainLayout.jsx";
-import Explore from "./pages/explorer/Explorer";
+import Explore from "./pages/explore/Explore.jsx";
 
 import "./App.css";
 
