@@ -108,5 +108,26 @@ const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
           </Box>
           <Divider />
+
+
+          {/* Лайки */}
+          <Box sx={{ p: "12px 16px" }}>
+            <Box sx={{ display: "flex", gap: "16px", mb: 1 }}>
+              <IconButton sx={{ p: 0 }}>
+                {isLiked ? <FavoriteIcon sx={{ color: "#ed4956" }} /> : <FavoriteBorderIcon />}
+              </IconButton>
+              <IconButton sx={{ p: 0 }}><ChatBubbleOutlineIcon /></IconButton>
+            </Box>
+            <AppTypography sx={{ fontWeight: 700, fontSize: "14px" }}>{likesCount} likes</AppTypography>
+          </Box>
+
+
+          {/* Поле ввода - скрываем на совсем маленьких экранах, если не хватает места */}
+          {!isMobile && (
+            <>
+            
+            
+            
+            </>
     
             </Box>
