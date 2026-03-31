@@ -83,6 +83,19 @@ const Explorer = () => {
                   backgroundColor: "#f0f0f0",
                 }}
           >
-
+            <Box
+                  component="img"
+                  src={formatUrl(post.image)}
+                  alt="post"
+                  sx={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    transition: "transform 0.2s",
+                    "&:hover": { transform: "scale(1.02)" }
+                  }}
+                />
+            </Box>
+            
 
       </Box>
