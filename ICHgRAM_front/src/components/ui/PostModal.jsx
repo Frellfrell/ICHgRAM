@@ -73,8 +73,23 @@ const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
         </Box>
 
         {/* ПРАВАЯ ЧАСТЬ: КОНТЕНТ */}
-        <Box sx={{ flex: 1, display: "flex", flexDirection: "column" }}>
+        <Box sx={{ flex: 1, display: "flex", flexDirection: "column",
+            borderLeft: isMobile ? "none" : "0.85px solid rgba(219, 219, 219, 1)",
+          overflow: "hidden"
+         }}>
           {/* Header */}
-          <Box sx={{ p: 2, display: "flex", alignItems: "center", gap: 1.5 }}>
+          <Box sx={{ p: "10px 16px", display: "flex", alignItems: "center", gap: "12px" }}>
             <Avatar src={formatUrl(author.avatar)} sx={{ width: 32, height: 32 }} />
-      </Box>
+    <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>{author.username}
+
+    </AppTypography>
+            <IconButton onClick={onClose} sx={{ ml: "auto" }}>
+                <CloseIcon />
+                </IconButton>
+            </Box>
+            <Divider />
+
+            {/* Комментарии */}
+    
+    
+            </Box>
