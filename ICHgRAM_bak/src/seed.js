@@ -72,12 +72,12 @@ const seed = async () => {
       },
       {
         author: sasha._id,
-        image: "/posts/post_mainOt.svg",
+        image: "/posts/exploer_post9.svg",
         caption: "𝘐𝘵’𝘴 𝒈𝒐𝒍𝒅𝒆𝒏, 𝘗𝘰𝘯𝘺𝘣𝘰𝘺!",
       },
       {
         author: sasha._id,
-        image: "/posts/post_mainOt.svg",
+        image: "/posts/exploer_post2.svg",
         caption: "𝘐𝘵’𝘴 𝒈𝒐𝒍𝒅𝒆𝒏, 𝘗𝘰𝘯𝘺𝘣𝘰𝘺!",
       },
       {

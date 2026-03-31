@@ -8,14 +8,14 @@ import { Server } from "socket.io";
 //import { socketHandler } from "./src/socket.js";
 import jwt from "jsonwebtoken";
 import { fileURLToPath } from "url";
-//import followRoutes from "./src/routes/followRoutes.js";
+import followRoutes from "./src/routes/followRoutes.js";
 import notificationRoutes from "./src/routes/notificationRoutes.js";
 //import messageRoutes from "./src/routes/messageRoutes.js";
 import searchRoutes from "./src/routes/searchRoutes.js";
 import postRoutes from "./src/routes/postRoutes.js";
 import userRoutes from "./src/routes/userRoutes.js";
 import likeRoutes from "./src/routes/likeRoutes.js";
-//import commentRoutes from "./src/routes/commentRoutes.js";
+import commentRoutes from "./src/routes/commentRoutes.js";
 import path from "path";
 
 dotenv.config();
@@ -58,14 +58,14 @@ io.use((socket, next) => {
 
 // Маршруты API
 app.use("/api/auth", authRoutes);
-//app.use("/api/follow", followRoutes);
+app.use("/api/follows", followRoutes);
 app.use("/api/notifications", notificationRoutes);
 //app.use("/api/messages", messageRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/search", searchRoutes);
 app.use("/api/likes", likeRoutes);
-//app.use("/api/comments", commentRoutes);
+app.use("/api/comments", commentRoutes);
 
 app.use("/avatar", express.static(path.join(__dirname, "public", "avatar")));
 app.use("/posts", express.static(path.join(__dirname, "public", "posts")));
