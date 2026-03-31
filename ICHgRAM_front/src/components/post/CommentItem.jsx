@@ -5,6 +5,7 @@ import AppTypography from "../ui/AppTypography";
 import { formatUrl, timeAgo } from "../ui/helpers";
 
 const CommentItem = ({ comment }) => {
+  if (!comment) return null;
   const author = comment.author || {};
 
   return (
