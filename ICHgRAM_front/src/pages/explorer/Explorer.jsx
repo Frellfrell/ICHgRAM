@@ -96,6 +96,21 @@ const Explorer = () => {
                   }}
                 />
             </Box>
-            
+            ))}
+            </Box>
+        )}
+        </Box>
 
-      </Box>
+        {/* Модалка с постом */}
+
+
+<PostModal
+        open={!!selectedPost}
+        post={selectedPost}
+        onClose={() => setSelectedPost(null)}
+      />
+    </MainLayout>
+  );
+};
+
+export 
