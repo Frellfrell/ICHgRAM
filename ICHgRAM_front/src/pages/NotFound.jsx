@@ -38,12 +38,13 @@ const NotFound = () => {
             component="img"
             src={ScreenShot}
             sx={{
-              width: "198px",
-              height: "426px",
+              width: "66%",
+              height: "92%",
               position: "absolute",
-              top: "16px",
-              left: "89px",
+              top: "3.5%",
+              left: "29.5%",
               zIndex: 1,
+              objectFit: "cover"
             }}
           />
           {/* Корпус телефона */}
@@ -63,22 +64,27 @@ const NotFound = () => {
         {/* ПРАВАЯ ЧАСТЬ: ТЕКСТОВЫЙ БЛОК */}
         <Box
           sx={{
-            ml: "97px", // Расстояние между фото и текстом
+            ml: isMobile ? 0 : { md: "40px", lg:"97px" }, // Расстояние между фото и текстом
+            mt: isMobile ? "40px" : 0,
             display: "flex",
+            textAlign: isMobile ? "center" : "left",
             flexDirection: "column",
-            justifyContent: "center",
-            height: "460px",
+            //justifyContent: "center",
+            maxWidth: "625px",
+            width: "100%",
+            //height: "460px",
           }}
         >
           <Typography
             variant="h4"
             sx={{
-              width: "625px",
-              height: "57px",
-              fontSize: "36px",
+              //width: "625px",
+             // height: "57px",
+              fontSize: { xs: "24px", sm: "30px", md:"36px" },
               fontWeight: 700,
               lineHeight: "normal",
               color: theme.palette.text.primary,
+              mb: "10px",
             }}
           >
             Oops! Page Not Found (404 Error)
