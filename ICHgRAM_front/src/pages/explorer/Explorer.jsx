@@ -24,7 +24,7 @@ const Explorer = () => {
 
         setPosts(masonryPosts);
       } catch (err) {
-        console.error("Ошибка при загрузке Explorer:", err);
+        console.error("Ошибка при загрузке Explore:", err);
       } finally {
         setLoading(false);
       }
