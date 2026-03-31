@@ -62,9 +62,11 @@ const PostCard = ({ post }) => {
         sx={{
           width: "100%",
           height: "auto",
+          overflow: "hidden",
+          display: "flex",
           borderRadius: "4px",
           //display: "block",
-          aspectRatio: "4 / 5",
+          aspectRatio: "3 / 4",
           objectFit: "cover",
         }}
       />
@@ -81,7 +83,10 @@ const PostCard = ({ post }) => {
       </Box>
 
       {/* 4. Текст поста */}
-      <Box sx={{ mt: 1 }}>
+      <Box sx={{ px: 0.5, mt: -0.5 }}>
+        <AppTypography sx={{ fontWeight: 700, fontSize: "14px", mb: 0.5 }}>
+          {post.likesCount || 0} likes
+        </AppTypography>
         <AppTypography variant="body2">
           <span style={{ fontWeight: 700, marginRight: "8px" }}>
             {author?.username}
