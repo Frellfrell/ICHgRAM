@@ -27,9 +27,14 @@ const CommentItem = ({ comment }) => {
         <AppTypography
           sx={{ fontWeight: 600, fontSize: "14px", lineHeight: "18px" }}
         >
-          {author.username}
+          <span style={{ fontWeight: 700, marginRight: "8px" }}>
+            {author.username}
+          </span>
+          {comment.text}
         </AppTypography>
-        <AppTypography sx={{ fontSize: "14px" }}>{comment.text}</AppTypography>
+        <AppTypography sx={{ fontSize: "14px", color: "#8e8e8e", mt: "4px" }}>
+          {formatCommentDate(comment.createdAt)}
+        </AppTypography>
       </Box>
     </Box>
   );
