@@ -44,7 +44,7 @@ const LikeButton = ({ postId, initialLikesCount, showCount = true }) => {
     >
       <IconButton
         onClick={handleLike}
-        sx={{ p: 0, color: liked ? "#ed4956" : "inherit" }}
+        sx={{ p: "8px", color: liked ? "#ed4956" : "inherit" }}
       >
         {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
       </IconButton>
