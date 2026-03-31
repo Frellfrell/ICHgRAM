@@ -17,15 +17,13 @@ const MainLayout = ({ children }) => {
 
   // Поиск пользователей
   const handleSearchChange = async (query) => {
-    if (!query) return setSearchResults([]);
+    if (!query) {
+      setSearchResults([]);
+      return;
+    }
+
     try {
-      const token = localStorage.getItem("token"); // если есть авторизация
-      const res = await axiosInstance.get(
-        `http://localhost:5000/api/search?query=${query}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        },
-      );
+      const res = await axiosInstance.get(`/api/search?query=${query}`);
       setSearchResults(res.data);
     } catch (err) {
       console.error("Search error:", err);
@@ -33,22 +31,16 @@ const MainLayout = ({ children }) => {
     }
   };
   // Получение уведомлений
-  const fetchNotifications = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const res = await axiosInstance.get(
-        `http://localhost:5000/api/notifications`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        },
-      );
-      setNotifications(res.data);
-    } catch (err) {
-      console.error("Notifications error:", err);
-    }
-  };
-
   useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const res = await axiosInstance.get(`/api/notifications`);
+        setNotifications(res.data);
+      } catch (err) {
+        console.error("Notifications error:", err);
+      }
+    };
+
     // Добавляем условие: запрашиваем только если панель открыта
     if (openNotif === true) {
       fetchNotifications();
@@ -96,19 +88,16 @@ const MainLayout = ({ children }) => {
           notifications={notifications}
         />
 
-        {/* Правая колонка: Контент  */}
-        {/*<Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          width: "1195px", // 1440 - 245
-          minHeight: "100vh",
-        }}
-      >*/}
         {/* Область контента */}
         <Box
           component="main"
-          sx={{ width: "1195px", flexGrow: 1, pt: "58px", px: "78px" }}
+          sx={{
+            width: "100%",
+            maxWidth: "1195px",
+            flexGrow: 1,
+            pt: "58px",
+            px: { xs: "20px", md: "78px" },
+          }}
         >
           {children}
         </Box>

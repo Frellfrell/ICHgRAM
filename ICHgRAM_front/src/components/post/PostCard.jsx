@@ -101,7 +101,8 @@ const PostCard = ({ post }) => {
   return (
     <Box
       sx={{
-        width: "404px",
+        width: "100%",
+        maxWidth: "404px",
         //height: "716.6px",
         //mb: "23px",
         borderBottom: "1px solid",
@@ -149,10 +150,13 @@ const PostCard = ({ post }) => {
         src={postImgSrc}
         alt="post content"
         sx={{
-          width: "403.8px",
-          height: "505.6px",
+          //width: "403.8px",
+          //height: "505.6px",
+          width: "100%",
+          height: "auto",
           borderRadius: "4px",
-          display: "block",
+          //display: "block",
+          aspectRatio: "4 / 5",
           objectFit: "cover",
         }}
       />
