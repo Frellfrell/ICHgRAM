@@ -36,7 +36,9 @@ const PostCard = ({ post }) => {
       }}
     >
       {/* 1. Шапка: AppAvatar, Имя, Время, Follow */}
-      <Box sx={{ display: "flex", alignItems: "center", gap: "12px" }}>
+      <Box
+        sx={{ display: "flex", alignItems: "center", gap: "12px", mb: "12px" }}
+      >
         <AppAvatar src={avatarSrc} alt={author?.username} size={27} />
         <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>
           {author?.username}
@@ -57,12 +59,9 @@ const PostCard = ({ post }) => {
       {/* 2. Фото поста */}
       <Box
         component="img"
-        //src={`${BE_URL}${post.image}`}
         src={postImgSrc}
         alt="post content"
         sx={{
-          //width: "403.8px",
-          //height: "505.6px",
           width: "100%",
           height: "auto",
           borderRadius: "4px",
