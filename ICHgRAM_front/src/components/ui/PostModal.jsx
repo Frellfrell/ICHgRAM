@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import {
   Modal,
   Box,
@@ -7,45 +6,16 @@ import {
   Avatar,
   TextField,
   Button,
-  useMediaQuery,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import AppTypography from "../ui/AppTypography";
-import axiosInstance from "../../api/axiosInstance";
-import { useTheme } from "@mui/material/styles";
+import AppAvatar from "../ui/AppAvatar";
+import LikeButton from "../ui/LikeButton";
+import FollowButton from "../ui/FollowButton";
 
 const PostModal = ({ open, post, onClose }) => {
-  const theme = useTheme();
-
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
-
-  const [isLiked, setIsLiked] = useState(false);
-  const [likesCount, setLikesCount] = useState(0);
   const BE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
-
-  useEffect(() => {
-    if (post) {
-      setLikesCount(post.likesCount || 0);
-      // Если нужно проверить состояние лайка конкретно для юзера:
-      const checkLike = async () => {
-        try {
-          const res = await axiosInstance.get(`/api/likes/${post._id}`);
-          setIsLiked(res.data.liked);
-        } catch (e) {
-          console.error(e);
-        }
-      };
-      checkLike();
-    }
-  }, [post]);
-
-  if (!post) return null;
-
   const author = post.author || {};
 
   const formatUrl = (url) => {
@@ -70,10 +40,10 @@ const PostModal = ({ open, post, onClose }) => {
           transform: "translate(-50%, -50%)",
           display: "flex",
           // АДАПТИВНАЯ ШИРИНА
-          flexDirection: isTablet ? "column" : "row",
-          width: isTablet ? "95vw" : "1112px",
-          height: isTablet ? "auto" : "722px",
-          maxHeight: isTablet ? "90vh" : "722px",
+          flexDirection: { xs: "column", md: "row" },
+          width: { xs: "95vw", md: "1112px" },
+          height: { xs: "auto", md: "722px" },
+          maxHeight: { xs: "90vh", md: "722px" },
 
           bgcolor: "background.paper",
           outline: "none",
@@ -84,8 +54,8 @@ const PostModal = ({ open, post, onClose }) => {
         {/* ЛЕВАЯ ЧАСТЬ: ИЗОБРАЖЕНИЕ */}
         <Box
           sx={{
-            width: isMobile ? "100%" : "577.6px",
-            height: isMobile ? "300px" : "722px", // На мобилке ограничиваем высоту фото
+            width: { xs: "100%", md: "577.6px" },
+            height: { xs: "300px", md: "722px" },
             bgcolor: "#000",
             display: "flex",
             alignItems: "center",
@@ -105,10 +75,7 @@ const PostModal = ({ open, post, onClose }) => {
             flex: 1,
             display: "flex",
             flexDirection: "column",
-            borderLeft: isMobile
-              ? "none"
-              : "0.85px solid rgba(219, 219, 219, 1)",
-            overflow: "hidden",
+            borderLeft: { xs: "none", md: "0.85px solid #dbdbdb" },
           }}
         >
           {/* Header */}
@@ -120,10 +87,7 @@ const PostModal = ({ open, post, onClose }) => {
               gap: "12px",
             }}
           >
-            <Avatar
-              src={formatUrl(author.avatar)}
-              sx={{ width: 32, height: 32 }}
-            />
+            <AppAvatar src={formatUrl(author.avatar)} size={32} />
             <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>
               {author.username}
             </AppTypography>
@@ -139,14 +103,10 @@ const PostModal = ({ open, post, onClose }) => {
               p: 2,
               flexGrow: 1,
               overflowY: "auto",
-              maxHeight: isMobile ? "200px" : "none", // Ограничиваем скролл на мобилке
             }}
           >
             <Box sx={{ display: "flex", gap: "14px", mb: 2 }}>
-              <Avatar
-                src={formatUrl(author.avatar)}
-                sx={{ width: 32, height: 32 }}
-              />
+              <AppAvatar src={formatUrl(author.avatar)} size={32} />
               <AppTypography variant="body2" sx={{ fontSize: "14px" }}>
                 <span style={{ fontWeight: 700, marginRight: "8px" }}>
                   {author.username}
@@ -159,58 +119,42 @@ const PostModal = ({ open, post, onClose }) => {
 
           {/* Лайки */}
           <Box sx={{ p: "12px 16px" }}>
-            <Box sx={{ display: "flex", gap: "16px", mb: 1 }}>
-              <IconButton sx={{ p: 0 }}>
-                {isLiked ? (
-                  <FavoriteIcon sx={{ color: "#ed4956" }} />
-                ) : (
-                  <FavoriteBorderIcon />
-                )}
-              </IconButton>
-              <IconButton sx={{ p: 0 }}>
-                <ChatBubbleOutlineIcon />
-              </IconButton>
-            </Box>
+            <LikeButton postId={post._id} initialLikesCount={post.likesCount} />
             <AppTypography sx={{ fontWeight: 700, fontSize: "14px" }}>
-              {likesCount} likes
+              {new Date(post.createdAt).toLocaleDateString()}
             </AppTypography>
           </Box>
 
-          {/* Поле ввода - скрываем на совсем маленьких экранах, если не хватает места */}
-          {!isMobile && (
-            <>
-              <Divider />
-              <Box
-                sx={{
-                  height: "44.91px",
-                  display: "flex",
-                  alignItems: "center",
-                  px: 2,
-                  gap: 1,
-                }}
-              >
-                <SentimentSatisfiedAltIcon sx={{ color: "#262626" }} />
-                <TextField
-                  placeholder="Add comment"
-                  variant="standard"
-                  fullWidth
-                  InputProps={{
-                    disableUnderline: true,
-                    sx: { fontSize: "14px" },
-                  }}
-                />
-                <Button
-                  sx={{
-                    color: "#0095F6",
-                    fontWeight: 600,
-                    textTransform: "none",
-                  }}
-                >
-                  Send
-                </Button>
-              </Box>
-            </>
-          )}
+          <Divider />
+          <Box
+            sx={{
+              height: "45px",
+              display: "flex",
+              alignItems: "center",
+              px: 2,
+              gap: 1,
+            }}
+          >
+            <SentimentSatisfiedAltIcon sx={{ color: "#262626" }} />
+            <TextField
+              placeholder="Add comment"
+              variant="standard"
+              fullWidth
+              InputProps={{
+                disableUnderline: true,
+                sx: { fontSize: "14px" },
+              }}
+            />
+            <Button
+              sx={{
+                color: "#0095F6",
+                fontWeight: 600,
+                textTransform: "none",
+              }}
+            >
+              Send
+            </Button>
+          </Box>
         </Box>
       </Box>
     </Modal>
