@@ -35,3 +35,9 @@ const LikeButton = ({ postId, initialLikesCount, showCount = true }) => {
       console.error("Ошибка лайка", err);
     }
   };
+
+  return (
+    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+      <IconButton onClick={handleLike} sx={{ p: 0, color: liked ? "#ed4956" : "inherit" }}>
+        {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+      </IconButton>
