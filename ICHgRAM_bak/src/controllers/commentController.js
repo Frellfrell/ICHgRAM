@@ -54,3 +54,11 @@ export const deleteComment = async (req, res) => {
     if (comment.author.toString() !== userId.toString()) {
       return res.status(403).json({ message: "Нет прав на удаление" });
     }
+
+    await comment.deleteOne();
+    res.json({ message: "Комментарий удален" });
+  } catch (error) {
+    console.error("Ошибка при удалении комментария:", error);
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+};
