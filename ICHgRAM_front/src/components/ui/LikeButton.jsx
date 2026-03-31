@@ -57,3 +57,5 @@ const LikeButton = ({ postId, initialLikesCount, showCount = true }) => {
     </Box>
   );
 };
+
+export default LikeButton;
