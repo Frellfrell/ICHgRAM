@@ -28,5 +28,32 @@ const PostModal = ({ open, post, onClose }) => {
   }, [post]);
 
   if (!post) return null;
-  
+
   const author = post.author || {};
+
+  const formatUrl = (url) => {
+    if (!url) return "";
+    if (url.startsWith("data:") || url.startsWith("http")) return url;
+    return `${BE_URL.replace(/\/$/, "")}${url.startsWith("/") ? url : "/" + url}`;
+  };
+
+  return (
+    <Modal open={open} onClose={onClose} sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <Box sx={{
+        display: "flex",
+        width: "90%",
+        maxWidth: "900px",
+        minHeight: "600px",
+        height: "80vh",
+        bgcolor: "background.paper",
+        outline: "none",
+        borderRadius: "4px",
+        overflow: "hidden"
+      }}>
+        {/* ЛЕВАЯ ЧАСТЬ: ИЗОБРАЖЕНИЕ */}
+        <Box sx={{ flex: 1.5, bgcolor: "#000", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <img src={formatUrl(post.image)} alt="post" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+        </Box>
+
+        {/* ПРАВАЯ ЧАСТЬ: КОНТЕНТ */}
+      </Box>
