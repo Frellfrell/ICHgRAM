@@ -91,7 +91,7 @@ function App() {
             element={<Navigate to={isAuth ? "/home" : "/login"} replace />}
           />
 
-          <Route path="/explore" element={<Explorer />} />
+          <Route path="/explorer" element={<Explorer />} />
 
           {/* Страница 404 */}
           <Route path="*" element={<NotFound />} />
