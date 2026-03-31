@@ -7,6 +7,9 @@ import AppAvatar from "../ui/AppAvatar";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useEffect } from "react";
 import axiosInstance from "../../api/axiosInstance";
+import { formatUrl, timeAgo, BE_URL } from "../../ui/helpers";
+import FollowButton from "../ui/FollowButton";
+import LikeButton from "../ui/LikeButton";
 
 // Функция  отображения времени
 const timeAgo = (date) => {
