@@ -23,3 +23,15 @@ const LikeButton = ({ postId, initialLikesCount, showCount = true }) => {
     };
     if (postId) checkStatus();
   }, [postId]);
+
+
+  const handleLike = async (e) => {
+    e.stopPropagation();
+    try {
+        const res = await axiosInstance.post(`/api/likes/${postId}`);
+      setLiked(res.data.liked);
+      setCount(res.data.likesCount);
+    } catch (err) {
+      console.error("Ошибка лайка", err);
+    }
+  };
