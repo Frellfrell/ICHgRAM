@@ -15,7 +15,7 @@ import LikeButton from "../ui/LikeButton";
 import FollowButton from "../ui/FollowButton";
 import CommentItem from "../comment/CommentItem";
 import axiosInstance from "../../api/axiosInstance";
-import { formatUrl } from "../ui/helpers";
+import { formatUrl, timeAgo } from "../ui/helpers";
 
 const PostModal = ({ open, post, onClose }) => {
   const [comments, setComments] = useState([]);
