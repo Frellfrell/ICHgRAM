@@ -207,6 +207,16 @@ const [file, setFile] = useState(null);
             onChange={(e) => setFormData({ ...formData, website: e.target.value })}
             placeholder="http://bit.ly/3rplIbh"
             InputProps={{
+                // Иконка ссылки слева
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LinkIcon sx={{ color: "#0095F6", fontSize: "18px" }} />
+                  </InputAdornment>
+                ),
+                sx: { borderRadius: "8px", height: "40px", bgcolor: "#fff", color: "#0095F6" } // Текст ссылки голубой
+            }}
+            sx={{ mb: "16px" }}
+          />
 
 
 
