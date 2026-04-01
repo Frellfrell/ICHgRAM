@@ -101,8 +101,12 @@ return (
                   <Button
                   onClick={() => navigate("/profile/edit")}
                     sx={{ 
-                      height: "32px", px: 2, bgcolor: "palette.grey.100", color: "#262626", 
-                      textTransform: "none", fontWeight: 600, border: "1px solid #dbdbdb"
+                      height: "32px", px: 2,
+                       bgcolor: "theme.grey.100",
+                        color: "text.primary", 
+                      textTransform: "none",
+                       fontWeight: 600, border: "1px solid #dbdbdb",
+                      "&:hover": { bgcolor: "theme.grey.100" },
                     }}
                   >
                     Edit profile
@@ -111,7 +115,15 @@ return (
                   <IconButton size="small"><SettingsIcon /></IconButton>
                     </Box>
 
-
+                    ) : (
+                // КНОПКИ ДЛЯ ЧУЖОГО ПРОФИЛЯ
+                <Box sx={{ display: "flex", gap: 1 }}>
+                  <FollowButton userId={user._id} initialIsFollowing={user.isFollowed} />
+                  <Button sx={{) : (
+                // КНОПКИ ДЛЯ ЧУЖОГО ПРОФИЛЯ
+                <Box sx={{ display: "flex", gap: 1 }}>
+                  <FollowButton userId={user._id} initialIsFollowing={user.isFollowed} />
+                  <Button sx={{
 
         </Box>
 
