@@ -119,6 +119,19 @@ const [file, setFile] = useState(null);
         flexDirection: "column",
         alignItems: "center" // Центрируем контент внутри
       }}> 
+
+      {/* Заголовок "Edit profile" (слева) */}
+        <Box sx={{ width: "100%",
+             maxWidth: "610px",
+              mb: "32px",
+               alignSelf: "center" }}>
+           <AppTypography variant="h5" sx={{
+             fontWeight: 700,
+              fontSize: "24px",
+               textAlign: "left" }}>
+             Edit profile
+           </AppTypography>
+        </Box>
       
       
       
