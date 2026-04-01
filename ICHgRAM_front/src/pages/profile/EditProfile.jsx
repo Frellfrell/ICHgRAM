@@ -132,6 +132,9 @@ const [file, setFile] = useState(null);
              Edit profile
            </AppTypography>
         </Box>
+
+
+        <form onSubmit={handleSubmit} style={{ width: "100%", maxWidth: "610px" }}>
       
       
       
