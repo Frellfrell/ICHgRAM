@@ -22,3 +22,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 const Profile = () => {
   const { id } = useParams(); // ID из URL (для чужих профилей)
   const navigate = useNavigate();
+
+
+  const [user, setUser] = useState(null);
+  const [posts, setPosts] = useState([]);
