@@ -15,7 +15,8 @@ import LikeButton from "../ui/LikeButton";
 import FollowButton from "../ui/FollowButton";
 import CommentItem from "../comment/CommentItem";
 import axiosInstance from "../../api/axiosInstance";
-import { formatUrl } from "../ui/helpers";
+import { formatUrl, timeAgo } from "../ui/helpers";
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 
 const PostModal = ({ open, post, onClose }) => {
   const [comments, setComments] = useState([]);
@@ -94,7 +95,7 @@ const PostModal = ({ open, post, onClose }) => {
           <img
             src={formatUrl(post.image)}
             alt="post"
-            style={{ width: "100%", height: "100%", objectFit: "contain" }}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />
         </Box>
 
@@ -152,9 +153,35 @@ const PostModal = ({ open, post, onClose }) => {
 
           {/* Лайки */}
           <Box sx={{ p: "12px 16px" }}>
-            <LikeButton postId={post._id} initialLikesCount={post.likesCount} />
-            <AppTypography sx={{ fontWeight: 700, fontSize: "14px" }}>
-              {new Date(post.createdAt).toLocaleDateString()}
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <LikeButton
+                postId={post._id}
+                initialLikesCount={post.likesCount}
+              />
+              <IconButton
+                sx={{
+                  p: 0,
+                  alignSelf: "flex-start",
+                  mt: 1.5,
+                  color: "text.primary",
+                }}
+              >
+                <ChatBubbleOutlineIcon sx={{ fontSize: 24 }} />
+              </IconButton>
+            </Box>
+            <AppTypography
+              sx={{
+                fontWeight: 700,
+                fontSize: "14px",
+                color: "text.secondary",
+              }}
+            >
+              {timeAgo(post.createdAt).replace(" ago", "")}
             </AppTypography>
           </Box>
 

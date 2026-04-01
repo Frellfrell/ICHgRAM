@@ -14,15 +14,15 @@ export const timeAgo = (date) => {
   const seconds = Math.floor((new Date() - new Date(date)) / 1000);
 
   let interval = seconds / 31536000;
-  if (interval > 1) return Math.floor(interval) + " years ago";
+  if (interval > 1) return Math.floor(interval) + " years ";
   interval = seconds / 2592000;
-  if (interval > 1) return Math.floor(interval) + " months ago";
+  if (interval > 1) return Math.floor(interval) + " months ";
   interval = seconds / 604800;
-  if (interval > 1) return Math.floor(interval) + " weeks ago";
+  if (interval > 1) return Math.floor(interval) + " weeks ";
   interval = seconds / 86400;
-  if (interval > 1) return Math.floor(interval) + " days ago";
+  if (interval > 1) return Math.floor(interval) + " days ";
   interval = seconds / 3600;
-  if (interval > 1) return Math.floor(interval) + " hours ago";
+  if (interval > 1) return Math.floor(interval) + " hours ";
 
-  return Math.floor(seconds / 60) + " minutes ago";
+  return Math.floor(seconds / 60) + " minutes ";
 };

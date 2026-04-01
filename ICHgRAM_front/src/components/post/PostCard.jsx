@@ -59,6 +59,7 @@ const PostCard = ({ post }) => {
         sx={{
           width: "100%",
           maxWidth: "404px",
+          height: "504px",
           aspectRatio: {
             xs: "1 / 1",
             sm: "4 / 5",
@@ -81,12 +82,17 @@ const PostCard = ({ post }) => {
         />
       </Box>
       {/* 3. Кнопки действий */}
-      <Box
-        sx={{ display: "flex", alignItems: "center", gap: "8px", ml: "-8px" }}
-      >
+      <Box sx={{ display: "flex", alignItems: "center" }}>
         <LikeButton postId={post._id} initialLikesCount={post.likesCount} />
 
-        <IconButton sx={{ color: "text.primary", p: "8px" }}>
+        <IconButton
+          sx={{
+            color: "text.primary",
+            p: "0",
+            mt: 1.5,
+            alignSelf: "flex-start",
+          }}
+        >
           <ChatBubbleOutlineIcon
             sx={{ fontSize: "24px", color: "text.primary" }}
           />
@@ -94,7 +100,14 @@ const PostCard = ({ post }) => {
       </Box>
 
       {/* 4. Текст поста */}
-      <Box sx={{ px: 0.5, mt: -0.5 }}>
+      <Box
+        sx={{
+          display: "-webkit-box",
+          WebkitLineClamp: 2, // максимум 2 строки
+          WebkitBoxOrient: "vertical",
+          overflow: "hidden",
+        }}
+      >
         <AppTypography variant="body2">
           <span style={{ fontWeight: 700, marginRight: "8px" }}>
             {author?.username}

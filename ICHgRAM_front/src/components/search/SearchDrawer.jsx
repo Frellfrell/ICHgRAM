@@ -28,7 +28,7 @@ export const SearchDrawer = ({ open, onClose, results, onSearchChange }) => {
           width: "100vw",
           height: "calc(100vh - 158px)",
           backgroundColor: "rgba(0,0,0,0.65)",
-          zIndex: 999,
+          zIndex: 1499,
         }}
       />
       {/* Drawer */}
@@ -43,7 +43,7 @@ export const SearchDrawer = ({ open, onClose, results, onSearchChange }) => {
           borderTopRightRadius: "16px",
           borderBottomRightRadius: "16px",
           padding: 2,
-          zIndex: 1000,
+          zIndex: 1500,
           boxShadow: "2px 0 8px rgba(0,0,0,0.2)",
           overflowY: "auto",
         }}
