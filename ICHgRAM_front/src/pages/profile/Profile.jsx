@@ -64,7 +64,16 @@ const Profile = () => {
   }, [id]);
 
   if (loading) return (
-    <MainLayout><Box sx={{ display: 'flex', justifyContent: 'center', mt: 10 }}><CircularProgress /></Box></MainLayout>
+    <MainLayout><Box sx={{ display: 'flex', justifyContent: 'center', mt: 10 }}>
+        <CircularProgress />
+        </Box>
+        </MainLayout>
   );
 
-  if (!user) return <MainLayout><AppTypography sx={{ p: 4 }}>User not found</AppTypography></MainLayout>;
+  if (!user) return 
+  <MainLayout>
+    <AppTypography sx={{ p: 4 }}>
+    User not found
+    </AppTypography>
+    </MainLayout>;
+
