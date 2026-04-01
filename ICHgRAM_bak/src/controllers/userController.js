@@ -49,6 +49,7 @@ export const updateProfile = async (req, res) => {
       user.username = username;
     }
 
+    //Обновление остальных полей
     if (fullName) user.fullName = fullName;
     if (bio) user.bio = bio;
     if (website !== undefined) user.website = website;
