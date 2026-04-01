@@ -155,7 +155,10 @@ const [file, setFile] = useState(null);
               sx={{ width: 60, height: 60, border: "1px solid #dbdbdb" }} 
             />
 
-            
+            <Box sx={{ flex: 1 }}>
+                <AppTypography sx={{ fontWeight: 700, fontSize: "16px" }}>
+                    {formData.username}
+                </AppTypography>
       
       
       
