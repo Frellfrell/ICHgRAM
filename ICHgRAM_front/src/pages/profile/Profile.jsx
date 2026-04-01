@@ -53,4 +53,12 @@ const Profile = () => {
 
         // Если запрашиваю свой профиль, то isMyProfile = true
         setIsMyProfile(!id);
+      } catch (err) {
+        console.error("Error loading profile:", err);
+      } finally {
+        setLoading(false);
       }
+    };
+
+    fetchProfile();
+  }, [id]);
