@@ -53,3 +53,12 @@ const [file, setFile] = useState(null);
     };
     fetchUser();
   }, []);
+
+  // Обработка выбора фото
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      setPreview(URL.createObjectURL(selectedFile));
+    }
+  };
