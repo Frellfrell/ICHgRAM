@@ -42,3 +42,15 @@ const Profile = () => {
         // запрашиваю профиль
         // Если есть id в URL, то запрашиваю чужой профиль, иначе - свой
         const endpoint = id ? `/api/users/${id}` : `/api/users/me`;
+
+        const [userRes, postsRes] = await Promise.all([
+          axiosInstance.get(endpoint),
+          axiosInstance.get(id ? `/api/posts/user/${id}` : `/api/posts/my-posts`)
+        ]);
+
+        setUser(userRes.data);
+        setPosts(postsRes.data);
+
+        // Если запрашиваю свой профиль, то isMyProfile = true
+        setIsMyProfile(!id);
+      }
