@@ -202,7 +202,11 @@ const [file, setFile] = useState(null);
           />
         <AppTypography sx={{ fontWeight: 700, fontSize: "16px", mb: "8px" }}>Website</AppTypography>
           <TextField
-
+            fullWidth
+            value={formData.website}
+            onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+            placeholder="http://bit.ly/3rplIbh"
+            InputProps={{
 
 
 
