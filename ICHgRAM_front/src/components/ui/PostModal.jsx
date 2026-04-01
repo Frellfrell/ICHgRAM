@@ -94,7 +94,7 @@ const PostModal = ({ open, post, onClose }) => {
           <img
             src={formatUrl(post.image)}
             alt="post"
-            style={{ width: "100%", height: "100%", objectFit: "contain" }}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />
         </Box>
 
@@ -153,8 +153,14 @@ const PostModal = ({ open, post, onClose }) => {
           {/* Лайки */}
           <Box sx={{ p: "12px 16px" }}>
             <LikeButton postId={post._id} initialLikesCount={post.likesCount} />
-            <AppTypography sx={{ fontWeight: 700, fontSize: "14px" }}>
-              {new Date(post.createdAt).toLocaleDateString()}
+            <AppTypography
+              sx={{
+                fontWeight: 700,
+                fontSize: "14px",
+                color: "text.secondary",
+              }}
+            >
+              {timeAgo(post.createdAt).replace(" ago", "")}
             </AppTypography>
           </Box>
 
