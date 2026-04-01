@@ -95,6 +95,12 @@ return (
                 {user.username}
               </AppTypography>
 
+        {isMyProfile ? (
+                // КНОПКИ ДЛЯ МОЕГО ПРОФИЛЯ
+                <Box sx={{ display: "flex", gap: 1 }}>
+                  <Button
+
+
 
 
         </Box>
