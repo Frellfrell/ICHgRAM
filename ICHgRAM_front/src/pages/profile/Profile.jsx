@@ -141,6 +141,19 @@ return (
               <AppTypography><b>{user.followingCount || 0}</b> following</AppTypography>
             </Box>
 
+            {/* Bio Row */}
+            <Box>
+              <AppTypography sx={{ fontWeight: 600 }}>{user.fullName || user.username}</AppTypography>
+              <AppTypography sx={{ whiteSpace: "pre-wrap", display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                {user.bio}
+              </AppTypography>
+              {user.website && (
+                <Link href={user.website} target="_blank" sx={{ color: "#00376b", fontWeight: 600, textDecoration: "none", display: "flex", alignItems: "center", gap: 0.5, mt: 1 }}>
+                  <LanguageIcon sx={{ fontSize: 16 }} /> {user.website.replace(/^https?:\/\//, '')}
+                </Link>
+              )}
+            </Box>
+          </Box>
 
         </Box>
 
