@@ -254,19 +254,21 @@ const [file, setFile] = useState(null);
           {/* Кнопка Save */}
           <Box sx={{ display: "flex", justifyContent: "center" }}>
             <AppButton
-      
-      
-      
-      
-      
-      
+            type="submit" 
+            disabled={loading}
+            sx={{ 
+            width: "223px", // Переопределяем ширину (т.к. в компоненте стоит fullWidth)
+            bgcolor: "theme.primary.main",
+            borderRadius: "4px",
+            textTransform: "none",
+            fontWeight: 600,
+            "&:hover": { bgcolor: "theme.primary.dark" }
+            }}
+        >
+            {loading ? <CircularProgress size={20} color="inherit" /> : "Save"}
+        </AppButton>
       
       </Box>
-
-
-
-
-
-
-
+        </form>
+        </Box>
     </MainLayout>
