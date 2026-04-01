@@ -33,6 +33,22 @@ export const updateProfile = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
+    //ПРОВЕРКИ УНИКАЛЬНОСТИ USERNAME
+    // Если пользователь Пытается изменить username (новый не равен старому)
+    if (username && username !== user.username) {
+      // Ищем в базе, нет ли КОВО-ТО ДРУГОГО с таким же username
+      const existingUser = await User.findOne({ username });
+
+      // Если нашли — выдаем ошибку 400 (Bad Request)
+      if (existingUser) {
+        return res.status(400).json({
+          message: `Username '${username}' is already taken. Please choose another.`,
+        });
+      }
+      // Если всё ок, присваиваем новый username
+      user.username = username;
+    }
+
     if (fullName) user.fullName = fullName;
     if (bio) user.bio = bio;
     if (website !== undefined) user.website = website;
