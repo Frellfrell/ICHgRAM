@@ -88,7 +88,12 @@ return (
             <AppAvatar src={formatUrl(user.avatar)} size={150} />
           </Box>
 
-
+        <Box sx={{ flex: 1, pt: { xs: 3, md: 4 }, maxWidth: "621px" }}>
+            {/* Top Row: Username + Buttons */}
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3, flexWrap: "wrap" }}>
+              <AppTypography variant="h5" sx={{ fontWeight: 300, fontSize: "28px" }}>
+                {user.username}
+              </AppTypography>
 
 
 
