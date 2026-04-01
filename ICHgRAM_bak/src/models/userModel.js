@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema(
     fullName: {
       type: String,
       required: true,
-      unique: true,
+      unique: false,
     },
     bio: {
       type: String,
@@ -33,6 +33,13 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 6,
     },
+    website: {
+      type: String,
+      default: "",
+    },
+    // массивы для связи, чтобы быстро считать подписчиков
+    followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    following: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   },
   { timestamps: true },
 );
