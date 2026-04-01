@@ -8,6 +8,16 @@ export const getUserProfile = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
+    //если юзер найден
+    const postsCount = await Post.countDocuments({ author: userId });
+
+    // Возвращаем данные пользователя + статистику
+    res.status(200).json({
+      ...user._doc,
+      postsCount,
+      followersCount: user.followers?.length || 0,
+      followingCount: user.following?.length || 0,
+    });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
   }
