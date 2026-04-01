@@ -59,6 +59,7 @@ const PostCard = ({ post }) => {
         sx={{
           width: "100%",
           maxWidth: "404px",
+          height: "504px",
           aspectRatio: {
             xs: "1 / 1",
             sm: "4 / 5",
