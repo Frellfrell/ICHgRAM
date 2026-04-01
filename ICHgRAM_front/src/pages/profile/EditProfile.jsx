@@ -87,3 +87,12 @@ const [file, setFile] = useState(null);
     } catch (err) {
       console.error("Ошибка обновления:", err);
       // Если бэкенд вернул ошибку уникальности (400)
+      if (err.response && err.response.data && err.response.data.message) {
+        setError(err.response.data.message);
+      } else {
+        setError("Update failed. Please try again.");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
