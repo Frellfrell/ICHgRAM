@@ -9,12 +9,12 @@ import {
   Link,
 } from "@mui/material";
 import MainLayout from "../../layout/MainLayout";
-import AppTypography from "../ui/AppTypography";
-import AppAvatar from "../ui/AppAvatar";
-import FollowButton from "../ui/FollowButton";
+import AppTypography from "../../components/ui/AppTypography";
+import AppAvatar from "../../components/ui/AppAvatar";
+import FollowButton from "../../components/ui/FollowButton";
 import PostModal from "../posts/PostModal";
 import axiosInstance from "../../api/axiosInstance";
-import { formatUrl } from "../ui/helpers";
+import { formatUrl } from "../../components/ui/helpers";
 import LanguageIcon from "@mui/icons-material/Language";
 import SettingsIcon from "@mui/icons-material/Settings";
 
