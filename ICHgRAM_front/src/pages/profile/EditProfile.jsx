@@ -27,3 +27,6 @@ const EditProfile = () => {
     avatar: ""
   });
 
+const [file, setFile] = useState(null);
+  const [preview, setPreview] = useState("");
+  const [error, setError] = useState(""); // Для отображения ошибок (например, не правильное имя )
