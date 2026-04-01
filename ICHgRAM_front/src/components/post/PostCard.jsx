@@ -58,12 +58,14 @@ const PostCard = ({ post }) => {
       <Box
         sx={{
           width: "100%",
+          maxWidth: "404px",
           aspectRatio: {
             xs: "1 / 1",
             sm: "4 / 5",
           },
           overflow: "hidden",
           borderRadius: "4px",
+          position: "relative",
         }}
       >
         <Box
@@ -74,6 +76,7 @@ const PostCard = ({ post }) => {
             width: "100%",
             height: "100%",
             objectFit: "cover",
+            display: "block",
           }}
         />
       </Box>
