@@ -85,7 +85,14 @@ const PostCard = ({ post }) => {
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <LikeButton postId={post._id} initialLikesCount={post.likesCount} />
 
-        <IconButton sx={{ color: "text.primary", p: "0" }}>
+        <IconButton
+          sx={{
+            color: "text.primary",
+            p: "0",
+            mt: 1.5,
+            alignSelf: "flex-start",
+          }}
+        >
           <ChatBubbleOutlineIcon
             sx={{ fontSize: "24px", color: "text.primary" }}
           />
