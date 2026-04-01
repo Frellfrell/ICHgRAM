@@ -8,7 +8,7 @@ import {
   CircularProgress,
   Link,
 } from "@mui/material";
-import MainLayout from "../../layouts/MainLayout";
+import MainLayout from "../../layout/MainLayout";
 import AppTypography from "../ui/AppTypography";
 import AppAvatar from "../ui/AppAvatar";
 import FollowButton from "../ui/FollowButton";
