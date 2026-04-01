@@ -240,7 +240,10 @@ const [file, setFile] = useState(null);
 
 
 
-      
+            {/* Счетчик символов справа */}
+          <AppTypography sx={{ fontSize: "12px", color: "text.secondary", textAlign: "right", mb: "32px" }}>
+            {formData.bio.length} / 150
+          </AppTypography>
       
       
       
