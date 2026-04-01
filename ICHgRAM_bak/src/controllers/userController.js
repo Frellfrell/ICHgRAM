@@ -9,8 +9,14 @@ export const getUserProfile = async (req, res) => {
 
       // Считаем количество постов пользователя
       const postsCount = await Post.countDocuments({ author: userId });
-    }
-    res.status(200).json(user);
+
+   // Возвращаем данные пользователя + статистику
+    res.status(200).json({
+      ...user._doc,
+      postsCount,
+      followersCount: user.followers?.length || 0,
+      followingCount: user.following?.length || 0,
+    });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
   }
@@ -19,7 +25,7 @@ export const getUserProfile = async (req, res) => {
 export const updateProfile = async (req, res) => {
   try {
     const userId = req.user._id;
-    const { fullName, bio } = req.body;
+    const { fullName, bio, website, username } = req.body;
 
     const user = await User.findById(userId);
 
@@ -28,6 +34,8 @@ export const updateProfile = async (req, res) => {
     }
     if (fullName) user.fullName = fullName;
     if (bio) user.bio = bio;
+    if (website) user.website = website;
+    if (username) user.username = username;
 
     if (req.file) {
       const base64Image = req.file.buffer.toString("base64");
