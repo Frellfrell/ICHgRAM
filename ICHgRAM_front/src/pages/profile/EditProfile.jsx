@@ -179,9 +179,20 @@ const [file, setFile] = useState(null);
                 }}
             >
                 New photo
-
+                <input type="file" hidden onChange={handleFileChange} accept="image/*" />
 
             </Button>
+            </Box>
+
+            <AppTypography sx={{ 
+                fontWeight: 700, fontSize: "16px", mb: "8px" }}>
+                    Username
+                    </AppTypography>
+
+                    
+
+
+
       
       
       
