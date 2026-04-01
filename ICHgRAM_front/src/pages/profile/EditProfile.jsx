@@ -62,3 +62,16 @@ const [file, setFile] = useState(null);
       setPreview(URL.createObjectURL(selectedFile));
     }
   };
+
+  // Отправка формы на бэкенд
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(""); // Сбрасываем старую ошибку
+
+    const data = new FormData();
+    data.append("username", formData.username);
+    data.append("fullName", formData.fullName);
+    data.append("bio", formData.bio);
+    data.append("website", formData.website);
+    if (file) data.append("avatar", file);
