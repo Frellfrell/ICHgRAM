@@ -17,4 +17,13 @@ import LinkIcon from "@mui/icons-material/Link";
 
 const EditProfile = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [fetching, setFetching] = useState(true); // Загрузка начальных данных
+  const [formData, setFormData] = useState({
+    username: "",
+    fullName: "",
+    bio: "",
+    website: "",
+    avatar: ""
+  });
 
