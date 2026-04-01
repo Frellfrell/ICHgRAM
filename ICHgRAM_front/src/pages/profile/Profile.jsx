@@ -101,13 +101,14 @@ return (
                   <Button
                   onClick={() => navigate("/profile/edit")}
                     sx={{ 
-                      height: "32px", px: 2, bgcolor: "#efefef", color: "#262626", 
+                      height: "32px", px: 2, bgcolor: "palette.grey.100", color: "#262626", 
                       textTransform: "none", fontWeight: 600, border: "1px solid #dbdbdb"
                     }}
                   >
+                    Edit profile
 
-                    
                   </Button>
+                  <IconButton size="small"><SettingsIcon /></IconButton>
 
 
 
