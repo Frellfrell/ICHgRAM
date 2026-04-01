@@ -32,3 +32,9 @@ const Profile = () => {
   // Состояние модалки
   const [selectedPost, setSelectedPost] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        setLoading(true);
