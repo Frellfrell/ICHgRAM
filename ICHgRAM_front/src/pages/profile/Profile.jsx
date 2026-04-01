@@ -99,6 +99,15 @@ return (
                 // КНОПКИ ДЛЯ МОЕГО ПРОФИЛЯ
                 <Box sx={{ display: "flex", gap: 1 }}>
                   <Button
+                  onClick={() => navigate("/profile/edit")}
+                    sx={{ 
+                      height: "32px", px: 2, bgcolor: "#efefef", color: "#262626", 
+                      textTransform: "none", fontWeight: 600, border: "1px solid #dbdbdb"
+                    }}
+                  >
+
+                    
+                  </Button>
 
 
 
