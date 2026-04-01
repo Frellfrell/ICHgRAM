@@ -18,7 +18,8 @@ const Sidebar = ({ onSearchClick, onNotifClick }) => {
   return (
     <Box
       sx={{
-        position: "fixed",
+        position: "sticky",
+        top: 0,
         width: "245px",
         height: "calc(100vh - 158px)",
         borderRight: `1px solid ${theme.palette.borders}`,
