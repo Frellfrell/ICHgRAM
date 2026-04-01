@@ -75,3 +75,8 @@ const [file, setFile] = useState(null);
     data.append("bio", formData.bio);
     data.append("website", formData.website);
     if (file) data.append("avatar", file);
+
+    try {
+      await axiosInstance.put("/api/users/update", data, {
+        headers: { "Content-Type": "multipart/form-data" }
+      });
