@@ -124,6 +124,11 @@ return (
                 <Box sx={{ display: "flex", gap: 1 }}>
                   <FollowButton userId={user._id} initialIsFollowing={user.isFollowed} />
                   <Button sx={{
+                    height: "32px", px: 3,
+                     bgcolor: "primary", color: "text.primary", 
+                    textTransform: "none", fontWeight: 600 
+                  }}>
+
 
         </Box>
 
