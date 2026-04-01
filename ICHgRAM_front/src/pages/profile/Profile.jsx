@@ -17,3 +17,8 @@ import axiosInstance from "../../api/axiosInstance";
 import { formatUrl } from "../ui/helpers";
 import LanguageIcon from "@mui/icons-material/Language";
 import SettingsIcon from "@mui/icons-material/Settings";
+
+
+const Profile = () => {
+  const { id } = useParams(); // ID из URL (для чужих профилей)
+  const navigate = useNavigate();
