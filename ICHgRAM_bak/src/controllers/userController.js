@@ -6,6 +6,9 @@ export const getUserProfile = async (req, res) => {
     const user = await User.findById(userId).select("-password");
     if (!user) {
       return res.status(404).json({ message: "User not found" });
+
+      // Считаем количество постов пользователя
+      const postsCount = await Post.countDocuments({ author: userId });
     }
     res.status(200).json(user);
   } catch (error) {
