@@ -80,6 +80,7 @@ const Profile = () => {
 
 return (
     <MainLayout>
+        <Box sx={{ maxWidth: "975px", mx: "auto", pt: 4, px: { xs: 2, md: 0 } }}></Box>
 
 
 
@@ -88,6 +89,5 @@ return (
 
 
 
-        
     </MainLayout>
 
