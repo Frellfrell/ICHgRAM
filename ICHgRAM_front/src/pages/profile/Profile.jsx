@@ -157,6 +157,18 @@ return (
 
         </Box>
 
+        {/* POSTS GRID */}
+        <Grid container spacing={1} sx={{ mt: 2 }}>
+          {posts.map((post) => (
+            <Grid item xs={4} key={post._id}>
+
+
+
+
+
+                
+            </Grid>
+
 
 
 
