@@ -30,3 +30,26 @@ const EditProfile = () => {
 const [file, setFile] = useState(null);
   const [preview, setPreview] = useState("");
   const [error, setError] = useState(""); // Для отображения ошибок (например, не правильное имя )
+
+  // екущие данные пользователя
+
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await axiosInstance.get("/api/users/me");
+        setFormData({
+          username: res.data.username || "",
+          fullName: res.data.fullName || "",
+          bio: res.data.bio || "",
+          website: res.data.website || "",
+          avatar: res.data.avatar || ""
+        });
+      } catch (err) {
+        console.error("Ошибка загрузки данных:", err);
+      } finally {
+        setFetching(false);
+      }
+    };
+    fetchUser();
+  }, []);
