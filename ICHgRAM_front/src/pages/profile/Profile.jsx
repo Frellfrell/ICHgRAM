@@ -80,7 +80,19 @@ const Profile = () => {
 
 return (
     <MainLayout>
-        <Box sx={{ maxWidth: "975px", mx: "auto", pt: 4, px: { xs: 2, md: 0 } }}></Box>
+        <Box sx={{ maxWidth: "975px", mx: "auto", pt: 4, px: { xs: 2, md: 0 } }}>
+
+    {/* HEADER */}
+        <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, mb: 6 }}>
+          <Box sx={{ display: "flex", justifyContent: "center", width: { md: "290px" }, ml: { md: "67px" }, mt: { md: "32px" } }}>
+            <AppAvatar src={formatUrl(user.avatar)} size={150} />
+          </Box>
+
+
+
+
+
+        </Box>
 
 
 
