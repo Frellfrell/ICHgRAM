@@ -159,6 +159,29 @@ const [file, setFile] = useState(null);
                 <AppTypography sx={{ fontWeight: 700, fontSize: "16px" }}>
                     {formData.username}
                 </AppTypography>
+
+                <AppTypography sx={{ fontSize: "12px", color: "text.secondary", lineHeight: "1.3" }}>
+                    {formData.fullName}
+                </AppTypography>
+            </Box>
+
+            <Button 
+                component="label" 
+                variant="contained"
+                sx={{ 
+                    textTransform: "none", 
+                    fontWeight: 600, 
+                    bgcolor: "theme.primary.main",
+                    color: "theme.primary.contrastText",
+                    borderRadius: "8px",
+                    px: 2, height: "32px",
+                    "&:hover": { bgcolor: "#1877F2" }
+                }}
+            >
+                New photo
+
+
+            </Button>
       
       
       
