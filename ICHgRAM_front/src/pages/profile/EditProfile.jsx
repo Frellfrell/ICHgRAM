@@ -102,3 +102,15 @@ const [file, setFile] = useState(null);
   <CircularProgress />
   </Box>
   </MainLayout>;
+
+    return (
+    <MainLayout>
+
+
+
+
+
+
+
+        
+    </MainLayout>
