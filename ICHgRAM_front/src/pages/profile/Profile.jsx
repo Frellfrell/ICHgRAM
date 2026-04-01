@@ -78,10 +78,13 @@ const Profile = () => {
       </MainLayout>
     );
 
-  if (!user) return;
-  <MainLayout>
-    <AppTypography sx={{ p: 4 }}>User not found</AppTypography>
-  </MainLayout>;
+  if (!user) {
+    return (
+      <MainLayout>
+        <AppTypography sx={{ p: 4 }}>User not found</AppTypography>
+      </MainLayout>
+    );
+  }
 
   return (
     <MainLayout>
