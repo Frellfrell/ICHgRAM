@@ -136,7 +136,12 @@ const [file, setFile] = useState(null);
 
         <form onSubmit={handleSubmit} style={{ width: "100%", maxWidth: "610px" }}>
       
-      
+      {/* Блок аватара (серый фон, 610x88, radius 20px) */}
+          <Box sx={{ 
+            display: "flex", 
+            alignItems: "center", 
+            gap: "16px", 
+            p: "14px 24px",
       
       
       
