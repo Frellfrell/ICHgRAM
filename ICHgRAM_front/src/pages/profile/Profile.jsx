@@ -161,13 +161,26 @@ return (
         <Grid container spacing={1} sx={{ mt: 2 }}>
           {posts.map((post) => (
             <Grid item xs={4} key={post._id}>
-
-
-
-
-
-                
+            <Box 
+                onClick={() => { setSelectedPost(post); setIsModalOpen(true); }}
+                sx={{ 
+                  position: "relative", pt: "100%", cursor: "pointer", 
+                  "&:hover": { filter: "brightness(0.8)" } 
+                }}
+              >
+                <img 
+                  src={formatUrl(post.image)} 
+                  style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }} 
+                />
+              </Box>
+              </Grid>
+          ))}
             </Grid>
+
+            {selectedPost && (
+          <PostModal open={isModalOpen} post={selectedPost} onClose={() => setIsModalOpen(false)} />
+        )}
+      </Box>
 
 
 
