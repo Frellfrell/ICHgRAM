@@ -40,17 +40,25 @@ const LikeButton = ({ postId, initialLikesCount, showCount = true }) => {
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-start",
+        gap: "12px",
+        mt: 1.5,
       }}
     >
       <IconButton
         onClick={handleLike}
-        sx={{ p: 0, color: liked ? "#ed4956" : "inherit" }}
+        sx={{
+          p: 0,
+          color: liked ? "#ed4956" : "inherit",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
       >
         {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
       </IconButton>
 
       {showCount && (
-        <AppTypography sx={{ fontWeight: 700, fontSize: "14px", mt: 1 }}>
+        <AppTypography sx={{ fontWeight: 700, fontSize: "14px" }}>
           {count} likes
         </AppTypography>
       )}
