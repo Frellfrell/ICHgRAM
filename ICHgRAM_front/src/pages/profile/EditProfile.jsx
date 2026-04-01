@@ -142,6 +142,14 @@ const [file, setFile] = useState(null);
             alignItems: "center", 
             gap: "16px", 
             p: "14px 24px",
+            mb: "24px", 
+            bgcolor: "theme.grey.100",
+            borderRadius: "20px",
+            width: "610px",
+            height: "88px",
+            boxSizing: "border-box"
+             }}
+             >
       
       
       
