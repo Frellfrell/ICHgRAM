@@ -150,6 +150,12 @@ const [file, setFile] = useState(null);
             boxSizing: "border-box"
              }}
              >
+                <Avatar 
+              src={preview || formatUrl(formData.avatar)} 
+              sx={{ width: 60, height: 60, border: "1px solid #dbdbdb" }} 
+            />
+
+            
       
       
       
