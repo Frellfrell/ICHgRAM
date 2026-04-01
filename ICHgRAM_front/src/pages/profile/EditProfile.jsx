@@ -210,14 +210,31 @@ const [file, setFile] = useState(null);
                 // Иконка ссылки слева
                 startAdornment: (
                   <InputAdornment position="start">
-                    <LinkIcon sx={{ color: "#0095F6", fontSize: "18px" }} />
+                    <LinkIcon sx={{ color: "theme.primary.main", fontSize: "18px" }} />
                   </InputAdornment>
                 ),
-                sx: { borderRadius: "8px", height: "40px", bgcolor: "#fff", color: "#0095F6" } // Текст ссылки голубой
+                sx: { borderRadius: "8px",
+                 height: "40px",
+                  bgcolor: "theme.primary.contrastText",
+                 color: "theme.primary.main" } // Текст ссылки голубой
             }}
             sx={{ mb: "16px" }}
           />
 
+            <AppTypography sx={{ fontWeight: 700, fontSize: "16px", mb: "8px" }}>About</AppTypography>
+          <TextField
+            fullWidth
+            multiline
+            rows={4}
+            value={formData.bio}
+            onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
+            placeholder="No bio yet."
+            inputProps={{ maxLength: 150 }} // Ограничение
+            InputProps={{
+                sx: { borderRadius: "8px", bgcolor: "#fff", p: "12px" }
+            }}
+            sx={{ mb: "8px" }}
+          />
 
 
 
