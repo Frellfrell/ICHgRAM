@@ -96,3 +96,9 @@ const [file, setFile] = useState(null);
       setLoading(false);
     }
   };
+  if (fetching) return 
+  <MainLayout>
+    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 10 }}>
+  <CircularProgress />
+  </Box>
+  </MainLayout>;
