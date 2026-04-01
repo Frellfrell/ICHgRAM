@@ -80,3 +80,10 @@ const [file, setFile] = useState(null);
       await axiosInstance.put("/api/users/update", data, {
         headers: { "Content-Type": "multipart/form-data" }
       });
+
+
+      // уведомление об успехе
+      navigate("/profile"); 
+    } catch (err) {
+      console.error("Ошибка обновления:", err);
+      // Если бэкенд вернул ошибку уникальности (400)
