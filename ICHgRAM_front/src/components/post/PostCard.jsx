@@ -1,11 +1,8 @@
 import { Box, IconButton } from "@mui/material";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import AppTypography from "../ui/AppTypography";
 import AppAvatar from "../ui/AppAvatar";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-
-import { formatUrl, timeAgo, BE_URL } from "../../ui/helpers";
+import { formatUrl, timeAgo, BE_URL } from "../ui/helpers";
 import FollowButton from "../ui/FollowButton";
 import LikeButton from "../ui/LikeButton";
 
@@ -26,23 +23,26 @@ const PostCard = ({ post }) => {
         width: "100%",
         maxWidth: "404px",
         //height: "716.6px",
-        //mb: "23px",
+        mb: "23px",
         borderBottom: "1px solid",
         borderColor: "divider",
         pb: 2,
         display: "flex",
         flexDirection: "column",
         position: "relative",
+        mx: "auto",
       }}
     >
       {/* 1. Шапка: AppAvatar, Имя, Время, Follow */}
-      <Box sx={{ display: "flex", alignItems: "center", gap: "12px" }}>
+      <Box
+        sx={{ display: "flex", alignItems: "center", gap: "12px", mb: "12px" }}
+      >
         <AppAvatar src={avatarSrc} alt={author?.username} size={27} />
         <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>
           {author?.username}
         </AppTypography>
         <AppTypography sx={{ color: "text.secondary", fontSize: "14px" }}>
-          • {timeAgo(post.createdAt)}
+          • {timeAgo(post.createdAt)} •
         </AppTypography>
 
         {/* Кнопка Follow (показываем только если не подписан) */}
@@ -56,33 +56,45 @@ const PostCard = ({ post }) => {
 
       {/* 2. Фото поста */}
       <Box
-        component="img"
-        //src={`${BE_URL}${post.image}`}
-        src={postImgSrc}
-        alt="post content"
         sx={{
-          //width: "403.8px",
-          //height: "505.6px",
           width: "100%",
-          height: "auto",
+          maxWidth: "404px",
+          aspectRatio: {
+            xs: "1 / 1",
+            sm: "4 / 5",
+          },
+          overflow: "hidden",
           borderRadius: "4px",
-          //display: "block",
-          aspectRatio: "4 / 5",
-          objectFit: "cover",
+          position: "relative",
         }}
-      />
-
+      >
+        <Box
+          component="img"
+          src={postImgSrc}
+          alt="post"
+          sx={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
+      </Box>
       {/* 3. Кнопки действий */}
-      <Box sx={{ display: "flex", alignItems: "center", gap: 1, mt: 1 }}>
+      <Box
+        sx={{ display: "flex", alignItems: "center", gap: "8px", ml: "-8px" }}
+      >
         <LikeButton postId={post._id} initialLikesCount={post.likesCount} />
 
-        <IconButton sx={{ color: "text.primary", p: 0.5 }}>
-          <ChatBubbleOutlineIcon />
+        <IconButton sx={{ color: "text.primary", p: "8px" }}>
+          <ChatBubbleOutlineIcon
+            sx={{ fontSize: "24px", color: "text.primary" }}
+          />
         </IconButton>
       </Box>
 
       {/* 4. Текст поста */}
-      <Box sx={{ mt: 1 }}>
+      <Box sx={{ px: 0.5, mt: -0.5 }}>
         <AppTypography variant="body2">
           <span style={{ fontWeight: 700, marginRight: "8px" }}>
             {author?.username}

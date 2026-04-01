@@ -4,7 +4,6 @@ import {
   Box,
   IconButton,
   Divider,
-  Avatar,
   TextField,
   Button,
 } from "@mui/material";
@@ -16,13 +15,11 @@ import LikeButton from "../ui/LikeButton";
 import FollowButton from "../ui/FollowButton";
 import CommentItem from "../comment/CommentItem";
 import axiosInstance from "../../api/axiosInstance";
-import { formatUrl } from "../../ui/helpers";
+import { formatUrl } from "../ui/helpers";
 
 const PostModal = ({ open, post, onClose }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
-
-  const author = post.author || {};
 
   // 1. Загружаем комментарии при открытии модалки
   useEffect(() => {
@@ -52,8 +49,9 @@ const PostModal = ({ open, post, onClose }) => {
       console.error("Ошибка отправки комментария:", err);
     }
   };
-
   if (!post) return null;
+
+  const author = post.author || {};
 
   return (
     <Modal

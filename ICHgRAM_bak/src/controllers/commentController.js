@@ -38,3 +38,27 @@ export const getPostComments = async (req, res) => {
     res.status(500).json({ message: "Ошибка сервера" });
   }
 };
+
+export const deleteComment = async (req, res) => {
+  try {
+    const { commentId } = req.params;
+    const userId = req.user._id;
+
+    const comment = await Comment.findById(commentId);
+
+    if (!comment) {
+      return res.status(404).json({ message: "Комментарий не найден" });
+    }
+
+    // Проверяем, что удаляет именно автор комментария
+    if (comment.author.toString() !== userId.toString()) {
+      return res.status(403).json({ message: "Нет прав на удаление" });
+    }
+
+    await comment.deleteOne();
+    res.json({ message: "Комментарий удален" });
+  } catch (error) {
+    console.error("Ошибка при удалении комментария:", error);
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+};

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Box, CircularProgress } from "@mui/material";
-import MainLayout from "../../layouts/MainLayout";
+import MainLayout from "../../layout/MainLayout";
 import axiosInstance from "../../api/axiosInstance";
-import PostModal from "../../components/posts/PostModal";
+import PostModal from "../../components/ui/PostModal";
 
-const Explorer = () => {
+const Explore = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedPost, setSelectedPost] = useState(null);
@@ -24,7 +24,7 @@ const Explorer = () => {
 
         setPosts(masonryPosts);
       } catch (err) {
-        console.error("Ошибка при загрузке Explorer:", err);
+        console.error("Ошибка при загрузке Explore:", err);
       } finally {
         setLoading(false);
       }
@@ -45,7 +45,7 @@ const Explorer = () => {
           width: "100%",
           maxWidth: "975px",
           minHeight: "1376px",
-          pl: { xs: 2, md: "103px" },
+          //pl: { xs: 2, md: "103px" },
           pt: "41px",
           mx: "auto",
           boxSizing: "border-box",
@@ -107,4 +107,4 @@ const Explorer = () => {
   );
 };
 
-export default Explorer;
+export default Explore;

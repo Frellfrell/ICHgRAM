@@ -38,7 +38,7 @@ const FollowButton = ({ userId, initialIsFollowing }) => {
         "&:hover": { backgroundColor: "transparent", opacity: 0.7 },
       }}
     >
-      {isFollowing ? "Following" : "Follow"}
+      {isFollowing ? "Following" : "follow"}
     </Button>
   );
 };
