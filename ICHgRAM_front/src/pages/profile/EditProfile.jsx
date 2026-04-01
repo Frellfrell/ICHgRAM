@@ -189,7 +189,20 @@ const [file, setFile] = useState(null);
                     Username
                     </AppTypography>
 
-                    
+                <TextField
+            fullWidth
+            value={formData.username}
+            onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+            error={!!error && error.includes("username")} // Подсветим красным, если ошибка в юзернейме
+            helperText={error && error.includes("username") ? error : ""}
+            InputProps={{
+                sx: { borderRadius: "8px", height: "40px", bgcolor: "#fff" }
+            }}
+            sx={{ mb: "16px" }}
+          />
+
+          
+              
 
 
 
