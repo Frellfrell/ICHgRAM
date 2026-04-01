@@ -62,3 +62,7 @@ const Profile = () => {
 
     fetchProfile();
   }, [id]);
+
+  if (loading) return (
+    <MainLayout><Box sx={{ display: 'flex', justifyContent: 'center', mt: 10 }}><CircularProgress /></Box></MainLayout>
+  );
