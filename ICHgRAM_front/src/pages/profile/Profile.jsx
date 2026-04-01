@@ -134,6 +134,14 @@ return (
                 )}
                 </Box>
 
+                {/* Stats Row */}
+                <Box sx={{ display: "flex", gap: 5, mb: 3 }}>
+              <AppTypography><b>{posts.length}</b> posts</AppTypography>
+              <AppTypography><b>{user.followersCount || 0}</b> followers</AppTypography>
+              <AppTypography><b>{user.followingCount || 0}</b> following</AppTypography>
+            </Box>
+
+
         </Box>
 
 
