@@ -19,6 +19,7 @@ import Home from "./pages/home/Home.jsx";
 import MainLayout from "./layout/MainLayout.jsx";
 import Explore from "./pages/explore/Explore.jsx";
 import Profile from "./pages/profile/Profile.jsx";
+import EditProfile from "./pages/profile/EditProfile.jsx";
 
 import "./App.css";
 
@@ -94,9 +95,9 @@ function App() {
 
           <Route path="/explore" element={<Explore />} />
 
-          <Route path="/profile/:userId" element={<Profile />} />
-          <Route path="/profile" element={<Profile />} />
           <Route path="/profile/edit" element={<EditProfile />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:userId" element={<Profile />} />
 
           {/* Страница 404 */}
           <Route path="*" element={<NotFound />} />
