@@ -77,3 +77,17 @@ const Profile = () => {
     </AppTypography>
     </MainLayout>;
 
+
+return (
+    <MainLayout>
+
+
+
+
+
+
+
+
+        
+    </MainLayout>
+
