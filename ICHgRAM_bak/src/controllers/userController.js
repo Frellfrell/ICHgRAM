@@ -58,6 +58,8 @@ export const updateProfile = async (req, res) => {
       const base64Image = req.file.buffer.toString("base64");
       user.avatar = `data:${req.file.mimetype};base64,${base64Image}`;
     }
+
+    // Сохраняем обновленного пользователя (Mongoose всё равно перепроверит unique)
     await user.save();
     res.json({
       message: "Profile updated successfully",
