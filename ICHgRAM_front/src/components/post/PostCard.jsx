@@ -82,7 +82,7 @@ const PostCard = ({ post }) => {
         />
       </Box>
       {/* 3. Кнопки действий */}
-      <Box sx={{ display: "flex", alignItems: "center", gap: "8px" }}>
+      <Box sx={{ display: "flex", alignItems: "center" }}>
         <LikeButton postId={post._id} initialLikesCount={post.likesCount} />
 
         <IconButton sx={{ color: "text.primary", p: "0" }}>
