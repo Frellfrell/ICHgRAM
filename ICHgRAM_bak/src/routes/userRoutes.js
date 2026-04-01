@@ -8,6 +8,12 @@ import {
 
 const router = express.Router();
 
+// Получить МОЙ профиль (по токену)
+router.get("/me", authMiddleware, (req, res) => {
+  req.params.userId = req.user._id;
+  getUserProfile(req, res);
+});
+
 // Получить профиль пользователя по ID
 router.get("/:userId", authMiddleware, getUserProfile);
 
