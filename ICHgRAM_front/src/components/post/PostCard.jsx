@@ -93,7 +93,14 @@ const PostCard = ({ post }) => {
       </Box>
 
       {/* 4. Текст поста */}
-      <Box sx={{ px: 0.5, mt: -0.5 }}>
+      <Box
+        sx={{
+          display: "-webkit-box",
+          WebkitLineClamp: 2, // максимум 2 строки
+          WebkitBoxOrient: "vertical",
+          overflow: "hidden",
+        }}
+      >
         <AppTypography variant="body2">
           <span style={{ fontWeight: 700, marginRight: "8px" }}>
             {author?.username}
