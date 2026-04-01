@@ -8,11 +8,11 @@ import {
   CircularProgress,
 } from "@mui/material";
 import MainLayout from "../../layout/MainLayout";
-import AppTypography from "../ui/AppTypography";
+import AppTypography from "../../components/ui/AppTypography";
 import axiosInstance from "../../api/axiosInstance";
-import { formatUrl } from "../ui/helpers";
+import { formatUrl } from "../../components/ui/helpers";
 import { useNavigate } from "react-router-dom";
-import AppButton from "../ui/AppButton";
+import AppButton from "../../components/ui/AppButton";
 import LinkIcon from "@mui/icons-material/Link";
 
 const EditProfile = () => {
