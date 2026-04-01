@@ -15,7 +15,6 @@ import { useNavigate } from "react-router-dom";
 import AppButton from "../ui/AppButton";
 import LinkIcon from "@mui/icons-material/Link";
 
-
 const EditProfile = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -25,15 +24,14 @@ const EditProfile = () => {
     fullName: "",
     bio: "",
     website: "",
-    avatar: ""
+    avatar: "",
   });
 
-const [file, setFile] = useState(null);
+  const [file, setFile] = useState(null);
   const [preview, setPreview] = useState("");
   const [error, setError] = useState(""); // Для отображения ошибок (например, не правильное имя )
 
   // екущие данные пользователя
-
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -44,7 +42,7 @@ const [file, setFile] = useState(null);
           fullName: res.data.fullName || "",
           bio: res.data.bio || "",
           website: res.data.website || "",
-          avatar: res.data.avatar || ""
+          avatar: res.data.avatar || "",
         });
       } catch (err) {
         console.error("Ошибка загрузки данных:", err);
@@ -79,12 +77,11 @@ const [file, setFile] = useState(null);
 
     try {
       await axiosInstance.put("/api/users/update", data, {
-        headers: { "Content-Type": "multipart/form-data" }
+        headers: { "Content-Type": "multipart/form-data" },
       });
 
-
       // уведомление об успехе
-      navigate("/profile"); 
+      navigate("/profile");
     } catch (err) {
       console.error("Ошибка обновления:", err);
       // Если бэкенд вернул ошибку уникальности (400)
@@ -97,134 +94,171 @@ const [file, setFile] = useState(null);
       setLoading(false);
     }
   };
-  if (fetching) return 
+  if (fetching) return;
   <MainLayout>
-    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 10 }}>
-  <CircularProgress />
-  </Box>
+    <Box sx={{ display: "flex", justifyContent: "center", mt: 10 }}>
+      <CircularProgress />
+    </Box>
   </MainLayout>;
 
-    return (
+  return (
     <MainLayout>
-            <Box sx={{ 
-        maxWidth: "944px", 
-        width: "100%",
-        minHeight: "740px", 
-        mx: "auto", 
-        mt: "32px",
-        mb: "32px",
-        bgcolor: "background.paper",
-        borderRadius: "8px",
-        p: "24px", // Внутренний паддинг
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center" // Центрируем контент внутри
-      }}> 
-
-      {/* Заголовок "Edit profile" (слева) */}
-        <Box sx={{ width: "100%",
-             maxWidth: "610px",
-              mb: "32px",
-               alignSelf: "center" }}>
-           <AppTypography variant="h5" sx={{
-             fontWeight: 700,
+      <Box
+        sx={{
+          maxWidth: "944px",
+          width: "100%",
+          minHeight: "740px",
+          mx: "auto",
+          mt: "32px",
+          mb: "32px",
+          bgcolor: "background.paper",
+          borderRadius: "8px",
+          p: "24px", // Внутренний паддинг
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center", // Центрируем контент внутри
+        }}
+      >
+        {/* Заголовок "Edit profile" (слева) */}
+        <Box
+          sx={{
+            width: "100%",
+            maxWidth: "610px",
+            mb: "32px",
+            alignSelf: "center",
+          }}
+        >
+          <AppTypography
+            variant="h5"
+            sx={{
+              fontWeight: 700,
               fontSize: "24px",
-               textAlign: "left" }}>
-             Edit profile
-           </AppTypography>
+              textAlign: "left",
+            }}
+          >
+            Edit profile
+          </AppTypography>
         </Box>
 
-
-        <form onSubmit={handleSubmit} style={{ width: "100%", maxWidth: "610px" }}>
-      
-      {/* Блок аватара (серый фон, 610x88, radius 20px) */}
-          <Box sx={{ 
-            display: "flex", 
-            alignItems: "center", 
-            gap: "16px", 
-            p: "14px 24px",
-            mb: "24px", 
-            bgcolor: "theme.grey.100",
-            borderRadius: "20px",
-            width: "610px",
-            height: "88px",
-            boxSizing: "border-box"
-             }}
-             >
-                <Avatar 
-              src={preview || formatUrl(formData.avatar)} 
-              sx={{ width: 60, height: 60, border: "1px solid #dbdbdb" }} 
+        <form
+          onSubmit={handleSubmit}
+          style={{ width: "100%", maxWidth: "610px" }}
+        >
+          {/* Блок аватара (серый фон, 610x88, radius 20px) */}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: "16px",
+              p: "14px 24px",
+              mb: "24px",
+              bgcolor: "theme.grey.100",
+              borderRadius: "20px",
+              width: "610px",
+              height: "88px",
+              boxSizing: "border-box",
+            }}
+          >
+            <Avatar
+              src={preview || formatUrl(formData.avatar)}
+              sx={{ width: 60, height: 60, border: "1px solid #dbdbdb" }}
             />
 
             <Box sx={{ flex: 1 }}>
-                <AppTypography sx={{ fontWeight: 700, fontSize: "16px" }}>
-                    {formData.username}
-                </AppTypography>
+              <AppTypography sx={{ fontWeight: 700, fontSize: "16px" }}>
+                {formData.username}
+              </AppTypography>
 
-                <AppTypography sx={{ fontSize: "12px", color: "text.secondary", lineHeight: "1.3" }}>
-                    {formData.fullName}
-                </AppTypography>
-            </Box>
-
-            <Button 
-                component="label" 
-                variant="contained"
-                sx={{ 
-                    textTransform: "none", 
-                    fontWeight: 600, 
-                    bgcolor: "theme.primary.main",
-                    color: "theme.primary.contrastText",
-                    borderRadius: "8px",
-                    px: 2, height: "32px",
-                    "&:hover": { bgcolor: "#1877F2" }
+              <AppTypography
+                sx={{
+                  fontSize: "12px",
+                  color: "text.secondary",
+                  lineHeight: "1.3",
                 }}
-            >
-                New photo
-                <input type="file" hidden onChange={handleFileChange} accept="image/*" />
-
-            </Button>
+              >
+                {formData.fullName}
+              </AppTypography>
             </Box>
 
-            <AppTypography sx={{ 
-                fontWeight: 700, fontSize: "16px", mb: "8px" }}>
-                    Username
-                    </AppTypography>
+            <Button
+              component="label"
+              variant="contained"
+              sx={{
+                textTransform: "none",
+                fontWeight: 600,
+                bgcolor: "theme.primary.main",
+                color: "theme.primary.contrastText",
+                borderRadius: "8px",
+                px: 2,
+                height: "32px",
+                "&:hover": { bgcolor: "#1877F2" },
+              }}
+            >
+              New photo
+              <input
+                type="file"
+                hidden
+                onChange={handleFileChange}
+                accept="image/*"
+              />
+            </Button>
+          </Box>
 
-                <TextField
+          <AppTypography
+            sx={{
+              fontWeight: 700,
+              fontSize: "16px",
+              mb: "8px",
+            }}
+          >
+            Username
+          </AppTypography>
+
+          <TextField
             fullWidth
             value={formData.username}
-            onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, username: e.target.value })
+            }
             error={!!error && error.includes("username")} // Подсветим красным, если ошибка в юзернейме
             helperText={error && error.includes("username") ? error : ""}
             InputProps={{
-                sx: { borderRadius: "8px", height: "40px", bgcolor: "#fff" }
+              sx: { borderRadius: "8px", height: "40px", bgcolor: "#fff" },
             }}
             sx={{ mb: "16px" }}
           />
-        <AppTypography sx={{ fontWeight: 700, fontSize: "16px", mb: "8px" }}>Website</AppTypography>
+          <AppTypography sx={{ fontWeight: 700, fontSize: "16px", mb: "8px" }}>
+            Website
+          </AppTypography>
           <TextField
             fullWidth
             value={formData.website}
-            onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, website: e.target.value })
+            }
             placeholder="http://bit.ly/3rplIbh"
             InputProps={{
-                // Иконка ссылки слева
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <LinkIcon sx={{ color: "theme.primary.main", fontSize: "18px" }} />
-                  </InputAdornment>
-                ),
-                sx: { borderRadius: "8px",
-                 height: "40px",
-                  bgcolor: "theme.primary.contrastText",
-                 color: "theme.primary.main" } // Текст ссылки голубой
+              // Иконка ссылки слева
+              startAdornment: (
+                <InputAdornment position="start">
+                  <LinkIcon
+                    sx={{ color: "theme.primary.main", fontSize: "18px" }}
+                  />
+                </InputAdornment>
+              ),
+              sx: {
+                borderRadius: "8px",
+                height: "40px",
+                bgcolor: "theme.primary.contrastText",
+                color: "theme.primary.main",
+              }, // Текст ссылки голубой
             }}
             sx={{ mb: "16px" }}
           />
 
-            <AppTypography sx={{ fontWeight: 700, fontSize: "16px", mb: "8px" }}>
+          <AppTypography sx={{ fontWeight: 700, fontSize: "16px", mb: "8px" }}>
             About
-            </AppTypography>
+          </AppTypography>
           <TextField
             fullWidth
             multiline
@@ -234,41 +268,57 @@ const [file, setFile] = useState(null);
             placeholder="No bio yet."
             inputProps={{ maxLength: 150 }} // Ограничение
             InputProps={{
-                sx: { borderRadius: "8px", bgcolor: "#fff", p: "12px" }
+              sx: { borderRadius: "8px", bgcolor: "#fff", p: "12px" },
             }}
             sx={{ mb: "8px" }}
           />
 
-
-
-            {/* Счетчик символов справа */}
-          <AppTypography sx={{ fontSize: "12px", color: "text.secondary", textAlign: "right", mb: "32px" }}>
+          {/* Счетчик символов справа */}
+          <AppTypography
+            sx={{
+              fontSize: "12px",
+              color: "text.secondary",
+              textAlign: "right",
+              mb: "32px",
+            }}
+          >
             {formData.bio.length} / 150
           </AppTypography>
 
           {/* Общая ошибка, если она есть */}
           {error && !error.includes("username") && (
-              <AppTypography sx={{ color: "error.main", textAlign: "center", mb: 2 }}>{error}</AppTypography>
+            <AppTypography
+              sx={{ color: "error.main", textAlign: "center", mb: 2 }}
+            >
+              {error}
+            </AppTypography>
           )}
 
           {/* Кнопка Save */}
           <Box sx={{ display: "flex", justifyContent: "center" }}>
             <AppButton
-            type="submit" 
-            disabled={loading}
-            sx={{ 
-            width: "223px", // Переопределяем ширину (т.к. в компоненте стоит fullWidth)
-            bgcolor: "theme.primary.main",
-            borderRadius: "4px",
-            textTransform: "none",
-            fontWeight: 600,
-            "&:hover": { bgcolor: "theme.primary.dark" }
-            }}
-        >
-            {loading ? <CircularProgress size={20} color="inherit" /> : "Save"}
-        </AppButton>
-      
-      </Box>
+              type="submit"
+              disabled={loading}
+              sx={{
+                width: "223px", // Переопределяем ширину (т.к. в компоненте стоит fullWidth)
+                bgcolor: "theme.primary.main",
+                borderRadius: "4px",
+                textTransform: "none",
+                fontWeight: 600,
+                "&:hover": { bgcolor: "theme.primary.dark" },
+              }}
+            >
+              {loading ? (
+                <CircularProgress size={20} color="inherit" />
+              ) : (
+                "Save"
+              )}
+            </AppButton>
+          </Box>
         </form>
-        </Box>
+      </Box>
     </MainLayout>
+  );
+};
+
+export default EditProfile;
