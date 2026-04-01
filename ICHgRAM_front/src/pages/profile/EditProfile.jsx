@@ -105,6 +105,31 @@ const [file, setFile] = useState(null);
 
     return (
     <MainLayout>
+            <Box sx={{ 
+        maxWidth: "944px", 
+        width: "100%",
+        minHeight: "740px", 
+        mx: "auto", 
+        mt: "32px",
+        mb: "32px",
+        bgcolor: "background.paper",
+        borderRadius: "8px",
+        p: "24px", // Внутренний паддинг
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center" // Центрируем контент внутри
+      }}> 
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </Box>
 
 
 
@@ -112,5 +137,4 @@ const [file, setFile] = useState(null);
 
 
 
-        
     </MainLayout>
