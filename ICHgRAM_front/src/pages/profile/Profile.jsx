@@ -19,7 +19,7 @@ import LanguageIcon from "@mui/icons-material/Language";
 import SettingsIcon from "@mui/icons-material/Settings";
 
 const Profile = () => {
-  const { id } = useParams(); // ID из URL (для чужих профилей)
+  const { userId } = useParams(); // ID из URL (для чужих профилей)
   const navigate = useNavigate();
 
   const [user, setUser] = useState(null);
@@ -33,34 +33,41 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchProfile = async () => {
+      setLoading(true);
       try {
-        setLoading(true);
-
         // запрашиваю профиль
-        // Если есть id в URL, то запрашиваю чужой профиль, иначе - свой
-        const endpoint = id ? `/api/users/${id}` : `/api/users/me`;
+        // Если в URL нет userId, значит мы идем на /profile (это "Я")
+        const targetUrl = userId ? `/api/users/${userId}` : `/api/users/me`;
 
-        const [userRes, postsRes] = await Promise.all([
-          axiosInstance.get(endpoint),
-          axiosInstance.get(
-            id ? `/api/posts/user/${id}` : `/api/posts/my-posts`,
-          ),
-        ]);
-
+        const userRes = await axiosInstance.get(targetUrl);
         setUser(userRes.data);
-        setPosts(postsRes.data);
 
-        // Если запрашиваю свой профиль, то isMyProfile = true
-        setIsMyProfile(!id);
-      } catch (err) {
-        console.error("Error loading profile:", err);
+        // 2. Проверяем, мой ли это профиль (для отображения кнопки Edit)
+        // Если мы запрашивали /me или если ID из базы совпал с ID в URL
+        if (!userId || userRes.data._id === localStorage.getItem("userId")) {
+          setIsMyProfile(true);
+        } else {
+          setIsMyProfile(false);
+        }
+
+        // 3. Загружаем посты этого пользователя по его ID
+        const postsRes = await axiosInstance.get(
+          `/api/posts/user/${userRes.data._id}`,
+        );
+        setPosts(postsRes.data);
+      } catch (error) {
+        console.error("Error loading profile:", error);
+        // Если ошибка 401 на странице /profile — значит юзер не в сети
+        if (!userId && error.response?.status === 401) {
+          navigate("/login");
+        }
       } finally {
         setLoading(false);
       }
     };
 
     fetchProfile();
-  }, [id]);
+  }, [userId, navigate]);
 
   if (loading)
     return (
