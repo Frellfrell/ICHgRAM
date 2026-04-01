@@ -130,7 +130,9 @@ return (
                   }}>
                     Message
                   </Button>
-                  
+                </Box>
+                )}
+                </Box>
 
         </Box>
 
