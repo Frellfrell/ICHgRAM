@@ -27,6 +27,7 @@ const Sidebar = ({ onSearchClick, onNotifClick }) => {
         paddingRight: "24px",
         display: "flex",
         flexDirection: "column",
+        zIndex: 1600,
       }}
     >
       {/* Logo */}
