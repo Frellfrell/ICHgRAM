@@ -244,6 +244,15 @@ const [file, setFile] = useState(null);
           <AppTypography sx={{ fontSize: "12px", color: "text.secondary", textAlign: "right", mb: "32px" }}>
             {formData.bio.length} / 150
           </AppTypography>
+
+          {/* Общая ошибка, если она есть */}
+          {error && !error.includes("username") && (
+              <AppTypography sx={{ color: "error.main", textAlign: "center", mb: 2 }}>{error}</AppTypography>
+          )}
+
+          {/* Кнопка Save */}
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <AppButton
       
       
       
