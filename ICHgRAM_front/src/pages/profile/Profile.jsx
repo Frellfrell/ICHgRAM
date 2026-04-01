@@ -26,3 +26,5 @@ const Profile = () => {
 
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [isMyProfile, setIsMyProfile] = useState(false);
