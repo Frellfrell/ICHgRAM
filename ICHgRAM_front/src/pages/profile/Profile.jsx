@@ -38,3 +38,7 @@ const Profile = () => {
     const fetchProfile = async () => {
       try {
         setLoading(true);
+
+        // запрашиваю профиль
+        // Если есть id в URL, то запрашиваю чужой профиль, иначе - свой
+        const endpoint = id ? `/api/users/${id}` : `/api/users/me`;
