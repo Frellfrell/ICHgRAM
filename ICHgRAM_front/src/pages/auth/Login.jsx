@@ -43,7 +43,7 @@ const Login = () => {
       console.log("Вход выполнен успешно:", result);
 
       // После логина перенаправляем на главную страницу (ленту)
-      navigate("/");
+      navigate("/home");
     } catch (err) {
       // Если пароль неверный или пользователя нет
       setError(err.message || "Invalid username or password");

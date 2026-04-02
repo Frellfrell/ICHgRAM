@@ -37,8 +37,8 @@ const Profile = () => {
       try {
         // запрашиваю профиль
         // Если в URL нет userId, значит мы идем на /profile (это "Я")
-        //const targetUrl = userId ? `/api/users/${userId}` : `/api/users/me`;
-        const targetUrl = `/api/users/${userId}`;
+        const targetUrl = userId ? `/api/users/${userId}` : `/api/users/me`;
+        //const targetUrl = `/api/users/${userId}`;
 
         const userRes = await axiosInstance.get(targetUrl);
         setUser(userRes.data);
@@ -58,10 +58,7 @@ const Profile = () => {
         setPosts(postsRes.data);
       } catch (error) {
         console.error("Error loading profile:", error);
-        // Если ошибка 401 на странице /profile — значит юзер не в сети
-        //if (!userId && error.response?.status === 401) {
-        //navigate("/login");
-        //}
+        // Если ошибка 404 (пользователь не найден), перенаправляем на NotFound
       } finally {
         setLoading(false);
       }

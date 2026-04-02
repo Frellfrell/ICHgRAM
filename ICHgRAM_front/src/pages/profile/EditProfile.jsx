@@ -76,7 +76,7 @@ const EditProfile = () => {
     if (file) data.append("avatar", file);
 
     try {
-      await axiosInstance.put("/api/users/update", data, {
+      await axiosInstance.put("/api/users", data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
@@ -94,12 +94,15 @@ const EditProfile = () => {
       setLoading(false);
     }
   };
-  if (fetching) return;
-  <MainLayout>
-    <Box sx={{ display: "flex", justifyContent: "center", mt: 10 }}>
-      <CircularProgress />
-    </Box>
-  </MainLayout>;
+  if (fetching) {
+    return (
+      <MainLayout>
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 10 }}>
+          <CircularProgress />
+        </Box>
+      </MainLayout>
+    );
+  }
 
   return (
     <MainLayout>
