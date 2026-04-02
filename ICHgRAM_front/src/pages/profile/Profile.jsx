@@ -58,10 +58,7 @@ const Profile = () => {
         setPosts(postsRes.data);
       } catch (error) {
         console.error("Error loading profile:", error);
-        // Если ошибка 401 на странице /profile — значит юзер не в сети
-        //if (!userId && error.response?.status === 401) {
-        //navigate("/login");
-        //}
+        // Если ошибка 404 (пользователь не найден), перенаправляем на NotFound
       } finally {
         setLoading(false);
       }
