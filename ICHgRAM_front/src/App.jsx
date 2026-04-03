@@ -37,6 +37,19 @@ function App() {
         return;
       }
 
+       try {
+        // Проверяем токен через backend
+        await axiosInstance.get("/api/users/me");
+        setIsOut(false);
+      } catch (err) {
+        console.warn("Token invalid or expired:", err);
+        localStorage.removeItem("token");
+        setIsOut(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+
   {
     /*const [isAuth, setIsAuth] = useState(!!localStorage.getItem("token"));
 
