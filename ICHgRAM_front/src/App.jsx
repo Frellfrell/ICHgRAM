@@ -154,7 +154,7 @@ function App() {
             }
           />
 
-          <Route
+          {/*<Route
             path="/messages"
             element={
               <ProtectedRoute>
@@ -163,7 +163,7 @@ function App() {
                 </MainLayout>
               </ProtectedRoute>
             }
-          />
+          />*/}
 
           <Route
             path="/profile/edit"
