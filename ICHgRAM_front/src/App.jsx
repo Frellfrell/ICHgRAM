@@ -27,6 +27,16 @@ function App() {
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  // Проверка токена в localStorage
+  useEffect(() => {
+    const checkToken = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        setIsOut(true);
+        setLoading(false);
+        return;
+      }
+
   {
     /*const [isAuth, setIsAuth] = useState(!!localStorage.getItem("token"));
 
