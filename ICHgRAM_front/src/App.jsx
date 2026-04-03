@@ -96,6 +96,7 @@ function App() {
       <Router>
         <Routes>
           {/* Редирект с главной */}
+
           <Route
             path="/"
             element={<Navigate to={isAuth ? "/home" : "/login"} replace />}
@@ -121,7 +122,6 @@ function App() {
               </PublicRoute>
             }
           />
-
           <Route
             path="/reset-password"
             element={
@@ -143,7 +143,6 @@ function App() {
               </ProtectedRoute>
             }
           />
-
           <Route
             path="/explore"
             element={
@@ -154,8 +153,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-
-          <Route
+          {/*<Route
             path="/messages"
             element={
               <ProtectedRoute>
@@ -164,8 +162,7 @@ function App() {
                 </MainLayout>
               </ProtectedRoute>
             }
-          />
-
+          />*/}
           <Route
             path="/profile/edit"
             element={
@@ -174,7 +171,6 @@ function App() {
               </ProtectedRoute>
             }
           />
-
           <Route
             path="/profile"
             element={
@@ -183,7 +179,6 @@ function App() {
               </ProtectedRoute>
             }
           />
-
           <Route
             path="/profile/:userId"
             element={
@@ -192,7 +187,6 @@ function App() {
               </ProtectedRoute>
             }
           />
-
           {/* Страница 404 */}
           <Route path="*" element={<NotFound />} />
         </Routes>
