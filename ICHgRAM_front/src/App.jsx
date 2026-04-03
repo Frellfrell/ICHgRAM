@@ -42,11 +42,11 @@ function App() {
       try {
         // Проверяем токен через backend
         await axiosInstance.get("/api/users/me");
-        setIsAuth(false);
+        setIsAuth(true);
       } catch (err) {
         console.warn("Token invalid or expired:", err);
         localStorage.removeItem("token");
-        setIsAuth(true);
+        setIsAuth(false);
       } finally {
         setLoading(false);
       }
@@ -79,15 +79,15 @@ function App() {
 
   if (loading) return null;
 
-  // Защищённый роут
+  // Защищённый роут (только для авторизованных)
   const ProtectedRoute = ({ children }) => {
     console.log("ProtectedRoute isAuth:", isAuth);
-    return !isAuth ? children : <Navigate to="/login" replace />;
+    return isAuth ? children : <Navigate to="/login" replace />;
   };
 
-  // Публичный роут
+  // Публичный роут (только для неавторизованных)
   const PublicRoute = ({ children }) => {
-    return isAuth ? children : <Navigate to="/" replace />;
+    return !isAuth ? children : <Navigate to="/home" replace />;
   };
 
   return (
