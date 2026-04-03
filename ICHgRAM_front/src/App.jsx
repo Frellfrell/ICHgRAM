@@ -20,6 +20,8 @@ import MainLayout from "./layout/MainLayout.jsx";
 import Explore from "./pages/explore/Explore.jsx";
 import Profile from "./pages/profile/Profile.jsx";
 import EditProfile from "./pages/profile/EditProfile.jsx";
+//import Messages from "./pages/messages/Messages.jsx";
+import axiosInstance from "./api/axiosInstance.js";
 
 import "./App.css";
 
@@ -40,11 +42,11 @@ function App() {
       try {
         // Проверяем токен через backend
         await axiosInstance.get("/api/users/me");
-        setIsOut(false);
+        setIsAuth(false);
       } catch (err) {
         console.warn("Token invalid or expired:", err);
         localStorage.removeItem("token");
-        setIsOut(true);
+        setIsAuth(true);
       } finally {
         setLoading(false);
       }
@@ -82,9 +84,9 @@ function App() {
     return !isAuth ? children : <Navigate to="/login" replace />;
   };
 
-  // Защищённый роут
-  const ProtectedRoute = ({ children }) => {
-    return !isAuth ? children : <Navigate to="/login" replace />;
+  // Публичный роут
+  const PublicRoute = ({ children }) => {
+    return isAuth ? children : <Navigate to="/" replace />;
   };
 
   return (
