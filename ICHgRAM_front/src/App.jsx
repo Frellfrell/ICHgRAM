@@ -77,6 +77,11 @@ function App() {
 
   if (loading) return null;
 
+  // Защищённый роут
+  const ProtectedRoute = ({ children }) => {
+    return !isAuth ? children : <Navigate to="/login" replace />;
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
