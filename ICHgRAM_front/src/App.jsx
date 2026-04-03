@@ -82,6 +82,11 @@ function App() {
     return !isAuth ? children : <Navigate to="/login" replace />;
   };
 
+  // Защищённый роут
+  const ProtectedRoute = ({ children }) => {
+    return !isAuth ? children : <Navigate to="/login" replace />;
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
