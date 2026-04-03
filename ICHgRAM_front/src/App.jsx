@@ -169,9 +169,7 @@ function App() {
             path="/profile/edit"
             element={
               <ProtectedRoute>
-                <MainLayout>
-                  <EditProfile />
-                </MainLayout>
+                <EditProfile />
               </ProtectedRoute>
             }
           />
@@ -180,9 +178,7 @@ function App() {
             path="/profile"
             element={
               <ProtectedRoute>
-                <MainLayout>
-                  <Profile />
-                </MainLayout>
+                <Profile />
               </ProtectedRoute>
             }
           />
@@ -191,9 +187,7 @@ function App() {
             path="/profile/:userId"
             element={
               <ProtectedRoute>
-                <MainLayout>
-                  <Profile />
-                </MainLayout>
+                <Profile />
               </ProtectedRoute>
             }
           />
