@@ -63,10 +63,9 @@ const Profile = () => {
         setLoading(false);
       }
     };
-    if (userId) {
-      fetchProfile();
-    }
-  }, [userId, navigate]);
+
+    fetchProfile();
+  }, [userId]);
 
   if (loading)
     return (
