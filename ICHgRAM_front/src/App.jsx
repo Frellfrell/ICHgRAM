@@ -96,47 +96,43 @@ function App() {
           <Route
             path="/login"
             element={
-              !isAuth ? (
+              <PublicRoute>
                 <AuthLayout isLogin={true} isReset={false}>
                   <Login />
                 </AuthLayout>
-              ) : (
-                <Navigate to="/home" replace />
-              )
+              </PublicRoute>
             }
           />
           <Route
             path="/register"
             element={
-              !isAuth ? (
+              <PublicRoute>
                 <AuthLayout isLogin={false} isReset={false}>
                   <Register />
                 </AuthLayout>
-              ) : (
-                <Navigate to="/home" replace />
-              )
+              </PublicRoute>
             }
           />
 
           <Route
             path="/reset-password"
             element={
-              <AuthLayout isReset={true}>
-                <ResetPassword />
-              </AuthLayout>
+              <PublicRoute>
+                <AuthLayout isReset={true}>
+                  <ResetPassword />
+                </AuthLayout>
+              </PublicRoute>
             }
           />
-          {/* Главная страница (Лента) */}
+          {/* Страницы с сайдбаром и футером */}
           <Route
             path="/home"
             element={
-              isAuth ? (
+              <ProtectedRoute>
                 <MainLayout>
                   <Home />
                 </MainLayout>
-              ) : (
-                <Navigate to="/login" replace />
-              )
+              </ProtectedRoute>
             }
           />
 
@@ -146,7 +142,27 @@ function App() {
             element={<Navigate to={isAuth ? "/home" : "/login"} replace />}
           />
 
-          <Route path="/explore" element={<Explore />} />
+          <Route
+            path="/explore"
+            element={
+              <ProtectedRoute>
+                <MainLayout>
+                  <Explore />
+                </MainLayout>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/messages"
+            element={
+              <ProtectedRoute>
+                <MainLayout>
+                  <Messages />
+                </MainLayout>
+              </ProtectedRoute>
+            }
+          />
 
           <Route path="/profile/edit" element={<EditProfile />} />
           <Route path="/profile" element={<Profile />} />
