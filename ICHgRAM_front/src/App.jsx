@@ -81,6 +81,7 @@ function App() {
 
   // Защищённый роут
   const ProtectedRoute = ({ children }) => {
+    console.log("ProtectedRoute isAuth:", isAuth);
     return !isAuth ? children : <Navigate to="/login" replace />;
   };
 
@@ -132,7 +133,7 @@ function App() {
             }
           />
           {/* Страницы с сайдбаром и футером */}
-          {/* <Route
+          <Route
             path="/home"
             element={
               <ProtectedRoute>
@@ -143,7 +144,7 @@ function App() {
             }
           />
 
-          {/* <Route
+          <Route
             path="/explore"
             element={
               <ProtectedRoute>
@@ -154,7 +155,7 @@ function App() {
             }
           />
 
-          {/*<Route
+          <Route
             path="/messages"
             element={
               <ProtectedRoute>
@@ -163,9 +164,9 @@ function App() {
                 </MainLayout>
               </ProtectedRoute>
             }
-          />*/}
+          />
 
-          {/*<Route
+          <Route
             path="/profile/edit"
             element={
               <ProtectedRoute>
@@ -190,7 +191,7 @@ function App() {
                 <Profile />
               </ProtectedRoute>
             }
-          />*/}
+          />
 
           {/* Страница 404 */}
           <Route path="*" element={<NotFound />} />
