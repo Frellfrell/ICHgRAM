@@ -106,9 +106,9 @@ function App() {
             path="/login"
             element={
               <PublicRoute>
-                <AuthLayout isLogin={true} isReset={false}>
-                  <Login />
-                </AuthLayout>
+                {/*<AuthLayout isLogin={true} isReset={false}>*/}
+                <Login />
+                {/*</AuthLayout>*/}
               </PublicRoute>
             }
           />
