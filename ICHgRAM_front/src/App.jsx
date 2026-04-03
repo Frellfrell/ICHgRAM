@@ -24,7 +24,8 @@ import EditProfile from "./pages/profile/EditProfile.jsx";
 import "./App.css";
 
 function App() {
-  const [isAuth, setIsAuth] = useState(!!localStorage.getItem("token"));
+  {
+    /*const [isAuth, setIsAuth] = useState(!!localStorage.getItem("token"));
 
   useEffect(() => {
     const checkToken = () => {
@@ -32,7 +33,8 @@ function App() {
     };
     // Проверяем токен при каждом рендере App
     checkToken();
-  }, []);
+  }, []);*/
+  }
 
   return (
     <ThemeProvider theme={theme}>
