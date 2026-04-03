@@ -32,12 +32,12 @@ function App() {
     const checkToken = async () => {
       const token = localStorage.getItem("token");
       if (!token) {
-        setIsOut(true);
+        setIsAuth(false);
         setLoading(false);
         return;
       }
 
-       try {
+      try {
         // Проверяем токен через backend
         await axiosInstance.get("/api/users/me");
         setIsOut(false);
@@ -50,6 +50,9 @@ function App() {
       }
     };
 
+    checkToken();
+  }, []);
+
   {
     /*const [isAuth, setIsAuth] = useState(!!localStorage.getItem("token"));
 
@@ -57,9 +60,19 @@ function App() {
     const checkToken = () => {
       setIsAuth(!!localStorage.getItem("token"));
     };
-    // Проверяем токен при каждом рендере App
     checkToken();
-  }, []);*/
+  }, []);
+
+  {
+    /*const [isAuth, setIsAuth] = useState(!!localStorage.getItem("token"));
+
+  useEffect(() => {
+    const checkToken = () => {
+      setIsAuth(!!localStorage.getItem("token"));
+    };
+    checkToken();
+  }, []);
+*/
   }
 
   return (
