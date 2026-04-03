@@ -51,6 +51,13 @@ const EditProfile = () => {
       }
     };
     fetchUser();
+
+    // Очистка превью при размонтировании
+    return () => {
+      if (preview) URL.revokeObjectURL(preview);
+      setFile(null);
+      setPreview("");
+    };
   }, []);
 
   // Обработка выбора фото
