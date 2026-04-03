@@ -24,6 +24,9 @@ import EditProfile from "./pages/profile/EditProfile.jsx";
 import "./App.css";
 
 function App() {
+  const [isAuth, setIsAuth] = useState(false);
+  const [loading, setLoading] = useState(true);
+
   {
     /*const [isAuth, setIsAuth] = useState(!!localStorage.getItem("token"));
 
