@@ -45,7 +45,10 @@ const Profile = () => {
 
         // 2. Проверяем, мой ли это профиль (для отображения кнопки Edit)
         // Если мы запрашивали /me или если ID из базы совпал с ID в URL
-        if (!userId || userRes.data._id === localStorage.getItem("userId")) {
+        if (
+          !userId ||
+          userRes.data._id === String(localStorage.getItem("userId"))
+        ) {
           setIsMyProfile(true);
         } else {
           setIsMyProfile(false);
@@ -63,10 +66,9 @@ const Profile = () => {
         setLoading(false);
       }
     };
-    if (userId) {
-      fetchProfile();
-    }
-  }, [userId, navigate]);
+
+    fetchProfile();
+  }, [userId]);
 
   if (loading)
     return (
@@ -228,8 +230,10 @@ const Profile = () => {
             <Grid item xs={4} key={post._id}>
               <Box
                 onClick={() => {
-                  setSelectedPost(post);
-                  setIsModalOpen(true);
+                  if (post && post._id && post.author) {
+                    setSelectedPost(post);
+                    setIsModalOpen(true);
+                  }
                 }}
                 sx={{
                   position: "relative",

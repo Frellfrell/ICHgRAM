@@ -20,85 +20,173 @@ import MainLayout from "./layout/MainLayout.jsx";
 import Explore from "./pages/explore/Explore.jsx";
 import Profile from "./pages/profile/Profile.jsx";
 import EditProfile from "./pages/profile/EditProfile.jsx";
+//import Messages from "./pages/messages/Messages.jsx";
+import axiosInstance from "./api/axiosInstance.js";
 
 import "./App.css";
 
 function App() {
-  const [isAuth, setIsAuth] = useState(!!localStorage.getItem("token"));
+  const [isAuth, setIsAuth] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  // Проверка токена в localStorage
+  useEffect(() => {
+    const checkToken = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        setIsAuth(false);
+        setLoading(false);
+        return;
+      }
+
+      try {
+        // Проверяем токен через backend
+        await axiosInstance.get("/api/users/me");
+        setIsAuth(true);
+      } catch (err) {
+        console.warn("Token invalid or expired:", err);
+        localStorage.removeItem("token");
+        setIsAuth(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkToken();
+  }, []);
+
+  {
+    /*const [isAuth, setIsAuth] = useState(!!localStorage.getItem("token"));
 
   useEffect(() => {
     const checkToken = () => {
       setIsAuth(!!localStorage.getItem("token"));
     };
-    // Проверяем токен при каждом рендере App
     checkToken();
   }, []);
+
+  {
+    /*const [isAuth, setIsAuth] = useState(!!localStorage.getItem("token"));
+
+  useEffect(() => {
+    const checkToken = () => {
+      setIsAuth(!!localStorage.getItem("token"));
+    };
+    checkToken();
+  }, []);
+*/
+  }
+
+  if (loading) return null;
+
+  // Защищённый роут (только для авторизованных)
+  const ProtectedRoute = ({ children }) => {
+    console.log("ProtectedRoute isAuth:", isAuth);
+    return isAuth ? children : <Navigate to="/login" replace />;
+  };
+
+  // Публичный роут (только для неавторизованных)
+  const PublicRoute = ({ children }) => {
+    return !isAuth ? children : <Navigate to="/home" replace />;
+  };
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
         <Routes>
+          {/* Редирект с главной */}
+
+          <Route
+            path="/"
+            element={<Navigate to={isAuth ? "/home" : "/login"} replace />}
+          />
           {/* Публичные роуты (Auth) */}
           <Route
             path="/login"
             element={
-              !isAuth ? (
-                <AuthLayout isLogin={true} isReset={false}>
-                  <Login />
-                </AuthLayout>
-              ) : (
-                <Navigate to="/home" replace />
-              )
+              <PublicRoute>
+                {/*<AuthLayout isLogin={true} isReset={false}>*/}
+                <Login />
+                {/*</AuthLayout>*/}
+              </PublicRoute>
             }
           />
           <Route
             path="/register"
             element={
-              !isAuth ? (
+              <PublicRoute>
                 <AuthLayout isLogin={false} isReset={false}>
                   <Register />
                 </AuthLayout>
-              ) : (
-                <Navigate to="/home" replace />
-              )
+              </PublicRoute>
             }
           />
-
           <Route
             path="/reset-password"
             element={
-              <AuthLayout isReset={true}>
-                <ResetPassword />
-              </AuthLayout>
+              <PublicRoute>
+                <AuthLayout isReset={true}>
+                  <ResetPassword />
+                </AuthLayout>
+              </PublicRoute>
             }
           />
-          {/* Главная страница (Лента) */}
+          {/* Страницы с сайдбаром и футером */}
           <Route
             path="/home"
             element={
-              isAuth ? (
+              <ProtectedRoute>
                 <MainLayout>
                   <Home />
                 </MainLayout>
-              ) : (
-                <Navigate to="/login" replace />
-              )
+              </ProtectedRoute>
             }
           />
-
-          {/* Редирект с главной */}
           <Route
-            path="/"
-            element={<Navigate to={isAuth ? "/home" : "/login"} replace />}
+            path="/explore"
+            element={
+              <ProtectedRoute>
+                <MainLayout>
+                  <Explore />
+                </MainLayout>
+              </ProtectedRoute>
+            }
           />
-
-          <Route path="/explore" element={<Explore />} />
-
-          <Route path="/profile/edit" element={<EditProfile />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/profile/:userId" element={<Profile />} />
-
+          {/*<Route
+            path="/messages"
+            element={
+              <ProtectedRoute>
+                <MainLayout>
+                  <Messages />
+                </MainLayout>
+              </ProtectedRoute>
+            }
+          />*/}
+          <Route
+            path="/profile/edit"
+            element={
+              <ProtectedRoute>
+                <EditProfile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile/:userId"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
           {/* Страница 404 */}
           <Route path="*" element={<NotFound />} />
         </Routes>
