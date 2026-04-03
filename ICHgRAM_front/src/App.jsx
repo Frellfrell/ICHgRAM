@@ -132,7 +132,7 @@ function App() {
             }
           />
           {/* Страницы с сайдбаром и футером */}
-          <Route
+          {/* <Route
             path="/home"
             element={
               <ProtectedRoute>
