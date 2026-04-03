@@ -230,8 +230,10 @@ const Profile = () => {
             <Grid item xs={4} key={post._id}>
               <Box
                 onClick={() => {
-                  setSelectedPost(post);
-                  setIsModalOpen(true);
+                  if (post && post._id && post.author) {
+                    setSelectedPost(post);
+                    setIsModalOpen(true);
+                  }
                 }}
                 sx={{
                   position: "relative",
