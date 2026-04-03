@@ -164,9 +164,38 @@ function App() {
             }
           />
 
-          <Route path="/profile/edit" element={<EditProfile />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/profile/:userId" element={<Profile />} />
+          <Route
+            path="/profile/edit"
+            element={
+              <ProtectedRoute>
+                <MainLayout>
+                  <EditProfile />
+                </MainLayout>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <MainLayout>
+                  <Profile />
+                </MainLayout>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/profile/:userId"
+            element={
+              <ProtectedRoute>
+                <MainLayout>
+                  <Profile />
+                </MainLayout>
+              </ProtectedRoute>
+            }
+          />
 
           {/* Страница 404 */}
           <Route path="*" element={<NotFound />} />
