@@ -92,6 +92,11 @@ function App() {
       <CssBaseline />
       <Router>
         <Routes>
+          {/* Редирект с главной */}
+          <Route
+            path="/"
+            element={<Navigate to={isAuth ? "/home" : "/login"} replace />}
+          />
           {/* Публичные роуты (Auth) */}
           <Route
             path="/login"
@@ -134,12 +139,6 @@ function App() {
                 </MainLayout>
               </ProtectedRoute>
             }
-          />
-
-          {/* Редирект с главной */}
-          <Route
-            path="/"
-            element={<Navigate to={isAuth ? "/home" : "/login"} replace />}
           />
 
           <Route
