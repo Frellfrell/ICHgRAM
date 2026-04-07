@@ -118,4 +118,11 @@ const handleFileChange = (e) => {
               Share
             </Button>
           </Box>
+
+          {/* MAIN CONTENT */}
+          <Box sx={{ display: "flex", flex: 1 }}>
+            {/* LEFT */}
+          </Box>
+        </Box>
+      </Fade>
     </Modal>
