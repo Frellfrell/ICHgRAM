@@ -15,3 +15,20 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
       return;
     }
+
+     axiosInstance
+      .get("/api/users/me")
+      .then(() => setIsAuth(true))
+      .catch(() => {
+        localStorage.removeItem("token");
+        setIsAuth(false);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  const login = () => setIsAuth(true);
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setIsAuth(false);
+  };
