@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Box, Link } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../api/authApi.js";
+import { AuthContext } from "../../context/AuthContext.jsx";
 import AppInput from "../../components/ui/AppInput.jsx";
 import AppButton from "../../components/ui/AppButton.jsx";
 import AppTypography from "../../components/ui/AppTypography.jsx";
@@ -11,6 +12,9 @@ import AuthLayout from "../../layout/AuthLayout.jsx";
 
 const Login = () => {
   const navigate = useNavigate();
+
+  // Берём login() из контекста
+  const { login } = useContext(AuthContext);
 
   const [formData, setFormData] = useState({
     email: "",
