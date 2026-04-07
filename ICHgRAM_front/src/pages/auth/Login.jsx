@@ -44,6 +44,9 @@ const Login = () => {
       const result = await loginUser(formData);
       localStorage.setItem("token", result.token); // Сохраняем токен
       localStorage.setItem("user", JSON.stringify(result.user)); // Данные юзера
+
+      login(); // Обновляем состояние аутентификации в контексте
+
       console.log("Вход выполнен успешно:", result);
 
       // После логина перенаправляем на главную страницу (ленту)
