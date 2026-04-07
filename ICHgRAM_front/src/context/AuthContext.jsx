@@ -7,7 +7,6 @@ export const AuthProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(true);
 
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -16,7 +15,7 @@ export const AuthProvider = ({ children }) => {
       return;
     }
 
-     axiosInstance
+    axiosInstance
       .get("/api/users/me")
       .then(() => setIsAuth(true))
       .catch(() => {
@@ -32,3 +31,10 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("user");
     setIsAuth(false);
   };
+
+  return (
+    <AuthContext.Provider value={{ isAuth, login, logout, loading }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
