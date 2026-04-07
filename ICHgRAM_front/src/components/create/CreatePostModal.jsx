@@ -61,3 +61,61 @@ const handleFileChange = (e) => {
     setCaption("");
     onClose();
   };
+
+  return (
+    <Modal
+      open={open}
+      onClose={handleClose}
+      closeAfterTransition
+      slots={{ backdrop: Backdrop }}
+      slotProps={{
+        backdrop: { sx: { backgroundColor: "rgba(0, 0, 0, 0.7)" }, timeout: 500 },
+      }}
+
+      sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+    >
+        <Fade in={open}>
+        <Box
+          sx={{
+            width: "913px",
+            height: "564px",
+            bgcolor: "#FFFFFF",
+            borderRadius: "12px",
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+            outline: "none",
+            boxShadow: "0 12px 42px rgba(0,0,0,0.2)",
+          }}
+        >
+          {/* HEADER */}
+          <Box
+            sx={{
+              height: "43px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              px: 2,
+              borderBottom: "1px solid #DBDBDB",
+            }}
+          >
+            <Box sx={{ width: 40 }} /> 
+            <AppTypography sx={{ fontWeight: 600, fontSize: "16px" }}>
+              Create new post
+            </AppTypography>
+            <Button
+              onClick={handleShare}
+              disabled={!file || loading}
+              sx={{
+                textTransform: "none",
+                fontWeight: 600,
+                color: "primary.main",
+                fontSize: "14px",
+                "&:hover": { bgcolor: "transparent", color: "#00376b" },
+                "&.Mui-disabled": { color: "#B2E0FF" },
+              }}
+            >
+              Share
+            </Button>
+          </Box>
+    </Modal>
