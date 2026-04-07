@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Box, Link } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../api/authApi.js";
+import { AuthContext } from "../../context/AuthContext.jsx";
+
 import AppInput from "../../components/ui/AppInput.jsx";
 import AppButton from "../../components/ui/AppButton.jsx";
 import AppTypography from "../../components/ui/AppTypography.jsx";
@@ -11,6 +13,9 @@ import AuthLayout from "../../layout/AuthLayout.jsx";
 
 const Login = () => {
   const navigate = useNavigate();
+
+  // Берём login() из контекста
+  const { login } = useContext(AuthContext);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -29,17 +34,14 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.email || !formData.password) {
-      return setError("Please fill in all fields");
-    }
-
     setLoading(true);
     setError(null);
 
     try {
       const result = await loginUser(formData);
-      localStorage.setItem("token", result.token); // Сохраняем токен
-      localStorage.setItem("user", JSON.stringify(result.user)); // Данные юзера
+
+      login(); // Обновляем состояние аутентификации в контексте
+
       console.log("Вход выполнен успешно:", result);
 
       // После логина перенаправляем на главную страницу (ленту)

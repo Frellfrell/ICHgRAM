@@ -10,6 +10,11 @@ export const register = async (req, res) => {
     if (!username || !fullName || !email || !password) {
       return res.status(400).json({ message: "Заполните все поля" });
     }
+    if (password.length < 6) {
+      return res
+        .status(400)
+        .json({ message: "Пароль должен быть не менее 6 символов" });
+    }
 
     // 2. Проверка уникальности
     const existingUser = await User.findOne({
@@ -21,8 +26,8 @@ export const register = async (req, res) => {
     }
 
     // 3. Хеширование пароля
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    // const salt = await bcrypt.genSalt(10);
+    //const hashedPassword = await bcrypt.hash(password, salt);
 
     // 4. Создание пользователя
     const user = await User.create({
@@ -53,6 +58,7 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log("Попытка входа для:", email);
 
     if (!email || !password) {
       return res.status(400).json({ message: "Введите email и пароль" });
@@ -60,14 +66,17 @@ export const login = async (req, res) => {
 
     // 1. Ищем пользователя
     const user = await User.findOne({
-      $or: [{ email: email.toLowerCase() }, { username: email }],
+      $or: [{ email: email.trim().toLowerCase() }, { username: email.trim() }],
     });
     if (!user) {
+      console.log("Ошибка: Пользователь не найден в БД"); // <-- Проверка 1
       return res.status(401).json({ message: "Неверные данные" });
     }
 
     // 2. Проверяем пароль
     const isMatch = await bcrypt.compare(password, user.password);
+    console.log("Пароль совпал?:", isMatch); // <-- Проверка 2
+
     if (!isMatch) {
       return res.status(401).json({ message: "Неверные данные" });
     }

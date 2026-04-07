@@ -7,13 +7,15 @@ import {
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import { theme } from "./theme/theme.js";
-import { useState, useEffect } from "react";
+import { useContext } from "react";
 
 // Импорт страниц
 import Login from "./pages/auth/Login.jsx";
 import Register from "./pages/auth/Register.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import AuthLayout from "./layout/AuthLayout.jsx";
+import AuthProvider from "./context/AuthProvider.jsx";
+import { AuthContext } from "./context/AuthContext.jsx";
 import ResetPassword from "./pages/auth/ResetPassword.jsx";
 import Home from "./pages/home/Home.jsx";
 import MainLayout from "./layout/MainLayout.jsx";
@@ -21,65 +23,16 @@ import Explore from "./pages/explore/Explore.jsx";
 import Profile from "./pages/profile/Profile.jsx";
 import EditProfile from "./pages/profile/EditProfile.jsx";
 //import Messages from "./pages/messages/Messages.jsx";
-import axiosInstance from "./api/axiosInstance.js";
 
 import "./App.css";
 
-function App() {
-  const [isAuth, setIsAuth] = useState(false);
-  const [loading, setLoading] = useState(true);
+function AppRoutes() {
+  const { isAuth, loading } = useContext(AuthContext);
 
-  // Проверка токена в localStorage
-  useEffect(() => {
-    const checkToken = async () => {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        setIsAuth(false);
-        setLoading(false);
-        return;
-      }
-
-      try {
-        // Проверяем токен через backend
-        await axiosInstance.get("/api/users/me");
-        setIsAuth(true);
-      } catch (err) {
-        console.warn("Token invalid or expired:", err);
-        localStorage.removeItem("token");
-        setIsAuth(false);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    checkToken();
-  }, []);
+  if (loading) return null; // Или спиннер загрузки
 
   {
-    /*const [isAuth, setIsAuth] = useState(!!localStorage.getItem("token"));
-
-  useEffect(() => {
-    const checkToken = () => {
-      setIsAuth(!!localStorage.getItem("token"));
-    };
-    checkToken();
-  }, []);
-
-  {
-    /*const [isAuth, setIsAuth] = useState(!!localStorage.getItem("token"));
-
-  useEffect(() => {
-    const checkToken = () => {
-      setIsAuth(!!localStorage.getItem("token"));
-    };
-    checkToken();
-  }, []);
-*/
-  }
-
-  if (loading) return null;
-
-  // Защищённый роут (только для авторизованных)
+    /* // Защищённый роут (только для авторизованных)
   const ProtectedRoute = ({ children }) => {
     console.log("ProtectedRoute isAuth:", isAuth);
     return isAuth ? children : <Navigate to="/login" replace />;
@@ -89,71 +42,72 @@ function App() {
   const PublicRoute = ({ children }) => {
     return !isAuth ? children : <Navigate to="/home" replace />;
   };
-
+*/
+  }
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Router>
-        <Routes>
-          {/* Редирект с главной */}
+    <Routes>
+      {/* Редирект с главной */}
 
-          <Route
-            path="/"
-            element={<Navigate to={isAuth ? "/home" : "/login"} replace />}
-          />
-          {/* Публичные роуты (Auth) */}
-          <Route
-            path="/login"
-            element={
-              <PublicRoute>
-                {/*<AuthLayout isLogin={true} isReset={false}>*/}
-                <Login />
-                {/*</AuthLayout>*/}
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/register"
-            element={
-              <PublicRoute>
-                <AuthLayout isLogin={false} isReset={false}>
-                  <Register />
-                </AuthLayout>
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/reset-password"
-            element={
-              <PublicRoute>
-                <AuthLayout isReset={true}>
-                  <ResetPassword />
-                </AuthLayout>
-              </PublicRoute>
-            }
-          />
-          {/* Страницы с сайдбаром и футером */}
-          <Route
-            path="/home"
-            element={
-              <ProtectedRoute>
-                <MainLayout>
-                  <Home />
-                </MainLayout>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/explore"
-            element={
-              <ProtectedRoute>
-                <MainLayout>
-                  <Explore />
-                </MainLayout>
-              </ProtectedRoute>
-            }
-          />
-          {/*<Route
+      <Route
+        path="/"
+        element={<Navigate to={isAuth ? "/home" : "/login"} replace />}
+      />
+      {/* Публичные роуты (Auth) */}
+      <Route
+        path="/login"
+        element={!isAuth ? <Login /> : <Navigate to="/home" replace />}
+      />
+      <Route
+        path="/register"
+        element={
+          !isAuth ? (
+            <AuthLayout isLogin={false} isReset={false}>
+              <Register />
+            </AuthLayout>
+          ) : (
+            <Navigate to="/home" replace />
+          )
+        }
+      />
+      <Route
+        path="/reset-password"
+        element={
+          !isAuth ? (
+            <AuthLayout isReset={true}>
+              <ResetPassword />
+            </AuthLayout>
+          ) : (
+            <Navigate to="/home" replace />
+          )
+        }
+      />
+
+      {/* Страницы с сайдбаром и футером */}
+      <Route
+        path="/home"
+        element={
+          isAuth ? (
+            <MainLayout>
+              <Home />
+            </MainLayout>
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      />
+      <Route
+        path="/explore"
+        element={
+          isAuth ? (
+            <MainLayout>
+              <Explore />
+            </MainLayout>
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      />
+      {/*<Route
             path="/messages"
             element={
               <ProtectedRoute>
@@ -163,34 +117,33 @@ function App() {
               </ProtectedRoute>
             }
           />*/}
-          <Route
-            path="/profile/edit"
-            element={
-              <ProtectedRoute>
-                <EditProfile />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/profile/:userId"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-          {/* Страница 404 */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Router>
+      <Route
+        path="/profile/edit"
+        element={isAuth ? <EditProfile /> : <Navigate to="/login" replace />}
+      />
+      <Route
+        path="/profile"
+        element={isAuth ? <Profile /> : <Navigate to="/login" replace />}
+      />
+      <Route
+        path="/profile/:userId"
+        element={isAuth ? <Profile /> : <Navigate to="/login" replace />}
+      />
+      {/* Страница 404 */}
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AuthProvider>
+        <Router>
+          <AppRoutes />
+        </Router>
+      </AuthProvider>
     </ThemeProvider>
   );
 }
