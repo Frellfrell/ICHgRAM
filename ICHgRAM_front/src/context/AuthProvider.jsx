@@ -2,7 +2,6 @@ import axiosInstance from "../api/axiosInstance.js";
 import { useState, useEffect } from "react";
 import { AuthContext } from "./AuthContext";
 
-
 const AuthProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -15,13 +14,13 @@ const AuthProvider = ({ children }) => {
 
   const login = () => setIsAuth(true);
 
-const logout = () => {
+  const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setIsAuth(false);
   };
 
-   return (
+  return (
     <AuthContext.Provider
       value={{
         isAuth,
@@ -29,4 +28,10 @@ const logout = () => {
         login,
         logout,
       }}
-    ></AuthContext.Provider>
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export default AuthProvider;
