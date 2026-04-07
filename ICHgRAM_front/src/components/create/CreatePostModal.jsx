@@ -30,3 +30,16 @@ const handleFileChange = (e) => {
       setPreview(URL.createObjectURL(selectedFile));
     }
   };
+
+
+  const handleShare = async () => {
+    if (!file) return;
+    setLoading(true);
+    try {
+      const formData = new FormData();
+      formData.append("image", file);
+      formData.append("caption", caption);
+
+      const response = await axiosInstance.post("/api/posts", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
