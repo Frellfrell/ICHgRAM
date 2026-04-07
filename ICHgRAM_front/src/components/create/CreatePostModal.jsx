@@ -165,7 +165,9 @@ const CreatePostModal = ({ open, onClose, user, onPostCreated }) => {
             {/* RIGHT: CAPTION & SETTINGS */}
             <Box
               sx={{
-                width: "339px",
+                maxWidth: "339px",
+                width: "100%",
+                height: "521px",
                 display: "flex",
                 flexDirection: "column",
                 borderLeft: "1px solid #DBDBDB",
@@ -179,6 +181,7 @@ const CreatePostModal = ({ open, onClose, user, onPostCreated }) => {
                   display: "flex",
                   flexDirection: "column",
                   borderBottom: "1px solid #DBDBDB",
+                  position: "relative",
                 }}
               >
                 <Box
@@ -203,35 +206,32 @@ const CreatePostModal = ({ open, onClose, user, onPostCreated }) => {
                   variant="standard"
                   value={caption}
                   onChange={(e) => setCaption(e.target.value.slice(0, 2200))}
-                  InputProps={{ disableUnderline: true }}
-                  sx={{
-                    "& .MuiInputBase-root": {
-                      fontSize: "16px",
-                      alignItems: "flex-start",
-                      p: 0,
-                    },
+                  InputProps={{
+                    disableUnderline: true,
+
+                    sx: { fontSize: "16px", p: 0, alignItems: "flex-start" },
                   }}
                   sx={{ flex: 1 }}
                 />
 
                 <Box
                   sx={{
-                    mt: 1,
+                    mt: "auto",
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
                   }}
                 >
                   <IconButton size="small" sx={{ p: 0 }}>
-                    <EmojiEmotionsOutlinedIcon sx={{ color: "#8E8E8E" }} />
+                    <EmojiEmotionsOutlinedIcon
+                      sx={{ color: "#8E8E8E", fontSize: "20px" }}
+                    />
                   </IconButton>
                   <AppTypography sx={{ color: "#C7C7C7", fontSize: "12px" }}>
-                    {caption.length.toLocaleString()}/2,200
+                    {caption.length}/2,200
                   </AppTypography>
                 </Box>
               </Box>
-
-              <Divider />
 
               {/* BOTTOM BLOCK (Settings) */}
               <Box
@@ -240,27 +240,11 @@ const CreatePostModal = ({ open, onClose, user, onPostCreated }) => {
                   p: 2,
                   display: "flex",
                   flexDirection: "column",
-                  gap: 2,
+                  gap: "12px",
+                  borderTop: "1px solid #DBDBDB", // Серая граница сверху
+                  bgcolor: "#FFFFFF",
                 }}
-              >
-                <AppTypography
-                  sx={{ color: "#8E8E8E", fontSize: "14px", cursor: "pointer" }}
-                >
-                  Add location
-                </AppTypography>
-                <Divider />
-                <AppTypography
-                  sx={{ color: "#8E8E8E", fontSize: "14px", cursor: "pointer" }}
-                >
-                  Accessibility
-                </AppTypography>
-                <Divider />
-                <AppTypography
-                  sx={{ color: "#8E8E8E", fontSize: "14px", cursor: "pointer" }}
-                >
-                  Advanced settings
-                </AppTypography>
-              </Box>
+              ></Box>
             </Box>
           </Box>
         </Box>
