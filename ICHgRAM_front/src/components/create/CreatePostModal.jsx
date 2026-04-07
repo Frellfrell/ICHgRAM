@@ -43,3 +43,13 @@ const handleFileChange = (e) => {
       const response = await axiosInstance.post("/api/posts", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
+
+
+      if (onPostCreated) onPostCreated(response.data);
+      handleClose();
+    } catch (error) {
+      console.error("Error creating post:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
