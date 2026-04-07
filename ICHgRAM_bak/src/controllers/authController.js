@@ -21,8 +21,8 @@ export const register = async (req, res) => {
     }
 
     // 3. Хеширование пароля
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    // const salt = await bcrypt.genSalt(10);
+    //const hashedPassword = await bcrypt.hash(password, salt);
 
     // 4. Создание пользователя
     const user = await User.create({
@@ -60,7 +60,7 @@ export const login = async (req, res) => {
 
     // 1. Ищем пользователя
     const user = await User.findOne({
-      $or: [{ email: email.toLowerCase() }, { username: email }],
+      $or: [{ email: email.trim().toLowerCase() }, { username: email.trim() }],
     });
     if (!user) {
       return res.status(401).json({ message: "Неверные данные" });
