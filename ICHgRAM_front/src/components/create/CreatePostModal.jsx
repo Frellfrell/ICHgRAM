@@ -192,6 +192,21 @@ const handleFileChange = (e) => {
 
               <Divider />
 
+              {/* BOTTOM BLOCK (Settings) */}
+              <Box sx={{ flex: 1, p: 2, display: "flex", flexDirection: "column", gap: 2 }}>
+                 <AppTypography sx={{ color: "#8E8E8E", fontSize: "14px", cursor: "pointer" }}>
+                    Add location
+                 </AppTypography>
+                 <Divider />
+                 <AppTypography sx={{ color: "#8E8E8E", fontSize: "14px", cursor: "pointer" }}>
+                    Accessibility
+                 </AppTypography>
+                 <Divider />
+                 <AppTypography sx={{ color: "#8E8E8E", fontSize: "14px", cursor: "pointer" }}>
+                    Advanced settings
+                 </AppTypography>
+              </Box>
+
           </Box>
         </Box>
       </Fade>
