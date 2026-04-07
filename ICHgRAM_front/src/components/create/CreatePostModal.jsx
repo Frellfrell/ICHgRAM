@@ -157,6 +157,41 @@ const handleFileChange = (e) => {
               )}
             </Box>
 
+              {/* RIGHT: CAPTION & SETTINGS */}
+            <Box sx={{ width: "339px", display: "flex", flexDirection: "column" }}>
+              {/* TOP BLOCK */}
+              <Box sx={{ p: 2, height: "323px", display: "flex", flexDirection: "column" }}>
+                <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 2 }}>
+                  <Avatar src={user?.avatar} sx={{ width: 28, height: 28 }} />
+                  <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>
+                    {user?.username}
+                  </AppTypography>
+                </Box>
+
+                <TextField
+                  multiline
+                  rows={8}
+                  fullWidth
+                  placeholder="Write a caption..."
+                  variant="standard"
+                  value={caption}
+                  onChange={(e) => setCaption(e.target.value.slice(0, 2200))}
+                  InputProps={{ disableUnderline: true }}
+                  sx={{ "& .MuiInputBase-root": { fontSize: "16px", lineHeight: "24px" } }}
+                />
+
+                <Box sx={{ mt: "auto", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <IconButton size="small">
+                    <EmojiEmotionsOutlinedIcon sx={{ color: "#8E8E8E" }} />
+                  </IconButton>
+                  <AppTypography sx={{ color: "#C7C7C7", fontSize: "12px" }}>
+                    {caption.length.toLocaleString()}/2,200
+                  </AppTypography>
+                </Box>
+              </Box>
+
+              <Divider />
+
           </Box>
         </Box>
       </Fade>
