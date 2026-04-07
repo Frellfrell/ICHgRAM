@@ -45,73 +45,69 @@ function AppRoutes() {
 */
   }
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <AuthProvider>
-        <Router>
-          <Routes>
-            {/* Редирект с главной */}
+    <Routes>
+      {/* Редирект с главной */}
 
-            <Route
-              path="/"
-              element={<Navigate to={isAuth ? "/home" : "/login"} replace />}
-            />
-            {/* Публичные роуты (Auth) */}
-            <Route
-              path="/login"
-              element={!isAuth ? <Login /> : <Navigate to="/home" replace />}
-            />
-            <Route
-              path="/register"
-              element={
-                !isAuth ? (
-                  <AuthLayout isLogin={false} isReset={false}>
-                    <Register />
-                  </AuthLayout>
-                ) : (
-                  <Navigate to="/home" replace />
-                )
-              }
-            />
-            <Route
-              path="/reset-password"
-              element={
-                !isAuth ? (
-                  <AuthLayout isReset={true}>
-                    <ResetPassword />
-                  </AuthLayout>
-                ) : (
-                  <Navigate to="/home" replace />
-                )
-              }
-            />
+      <Route
+        path="/"
+        element={<Navigate to={isAuth ? "/home" : "/login"} replace />}
+      />
+      {/* Публичные роуты (Auth) */}
+      <Route
+        path="/login"
+        element={!isAuth ? <Login /> : <Navigate to="/home" replace />}
+      />
+      <Route
+        path="/register"
+        element={
+          !isAuth ? (
+            <AuthLayout isLogin={false} isReset={false}>
+              <Register />
+            </AuthLayout>
+          ) : (
+            <Navigate to="/home" replace />
+          )
+        }
+      />
+      <Route
+        path="/reset-password"
+        element={
+          !isAuth ? (
+            <AuthLayout isReset={true}>
+              <ResetPassword />
+            </AuthLayout>
+          ) : (
+            <Navigate to="/home" replace />
+          )
+        }
+      />
 
-            {/* Страницы с сайдбаром и футером */}
-            <Route
-              path="/home"
-              element={
-                isAuth ? (
-                  <MainLayout>
-                    <Home />
-                  </MainLayout>
-                ) : (
-                  <Navigate to="/login" replace />
-                )
-              }
-            />
-            <Route
-              path="/explore"
-              element={
-                isAuth ? (
-                  <MainLayout>
-                    <Explore />
-                  </MainLayout>
-                ) : (
-                  <Navigate to="/login" replace />
-                )
-              }
-            />
-            {/*<Route
+      {/* Страницы с сайдбаром и футером */}
+      <Route
+        path="/home"
+        element={
+          isAuth ? (
+            <MainLayout>
+              <Home />
+            </MainLayout>
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      />
+      <Route
+        path="/explore"
+        element={
+          isAuth ? (
+            <MainLayout>
+              <Explore />
+            </MainLayout>
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      />
+      {/*<Route
             path="/messages"
             element={
               <ProtectedRoute>
@@ -121,26 +117,21 @@ function AppRoutes() {
               </ProtectedRoute>
             }
           />*/}
-            <Route
-              path="/profile/edit"
-              element={
-                isAuth ? <EditProfile /> : <Navigate to="/login" replace />
-              }
-            />
-            <Route
-              path="/profile"
-              element={isAuth ? <Profile /> : <Navigate to="/login" replace />}
-            />
-            <Route
-              path="/profile/:userId"
-              element={isAuth ? <Profile /> : <Navigate to="/login" replace />}
-            />
-            {/* Страница 404 */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Router>
-      </AuthProvider>
-    </ThemeProvider>
+      <Route
+        path="/profile/edit"
+        element={isAuth ? <EditProfile /> : <Navigate to="/login" replace />}
+      />
+      <Route
+        path="/profile"
+        element={isAuth ? <Profile /> : <Navigate to="/login" replace />}
+      />
+      <Route
+        path="/profile/:userId"
+        element={isAuth ? <Profile /> : <Navigate to="/login" replace />}
+      />
+      {/* Страница 404 */}
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }
 
@@ -148,11 +139,11 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <OProvider>
+      <AuthProvider>
         <Router>
           <AppRoutes />
         </Router>
-      </OProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 }
