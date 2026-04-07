@@ -138,7 +138,23 @@ const handleFileChange = (e) => {
                 "&:hover": { bgcolor: preview ? "#FAFAFA" : "#F5F5F5" },
               }}
             >
+
               <input type="file" hidden ref={fileInputRef} accept="image/*" onChange={handleFileChange} />
+
+              {preview ? (
+                <Box
+                  component="img"
+                  src={preview}
+                  sx={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              ) : (
+                <>
+                <AddPhotoAlternateIcon sx={{ fontSize: 96, color: "#262626", mb: 2 }} />
+                  <AppTypography sx={{ fontSize: "20px", fontWeight: 300 }}>
+                    Add photo
+                  </AppTypography>
+                </>
+              )}
             </Box>
 
           </Box>
