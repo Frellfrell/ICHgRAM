@@ -14,7 +14,7 @@ import Login from "./pages/auth/Login.jsx";
 import Register from "./pages/auth/Register.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import AuthLayout from "./layout/AuthLayout.jsx";
-import AuthProvider from "./context/AuthProvider";
+import { AuthProvider } from "./context/AuthProvider";
 import { AuthContext } from "./context/AuthContext";
 import ResetPassword from "./pages/auth/ResetPassword.jsx";
 import Home from "./pages/home/Home.jsx";
