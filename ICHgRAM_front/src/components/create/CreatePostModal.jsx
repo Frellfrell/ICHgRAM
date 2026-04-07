@@ -164,15 +164,21 @@ const CreatePostModal = ({ open, onClose, user, onPostCreated }) => {
 
             {/* RIGHT: CAPTION & SETTINGS */}
             <Box
-              sx={{ width: "339px", display: "flex", flexDirection: "column" }}
+              sx={{
+                width: "339px",
+                display: "flex",
+                flexDirection: "column",
+                borderLeft: "1px solid #DBDBDB",
+              }}
             >
               {/* TOP BLOCK */}
               <Box
                 sx={{
-                  p: 2,
+                  p: "16px",
                   height: "323px",
                   display: "flex",
                   flexDirection: "column",
+                  borderBottom: "1px solid #DBDBDB",
                 }}
               >
                 <Box
