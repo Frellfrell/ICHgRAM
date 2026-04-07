@@ -38,8 +38,6 @@ const Login = () => {
 
     try {
       const result = await loginUser(formData);
-      localStorage.setItem("token", result.token); // Сохраняем токен
-      localStorage.setItem("user", JSON.stringify(result.user)); // Данные юзера
 
       login(); // Обновляем состояние аутентификации в контексте
 
