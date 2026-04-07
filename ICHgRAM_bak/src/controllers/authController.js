@@ -58,6 +58,7 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log("Попытка входа для:", email);
 
     if (!email || !password) {
       return res.status(400).json({ message: "Введите email и пароль" });
@@ -68,11 +69,14 @@ export const login = async (req, res) => {
       $or: [{ email: email.trim().toLowerCase() }, { username: email.trim() }],
     });
     if (!user) {
+      console.log("Ошибка: Пользователь не найден в БД"); // <-- Проверка 1
       return res.status(401).json({ message: "Неверные данные" });
     }
 
     // 2. Проверяем пароль
     const isMatch = await bcrypt.compare(password, user.password);
+    console.log("Пароль совпал?:", isMatch); // <-- Проверка 2
+
     if (!isMatch) {
       return res.status(401).json({ message: "Неверные данные" });
     }
