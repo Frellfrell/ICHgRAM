@@ -207,9 +207,11 @@ const CreatePostModal = ({ open, onClose, user, onPostCreated }) => {
                   sx={{
                     "& .MuiInputBase-root": {
                       fontSize: "16px",
-                      lineHeight: "24px",
+                      alignItems: "flex-start",
+                      p: 0,
                     },
                   }}
+                  sx={{ flex: 1 }}
                 />
 
                 <Box
