@@ -51,4 +51,10 @@ userSchema.pre("save", async function () {
   this.password = await bcrypt.hash(this.password, salt);
 });
 
+userSchema.pre("save", function () {
+  if (this.isModified("email")) {
+    this.email = this.email.toLowerCase().trim();
+  }
+});
+
 export default mongoose.model("User", userSchema);
