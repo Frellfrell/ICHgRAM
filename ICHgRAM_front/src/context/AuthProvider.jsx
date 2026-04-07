@@ -20,3 +20,13 @@ const logout = () => {
     localStorage.removeItem("user");
     setIsAuth(false);
   };
+
+   return (
+    <AuthContext.Provider
+      value={{
+        isAuth,
+        loading,
+        login,
+        logout,
+      }}
+    ></AuthContext.Provider>
