@@ -21,3 +21,12 @@ const CreatePostModal = ({ open, onClose, user, onPostCreated }) => {
   const [caption, setCaption] = useState("");
   const [loading, setLoading] = useState(false);
   const fileInputRef = useRef(null);
+
+
+const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      setPreview(URL.createObjectURL(selectedFile));
+    }
+  };
