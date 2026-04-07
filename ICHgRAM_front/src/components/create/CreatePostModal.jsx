@@ -53,3 +53,11 @@ const handleFileChange = (e) => {
       setLoading(false);
     }
   };
+
+
+  const handleClose = () => {
+    setFile(null);
+    setPreview(null);
+    setCaption("");
+    onClose();
+  };
