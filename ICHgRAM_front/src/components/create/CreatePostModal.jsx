@@ -216,13 +216,13 @@ const CreatePostModal = ({ open, onClose, user, onPostCreated }) => {
 
                 <Box
                   sx={{
-                    mt: "auto",
+                    mt: 1,
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
                   }}
                 >
-                  <IconButton size="small">
+                  <IconButton size="small" sx={{ p: 0 }}>
                     <EmojiEmotionsOutlinedIcon sx={{ color: "#8E8E8E" }} />
                   </IconButton>
                   <AppTypography sx={{ color: "#C7C7C7", fontSize: "12px" }}>
