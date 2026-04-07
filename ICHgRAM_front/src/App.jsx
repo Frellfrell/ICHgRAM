@@ -15,6 +15,7 @@ import Register from "./pages/auth/Register.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import AuthLayout from "./layout/AuthLayout.jsx";
 import AuthProvider from "./context/AuthProvider";
+imoort AuthContext from "./context/AuthContext.jsx";
 import ResetPassword from "./pages/auth/ResetPassword.jsx";
 import Home from "./pages/home/Home.jsx";
 import MainLayout from "./layout/MainLayout.jsx";
@@ -56,27 +57,7 @@ function App() {
     checkToken();
   }, []);
 
-  {
-    /*const [isAuth, setIsAuth] = useState(!!localStorage.getItem("token"));
-
-  useEffect(() => {
-    const checkToken = () => {
-      setIsAuth(!!localStorage.getItem("token"));
-    };
-    checkToken();
-  }, []);
-
-  {
-    /*const [isAuth, setIsAuth] = useState(!!localStorage.getItem("token"));
-
-  useEffect(() => {
-    const checkToken = () => {
-      setIsAuth(!!localStorage.getItem("token"));
-    };
-    checkToken();
-  }, []);
-*/
-  }
+  
 
   if (loading) return null;
 
