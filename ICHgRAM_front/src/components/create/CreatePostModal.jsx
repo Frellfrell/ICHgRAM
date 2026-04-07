@@ -122,6 +122,25 @@ const handleFileChange = (e) => {
           {/* MAIN CONTENT */}
           <Box sx={{ display: "flex", flex: 1 }}>
             {/* LEFT */}
+            <Box
+              onClick={() => !preview && fileInputRef.current.click()}
+              sx={{
+                width: "573px",
+                height: "521px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                bgcolor: "#FAFAFA",
+                cursor: preview ? "default" : "pointer",
+                borderRight: "1px solid #DBDBDB",
+                transition: "background 0.2s",
+                "&:hover": { bgcolor: preview ? "#FAFAFA" : "#F5F5F5" },
+              }}
+            >
+              <input type="file" hidden ref={fileInputRef} accept="image/*" onChange={handleFileChange} />
+            </Box>
+
           </Box>
         </Box>
       </Fade>
