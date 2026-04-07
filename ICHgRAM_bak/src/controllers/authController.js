@@ -10,6 +10,11 @@ export const register = async (req, res) => {
     if (!username || !fullName || !email || !password) {
       return res.status(400).json({ message: "Заполните все поля" });
     }
+    if (password.length < 6) {
+      return res
+        .status(400)
+        .json({ message: "Пароль должен быть не менее 6 символов" });
+    }
 
     // 2. Проверка уникальности
     const existingUser = await User.findOne({
