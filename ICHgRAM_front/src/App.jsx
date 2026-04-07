@@ -14,6 +14,7 @@ import Login from "./pages/auth/Login.jsx";
 import Register from "./pages/auth/Register.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import AuthLayout from "./layout/AuthLayout.jsx";
+import AuthProvider from "./context/AuthProvider";
 import ResetPassword from "./pages/auth/ResetPassword.jsx";
 import Home from "./pages/home/Home.jsx";
 import MainLayout from "./layout/MainLayout.jsx";
@@ -93,67 +94,68 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Router>
-        <Routes>
-          {/* Редирект с главной */}
+      <AuthProvider>
+        <Router>
+          <Routes>
+            {/* Редирект с главной */}
 
-          <Route
-            path="/"
-            element={<Navigate to={isAuth ? "/home" : "/login"} replace />}
-          />
-          {/* Публичные роуты (Auth) */}
-          <Route
-            path="/login"
-            element={
-              <PublicRoute>
-                {/*<AuthLayout isLogin={true} isReset={false}>*/}
-                <Login />
-                {/*</AuthLayout>*/}
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/register"
-            element={
-              <PublicRoute>
-                <AuthLayout isLogin={false} isReset={false}>
-                  <Register />
-                </AuthLayout>
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/reset-password"
-            element={
-              <PublicRoute>
-                <AuthLayout isReset={true}>
-                  <ResetPassword />
-                </AuthLayout>
-              </PublicRoute>
-            }
-          />
-          {/* Страницы с сайдбаром и футером */}
-          <Route
-            path="/home"
-            element={
-              <ProtectedRoute>
-                <MainLayout>
-                  <Home />
-                </MainLayout>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/explore"
-            element={
-              <ProtectedRoute>
-                <MainLayout>
-                  <Explore />
-                </MainLayout>
-              </ProtectedRoute>
-            }
-          />
-          {/*<Route
+            <Route
+              path="/"
+              element={<Navigate to={isAuth ? "/home" : "/login"} replace />}
+            />
+            {/* Публичные роуты (Auth) */}
+            <Route
+              path="/login"
+              element={
+                <PublicRoute>
+                  {/*<AuthLayout isLogin={true} isReset={false}>*/}
+                  <Login />
+                  {/*</AuthLayout>*/}
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <PublicRoute>
+                  <AuthLayout isLogin={false} isReset={false}>
+                    <Register />
+                  </AuthLayout>
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/reset-password"
+              element={
+                <PublicRoute>
+                  <AuthLayout isReset={true}>
+                    <ResetPassword />
+                  </AuthLayout>
+                </PublicRoute>
+              }
+            />
+            {/* Страницы с сайдбаром и футером */}
+            <Route
+              path="/home"
+              element={
+                <ProtectedRoute>
+                  <MainLayout>
+                    <Home />
+                  </MainLayout>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/explore"
+              element={
+                <ProtectedRoute>
+                  <MainLayout>
+                    <Explore />
+                  </MainLayout>
+                </ProtectedRoute>
+              }
+            />
+            {/*<Route
             path="/messages"
             element={
               <ProtectedRoute>
@@ -163,34 +165,35 @@ function App() {
               </ProtectedRoute>
             }
           />*/}
-          <Route
-            path="/profile/edit"
-            element={
-              <ProtectedRoute>
-                <EditProfile />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/profile/:userId"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-          {/* Страница 404 */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Router>
+            <Route
+              path="/profile/edit"
+              element={
+                <ProtectedRoute>
+                  <EditProfile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile/:userId"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+            {/* Страница 404 */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Router>
+      </AuthProvider>
     </ThemeProvider>
   );
 }
