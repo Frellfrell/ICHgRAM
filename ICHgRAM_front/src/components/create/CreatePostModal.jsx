@@ -22,15 +22,13 @@ const CreatePostModal = ({ open, onClose, user, onPostCreated }) => {
   const [loading, setLoading] = useState(false);
   const fileInputRef = useRef(null);
 
-
-const handleFileChange = (e) => {
+  const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
       setFile(selectedFile);
       setPreview(URL.createObjectURL(selectedFile));
     }
   };
-
 
   const handleShare = async () => {
     if (!file) return;
@@ -44,7 +42,6 @@ const handleFileChange = (e) => {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-
       if (onPostCreated) onPostCreated(response.data);
       handleClose();
     } catch (error) {
@@ -53,7 +50,6 @@ const handleFileChange = (e) => {
       setLoading(false);
     }
   };
-
 
   const handleClose = () => {
     setFile(null);
@@ -69,12 +65,14 @@ const handleFileChange = (e) => {
       closeAfterTransition
       slots={{ backdrop: Backdrop }}
       slotProps={{
-        backdrop: { sx: { backgroundColor: "rgba(0, 0, 0, 0.7)" }, timeout: 500 },
+        backdrop: {
+          sx: { backgroundColor: "rgba(0, 0, 0, 0.7)" },
+          timeout: 500,
+        },
       }}
-
       sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
     >
-        <Fade in={open}>
+      <Fade in={open}>
         <Box
           sx={{
             width: "913px",
@@ -99,7 +97,7 @@ const handleFileChange = (e) => {
               borderBottom: "1px solid #DBDBDB",
             }}
           >
-            <Box sx={{ width: 40 }} /> 
+            <Box sx={{ width: 40 }} />
             <AppTypography sx={{ fontWeight: 600, fontSize: "16px" }}>
               Create new post
             </AppTypography>
@@ -138,8 +136,13 @@ const handleFileChange = (e) => {
                 "&:hover": { bgcolor: preview ? "#FAFAFA" : "#F5F5F5" },
               }}
             >
-
-              <input type="file" hidden ref={fileInputRef} accept="image/*" onChange={handleFileChange} />
+              <input
+                type="file"
+                hidden
+                ref={fileInputRef}
+                accept="image/*"
+                onChange={handleFileChange}
+              />
 
               {preview ? (
                 <Box
@@ -149,7 +152,9 @@ const handleFileChange = (e) => {
                 />
               ) : (
                 <>
-                <AddPhotoAlternateIcon sx={{ fontSize: 96, color: "#262626", mb: 2 }} />
+                  <AddPhotoAlternateIcon
+                    sx={{ fontSize: 96, color: "#262626", mb: 2 }}
+                  />
                   <AppTypography sx={{ fontSize: "20px", fontWeight: 300 }}>
                     Add photo
                   </AppTypography>
@@ -157,11 +162,27 @@ const handleFileChange = (e) => {
               )}
             </Box>
 
-              {/* RIGHT: CAPTION & SETTINGS */}
-            <Box sx={{ width: "339px", display: "flex", flexDirection: "column" }}>
+            {/* RIGHT: CAPTION & SETTINGS */}
+            <Box
+              sx={{ width: "339px", display: "flex", flexDirection: "column" }}
+            >
               {/* TOP BLOCK */}
-              <Box sx={{ p: 2, height: "323px", display: "flex", flexDirection: "column" }}>
-                <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 2 }}>
+              <Box
+                sx={{
+                  p: 2,
+                  height: "323px",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 1.5,
+                    mb: 2,
+                  }}
+                >
                   <Avatar src={user?.avatar} sx={{ width: 28, height: 28 }} />
                   <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>
                     {user?.username}
@@ -177,10 +198,22 @@ const handleFileChange = (e) => {
                   value={caption}
                   onChange={(e) => setCaption(e.target.value.slice(0, 2200))}
                   InputProps={{ disableUnderline: true }}
-                  sx={{ "& .MuiInputBase-root": { fontSize: "16px", lineHeight: "24px" } }}
+                  sx={{
+                    "& .MuiInputBase-root": {
+                      fontSize: "16px",
+                      lineHeight: "24px",
+                    },
+                  }}
                 />
 
-                <Box sx={{ mt: "auto", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <Box
+                  sx={{
+                    mt: "auto",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
                   <IconButton size="small">
                     <EmojiEmotionsOutlinedIcon sx={{ color: "#8E8E8E" }} />
                   </IconButton>
@@ -193,21 +226,39 @@ const handleFileChange = (e) => {
               <Divider />
 
               {/* BOTTOM BLOCK (Settings) */}
-              <Box sx={{ flex: 1, p: 2, display: "flex", flexDirection: "column", gap: 2 }}>
-                 <AppTypography sx={{ color: "#8E8E8E", fontSize: "14px", cursor: "pointer" }}>
-                    Add location
-                 </AppTypography>
-                 <Divider />
-                 <AppTypography sx={{ color: "#8E8E8E", fontSize: "14px", cursor: "pointer" }}>
-                    Accessibility
-                 </AppTypography>
-                 <Divider />
-                 <AppTypography sx={{ color: "#8E8E8E", fontSize: "14px", cursor: "pointer" }}>
-                    Advanced settings
-                 </AppTypography>
+              <Box
+                sx={{
+                  flex: 1,
+                  p: 2,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 2,
+                }}
+              >
+                <AppTypography
+                  sx={{ color: "#8E8E8E", fontSize: "14px", cursor: "pointer" }}
+                >
+                  Add location
+                </AppTypography>
+                <Divider />
+                <AppTypography
+                  sx={{ color: "#8E8E8E", fontSize: "14px", cursor: "pointer" }}
+                >
+                  Accessibility
+                </AppTypography>
+                <Divider />
+                <AppTypography
+                  sx={{ color: "#8E8E8E", fontSize: "14px", cursor: "pointer" }}
+                >
+                  Advanced settings
+                </AppTypography>
               </Box>
-
+            </Box>
           </Box>
         </Box>
       </Fade>
     </Modal>
+  );
+};
+
+export default CreatePostModal;
