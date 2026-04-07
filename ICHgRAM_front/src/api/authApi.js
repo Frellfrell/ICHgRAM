@@ -17,9 +17,18 @@ export const loginUser = async (credentials) => {
   try {
     const response = await axiosInstance.post("/api/auth/login", credentials);
 
-    if (response.data.token) {
+    // Достаём токен и юзера
+    const { token, user } = response.data;
+    if (token) {
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+    }
+
+    {
+      /* if (response.data.token) {
       localStorage.setItem("token", response.data.token); //сохраняем
       localStorage.setItem("user", JSON.stringify(response.data.user)); // сохраняем данные юзера
+    }*/
     }
 
     return response.data;
