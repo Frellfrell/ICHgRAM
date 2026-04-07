@@ -10,3 +10,7 @@ import {
   Fade,
   Backdrop,
 } from "@mui/material";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import EmojiEmotionsOutlinedIcon from "@mui/icons-material/EmojiEmotionsOutlined";
+import AppTypography from "../ui/AppTypography";
+import axiosInstance from "../../api/axiosInstance";
