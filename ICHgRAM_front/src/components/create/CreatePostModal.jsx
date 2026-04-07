@@ -185,8 +185,8 @@ const CreatePostModal = ({ open, onClose, user, onPostCreated }) => {
                   sx={{
                     display: "flex",
                     alignItems: "center",
-                    gap: 1.5,
-                    mb: 2,
+                    gap: "12px",
+                    mb: "16px",
                   }}
                 >
                   <Avatar src={user?.avatar} sx={{ width: 28, height: 28 }} />
