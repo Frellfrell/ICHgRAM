@@ -27,7 +27,6 @@ const PostModal = ({ open, post, onClose }) => {
 
   const [isActionsOpen, setIsActionsOpen] = useState(false); // Для открытия ActionsModal
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [newCaption, setNewCaption] = useState(post?.caption || "");
 
   // Достаем текущего юзера из localStorage, чтобы сравнить ID
   const currentUser = JSON.parse(localStorage.getItem("user"));
@@ -65,8 +64,6 @@ const PostModal = ({ open, post, onClose }) => {
     }
   };
 
-  const author = post.author || {};
-
   const handleDelete = async () => {
     if (window.confirm("Delete this post?"))
       try {
@@ -77,17 +74,6 @@ const PostModal = ({ open, post, onClose }) => {
       } catch (err) {
         console.error("Error deleting post:", err);
       }
-  };
-  const handleUpdate = async () => {
-    try {
-      await axiosInstance.put(`/api/posts/${post._id}`, {
-        caption: newCaption,
-      });
-      setIsActionsOpen(false);
-      // Логика завершения редактирования
-    } catch (err) {
-      console.error("Update error:", err);
-    }
   };
 
   if (!post) return null;
