@@ -64,7 +64,6 @@ const PostModal = ({ open, post, onClose }) => {
       console.error("Ошибка отправки комментария:", err);
     }
   };
-  if (!post) return null;
 
   const author = post.author || {};
 
@@ -72,8 +71,9 @@ const PostModal = ({ open, post, onClose }) => {
     if (window.confirm("Delete this post?"))
       try {
         await axiosInstance.delete(`/api/posts/${post._id}`);
-        onClose(); // Закрываем модалку после удаления
         setIsActionsOpen(false);
+        onClose(); // Закрываем модалку после удаления
+        window.location.reload(); // Перезагружаем страницу, чтобы обновить ленту
       } catch (err) {
         console.error("Error deleting post:", err);
       }
@@ -89,6 +89,8 @@ const PostModal = ({ open, post, onClose }) => {
       console.error("Update error:", err);
     }
   };
+
+  if (!post) return null;
 
   return (
     <Modal
@@ -157,15 +159,17 @@ const PostModal = ({ open, post, onClose }) => {
             <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>
               {author.username}
             </AppTypography>
-            <FollowButton userId={author._id} />
+            {!isMyPost && <FollowButton userId={author._id} />}
             {/* <IconButton onClick={onClose} sx={{ ml: "auto" }}>
               <CloseIcon />
             </IconButton> */}
             {/* ГРУППА КНОПОК В УГЛУ */}
             <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
-              <IconButton onClick={() => setIsActionsOpen(true)}>
-                <MoreHorizIcon />
-              </IconButton>
+              {isMyPost && (
+                <IconButton onClick={() => setIsActionsOpen(true)}>
+                  <MoreHorizIcon />
+                </IconButton>
+              )}
               <IconButton onClick={onClose}>
                 <CloseIcon />
               </IconButton>
@@ -266,7 +270,17 @@ const PostModal = ({ open, post, onClose }) => {
             open={isActionsOpen}
             onClose={() => setIsActionsOpen(false)}
             onDelete={handleDelete} // Передаем функцию удаления
-            onEdit={handleUpdate} // Передаем функцию редактирования
+            onEdit={() => {
+              setIsActionsOpen(false);
+              setIsEditModalOpen(true); // Открываем окно редактирования
+            }}
+          />
+          {/* МОДАЛКА САМОГО РЕДАКТИРОВАНИЯ (CreatePostModal в режиме edit) */}
+          <CreatePostModal
+            open={isEditModalOpen}
+            onClose={() => setIsEditModalOpen(false)}
+            editPost={post} // Передаем пост для правки
+            user={currentUser}
           />
         </Box>
       </Box>
