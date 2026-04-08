@@ -23,6 +23,8 @@ const PostModal = ({ open, post, onClose }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
 
+  const [isActionsOpen, setIsActionsOpen] = useState(false); // Для открытия ActionsModal
+
   const [editCaption, setEditCaption] = useState(post?.caption || "");
   const [isEditing, setIsEditing] = useState(false);
 
