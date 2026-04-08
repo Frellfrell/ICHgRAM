@@ -20,6 +20,7 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import ActionsModal from "../create/ActionsModal";
 import CreatePostModal from "../create/CreatePostModal";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import { useNavigate } from "react-router-dom";
 
 const PostModal = ({ open, post, onClose }) => {
   const [comments, setComments] = useState([]);
@@ -31,6 +32,8 @@ const PostModal = ({ open, post, onClose }) => {
   // Достаем текущего юзера из localStorage, чтобы сравнить ID
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const author = post?.author || {};
+
+  const navigate = useNavigate();
 
   // Проверка: является ли текущий юзер автором поста
   const isMyPost = currentUser?._id === author?._id;
