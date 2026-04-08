@@ -25,7 +25,7 @@ const PostModal = ({ open, post, onClose }) => {
   const [newComment, setNewComment] = useState("");
 
   const [isActionsOpen, setIsActionsOpen] = useState(false); // Для открытия ActionsModal
-  const [newCaption, setNewCaption] = useState(post.caption);
+  const [newCaption, setNewCaption] = useState(post?.caption || "");
   // 1. Загружаем комментарии при открытии модалки
   useEffect(() => {
     if (open && post?._id) {
