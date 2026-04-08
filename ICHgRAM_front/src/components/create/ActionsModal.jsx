@@ -28,7 +28,39 @@ const ActionsModal = ({ open, onClose, onDelete, onEdit }) => {
             display: "flex",
             flexDirection: "column",
           }}
-        ></Box>
+        >
+            {/* Кнопка Delete (400x48) */}
+          <Button
+            onClick={onDelete}
+            sx={{
+              height: "48px",
+              color: "#ED4956",
+              fontWeight: 700,
+              textTransform: "none",
+              fontSize: "14px",
+              "&:hover": { bgcolor: "rgba(0, 0, 0, 0.05)" },
+            }}
+          >
+            Delete
+          </Button>
+          <Divider sx={{ borderColor: "rgba(219, 219, 219, 1)" }} />
+
+          {/* Кнопка Edit (400x48) */}
+          <Button
+            onClick={onEdit}
+            sx={{
+              height: "48px",
+              color: "#262626",
+              fontWeight: 400,
+              textTransform: "none",
+              fontSize: "14px",
+              "&:hover": { bgcolor: "rgba(0, 0, 0, 0.05)" },
+            }}
+          >
+            Edit
+          </Button>
+          <Divider sx={{ borderColor: "rgba(219, 219, 219, 1)" }} />
+        </Box>
 
 
 
