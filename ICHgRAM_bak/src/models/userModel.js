@@ -44,17 +44,19 @@ const userSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-userSchema.pre("save", async function () {
-  if (!this.isModified("password")) return;
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
 
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
+  next();
 });
 
-userSchema.pre("save", function () {
+userSchema.pre("save", function (next) {
   if (this.isModified("email")) {
     this.email = this.email.toLowerCase().trim();
   }
+  next();
 });
 
 export default mongoose.model("User", userSchema);
