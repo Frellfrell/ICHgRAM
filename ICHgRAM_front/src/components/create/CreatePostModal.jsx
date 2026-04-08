@@ -15,26 +15,31 @@ import EmojiEmotionsOutlinedIcon from "@mui/icons-material/EmojiEmotionsOutlined
 import AppTypography from "../ui/AppTypography";
 import axiosInstance from "../../api/axiosInstance";
 
-const CreatePostModal = ({ open, onClose, user, onPostCreated }) => {
+const CreatePostModal = ({
+  open,
+  onClose,
+  user,
+  onPostCreated,
+  editPost = null,
+}) => {
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
   const [caption, setCaption] = useState("");
   const [loading, setLoading] = useState(false);
-  const fileInputRef = useRef(null);
+  //const fileInputRef = useRef(null);
 
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    if (selectedFile) {
-      //setFile(selectedFile);
-      //setPreview(URL.createObjectURL(selectedFile));
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreview(reader.result);
-        setFile(reader.result); // Сохраняем строку для отправки в БД
-      };
-      reader.readAsDataURL(selectedFile);
+  // Если открыли для редактирования — подставляем данные поста
+  useEffect(() => {
+    if (editPost && open) {
+      setCaption(editPost.caption || "");
+      setPreview(editPost.image);
+      setFile(editPost.image);
+    } else if (open) {
+      setCaption("");
+      setPreview(null);
+      setFile(null);
     }
-  };
+  }, [editPost, open]);
 
   const handleShare = async () => {
     //if (!file) return;
