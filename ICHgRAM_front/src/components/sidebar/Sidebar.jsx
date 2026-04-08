@@ -18,12 +18,13 @@ import { AuthContext } from "../../context/AuthContext.jsx";
 import CreatePostModal from "../create/CreatePostModal.jsx";
 import { useState } from "react";
 import AppAvatar from "../ui/AppAvatar";
-//import { formatUrl } from "../ui/helpers";
+import { formatUrl } from "../ui/helpers";
 
 const Sidebar = ({ onSearchClick, onNotifClick }) => {
   const theme = useTheme();
   const navigate = useNavigate();
-  const { logout, user } = useContext(AuthContext);
+  const { logout, user: contextUser } = useContext(AuthContext);
+  const user = contextUser || JSON.parse(localStorage.getItem("user"));
 
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
@@ -109,28 +110,23 @@ const Sidebar = ({ onSearchClick, onNotifClick }) => {
               label="Profile"
               to="/profile"
               icon={
-                //user?.avatar ||
-                //JSON.parse(localStorage.getItem("user"))?.avatar ? (
-                <AppAvatar
-                  src={
-                    user.avatar.startsWith("http")
-                      ? user.avatar
-                      : `http://localhost:5000${user.avatar}`
-                  }
-                  size={24}
-                  sx={{
-                    border:
-                      window.location.pathname === "/profile"
-                        ? "1.5px solid black"
-                        : "none",
-                    bgcolor: "#ccc", // Серый фон, пока картинка грузится
-                  }}
-                >
-                  {/* Это "запасной" вариант: если картинки нет, покажется ProfileIcon */}
-                  {!user?.avatar && (
-                    <img src={ProfileIcon} style={{ width: "100%" }} />
-                  )}
-                </AppAvatar>
+                user?.avatar ? (
+                  //user?.avatar ||
+                  //JSON.parse(localStorage.getItem("user"))?.avatar ? (
+                  <AppAvatar
+                    src={formatUrl(user.avatar)}
+                    size={24}
+                    sx={{
+                      border:
+                        window.location.pathname === "/profile"
+                          ? "1.5px solid black"
+                          : "none",
+                      bgcolor: "#ccc", // Серый фон, пока картинка грузится
+                    }}
+                  />
+                ) : (
+                  ProfileIcon
+                )
               }
             />
 
