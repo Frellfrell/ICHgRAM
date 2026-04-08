@@ -100,9 +100,13 @@ const Sidebar = ({ onSearchClick, onNotifClick }) => {
           <Box sx={{ marginTop: "47px" }}>
             <SidebarItem
               icon={
-                user?.avatar ? (
+                user?.avatar ||
+                JSON.parse(localStorage.getItem("user"))?.avatar ? (
                   <AppAvatar
-                    src={formatUrl(user?.avatar)}
+                    src={formatUrl(
+                      user?.avatar ||
+                        JSON.parse(localStorage.getItem("user"))?.avatar,
+                    )}
                     alt="Profile"
                     sx={{
                       width: "24px",
