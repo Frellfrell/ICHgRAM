@@ -18,7 +18,7 @@ import axiosInstance from "../../api/axiosInstance";
 import { formatUrl, timeAgo } from "../ui/helpers";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import ActionsModal from "../create/ActionsModal";
-import CreatePostModal from "../layout/CreatePostModal";
+import CreatePostModal from "../create/CreatePostModal";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 const PostModal = ({ open, post, onClose }) => {
@@ -83,7 +83,7 @@ const PostModal = ({ open, post, onClose }) => {
       open={open}
       onClose={onClose}
       slotProps={{
-        backdrop: { sx: { backgroundColor: "rgba(0, 0, 0, 0.7)" } },
+        backdrop: { sx: { backgroundColor: "rgba(0, 0, 0, 0.65)" } },
       }}
     >
       <Box
