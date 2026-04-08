@@ -22,7 +22,7 @@ const ActionsModal = ({ open, onClose, onDelete, onEdit }) => {
             width: "400px",
             bgcolor: "#FFFFFF",
             borderRadius: "12px",
-            boxShadow: 24,
+            boxShadow: "0 12px 42px rgba(0,0,0,0.2)",
             overflow: "hidden",
             outline: "none",
             display: "flex",
