@@ -78,10 +78,11 @@ const CreatePostModal = ({
       if (onPostCreated) onPostCreated();
       onClose();
       window.location.reload();
-    } catch (error) { 
-      console.error(error); 
-
-     } finally { setLoading(false); }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -123,7 +124,10 @@ const CreatePostModal = ({
               borderBottom: "1px solid #DBDBDB",
             }}
           >
-            <Button onClick={onClose} sx={{ color: "#262626", textTransform: "none" }}>
+            <Button
+              onClick={onClose}
+              sx={{ color: "#262626", textTransform: "none" }}
+            >
               Cancel
             </Button>
             <AppTypography sx={{ fontWeight: 600, fontSize: "16px" }}>
@@ -149,7 +153,6 @@ const CreatePostModal = ({
           <Box sx={{ display: "flex", flex: 1 }}>
             {/* LEFT */}
             <Box
-              
               sx={{
                 width: "573px",
                 height: "521px",
@@ -164,7 +167,7 @@ const CreatePostModal = ({
                 "&:hover": { bgcolor: preview ? "#FAFAFA" : "#F5F5F5" },
               }}
             >
-             { /* <input
+              {/* <input
                 type="file"
                 hidden
                 ref={fileInputRef}
@@ -179,18 +182,20 @@ const CreatePostModal = ({
                   sx={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
               ) : (
-                
-                <Button onClick={() => fileInputRef.current.click()}>
+                <IconButton onClick={() => fileInputRef.current.click()}>
                   <AddPhotoAlternateIcon
                     sx={{ fontSize: 96, color: "#262626", mb: 2 }}
                   />
-                </Button>
+                  <AppTypography>Select from computer</AppTypography>
+                </IconButton>
               )}
-                 <input type="file" hidden ref={fileInputRef} onChange={(e) => {
-                const reader = new FileReader();
-                reader.onload = () => { setPreview(reader.result); setFile(reader.result); };
-                reader.readAsDataURL(e.target.files[0]);
-              }} />
+              <input
+                type="file"
+                hidden
+                ref={fileInputRef}
+                accept="image/*"
+                onChange={handleFileChange}
+              />
             </Box>
 
             {/* RIGHT: CAPTION & SETTINGS */}
@@ -242,7 +247,6 @@ const CreatePostModal = ({
 
                     sx: { fontSize: "16px", p: 0, alignItems: "flex-start" },
                   }}
-                  sx={{ flex: 1 }}
                 />
 
                 <Box
@@ -275,12 +279,10 @@ const CreatePostModal = ({
                   borderTop: "1px solid #DBDBDB", // Серая граница сверху
                   bgcolor: "#FFFFFF",
                 }}
-              >
-
-              </Box>
+              ></Box>
             </Box>
           </Box>
-        
+        </Box>
       </Fade>
     </Modal>
   );
