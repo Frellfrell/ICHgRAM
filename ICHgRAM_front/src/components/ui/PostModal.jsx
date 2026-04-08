@@ -141,6 +141,10 @@ const PostModal = ({ open, post, onClose }) => {
               alignItems: "center",
               gap: "12px",
             }}
+            onClick={() => {
+              navigate(`/profile/${author._id}`);
+              onClose(); // Закрываем модалку при переходе
+            }}
           >
             <AppAvatar src={formatUrl(author.avatar)} size={32} />
             <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>
