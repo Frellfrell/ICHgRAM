@@ -244,9 +244,7 @@ const Profile = () => {
               >
                 <img
                   src={formatUrl(post.image)}
-                  onError={(e) =>
-                    console.log("Ошибка загрузки фото:", post.image)
-                  }
+                  alt="post"
                   style={{
                     position: "absolute",
                     top: 0,
