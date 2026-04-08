@@ -11,9 +11,19 @@ import NotificationIcon from "../../assets/icons/Notification.svg";
 import CreateIcon from "../../assets/icons/Create.svg";
 import ProfileIcon from "../../assets/icons/Profile.svg";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext.jsx";
 
 const Sidebar = ({ onSearchClick, onNotifClick }) => {
   const theme = useTheme();
+  const navigate = useNavigate();
+  const { logout } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
 
   return (
     <Box
@@ -77,6 +87,11 @@ const Sidebar = ({ onSearchClick, onNotifClick }) => {
             extraMargin={47}
             label="Profile"
             to="/profile"
+          />
+          <SidebarItem
+            icon={ProfileIcon}
+            label="Logout"
+            onClick={handleLogout}
           />
         </Box>
       </Box>
