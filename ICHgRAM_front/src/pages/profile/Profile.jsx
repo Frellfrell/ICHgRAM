@@ -226,37 +226,43 @@ const Profile = () => {
 
         {/* POSTS GRID */}
         <Grid container spacing={1} sx={{ mt: 2 }}>
-          {posts.map((post) => (
-            <Grid xs={4} key={post._id}>
-              <Box
-                onClick={() => {
-                  if (post && post._id && post.author) {
-                    setSelectedPost(post);
-                    setIsModalOpen(true);
-                  }
-                }}
-                sx={{
-                  position: "relative",
-                  pt: "100%",
-                  cursor: "pointer",
-                  "&:hover": { filter: "brightness(0.8)" },
-                }}
-              >
-                <img
-                  src={formatUrl(post.image)}
-                  alt="post"
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
+          {posts.length > 0 ? (
+            posts.map((post) => (
+              <Grid xs={4} key={post._id} sx={{ aspectRatio: "1/1" }}>
+                <Box
+                  onClick={() => {
+                    if (post && post._id && post.author) {
+                      setSelectedPost(post);
+                      setIsModalOpen(true);
+                    }
                   }}
-                />
-              </Box>
-            </Grid>
-          ))}
+                  sx={{
+                    position: "relative",
+                    pt: "100%",
+                    cursor: "pointer",
+                    "&:hover": { filter: "brightness(0.8)" },
+                  }}
+                >
+                  <img
+                    src={formatUrl(post.image)}
+                    alt="post"
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </Box>
+              </Grid>
+            ))
+          ) : (
+            <AppTypography sx={{ p: 4, width: "100%", textAlign: "center" }}>
+              No posts yet
+            </AppTypography>
+          )}
         </Grid>
 
         {selectedPost && (

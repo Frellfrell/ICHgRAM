@@ -144,139 +144,159 @@ const PostModal = ({ open, post, onClose }) => {
               alignItems: "center",
               gap: "12px",
             }}
-            onClick={() => {
-              navigate(`/profile/${author._id}`);
-              onClose(); // Закрываем модалку при переходе
-            }}
           >
-            <AppAvatar src={formatUrl(author.avatar)} size={32} />
-            <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>
-              {author.username}
-            </AppTypography>
-            {!isMyPost && <FollowButton userId={author._id} />}
-            {/* <IconButton onClick={onClose} sx={{ ml: "auto" }}>
-              <CloseIcon />
-            </IconButton> */}
-            {/* ГРУППА КНОПОК В УГЛУ */}
-            <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
-              {isMyPost && (
-                <IconButton onClick={() => setIsActionsOpen(true)}>
-                  <MoreHorizIcon />
-                </IconButton>
-              )}
-              <IconButton onClick={onClose}>
-                <CloseIcon />
-              </IconButton>
-            </Box>
-          </Box>
-          <Divider />
-
-          {/* Комментарии */}
-          <Box
-            sx={{
-              p: 2,
-              flexGrow: 1,
-              overflowY: "auto",
-            }}
-          >
-            <CommentItem
-              comment={{
-                text: post.caption,
-                author: author,
-                createdAt: post.createdAt,
-              }}
-            />
-
-            {/* Сами комментарии из базы */}
-            {comments.map((c) => (
-              <CommentItem key={c._id} comment={c} />
-            ))}
-          </Box>
-          <Divider />
-
-          {/* Лайки */}
-          <Box sx={{ p: "12px 16px" }}>
             <Box
+              onClick={() => {
+                navigate(`/profile/${author._id}`);
+                onClose(); // Закрываем модалку при переходе
+              }}
               sx={{
                 display: "flex",
                 alignItems: "center",
+                gap: "12px",
+                cursor: "pointer",
+                flexGrow: 1,
               }}
             >
-              <LikeButton
-                postId={post._id}
-                initialLikesCount={post.likesCount}
+              <AppAvatar src={formatUrl(author.avatar)} size={32} />
+              <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>
+                {author.username}
+              </AppTypography>
+              {!isMyPost && <FollowButton userId={author._id} />}
+              {/* <IconButton onClick={onClose} sx={{ ml: "auto" }}>
+              <CloseIcon />
+            </IconButton> */}
+              {/* ГРУППА КНОПОК В УГЛУ */}
+              <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
+                {isMyPost && (
+                  <IconButton
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsActionsOpen(true);
+                    }}
+                  >
+                    <MoreHorizIcon />
+                  </IconButton>
+                )}
+                <IconButton
+                  onClick={(e) => {
+                    e.stopPropagation(); // Чтобы не сработал переход
+                    onClose();
+                  }}
+                >
+                  <CloseIcon />
+                </IconButton>
+              </Box>
+            </Box>
+            <Divider />
+
+            {/* Комментарии */}
+            <Box
+              sx={{
+                p: 2,
+                flexGrow: 1,
+                overflowY: "auto",
+              }}
+            >
+              <CommentItem
+                comment={{
+                  text: post.caption,
+                  author: author,
+                  createdAt: post.createdAt,
+                }}
               />
-              <IconButton
+
+              {/* Сами комментарии из базы */}
+              {comments.map((c) => (
+                <CommentItem key={c._id} comment={c} />
+              ))}
+            </Box>
+            <Divider />
+
+            {/* Лайки */}
+            <Box sx={{ p: "12px 16px" }}>
+              <Box
                 sx={{
-                  p: 0,
-                  alignSelf: "flex-start",
-                  mt: 1.5,
-                  color: "text.primary",
+                  display: "flex",
+                  alignItems: "center",
                 }}
               >
-                <ChatBubbleOutlineIcon sx={{ fontSize: 24 }} />
-              </IconButton>
+                <LikeButton
+                  postId={post._id}
+                  initialLikesCount={post.likesCount}
+                />
+                <IconButton
+                  sx={{
+                    p: 0,
+                    alignSelf: "flex-start",
+                    mt: 1.5,
+                    color: "text.primary",
+                  }}
+                >
+                  <ChatBubbleOutlineIcon sx={{ fontSize: 24 }} />
+                </IconButton>
+              </Box>
+              <AppTypography
+                sx={{
+                  fontWeight: 700,
+                  fontSize: "14px",
+                  color: "text.secondary",
+                }}
+              >
+                {timeAgo(post.createdAt).replace(" ago", "")}
+              </AppTypography>
             </Box>
-            <AppTypography
+
+            <Divider />
+
+            {/* Блок добавления комментария */}
+            <Box
               sx={{
-                fontWeight: 700,
-                fontSize: "14px",
-                color: "text.secondary",
+                height: "45px",
+                display: "flex",
+                alignItems: "center",
+                px: 2,
+                gap: 1,
               }}
             >
-              {timeAgo(post.createdAt).replace(" ago", "")}
-            </AppTypography>
-          </Box>
-
-          <Divider />
-
-          {/* Блок добавления комментария */}
-          <Box
-            sx={{
-              height: "45px",
-              display: "flex",
-              alignItems: "center",
-              px: 2,
-              gap: 1,
-            }}
-          >
-            <SentimentSatisfiedAltIcon sx={{ color: "#262626" }} />
-            <TextField
-              placeholder="Add comment"
-              variant="standard"
-              fullWidth
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-              InputProps={{ disableUnderline: true }}
+              <SentimentSatisfiedAltIcon sx={{ color: "#262626" }} />
+              <TextField
+                placeholder="Add comment"
+                variant="standard"
+                fullWidth
+                value={newComment}
+                onChange={(e) => setNewComment(e.target.value)}
+                InputProps={{ disableUnderline: true }}
+              />
+              <Button
+                onClick={handleAddComment}
+                sx={{
+                  color: "#0095F6",
+                  fontWeight: 600,
+                  textTransform: "none",
+                }}
+              >
+                Send
+              </Button>
+            </Box>
+            <ActionsModal
+              open={isActionsOpen}
+              onClose={() => setIsActionsOpen(false)}
+              onDelete={handleDelete} // Передаем функцию удаления
+              onEdit={() => {
+                setIsActionsOpen(false);
+                setIsEditModalOpen(true); // Открываем окно редактирования
+              }}
             />
-            <Button
-              onClick={handleAddComment}
-              sx={{
-                color: "#0095F6",
-                fontWeight: 600,
-                textTransform: "none",
-              }}
-            >
-              Send
-            </Button>
+            {/* МОДАЛКА САМОГО РЕДАКТИРОВАНИЯ (CreatePostModal в режиме edit) */}
+            <CreatePostModal
+              open={isEditModalOpen}
+              onClose={() => setIsEditModalOpen(false)}
+              editPost={post} // Передаем пост для правки
+              user={currentUser}
+              isNested={true}
+            />
           </Box>
-          <ActionsModal
-            open={isActionsOpen}
-            onClose={() => setIsActionsOpen(false)}
-            onDelete={handleDelete} // Передаем функцию удаления
-            onEdit={() => {
-              setIsActionsOpen(false);
-              setIsEditModalOpen(true); // Открываем окно редактирования
-            }}
-          />
-          {/* МОДАЛКА САМОГО РЕДАКТИРОВАНИЯ (CreatePostModal в режиме edit) */}
-          <CreatePostModal
-            open={isEditModalOpen}
-            onClose={() => setIsEditModalOpen(false)}
-            editPost={post} // Передаем пост для правки
-            user={currentUser}
-            isNested={true}
-          />
         </Box>
       </Box>
     </Modal>
