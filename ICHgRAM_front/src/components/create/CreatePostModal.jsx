@@ -25,23 +25,30 @@ const CreatePostModal = ({ open, onClose, user, onPostCreated }) => {
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
-      setFile(selectedFile);
-      setPreview(URL.createObjectURL(selectedFile));
+      //setFile(selectedFile);
+      //setPreview(URL.createObjectURL(selectedFile));
+      reader.onloadend = () => {
+      setPreview(reader.result);
+      setFile(reader.result);    // Сохраняем строку для отправки в БД
     }
   };
 
   const handleShare = async () => {
-    if (!file) return;
+    //if (!file) return;
     setLoading(true);
     try {
-      const formData = new FormData();
-      formData.append("image", file);
-      formData.append("caption", caption);
+      //const formData = new FormData();
+      //formData.append("image", file);
+      //formData.append("caption", caption);
+      const payload = {
+      image: file, // строка Base64
+      caption: caption
+    };
 
-      const response = await axiosInstance.post("/api/posts", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-
+      const response = await axiosInstance.post("/api/posts", payload); 
+     
+       // headers: { "Content-Type": "application/json" },
+      
       if (onPostCreated) onPostCreated(response.data);
       handleClose();
     } catch (error) {
