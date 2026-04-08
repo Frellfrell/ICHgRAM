@@ -27,9 +27,12 @@ const CreatePostModal = ({ open, onClose, user, onPostCreated }) => {
     if (selectedFile) {
       //setFile(selectedFile);
       //setPreview(URL.createObjectURL(selectedFile));
+      const reader = new FileReader();
       reader.onloadend = () => {
-      setPreview(reader.result);
-      setFile(reader.result);    // Сохраняем строку для отправки в БД
+        setPreview(reader.result);
+        setFile(reader.result); // Сохраняем строку для отправки в БД
+      };
+      reader.readAsDataURL(selectedFile);
     }
   };
 
@@ -41,14 +44,14 @@ const CreatePostModal = ({ open, onClose, user, onPostCreated }) => {
       //formData.append("image", file);
       //formData.append("caption", caption);
       const payload = {
-      image: file, // строка Base64
-      caption: caption
-    };
+        image: file, // строка Base64
+        caption: caption,
+      };
 
-      const response = await axiosInstance.post("/api/posts", payload); 
-     
-       // headers: { "Content-Type": "application/json" },
-      
+      const response = await axiosInstance.post("/api/posts", payload);
+
+      // headers: { "Content-Type": "application/json" },
+
       if (onPostCreated) onPostCreated(response.data);
       handleClose();
     } catch (error) {
