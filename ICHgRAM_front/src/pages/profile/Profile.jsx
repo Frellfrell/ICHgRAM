@@ -225,22 +225,31 @@ const Profile = () => {
         </Box>
 
         {/* POSTS GRID */}
-        <Grid container spacing={1} sx={{ mt: 2 }}>
+        <Grid
+          container
+          spacing={1}
+          sx={{
+            mt: 2,
+            width: "100%",
+            minHeight: "100px",
+            border: "2px solid red",
+          }}
+        >
           {posts.length > 0 ? (
             posts.map((post) => (
-              <Grid xs={4} key={post._id} sx={{ aspectRatio: "1/1" }}>
+              <Grid item xs={4} key={post._id} sx={{ aspectRatio: "1/1" }}>
                 <Box
                   onClick={() => {
-                    if (post && post._id && post.author) {
-                      setSelectedPost(post);
-                      setIsModalOpen(true);
-                    }
+                    //if (post && post._id && post.author) {
+                    setSelectedPost(post);
+                    setIsModalOpen(true);
                   }}
                   sx={{
                     position: "relative",
                     pt: "100%",
                     cursor: "pointer",
                     "&:hover": { filter: "brightness(0.8)" },
+                    backgroundColor: "#efefef",
                   }}
                 >
                   <img
