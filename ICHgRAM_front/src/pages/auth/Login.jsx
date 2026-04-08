@@ -127,7 +127,7 @@ const Login = () => {
                 variant="body2"
                 sx={{ color: "error.main", my: 1 }}
               >
-                {error}
+                {typeof error === "string" ? error : error.message}
               </AppTypography>
             )}
 
