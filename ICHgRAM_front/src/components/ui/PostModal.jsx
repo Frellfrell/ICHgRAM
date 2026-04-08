@@ -17,6 +17,7 @@ import CommentItem from "../comment/CommentItem";
 import axiosInstance from "../../api/axiosInstance";
 import { formatUrl, timeAgo } from "../ui/helpers";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import ActionsModal from "./ActionsModal";
 
 const PostModal = ({ open, post, onClose }) => {
   const [comments, setComments] = useState([]);
