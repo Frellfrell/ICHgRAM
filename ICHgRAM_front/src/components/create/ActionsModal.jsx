@@ -10,7 +10,7 @@ const ActionsModal = ({ open, onClose, onDelete, onEdit }) => {
       slots={{ backdrop: Backdrop }}
       slotProps={{
         backdrop: {
-          sx: { backgroundColor: "transparent" },
+          sx: { backgroundColor: "rgba(0, 0, 0, 0.4)" },
           timeout: 500,
         },
       }}
@@ -22,6 +22,7 @@ const ActionsModal = ({ open, onClose, onDelete, onEdit }) => {
             width: "400px",
             bgcolor: "#FFFFFF",
             borderRadius: "12px",
+            boxShadow: 24,
             overflow: "hidden",
             outline: "none",
             display: "flex",
