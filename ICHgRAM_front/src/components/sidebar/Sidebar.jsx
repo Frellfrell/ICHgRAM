@@ -18,7 +18,7 @@ import { AuthContext } from "../../context/AuthContext.jsx";
 import CreatePostModal from "../create/CreatePostModal.jsx";
 import { useState } from "react";
 import AppAvatar from "../ui/AppAvatar";
-import { formatUrl } from "../ui/helpers";
+//import { formatUrl } from "../ui/helpers";
 
 const Sidebar = ({ onSearchClick, onNotifClick }) => {
   const theme = useTheme();
@@ -112,7 +112,11 @@ const Sidebar = ({ onSearchClick, onNotifClick }) => {
                 //user?.avatar ||
                 //JSON.parse(localStorage.getItem("user"))?.avatar ? (
                 <AppAvatar
-                  src={user?.avatar ? formatUrl(user.avatar) : ""}
+                  src={
+                    user.avatar.startsWith("http")
+                      ? user.avatar
+                      : `http://localhost:5000${user.avatar}`
+                  }
                   size={24}
                   sx={{
                     border:
