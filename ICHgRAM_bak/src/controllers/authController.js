@@ -33,8 +33,8 @@ export const register = async (req, res) => {
     const user = await User.create({
       username,
       fullName,
-      email,
-      password: hashedPassword,
+      email: email.trim().toLowerCase(),
+      password,
     });
 
     // 5. JWT
