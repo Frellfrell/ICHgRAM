@@ -75,6 +75,23 @@ const ActionsModal = ({ open, onClose, onDelete, onEdit }) => {
             Go to post
           </Button>
           <Divider sx={{ borderColor: "rgba(219, 219, 219, 1)" }} />
+
+          {/* Кнопка Copy link */}
+          <Button
+            onClick={onClose}
+            sx={{
+              height: "48px",
+              color: "#262626",
+              textTransform: "none",
+              fontSize: "14px",
+              "&:hover": { bgcolor: "rgba(0, 0, 0, 0.05)" },
+            }}
+          >
+            Copy link
+          </Button>
+          <Divider sx={{ borderColor: "rgba(219, 219, 219, 1)" }} />
+
+          
         </Box>
 
 
