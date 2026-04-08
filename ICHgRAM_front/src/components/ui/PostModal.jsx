@@ -102,7 +102,7 @@ const PostModal = ({ open, post, onClose }) => {
           bgcolor: "background.paper",
           outline: "none",
           borderRadius: "3.39px",
-          boxShadow: 24,
+          boxShadow: "0 12px 42px rgba(0,0,0,0.2)",
           overflow: "hidden",
         }}
       >
