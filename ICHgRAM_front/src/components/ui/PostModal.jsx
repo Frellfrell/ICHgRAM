@@ -26,7 +26,16 @@ const PostModal = ({ open, post, onClose }) => {
   const [newComment, setNewComment] = useState("");
 
   const [isActionsOpen, setIsActionsOpen] = useState(false); // Для открытия ActionsModal
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [newCaption, setNewCaption] = useState(post?.caption || "");
+
+  // Достаем текущего юзера из localStorage, чтобы сравнить ID
+  const currentUser = JSON.parse(localStorage.getItem("user"));
+  const author = post?.author || {};
+
+  // Проверка: является ли текущий юзер автором поста
+  const isMyPost = currentUser?._id === author?._id;
+
   // 1. Загружаем комментарии при открытии модалки
   useEffect(() => {
     if (open && post?._id) {
