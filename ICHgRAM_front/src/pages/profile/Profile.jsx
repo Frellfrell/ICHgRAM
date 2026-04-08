@@ -269,6 +269,7 @@ const Profile = () => {
                     style={{
                       display: "block",
                       width: "100%",
+                      maxWidth: "304px",
                       height: "100%",
                       objectFit: "cover",
                     }}
