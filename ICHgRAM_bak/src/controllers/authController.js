@@ -1,7 +1,5 @@
 import bcrypt from "bcryptjs";
-
 import User from "../models/userModel.js";
-
 import { generateToken } from "../config/jwt.js";
 
 export const register = async (req, res) => {
