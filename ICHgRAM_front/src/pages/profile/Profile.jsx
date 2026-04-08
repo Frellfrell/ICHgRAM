@@ -232,7 +232,7 @@ const Profile = () => {
             mt: 2,
             width: "100%",
             minHeight: "400px",
-            border: "2px solid red",
+
             alignItems: "flex-start",
             alignContent: "flex-start",
           }}
