@@ -255,7 +255,11 @@ const Profile = () => {
                     width: "100%",
                     height: "100%",
                     cursor: "pointer",
+                    overflow: "hidden",
                     "&:hover": { filter: "brightness(0.8)" },
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                     backgroundColor: "#efefef",
                   }}
                 >
