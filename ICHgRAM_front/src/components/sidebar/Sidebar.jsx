@@ -99,32 +99,34 @@ const Sidebar = ({ onSearchClick, onNotifClick }) => {
 
           <Box sx={{ marginTop: "47px" }}>
             <SidebarItem
-              icon={
-                user?.avatar ||
-                JSON.parse(localStorage.getItem("user"))?.avatar ? (
-                  <AppAvatar
-                    src={formatUrl(
-                      user?.avatar ||
-                        JSON.parse(localStorage.getItem("user"))?.avatar,
-                    )}
-                    alt="Profile"
-                    sx={{
-                      width: "24px",
-                      height: "24px",
-                      border:
-                        window.location.pathname === "/profile"
-                          ? "1.5px solid black"
-                          : "none",
-                    }}
-                  />
-                ) : (
-                  ProfileIcon // Если аватара нет, показываем стандартную иконку
-                )
-              }
               extraMargin={47}
               label="Profile"
               to="/profile"
+              icon={
+                //user?.avatar ||
+                //JSON.parse(localStorage.getItem("user"))?.avatar ? (
+                <AppAvatar
+                  src={
+                    formatUrl //(
+                    // user?.avatar ||
+                    // JSON.parse(localStorage.getItem("user"))?.avatar,
+                    //)
+                  }
+                  alt="Profile"
+                  sx={{
+                    width: "24px",
+                    height: "24px",
+                    border:
+                      window.location.pathname === "/profile"
+                        ? "1.5px solid black"
+                        : "none",
+                  }}
+                />
+                // ) : (
+                // ProfileIcon // Если аватара нет, показываем стандартную иконку
+              }
             />
+
             <SidebarItem
               icon={
                 <LogoutIcon
