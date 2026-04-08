@@ -31,8 +31,12 @@ const Sidebar = ({ onSearchClick, onNotifClick }) => {
     logout();
     navigate("/login");
   };
-  console.log("USER DATA:", user);
-  console.log("AVATAR URL:", formatUrl(user?.avatar));
+  console.log("ПРОВЕРКА В САЙДБАРЕ:");
+  console.log("1. User из контекста:", user);
+  console.log(
+    "2. User из localStorage:",
+    JSON.parse(localStorage.getItem("user")),
+  );
 
   return (
     <>
