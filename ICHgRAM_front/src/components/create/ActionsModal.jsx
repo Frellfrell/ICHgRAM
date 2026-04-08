@@ -16,4 +16,20 @@ const ActionsModal = ({ open, onClose, onDelete, onEdit }) => {
         },
       }}
       sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
-    ></Modal>
+    >
+        <Fade in={open}>
+        <Box
+          sx={{
+            width: "400px",
+            bgcolor: "#FFFFFF",
+            borderRadius: "12px",
+            overflow: "hidden",
+            outline: "none",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        ></Box>
+
+
+
+    </Modal>
