@@ -31,6 +31,8 @@ const Sidebar = ({ onSearchClick, onNotifClick }) => {
     logout();
     navigate("/login");
   };
+  console.log("USER DATA:", user);
+  console.log("AVATAR URL:", formatUrl(user?.avatar));
 
   return (
     <>
@@ -106,24 +108,21 @@ const Sidebar = ({ onSearchClick, onNotifClick }) => {
                 //user?.avatar ||
                 //JSON.parse(localStorage.getItem("user"))?.avatar ? (
                 <AppAvatar
-                  src={
-                    formatUrl //(
-                    // user?.avatar ||
-                    // JSON.parse(localStorage.getItem("user"))?.avatar,
-                    //)
-                  }
-                  alt="Profile"
+                  src={user?.avatar ? formatUrl(user.avatar) : ""}
+                  size={24}
                   sx={{
-                    width: "24px",
-                    height: "24px",
                     border:
                       window.location.pathname === "/profile"
                         ? "1.5px solid black"
                         : "none",
+                    bgcolor: "#ccc", // Серый фон, пока картинка грузится
                   }}
-                />
-                // ) : (
-                // ProfileIcon // Если аватара нет, показываем стандартную иконку
+                >
+                  {/* Это "запасной" вариант: если картинки нет, покажется ProfileIcon */}
+                  {!user?.avatar && (
+                    <img src={ProfileIcon} style={{ width: "100%" }} />
+                  )}
+                </AppAvatar>
               }
             />
 
