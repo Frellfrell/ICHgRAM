@@ -231,13 +231,20 @@ const Profile = () => {
           sx={{
             mt: 2,
             width: "100%",
-            minHeight: "100px",
+            minHeight: "400px",
             border: "2px solid red",
+            alignItems: "flex-start",
+            alignContent: "flex-start",
           }}
         >
           {posts.length > 0 ? (
             posts.map((post) => (
-              <Grid item xs={4} key={post._id} sx={{ aspectRatio: "1/1" }}>
+              <Grid
+                item
+                xs={4}
+                key={post._id}
+                sx={{ aspectRatio: "1/1", padding: "4px" }}
+              >
                 <Box
                   onClick={() => {
                     //if (post && post._id && post.author) {
@@ -245,8 +252,8 @@ const Profile = () => {
                     setIsModalOpen(true);
                   }}
                   sx={{
-                    position: "relative",
-                    pt: "100%",
+                    width: "100%",
+                    height: "100%",
                     cursor: "pointer",
                     "&:hover": { filter: "brightness(0.8)" },
                     backgroundColor: "#efefef",
@@ -256,9 +263,7 @@ const Profile = () => {
                     src={formatUrl(post.image)}
                     alt="post"
                     style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
+                      display: "block",
                       width: "100%",
                       height: "100%",
                       objectFit: "cover",
