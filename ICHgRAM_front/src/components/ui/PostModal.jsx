@@ -17,7 +17,8 @@ import CommentItem from "../comment/CommentItem";
 import axiosInstance from "../../api/axiosInstance";
 import { formatUrl, timeAgo } from "../ui/helpers";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-import ActionsModal from "./ActionsModal";
+import ActionsModal from "../create/ActionsModal";
+import CreatePostModal from "../layout/CreatePostModal";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 const PostModal = ({ open, post, onClose }) => {
