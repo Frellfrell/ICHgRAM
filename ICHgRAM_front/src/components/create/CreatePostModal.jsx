@@ -21,6 +21,7 @@ const CreatePostModal = ({
   user,
   onPostCreated,
   editPost = null,
+  isNested = false,
 }) => {
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
@@ -93,7 +94,10 @@ const CreatePostModal = ({
       slots={{ backdrop: Backdrop }}
       slotProps={{
         backdrop: {
-          sx: { backgroundColor: "transparent" },
+          sx: {
+            // Если isNested true — прозрачно, иначе — темный фон
+            backgroundColor: isNested ? "transparent" : "rgba(0, 0, 0, 0.5)",
+          },
           timeout: 500,
         },
       }}
