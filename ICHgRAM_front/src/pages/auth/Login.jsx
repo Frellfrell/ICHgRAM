@@ -48,7 +48,8 @@ const Login = () => {
       navigate("/home");
     } catch (err) {
       // Если пароль неверный или пользователя нет
-      setError(err.message || "Invalid username or password");
+      console.log("Caught error:", err.message);
+      setError(err.message || "Login failed");
     } finally {
       setLoading(false);
     }
@@ -127,7 +128,7 @@ const Login = () => {
                 variant="body2"
                 sx={{ color: "error.main", my: 1 }}
               >
-                {error}
+                {typeof error === "string" ? error : error.message}
               </AppTypography>
             )}
 

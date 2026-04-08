@@ -17,10 +17,26 @@ import CommentItem from "../comment/CommentItem";
 import axiosInstance from "../../api/axiosInstance";
 import { formatUrl, timeAgo } from "../ui/helpers";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import ActionsModal from "../create/ActionsModal";
+import CreatePostModal from "../create/CreatePostModal";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import { useNavigate } from "react-router-dom";
 
 const PostModal = ({ open, post, onClose }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+
+  const [isActionsOpen, setIsActionsOpen] = useState(false); // Для открытия ActionsModal
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  // Достаем текущего юзера из localStorage, чтобы сравнить ID
+  const currentUser = JSON.parse(localStorage.getItem("user"));
+  const author = post?.author || {};
+
+  const navigate = useNavigate();
+
+  // Проверка: является ли текущий юзер автором поста
+  const isMyPost = currentUser?._id === author?._id;
 
   // 1. Загружаем комментарии при открытии модалки
   useEffect(() => {
@@ -50,16 +66,27 @@ const PostModal = ({ open, post, onClose }) => {
       console.error("Ошибка отправки комментария:", err);
     }
   };
-  if (!post) return null;
 
-  const author = post.author || {};
+  const handleDelete = async () => {
+    if (window.confirm("Delete this post?"))
+      try {
+        await axiosInstance.delete(`/api/posts/${post._id}`);
+        setIsActionsOpen(false);
+        onClose(); // Закрываем модалку после удаления
+        window.location.reload(); // Перезагружаем страницу, чтобы обновить ленту
+      } catch (err) {
+        console.error("Error deleting post:", err);
+      }
+  };
+
+  if (!post) return null;
 
   return (
     <Modal
       open={open}
       onClose={onClose}
       slotProps={{
-        backdrop: { sx: { backgroundColor: "rgba(0, 0, 0, 0.7)" } },
+        backdrop: { sx: { backgroundColor: "rgba(0, 0, 0, 0.65)" } },
       }}
     >
       <Box
@@ -78,6 +105,7 @@ const PostModal = ({ open, post, onClose }) => {
           bgcolor: "background.paper",
           outline: "none",
           borderRadius: "3.39px",
+          boxShadow: "0 12px 42px rgba(0,0,0,0.2)",
           overflow: "hidden",
         }}
       >
@@ -117,14 +145,50 @@ const PostModal = ({ open, post, onClose }) => {
               gap: "12px",
             }}
           >
-            <AppAvatar src={formatUrl(author.avatar)} size={32} />
-            <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>
-              {author.username}
-            </AppTypography>
-            <FollowButton userId={author._id} />
-            <IconButton onClick={onClose} sx={{ ml: "auto" }}>
+            <Box
+              onClick={() => {
+                navigate(`/profile/${author._id}`);
+                onClose(); // Закрываем модалку при переходе
+              }}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: "12px",
+                cursor: "pointer",
+                flexGrow: 1,
+              }}
+            >
+              <AppAvatar src={formatUrl(author.avatar)} size={32} />
+              <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>
+                {author.username}
+              </AppTypography>
+            </Box>
+
+            {!isMyPost && <FollowButton userId={author._id} />}
+            {/* <IconButton onClick={onClose} sx={{ ml: "auto" }}>
               <CloseIcon />
-            </IconButton>
+            </IconButton> */}
+            {/* ГРУППА КНОПОК В УГЛУ */}
+            <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
+              {isMyPost && (
+                <IconButton
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsActionsOpen(true);
+                  }}
+                >
+                  <MoreHorizIcon />
+                </IconButton>
+              )}
+              <IconButton
+                onClick={(e) => {
+                  e.stopPropagation(); // Чтобы не сработал переход
+                  onClose();
+                }}
+              >
+                <CloseIcon />
+              </IconButton>
+            </Box>
           </Box>
           <Divider />
 
@@ -186,6 +250,8 @@ const PostModal = ({ open, post, onClose }) => {
           </Box>
 
           <Divider />
+
+          {/* Блок добавления комментария */}
           <Box
             sx={{
               height: "45px",
@@ -215,6 +281,23 @@ const PostModal = ({ open, post, onClose }) => {
               Send
             </Button>
           </Box>
+          <ActionsModal
+            open={isActionsOpen}
+            onClose={() => setIsActionsOpen(false)}
+            onDelete={handleDelete} // Передаем функцию удаления
+            onEdit={() => {
+              setIsActionsOpen(false);
+              setIsEditModalOpen(true); // Открываем окно редактирования
+            }}
+          />
+          {/* МОДАЛКА САМОГО РЕДАКТИРОВАНИЯ (CreatePostModal в режиме edit) */}
+          <CreatePostModal
+            open={isEditModalOpen}
+            onClose={() => setIsEditModalOpen(false)}
+            editPost={post} // Передаем пост для правки
+            user={currentUser}
+            isNested={true}
+          />
         </Box>
       </Box>
     </Modal>

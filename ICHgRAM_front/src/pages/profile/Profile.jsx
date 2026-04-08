@@ -225,37 +225,63 @@ const Profile = () => {
         </Box>
 
         {/* POSTS GRID */}
-        <Grid container spacing={1} sx={{ mt: 2 }}>
-          {posts.map((post) => (
-            <Grid item xs={4} key={post._id}>
-              <Box
-                onClick={() => {
-                  if (post && post._id && post.author) {
+        <Grid
+          container
+          spacing={1}
+          sx={{
+            mt: 2,
+            width: "100%",
+            minHeight: "400px",
+
+            alignItems: "flex-start",
+            alignContent: "flex-start",
+          }}
+        >
+          {posts.length > 0 ? (
+            posts.map((post) => (
+              <Grid
+                item
+                xs={4}
+                key={post._id}
+                sx={{ aspectRatio: "1/1", padding: "4px" }}
+              >
+                <Box
+                  onClick={() => {
+                    //if (post && post._id && post.author) {
                     setSelectedPost(post);
                     setIsModalOpen(true);
-                  }
-                }}
-                sx={{
-                  position: "relative",
-                  pt: "100%",
-                  cursor: "pointer",
-                  "&:hover": { filter: "brightness(0.8)" },
-                }}
-              >
-                <img
-                  src={formatUrl(post.image)}
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
+                  }}
+                  sx={{
                     width: "100%",
                     height: "100%",
-                    objectFit: "cover",
+                    cursor: "pointer",
+                    overflow: "hidden",
+                    "&:hover": { filter: "brightness(0.8)" },
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#efefef",
                   }}
-                />
-              </Box>
-            </Grid>
-          ))}
+                >
+                  <img
+                    src={formatUrl(post.image)}
+                    alt="post"
+                    style={{
+                      display: "block",
+                      width: "100%",
+                      maxWidth: "304px",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </Box>
+              </Grid>
+            ))
+          ) : (
+            <AppTypography sx={{ p: 4, width: "100%", textAlign: "center" }}>
+              No posts yet
+            </AppTypography>
+          )}
         </Grid>
 
         {selectedPost && (

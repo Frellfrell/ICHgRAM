@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   Modal,
   Box,
@@ -15,62 +15,99 @@ import EmojiEmotionsOutlinedIcon from "@mui/icons-material/EmojiEmotionsOutlined
 import AppTypography from "../ui/AppTypography";
 import axiosInstance from "../../api/axiosInstance";
 
-const CreatePostModal = ({ open, onClose, user, onPostCreated }) => {
+const CreatePostModal = ({
+  open,
+  onClose,
+  user,
+  onPostCreated,
+  editPost = null,
+  isNested = false,
+}) => {
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
   const [caption, setCaption] = useState("");
   const [loading, setLoading] = useState(false);
   const fileInputRef = useRef(null);
 
+  // Если открыли для редактирования — подставляем данные поста
+  useEffect(() => {
+    if (editPost && open) {
+      setCaption(editPost.caption || "");
+      setPreview(editPost.image);
+      setFile(editPost.image);
+    } else if (open) {
+      setCaption("");
+      setPreview(null);
+      setFile(null);
+    }
+  }, [editPost, open]);
+
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
-      setFile(selectedFile);
-      setPreview(URL.createObjectURL(selectedFile));
+      const reader = new FileReader();
+      reader.onload = () => {
+        setPreview(reader.result);
+        setFile(reader.result); // Base64 для сервера
+      };
+      reader.readAsDataURL(selectedFile);
     }
   };
 
   const handleShare = async () => {
-    if (!file) return;
+    //if (!file) return;
     setLoading(true);
     try {
-      const formData = new FormData();
-      formData.append("image", file);
-      formData.append("caption", caption);
+      //const formData = new FormData();
+      //formData.append("image", file);
+      //formData.append("caption", caption);
+      const payload = {
+        image: file, // строка Base64
+        caption: caption,
+      };
 
-      const response = await axiosInstance.post("/api/posts", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      if (editPost) {
+        // РЕДАКТИРОВАНИЕ
+        await axiosInstance.put(`/api/posts/${editPost._id}`, payload);
+      } else {
+        // СОЗДАНИЕ
+        await axiosInstance.post("/api/posts", payload);
+      }
 
-      if (onPostCreated) onPostCreated(response.data);
-      handleClose();
+      // headers: { "Content-Type": "application/json" },
+
+      if (onPostCreated) onPostCreated();
+      onClose();
+      window.location.reload();
     } catch (error) {
-      console.error("Error creating post:", error);
+      console.error(error);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleClose = () => {
-    setFile(null);
-    setPreview(null);
-    setCaption("");
-    onClose();
-  };
-
   return (
     <Modal
       open={open}
-      onClose={handleClose}
+      onClose={onClose}
       closeAfterTransition
       slots={{ backdrop: Backdrop }}
       slotProps={{
         backdrop: {
-          sx: { backgroundColor: "rgba(0, 0, 0, 0.7)" },
+          sx: {
+            // Если isNested true — прозрачно, иначе — темный фон
+            backgroundColor: isNested ? "transparent" : "rgba(0, 0, 0, 0.5)",
+            zIndex: -1, // Уводим фон под модальное окно
+          },
           timeout: 500,
         },
       }}
-      sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: 1400,
+      }}
     >
       <Fade in={open}>
         <Box
@@ -83,6 +120,7 @@ const CreatePostModal = ({ open, onClose, user, onPostCreated }) => {
             display: "flex",
             flexDirection: "column",
             outline: "none",
+            zIndex: 10,
             boxShadow: "0 12px 42px rgba(0,0,0,0.2)",
           }}
         >
@@ -97,9 +135,14 @@ const CreatePostModal = ({ open, onClose, user, onPostCreated }) => {
               borderBottom: "1px solid #DBDBDB",
             }}
           >
-            <Box sx={{ width: 40 }} />
+            <Button
+              onClick={onClose}
+              sx={{ color: "#262626", textTransform: "none" }}
+            >
+              Cancel
+            </Button>
             <AppTypography sx={{ fontWeight: 600, fontSize: "16px" }}>
-              Create new post
+              {editPost ? "Edit info" : "Create new post"}
             </AppTypography>
             <Button
               onClick={handleShare}
@@ -113,7 +156,7 @@ const CreatePostModal = ({ open, onClose, user, onPostCreated }) => {
                 "&.Mui-disabled": { color: "#B2E0FF" },
               }}
             >
-              Share
+              {editPost ? "Done" : "Share"}
             </Button>
           </Box>
 
@@ -121,7 +164,6 @@ const CreatePostModal = ({ open, onClose, user, onPostCreated }) => {
           <Box sx={{ display: "flex", flex: 1 }}>
             {/* LEFT */}
             <Box
-              onClick={() => !preview && fileInputRef.current.click()}
               sx={{
                 width: "573px",
                 height: "521px",
@@ -136,13 +178,13 @@ const CreatePostModal = ({ open, onClose, user, onPostCreated }) => {
                 "&:hover": { bgcolor: preview ? "#FAFAFA" : "#F5F5F5" },
               }}
             >
-              <input
+              {/* <input
                 type="file"
                 hidden
                 ref={fileInputRef}
                 accept="image/*"
                 onChange={handleFileChange}
-              />
+              />*/}
 
               {preview ? (
                 <Box
@@ -151,15 +193,20 @@ const CreatePostModal = ({ open, onClose, user, onPostCreated }) => {
                   sx={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
               ) : (
-                <>
+                <IconButton onClick={() => fileInputRef.current.click()}>
                   <AddPhotoAlternateIcon
                     sx={{ fontSize: 96, color: "#262626", mb: 2 }}
                   />
-                  <AppTypography sx={{ fontSize: "20px", fontWeight: 300 }}>
-                    Add photo
-                  </AppTypography>
-                </>
+                  <AppTypography>Select from computer</AppTypography>
+                </IconButton>
               )}
+              <input
+                type="file"
+                hidden
+                ref={fileInputRef}
+                accept="image/*"
+                onChange={handleFileChange}
+              />
             </Box>
 
             {/* RIGHT: CAPTION & SETTINGS */}
@@ -211,7 +258,6 @@ const CreatePostModal = ({ open, onClose, user, onPostCreated }) => {
 
                     sx: { fontSize: "16px", p: 0, alignItems: "flex-start" },
                   }}
-                  sx={{ flex: 1 }}
                 />
 
                 <Box

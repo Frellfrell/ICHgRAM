@@ -6,38 +6,6 @@ import { useTheme } from "@mui/material/styles";
 const SidebarItem = ({ icon, label, to, onClick, extraMargin = 0 }) => {
   const theme = useTheme();
 
-  {
-    /*if (!to) {
-    return (
-      <Box
-        sx={{
-          height: "48px",
-          display: "flex",
-          alignItems: "center",
-          cursor: "pointer",
-          mt: `${extraMargin}px`,
-        }}
-      >
-        <AppTypography variant="body1">{label}</AppTypography>
-      </Box>
-    );
-  }*/
-  }
-
-  {
-    /*return (
-    <NavLink
-      to={to}
-      style={({ isActive }) => ({
-        textDecoration: "none",
-        color: isActive
-          ? theme.palette.text.primary
-          : theme.palette.text.secondary,
-      })}
-    >
-      {({ isActive }) => (*/
-  }
-
   const renderContent = (isActive = false) => (
     <Box
       sx={{

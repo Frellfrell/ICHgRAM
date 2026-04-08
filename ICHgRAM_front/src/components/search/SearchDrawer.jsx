@@ -6,7 +6,13 @@ import SearchResults from "./SearchResults.jsx";
 
 import { useState } from "react";
 
-export const SearchDrawer = ({ open, onClose, results, onSearchChange }) => {
+export const SearchDrawer = ({
+  open,
+  onClose,
+  results,
+  onSearchChange,
+  onUserClick,
+}) => {
   const [searchValue, setSearchValue] = useState("");
   const handleChange = (e) => {
     const value = e.target.value;
@@ -84,7 +90,7 @@ export const SearchDrawer = ({ open, onClose, results, onSearchChange }) => {
           />
         </Box>
 
-        <SearchResults results={results} />
+        <SearchResults results={results} onUserClick={onUserClick} />
       </Box>
     </>
   );

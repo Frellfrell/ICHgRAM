@@ -6,10 +6,12 @@ import axiosInstance from "../api/axiosInstance.js";
 import { NotificationDrawer } from "../components/notifications/NotificationDrawer.jsx";
 import { SearchDrawer } from "../components/search/SearchDrawer.jsx";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MainLayout = ({ children }) => {
   const [openSearch, setOpenSearch] = useState(false);
   const [openNotif, setOpenNotif] = useState(false);
+  const navigate = useNavigate();
 
   // Данные для Search и Notifications
   const [searchResults, setSearchResults] = useState([]);
@@ -80,6 +82,10 @@ const MainLayout = ({ children }) => {
           onClose={() => setOpenSearch(false)}
           results={searchResults}
           onSearchChange={handleSearchChange}
+          onUserClick={(userId) => {
+            navigate(`/profile/${userId}`);
+            setOpenSearch(false);
+          }}
         />
 
         <NotificationDrawer
