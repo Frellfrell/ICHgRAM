@@ -34,7 +34,7 @@ export const loginUser = async (credentials) => {
     return response.data;
   } catch (error) {
     const message = error.response?.data?.message || "Invalid credentials";
-    throw error.response?.data || { message };
+    throw new Error(message);
   }
 };
 
