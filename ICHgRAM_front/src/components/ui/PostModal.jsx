@@ -18,16 +18,14 @@ import axiosInstance from "../../api/axiosInstance";
 import { formatUrl, timeAgo } from "../ui/helpers";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import ActionsModal from "./ActionsModal";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 const PostModal = ({ open, post, onClose }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
 
   const [isActionsOpen, setIsActionsOpen] = useState(false); // Для открытия ActionsModal
-
-  const [editCaption, setEditCaption] = useState(post?.caption || "");
-  const [isEditing, setIsEditing] = useState(false);
-
+  const [newCaption, setNewCaption] = useState(post.caption);
   // 1. Загружаем комментарии при открытии модалки
   useEffect(() => {
     if (open && post?._id) {
@@ -61,20 +59,21 @@ const PostModal = ({ open, post, onClose }) => {
   const author = post.author || {};
 
   const handleDelete = async () => {
-    if (window.confirm("Delete this post?")) {
+    if (window.confirm("Delete this post?"))
       try {
         await axiosInstance.delete(`/api/posts/${post._id}`);
         onClose(); // Закрываем модалку после удаления
+        setIsActionsOpen(false);
       } catch (err) {
         console.error("Error deleting post:", err);
       }
-    }
   };
   const handleUpdate = async () => {
     try {
       await axiosInstance.put(`/api/posts/${post._id}`, {
-        caption: editCaption,
+        caption: newCaption,
       });
+      setIsActionsOpen(false);
       // Логика завершения редактирования
     } catch (err) {
       console.error("Update error:", err);
@@ -149,9 +148,18 @@ const PostModal = ({ open, post, onClose }) => {
               {author.username}
             </AppTypography>
             <FollowButton userId={author._id} />
-            <IconButton onClick={onClose} sx={{ ml: "auto" }}>
+            {/* <IconButton onClick={onClose} sx={{ ml: "auto" }}>
               <CloseIcon />
-            </IconButton>
+            </IconButton> */}
+            {/* ГРУППА КНОПОК В УГЛУ */}
+            <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
+              <IconButton onClick={() => setIsActionsOpen(true)}>
+                <MoreHorizIcon />
+              </IconButton>
+              <IconButton onClick={onClose}>
+                <CloseIcon />
+              </IconButton>
+            </Box>
           </Box>
           <Divider />
 
@@ -213,6 +221,8 @@ const PostModal = ({ open, post, onClose }) => {
           </Box>
 
           <Divider />
+
+          {/* Блок добавления комментария */}
           <Box
             sx={{
               height: "45px",
@@ -242,6 +252,12 @@ const PostModal = ({ open, post, onClose }) => {
               Send
             </Button>
           </Box>
+          <ActionsModal
+            open={isActionsOpen}
+            onClose={() => setIsActionsOpen(false)}
+            onDelete={handleDelete} // Передаем функцию удаления
+            onEdit={handleUpdate} // Передаем функцию редактирования
+          />
         </Box>
       </Box>
     </Modal>
