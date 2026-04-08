@@ -97,11 +97,17 @@ const CreatePostModal = ({
           sx: {
             // Если isNested true — прозрачно, иначе — темный фон
             backgroundColor: isNested ? "transparent" : "rgba(0, 0, 0, 0.5)",
+            zIndex: -1, // Уводим фон под модальное окно
           },
           timeout: 500,
         },
       }}
-      sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: 1400,
+      }}
     >
       <Fade in={open}>
         <Box
@@ -114,6 +120,7 @@ const CreatePostModal = ({
             display: "flex",
             flexDirection: "column",
             outline: "none",
+            zIndex: 10,
             boxShadow: "0 12px 42px rgba(0,0,0,0.2)",
           }}
         >
