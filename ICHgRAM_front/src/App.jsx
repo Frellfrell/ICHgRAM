@@ -97,15 +97,7 @@ function AppRoutes() {
       />
       <Route
         path="/explore"
-        element={
-          isAuth ? (
-            <MainLayout>
-              <Explore />
-            </MainLayout>
-          ) : (
-            <Navigate to="/login" replace />
-          )
-        }
+        element={isAuth ? <Explore /> : <Navigate to="/login" replace />}
       />
       {/*<Route
             path="/messages"

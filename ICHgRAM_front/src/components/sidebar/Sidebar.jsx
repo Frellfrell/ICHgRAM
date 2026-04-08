@@ -15,11 +15,15 @@ import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext.jsx";
+import CreatePostModal from "../create/CreatePostModal.jsx";
+import { useContext, useState } from "react";
 
 const Sidebar = ({ onSearchClick, onNotifClick }) => {
   const theme = useTheme();
   const navigate = useNavigate();
   const { logout } = useContext(AuthContext);
+
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
