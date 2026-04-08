@@ -93,7 +93,7 @@ const CreatePostModal = ({
       slots={{ backdrop: Backdrop }}
       slotProps={{
         backdrop: {
-          sx: { backgroundColor: "rgba(0, 0, 0, 0.7)" },
+          sx: { backgroundColor: "transparent" },
           timeout: 500,
         },
       }}
