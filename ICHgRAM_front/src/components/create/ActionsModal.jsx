@@ -60,6 +60,21 @@ const ActionsModal = ({ open, onClose, onDelete, onEdit }) => {
             Edit
           </Button>
           <Divider sx={{ borderColor: "rgba(219, 219, 219, 1)" }} />
+
+          {/* Кнопка Go to post */}
+          <Button
+            onClick={onClose}
+            sx={{
+              height: "48px",
+              color: "#262626",
+              textTransform: "none",
+              fontSize: "14px",
+              "&:hover": { bgcolor: "rgba(0, 0, 0, 0.05)" },
+            }}
+          >
+            Go to post
+          </Button>
+          <Divider sx={{ borderColor: "rgba(219, 219, 219, 1)" }} />
         </Box>
 
 
