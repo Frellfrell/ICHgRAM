@@ -17,6 +17,8 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import CreatePostModal from "../create/CreatePostModal.jsx";
 import { useState } from "react";
+import AppAvatar from "../ui/AppAvatar";
+import { formatUrl } from "../ui/helpers";
 
 const Sidebar = ({ onSearchClick, onNotifClick }) => {
   const theme = useTheme();
@@ -97,7 +99,24 @@ const Sidebar = ({ onSearchClick, onNotifClick }) => {
 
           <Box sx={{ marginTop: "47px" }}>
             <SidebarItem
-              icon={ProfileIcon}
+              icon={
+                user?.avatar ? (
+                  <AppAvatar
+                    src={formatUrl(user?.avatar)}
+                    alt="Profile"
+                    sx={{
+                      width: "24px",
+                      height: "24px",
+                      border:
+                        window.location.pathname === "/profile"
+                          ? "1.5px solid black"
+                          : "none",
+                    }}
+                  />
+                ) : (
+                  ProfileIcon // Если аватара нет, показываем стандартную иконку
+                )
+              }
               extraMargin={47}
               label="Profile"
               to="/profile"
