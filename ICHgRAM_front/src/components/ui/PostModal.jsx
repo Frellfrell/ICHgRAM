@@ -267,6 +267,7 @@ const PostModal = ({ open, post, onClose }) => {
             onClose={() => setIsEditModalOpen(false)}
             editPost={post} // Передаем пост для правки
             user={currentUser}
+            isNested={true}
           />
         </Box>
       </Box>
