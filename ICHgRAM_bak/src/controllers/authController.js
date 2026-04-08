@@ -72,6 +72,8 @@ export const login = async (req, res) => {
       console.log("Ошибка: Пользователь не найден в БД"); // <-- Проверка 1
       return res.status(401).json({ message: "Неверные данные" });
     }
+    console.log("Пароль из формы:", password);
+    console.log("Хеш из базы:", user.password);
 
     // 2. Проверяем пароль
     const isMatch = await bcrypt.compare(password, user.password);
