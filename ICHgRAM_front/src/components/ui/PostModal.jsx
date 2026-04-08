@@ -22,6 +22,9 @@ const PostModal = ({ open, post, onClose }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
 
+  const [editCaption, setEditCaption] = useState(post?.caption || "");
+  const [isEditing, setIsEditing] = useState(false);
+
   // 1. Загружаем комментарии при открытии модалки
   useEffect(() => {
     if (open && post?._id) {
@@ -53,6 +56,27 @@ const PostModal = ({ open, post, onClose }) => {
   if (!post) return null;
 
   const author = post.author || {};
+
+  const handleDelete = async () => {
+    if (window.confirm("Delete this post?")) {
+      try {
+        await axiosInstance.delete(`/api/posts/${post._id}`);
+        onClose(); // Закрываем модалку после удаления
+      } catch (err) {
+        console.error("Error deleting post:", err);
+      }
+    }
+  };
+  const handleUpdate = async () => {
+    try {
+      await axiosInstance.put(`/api/posts/${post._id}`, {
+        caption: editCaption,
+      });
+      // Логика завершения редактирования
+    } catch (err) {
+      console.error("Update error:", err);
+    }
+  };
 
   return (
     <Modal
