@@ -1,7 +1,6 @@
 import React from "react";
 import { Modal, Box, Button, Divider, Fade, Backdrop } from "@mui/material";
 
-
 const ActionsModal = ({ open, onClose, onDelete, onEdit }) => {
   return (
     <Modal
@@ -17,7 +16,7 @@ const ActionsModal = ({ open, onClose, onDelete, onEdit }) => {
       }}
       sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
     >
-        <Fade in={open}>
+      <Fade in={open}>
         <Box
           sx={{
             width: "400px",
@@ -29,7 +28,7 @@ const ActionsModal = ({ open, onClose, onDelete, onEdit }) => {
             flexDirection: "column",
           }}
         >
-            {/* Кнопка Delete (400x48) */}
+          {/* Кнопка Delete (400x48) */}
           <Button
             onClick={onDelete}
             sx={{
@@ -105,7 +104,9 @@ const ActionsModal = ({ open, onClose, onDelete, onEdit }) => {
             Cancel
           </Button>
         </Box>
-
-
-
+      </Fade>
     </Modal>
+  );
+};
+
+export default ActionsModal;
