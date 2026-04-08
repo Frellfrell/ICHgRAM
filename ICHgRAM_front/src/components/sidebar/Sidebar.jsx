@@ -8,6 +8,7 @@ import SearchIcon from "../../assets/icons/Search.svg";
 import ExploreIcon from "../../assets/icons/Explore.svg";
 import MessageIcon from "../../assets/icons/Message.svg";
 import NotificationIcon from "../../assets/icons/Notification.svg";
+import LogoutIcon from "@mui/icons-material/Logout";
 import CreateIcon from "../../assets/icons/Create.svg";
 import ProfileIcon from "../../assets/icons/Profile.svg";
 import { NavLink } from "react-router-dom";
@@ -89,7 +90,11 @@ const Sidebar = ({ onSearchClick, onNotifClick }) => {
             to="/profile"
           />
           <SidebarItem
-            icon={ProfileIcon}
+            icon={
+              <LogoutIcon
+                sx={{ fontSize: "24px", color: theme.palette.text.secondary }}
+              />
+            }
             label="Logout"
             onClick={handleLogout}
           />
