@@ -6,7 +6,8 @@ import HomeEndBlock from "../../components/ui/HomeEndBlock.jsx";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  //const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -16,15 +17,18 @@ const Home = () => {
 
     setLoading(true);
     try {
+      console.log("Запрос пошел: страница", page);
       // Передаем текущую страницу и лимит 4
       const data = await fetchAllPosts(page, 4);
 
-      if (data.length < 4) {
-        setHasMore(false); // Если пришло меньше 4 постов, значит это конец
-      }
+      if (!data || data.length === 0) {
+        setHasMore(false);
+      } else {
+        if (data.length < 4) setHasMore(false);
 
-      setPosts((prev) => [...prev, ...data]);
-      setPage((prev) => prev + 1);
+        setPosts((prev) => [...prev, ...data]);
+        setPage((prev) => prev + 1);
+      }
     } catch (err) {
       console.error("Failed to load posts", err);
     } finally {
@@ -93,8 +97,8 @@ const Home = () => {
           mb: "23px",
         }}
       >
-        {posts.map((post) => (
-          <Grid item xs={6} key={post._id}>
+        {posts.map((post, index) => (
+          <Grid item xs={6} key={`${post._id}-${index}`}>
             <PostCard post={post} />
           </Grid>
         ))}
