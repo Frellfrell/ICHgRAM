@@ -51,12 +51,13 @@ export const getPostComments = async (req, res) => {
   try {
     const { postId } = req.params;
 
-    const comments = await Comment.find({ post: req.params.postId })
+    const comments = await Comment.find({ post: postId })
       .populate("author", "username avatar")
       .sort({ createdAt: 1 });
 
     res.json(comments);
   } catch (error) {
+    console.error("Ошибка при получении комментариев:", error);
     res.status(500).json({ message: "Ошибка сервера" });
   }
 };
