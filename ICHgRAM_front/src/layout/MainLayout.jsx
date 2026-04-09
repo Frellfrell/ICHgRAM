@@ -53,7 +53,7 @@ const MainLayout = ({ children }) => {
     <Box
       sx={{
         display: "flex",
-        minHeight: "100vh",
+        height: "100vh",
         overflow: "hidden",
         width: "100%",
         maxWidth: "1440px",
@@ -63,7 +63,7 @@ const MainLayout = ({ children }) => {
       }}
     >
       <Box sx={{ display: "flex", flexGrow: 1 }}>
-        <Box sx={{ width: "245px", flexShrink: 0, position: "sticky", top: 0 }}>
+        <Box sx={{ width: "245px", flexShrink: 0, top: 0 }}>
           <Sidebar
             onSearchClick={() => {
               setOpenNotif(false);
@@ -98,10 +98,20 @@ const MainLayout = ({ children }) => {
         <Box
           component="main"
           sx={{
+            display: "flex",
+            height: "100vh",
+            overflowY: "auto",
+            flexGrow: 1,
+            pt: "58px",
+            flexDirection: "column",
+          }}
+        ></Box>
+        <Box
+          component="main"
+          sx={{
             width: "100%",
             maxWidth: "1195px",
             flexGrow: 1,
-            pt: "58px",
             px: { xs: "20px", md: "78px" },
           }}
         >
