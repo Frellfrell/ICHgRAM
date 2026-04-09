@@ -53,7 +53,7 @@ const MainLayout = ({ children }) => {
     <Box
       sx={{
         display: "flex",
-        height: "100vh",
+        minHeight: "100vh",
         overflow: "hidden",
         width: "100%",
         maxWidth: "1440px",
@@ -98,7 +98,7 @@ const MainLayout = ({ children }) => {
         <Box
           component="main"
           sx={{
-            display: "flex",
+            display: "block",
             height: "100vh",
             overflowY: "auto",
             flexGrow: 1,
@@ -110,6 +110,7 @@ const MainLayout = ({ children }) => {
           sx={{
             width: "100%",
             maxWidth: "1195px",
+            minHeight: "1px",
             flexGrow: 1,
             pt: "58px",
             px: { xs: "20px", md: "78px" },
