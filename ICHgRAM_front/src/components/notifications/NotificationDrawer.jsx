@@ -3,7 +3,12 @@ import { Box, Typography, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import NotificationList from "./NotificationList.jsx";
 
-export const NotificationDrawer = ({ open, onClose, notifications }) => {
+export const NotificationDrawer = ({
+  open,
+  onClose,
+  notifications,
+  onPostClick,
+}) => {
   if (!open) return null;
 
   return (
@@ -63,7 +68,10 @@ export const NotificationDrawer = ({ open, onClose, notifications }) => {
 
         {/* LIST: Сам список уведомлений */}
         {notifications.length > 0 ? (
-          <NotificationList notifications={notifications} />
+          <NotificationList
+            notifications={notifications}
+            onPostClick={onPostClick}
+          />
         ) : (
           <Typography sx={{ color: "gray", textAlign: "center", mt: 10 }}>
             No new notifications
