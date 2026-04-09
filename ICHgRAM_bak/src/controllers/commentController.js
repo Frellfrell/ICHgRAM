@@ -79,6 +79,14 @@ export const deleteComment = async (req, res) => {
     }
 
     await comment.deleteOne();
+
+    // Удаляем связанное уведомление
+    await Notification.findOneAndDelete({
+      sender: userId,
+      comment: commentId,
+      type: "comment",
+    });
+
     res.json({ message: "Комментарий удален" });
   } catch (error) {
     console.error("Ошибка при удалении комментария:", error);
