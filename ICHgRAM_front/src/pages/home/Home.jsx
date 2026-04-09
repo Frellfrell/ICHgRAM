@@ -14,6 +14,15 @@ const Home = () => {
   const getPosts = useCallback(async () => {
     if (loading || !hasMore) return;
 
+    setLoading(true);
+    try {
+      // Передаем текущую страницу и лимит 4
+      const data = await fetchAllPosts(page, 4);
+
+      if (data.length < 4) {
+        setHasMore(false); // Если пришло меньше 4 постов, значит это конец
+      }
+
   {/*useEffect(() => {
     const getPosts = async () => {
       try {
