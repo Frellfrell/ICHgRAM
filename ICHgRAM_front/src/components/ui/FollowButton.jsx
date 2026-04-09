@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 import axiosInstance from "../../api/axiosInstance";
 
@@ -13,6 +13,7 @@ const FollowButton = ({ userId, initialIsFollowing }) => {
 
   const handleFollow = async (e) => {
     e.stopPropagation();
+
     setLoading(true);
     try {
       if (isFollowing) {
@@ -32,7 +33,7 @@ const FollowButton = ({ userId, initialIsFollowing }) => {
   return (
     <Button
       onClick={handleFollow}
-      disabled={loading}
+      disabled={loading || !userId}
       sx={{
         color: isFollowing ? "text.primary" : "#0095F6",
         fontWeight: 600,
