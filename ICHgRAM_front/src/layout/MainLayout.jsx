@@ -102,34 +102,37 @@ const MainLayout = ({ children }) => {
             flexGrow: 1,
             height: "100vh",
           }}
-        ></Box>
-        <Box
-          component="main"
-          sx={{
-            width: "100%",
-            maxWidth: "1195px",
-            height: "100vh",
-            display: "flex",
-            pt: "58px",
-            px: { xs: "20px", md: "78px" },
-            //height: "calc(100vh - 58px)",
-            overflowY: "auto",
-            flexGrow: 1,
-            flexDirection: "column",
-          }}
         >
-          {children}
-        </Box>
-        {/* Футер */}
-        <Box
-          sx={{
-            maxWidth: "1440px",
-            width: "100%",
-            bottom: 0, // В самый низ
-            mt: "auto", // Отодвигаем футер вниз, если контента мало
-          }}
-        >
-          <Footer />
+          <Box
+            component="main"
+            sx={{
+              width: "100%",
+              maxWidth: "1195px",
+              height: "100vh",
+              display: "flex",
+              pt: "58px",
+              px: { xs: "20px", md: "78px" },
+              //height: "calc(100vh - 58px)",
+              overflowY: "auto",
+              flexGrow: 1,
+              flexDirection: "column",
+            }}
+          >
+            {children}
+          </Box>
+
+          {/* Футер */}
+          <Box
+            sx={{
+              maxWidth: "1440px",
+              width: "100%",
+
+              bottom: 0, // В самый низ
+              mt: "auto", // Отодвигаем футер вниз, если контента мало
+            }}
+          >
+            <Footer />
+          </Box>
         </Box>
       </Box>
     </Box>
