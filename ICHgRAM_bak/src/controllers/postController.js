@@ -131,7 +131,7 @@ export const deletePost = async (req, res) => {
       return res.status(404).json({ message: "Пост не найден" });
     }
 
-    if (!post.author.equals(req.user.id)) {
+    if (!post.author.equals(req.user._id)) {
       return res.status(403).json({ message: "Нет доступа" });
     }
 
