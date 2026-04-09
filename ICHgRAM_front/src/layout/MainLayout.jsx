@@ -102,7 +102,6 @@ const MainLayout = ({ children }) => {
             height: "100vh",
             overflowY: "auto",
             flexGrow: 1,
-            pt: "58px",
             flexDirection: "column",
           }}
         ></Box>
