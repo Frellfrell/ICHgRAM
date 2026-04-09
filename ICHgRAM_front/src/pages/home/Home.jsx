@@ -32,6 +32,21 @@ const Home = () => {
     }
   }, [page, loading, hasMore]);
 
+  // Первая загрузка
+  useEffect(() => {
+    getPosts();
+  }, []);
+
+  // Логика бесконечного скролла
+  useEffect(() => {
+    const handleScroll = () => {
+      const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+      // Если до конца страницы осталось меньше 100px — грузим еще
+      if (scrollTop + clientHeight >= scrollHeight - 100) {
+        getPosts();
+      }
+    };
+
   {
     /*useEffect(() => {
     const getPosts = async () => {
