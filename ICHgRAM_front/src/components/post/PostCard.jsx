@@ -118,9 +118,11 @@ const PostCard = ({ post }) => {
       <Box
         sx={{
           display: "-webkit-box",
-          WebkitLineClamp: 2, // максимум 2 строки
+          WebkitLineClamp: 1, // максимум 2 строки
           WebkitBoxOrient: "vertical",
           overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "normal",
         }}
       >
         <AppTypography variant="body2">
