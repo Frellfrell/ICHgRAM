@@ -4,7 +4,7 @@ import AppAvatar from "../ui/AppAvatar";
 import { formatUrl } from "../ui/helpers";
 import { useNavigate } from "react-router-dom";
 
-const NotificationList = ({ notifications }) => {
+const NotificationList = ({ notifications, onPostClick }) => {
   const BE_URL = "http://localhost:5000";
   const navigate = useNavigate();
 
@@ -42,7 +42,7 @@ const NotificationList = ({ notifications }) => {
             <Box
               component="img"
               src={formatUrl(note.post.image)}
-              onClick={() => navigate(`/post/${note.post._id || note.post}`)}
+              onClick={() => onPostClick && onPostClick(note.post)}
               sx={{
                 width: 44,
                 height: 44,
