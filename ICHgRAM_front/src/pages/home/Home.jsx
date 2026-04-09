@@ -42,27 +42,28 @@ const Home = () => {
         } else {
           if (data.length < 4) setHasMore(false);
 
-          setPosts((prev) => [...prev, ...data]);
-          //if (isFirstLoad) return data;
-          {
-            /*const newItems = data.filter(
+          setPosts((prev) => {
+            if (isFirstLoad) return data;
+            {
+              /*const newItems = data.filter(
             (newItem) => !prev.some((p) => p._id === newItem._id),
           );
           return [...prev, ...newItems];
         });
         setPage((prev) => prev + 1);*/
-          }
-          // const existingIds = new Set(prev.map((p) => p._id));
-          // const uniqueNewPosts = data.filter((p) => !existingIds.has(p._id));
-          // return isFirstLoad ? data : [...prev, ...uniqueNewPosts];
-          // });
+            }
+            const existingIds = new Set(prev.map((p) => p._id));
+            const uniqueNewPosts = data.filter((p) => !existingIds.has(p._id));
+            return [...prev, ...uniqueNewPosts];
+            // return isFirstLoad ? data : [...prev, ...uniqueNewPosts];
+            // });
 
-          //setPage(isFirstLoad ? 2 : (prev) => prev + 1);
-          //setPage((prev) => (isFirstLoad ? 2 : prev + 1));
-          //const nextPage = currentPage + 1;
-          //setPage(nextPage);
-          //pageRef.current = nextPage;
-
+            //setPage(isFirstLoad ? 2 : (prev) => prev + 1);
+            //setPage((prev) => (isFirstLoad ? 2 : prev + 1));
+            //const nextPage = currentPage + 1;
+            //setPage(nextPage);
+            //pageRef.current = nextPage;
+          });
           // Мгновенно обновляем номер следующей страницы в Ref
           pageRef.current = isFirstLoad ? 2 : currentPage + 1;
         }
@@ -81,49 +82,6 @@ const Home = () => {
     getPosts();
   }, []);
 
-  {
-    /*// Логика бесконечного скролла
-  useEffect(() => {
-    const handleScroll = () => {
-      const { scrollTop, clientHeight, scrollHeight } =
-        document.documentElement;
-      // Если до конца страницы осталось меньше 100px — грузим еще
-      if (scrollTop + clientHeight >= scrollHeight - 100) {
-        getPosts();
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [getPosts]);
-
-  {
-    /*useEffect(() => {
-    const getPosts = async () => {
-      try {
-        const data = await fetchAllPosts();
-        console.log("Все посты из БД:", data);
-
-        setPosts(data);
-        //setPosts(data);
-      } catch (err) {
-        console.error("Failed to load posts", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getPosts();
-  }, []);
-
-  if (loading) {
-    return (
-      <Box sx={{ display: "flex", justifyContent: "center", mt: 10 }}>
-        <CircularProgress />
-      </Box>
-    );
-  }*/
-  }
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
