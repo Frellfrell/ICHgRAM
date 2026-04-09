@@ -13,15 +13,17 @@ const Home = () => {
   const [hasMore, setHasMore] = useState(true);
 
   // Якорь для скролла
+  const pageRef = useRef(1);
   const loaderRef = useRef(null);
 
   const getPosts = useCallback(
     async (isFirstLoad = false) => {
-      //if (loading || (!hasMore && !isFirstLoad)) return;
-      if (loading) return;
-      if (!hasMore && !isFirstLoad) return;
+      if (loading || (!hasMore && !isFirstLoad)) return;
+      //if (loading) return;
+      //if (!hasMore && !isFirstLoad) return;
 
       setLoading(true);
+
       try {
         console.log("Запрос пошел: страница", page);
         const currentPage = isFirstLoad ? 1 : page;
