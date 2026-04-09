@@ -5,6 +5,7 @@ import AppAvatar from "../ui/AppAvatar";
 import { formatUrl, timeAgo, BE_URL } from "../ui/helpers";
 import FollowButton from "../ui/FollowButton";
 import LikeButton from "../ui/LikeButton";
+import { Link } from "react-router-dom";
 
 const PostCard = ({ post }) => {
   // Проверяем, как называется поле автора: post.author или post.user
@@ -37,10 +38,24 @@ const PostCard = ({ post }) => {
       <Box
         sx={{ display: "flex", alignItems: "center", gap: "12px", mb: "12px" }}
       >
-        <AppAvatar src={avatarSrc} alt={author?.username} size={27} />
-        <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>
-          {author?.username}
-        </AppTypography>
+        <Box
+          component={Link}
+          to={`/profile/${author._id}`}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+            textDecoration: "none",
+            color: "inherit",
+            "&:hover": { opacity: 0.8 },
+          }}
+        >
+          <AppAvatar src={avatarSrc} alt={author?.username} size={27} />
+          <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>
+            {author?.username}
+          </AppTypography>
+        </Box>
+
         <AppTypography sx={{ color: "text.secondary", fontSize: "14px" }}>
           • {timeAgo(post.createdAt)} •
         </AppTypography>
