@@ -24,6 +24,11 @@ const Home = () => {
 
       setLoading(true);
 
+      // Берем номер страницы: либо 1 (если первая загрузка), либо из Ref
+      const currentPage = isFirstLoad ? 1 : pageRef.current;
+
+      console.log("ОТПРАВКА ЗАПРОСА: страница", currentPage);
+
       try {
         console.log("Запрос пошел: страница", page);
         const currentPage = isFirstLoad ? 1 : page;
