@@ -13,6 +13,12 @@ const FollowButton = ({ userId, initialIsFollowing }) => {
 
   const handleFollow = async (e) => {
     e.stopPropagation();
+    if (!userId) {
+      console.error("Ошибка: userId не передан в FollowButton");
+      return;
+    }
+
+    console.log("Пытаюсь подписаться/отписаться от:", userId);
 
     setLoading(true);
     try {
