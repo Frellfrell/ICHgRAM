@@ -41,7 +41,7 @@ const NotificationList = ({ notifications, onPostClick }) => {
           {note.post && (
             <Box
               component="img"
-              src={formatUrl(note.post.image)}
+              src={formatUrl(note.post?.image)}
               onClick={() => onPostClick && onPostClick(note.post)}
               sx={{
                 width: 44,
