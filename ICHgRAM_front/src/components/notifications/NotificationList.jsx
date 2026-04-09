@@ -39,7 +39,7 @@ const NotificationList = ({ notifications }) => {
           </Box>
 
           <Box
-            onClick={() => navigate(`/post/${note.post._id}`)}
+            onClick={() => navigate(`/posts/${note.post._id}`)}
             sx={{ cursor: "pointer" }}
           >
             {note.post && (
