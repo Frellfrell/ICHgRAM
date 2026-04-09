@@ -48,6 +48,8 @@ const NotificationList = ({ notifications }) => {
                 height: 44,
                 objectFit: "cover",
                 borderRadius: "4px",
+                cursor: "pointer",
+                "&:hover": { opacity: 0.8 },
               }}
             />
           )}
