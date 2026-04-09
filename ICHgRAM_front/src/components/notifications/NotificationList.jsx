@@ -38,23 +38,19 @@ const NotificationList = ({ notifications }) => {
             </Typography>
           </Box>
 
-          <Box
-            onClick={() => navigate(`/posts/${note.post._id}`)}
-            sx={{ cursor: "pointer" }}
-          >
-            {note.post && (
-              <Box
-                component="img"
-                src={formatUrl(note.post.image)}
-                sx={{
-                  width: 44,
-                  height: 44,
-                  objectFit: "cover",
-                  borderRadius: "4px",
-                }}
-              />
-            )}
-          </Box>
+          {note.post && (
+            <Box
+              component="img"
+              src={formatUrl(note.post.image)}
+              onClick={() => navigate(`/post/${note.post._id || note.post}`)}
+              sx={{
+                width: 44,
+                height: 44,
+                objectFit: "cover",
+                borderRadius: "4px",
+              }}
+            />
+          )}
         </Box>
       ))}
     </Box>
