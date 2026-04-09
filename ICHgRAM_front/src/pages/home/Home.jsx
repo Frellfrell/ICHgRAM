@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import PostCard from "../../components/post/PostCard.jsx";
 import { fetchAllPosts } from "../../api/postApi";
-import { Box, CircularProgress, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import HomeEndBlock from "../../components/ui/HomeEndBlock.jsx";
 
 const Home = () => {
@@ -9,7 +9,7 @@ const Home = () => {
   //const [loading, setLoading] = useState(true);
   const [loading, setLoading] = useState(false);
 
-  const [page, setPage] = useState(1);
+  //const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
   // Якорь для скролла
@@ -30,9 +30,9 @@ const Home = () => {
       console.log("ОТПРАВКА ЗАПРОСА: страница", currentPage);
 
       try {
-        console.log("Запрос пошел: страница", page);
-        const currentPage = isFirstLoad ? 1 : page;
-        console.log("ОТПРАВКА ЗАПРОСА: страница", currentPage);
+        //console.log("Запрос пошел: страница", page);
+        //const currentPage = isFirstLoad ? 1 : page;
+        //console.log("ОТПРАВКА ЗАПРОСА: страница", currentPage);
         // Передаем текущую страницу и лимит 4
         const data = await fetchAllPosts(currentPage, 4);
 
@@ -57,7 +57,13 @@ const Home = () => {
           });
 
           //setPage(isFirstLoad ? 2 : (prev) => prev + 1);
-          setPage((prev) => (isFirstLoad ? 2 : prev + 1));
+          //setPage((prev) => (isFirstLoad ? 2 : prev + 1));
+          //const nextPage = currentPage + 1;
+          //setPage(nextPage);
+          //pageRef.current = nextPage;
+
+          // Мгновенно обновляем номер следующей страницы в Ref
+          pageRef.current = isFirstLoad ? 2 : currentPage + 1;
         }
       } catch (err) {
         console.error("Failed to load posts", err);
@@ -66,7 +72,7 @@ const Home = () => {
         setLoading(false);
       }
     },
-    [page, loading, hasMore],
+    [loading, hasMore],
   );
 
   // Первая загрузка
