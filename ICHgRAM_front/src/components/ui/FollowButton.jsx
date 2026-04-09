@@ -30,7 +30,7 @@ const FollowButton = ({ userId, initialIsFollowing }) => {
         setIsFollowing(true);
       }
     } catch (error) {
-      console.error("Ошибка при подписке/отписке:", error);
+      console.error("Ошибка при подписке/отписке:", error.response?.data);
     } finally {
       setLoading(false);
     }
