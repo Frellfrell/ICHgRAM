@@ -8,6 +8,7 @@ export const NotificationDrawer = ({
   onClose,
   notifications,
   onPostClick,
+  onUserClick,
 }) => {
   if (!open) return null;
 
@@ -71,6 +72,7 @@ export const NotificationDrawer = ({
           <NotificationList
             notifications={notifications}
             onPostClick={onPostClick}
+            onUserClick={onUserClick}
           />
         ) : (
           <Typography sx={{ color: "gray", textAlign: "center", mt: 10 }}>
