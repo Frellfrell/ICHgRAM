@@ -4,9 +4,13 @@ import AppAvatar from "../ui/AppAvatar";
 import { formatUrl } from "../ui/helpers";
 import { useNavigate } from "react-router-dom";
 
-const NotificationList = ({ notifications, onPostClick }) => {
-  const BE_URL = "http://localhost:5000";
+const NotificationList = ({ notifications, onPostClick, onUserClick }) => {
+  //const BE_URL = "http://localhost:5000";
   const navigate = useNavigate();
+  const handleUserNavigation = (userId) => {
+    if (onUserClick) onUserClick(); // Закрываем Drawer
+    navigate(`/profile/${userId}`); // Переходим в профиль
+  };
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
@@ -23,10 +27,13 @@ const NotificationList = ({ notifications, onPostClick }) => {
           }}
         >
           <Box
-            onClick={() => navigate(`/profile/${note.sender._id}`)}
+            onClick={() => handleUserNavigation(`/profile/${note.sender._id}`)}
             sx={{ cursor: "pointer" }}
           >
-            <AppAvatar src={formatUrl(note.sender?.avatar)} size={44} />
+            <AppAvatar
+              src={note.sender?.avatar ? formatUrl(note.sender?.avatar) : null}
+              size={44}
+            />
           </Box>
 
           <Box sx={{ flex: 1 }}>
