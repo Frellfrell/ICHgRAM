@@ -7,6 +7,7 @@ import { NotificationDrawer } from "../components/notifications/NotificationDraw
 import { SearchDrawer } from "../components/search/SearchDrawer.jsx";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import PostModal from "../components/ui/PostModal.jsx";
 
 const MainLayout = ({ children }) => {
   const [openSearch, setOpenSearch] = useState(false);
@@ -16,6 +17,7 @@ const MainLayout = ({ children }) => {
   // Данные для Search и Notifications
   const [searchResults, setSearchResults] = useState([]);
   const [notifications, setNotifications] = useState([]);
+  const [selectedPost, setSelectedPost] = useState(null);
 
   // Поиск пользователей
   const handleSearchChange = async (query) => {
@@ -91,6 +93,7 @@ const MainLayout = ({ children }) => {
         <NotificationDrawer
           open={openNotif}
           onClose={() => setOpenNotif(false)}
+          onPostClick={(post) => setSelectedPost(post)}
           notifications={notifications}
         />
 
@@ -135,6 +138,13 @@ const MainLayout = ({ children }) => {
           </Box>
         </Box>
       </Box>
+      {selectedPost && (
+        <PostModal
+          open={Boolean(selectedPost)}
+          onClose={() => setSelectedPost(null)}
+          post={selectedPost}
+        />
+      )}
     </Box>
   );
 };
