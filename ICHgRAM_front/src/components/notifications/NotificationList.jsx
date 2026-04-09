@@ -35,7 +35,7 @@ const NotificationList = ({ notifications, onPostClick, onUserClick }) => {
           }}
         >
           <Box
-            onClick={() => handleUserNavigation(`/profile/${note.sender._id}`)}
+            onClick={() => handleUserNavigation(`${note.sender._id}`)}
             sx={{ cursor: "pointer" }}
           >
             <AppAvatar
