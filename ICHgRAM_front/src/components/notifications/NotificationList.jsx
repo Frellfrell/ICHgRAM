@@ -7,7 +7,15 @@ import { useNavigate } from "react-router-dom";
 const NotificationList = ({ notifications, onPostClick, onUserClick }) => {
   //const BE_URL = "http://localhost:5000";
   const navigate = useNavigate();
+
   const handleUserNavigation = (userId) => {
+    console.log("Переход на ID пользователя:", userId);
+
+    if (!userId) {
+      console.error("Ошибка: ID пользователя отсутствует!");
+      return;
+    }
+
     if (onUserClick) onUserClick(); // Закрываем Drawer
     navigate(`/profile/${userId}`); // Переходим в профиль
   };
