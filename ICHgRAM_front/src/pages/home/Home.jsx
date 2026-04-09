@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import PostCard from "../../components/post/PostCard.jsx";
 import { fetchAllPosts } from "../../api/postApi";
 import { Box, CircularProgress, Grid } from "@mui/material";
@@ -12,31 +12,53 @@ const Home = () => {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
-  const getPosts = useCallback(async () => {
-    if (loading || !hasMore) return;
+  // Якорь для скролла
+  const loaderRef = useRef(null);
 
-    setLoading(true);
-    try {
-      console.log("Запрос пошел: страница", page);
-      // Передаем текущую страницу и лимит 4
-      const data = await fetchAllPosts(page, 4);
+  const getPosts = useCallback(
+    async (isFirstLoad = false) => {
+      if (loading || (!hasMore && !isFirstLoad)) return;
 
-      if (!data || data.length === 0) {
+      setLoading(true);
+      try {
+        console.log("Запрос пошел: страница", page);
+        const currentPage = isFirstLoad ? 1 : page;
+        // Передаем текущую страницу и лимит 4
+        const data = await fetchAllPosts(currentPage, 4);
+
+        if (!data || data.length === 0) {
+          setHasMore(false);
+        } else {
+          if (data.length < 4) setHasMore(false);
+
+          setPosts((prev) => {
+            {
+              /*const newItems = data.filter(
+            (newItem) => !prev.some((p) => p._id === newItem._id),
+          );
+          return [...prev, ...newItems];
+        });
+        setPage((prev) => prev + 1);*/
+            }
+            const existingIds = new Set(prev.map((p) => p._id));
+            const uniqueNewPosts = data.filter((p) => !existingIds.has(p._id));
+            return isFirstLoad ? data : [...prev, ...uniqueNewPosts];
+          });
+
+          setPage(isFirstLoad ? 2 : (prev) => prev + 1);
+        }
+      } catch (err) {
+        console.error("Failed to load posts", err);
         setHasMore(false);
-      } else {
-        if (data.length < 4) setHasMore(false);
-
-        setPosts((prev) => [...prev, ...data]);
-        setPage((prev) => prev + 1);
+      } finally {
+        setLoading(false);
       }
-    } catch (err) {
-      console.error("Failed to load posts", err);
-    } finally {
-      setLoading(false);
-    }
-  }, [page, loading, hasMore]);
+    },
+    [page, loading, hasMore],
+  );
 
-  // Первая загрузка
+  {
+    /* // Первая загрузка
   useEffect(() => {
     getPosts();
   }, []);
@@ -83,6 +105,28 @@ const Home = () => {
     );
   }*/
   }
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Если "якорь" loaderRef появился в поле зрения — вызываем загрузку
+        if (
+          entries[0].isIntersecting &&
+          hasMore &&
+          !loading &&
+          posts.length > 0
+        ) {
+          getPosts();
+        }
+      },
+      { threshold: 0.1 }, // Срабатывает, как только край блока показался на экране
+    );
+
+    if (loaderRef.current) {
+      observer.observe(loaderRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [getPosts, hasMore, loading, posts.length]);
 
   return (
     <>
@@ -103,6 +147,9 @@ const Home = () => {
           </Grid>
         ))}
       </Grid>
+
+      {/* Маяк (невидимый div) */}
+      <div ref={loaderRef} style={{ height: "10px", margin: "20px 0" }} />
       <HomeEndBlock />
     </>
   );
