@@ -55,7 +55,7 @@ const CreatePostModal = ({
   };
 
   const handleShare = async () => {
-    //if (!file) return;
+    if (!file) return;
     setLoading(true);
     try {
       //const formData = new FormData();
@@ -71,14 +71,16 @@ const CreatePostModal = ({
         await axiosInstance.put(`/api/posts/${editPost._id}`, payload);
       } else {
         // СОЗДАНИЕ
-        await axiosInstance.post("/api/posts", payload);
+        const res = await axiosInstance.post("/api/posts", payload);
+        if (onPostCreated) onPostCreated(res.data); // Передаем созданный пост
       }
 
       // headers: { "Content-Type": "application/json" },
 
-      if (onPostCreated) onPostCreated();
       onClose();
-      window.location.reload();
+      {
+        /*window.location.reload();*/
+      }
     } catch (error) {
       console.error(error);
     } finally {
