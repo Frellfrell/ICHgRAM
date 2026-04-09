@@ -23,7 +23,17 @@ const Home = () => {
         setHasMore(false); // Если пришло меньше 4 постов, значит это конец
       }
 
-  {/*useEffect(() => {
+      setPosts((prev) => [...prev, ...data]);
+      setPage((prev) => prev + 1);
+    } catch (err) {
+      console.error("Failed to load posts", err);
+    } finally {
+      setLoading(false);
+    }
+  }, [page, loading, hasMore]);
+
+  {
+    /*useEffect(() => {
     const getPosts = async () => {
       try {
         const data = await fetchAllPosts();
@@ -47,7 +57,8 @@ const Home = () => {
         <CircularProgress />
       </Box>
     );
-  }*/}
+  }*/
+  }
 
   return (
     <>
