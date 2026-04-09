@@ -96,6 +96,14 @@ const MainLayout = ({ children }) => {
 
         {/* Область контента */}
         <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            flexGrow: 1,
+            height: "100vh",
+          }}
+        ></Box>
+        <Box
           component="main"
           sx={{
             width: "100%",
@@ -111,18 +119,17 @@ const MainLayout = ({ children }) => {
           }}
         >
           {children}
-
-          {/* Футер */}
-          <Box
-            sx={{
-              maxWidth: "1440px",
-              width: "100%",
-              bottom: 0, // В самый низ
-              mt: "auto", // Отодвигаем футер вниз, если контента мало
-            }}
-          >
-            <Footer />
-          </Box>
+        </Box>
+        {/* Футер */}
+        <Box
+          sx={{
+            maxWidth: "1440px",
+            width: "100%",
+            bottom: 0, // В самый низ
+            mt: "auto", // Отодвигаем футер вниз, если контента мало
+          }}
+        >
+          <Footer />
         </Box>
       </Box>
     </Box>
