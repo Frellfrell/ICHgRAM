@@ -97,6 +97,9 @@ const MainLayout = ({ children }) => {
             setSelectedPost(post); // 1. Запоминаем пост для модалки
             setOpenNotif(false); // 2. ЗАКРЫВАЕМ ДРАЙВЕР
           }}
+          onUserClick={() => {
+            setOpenNotif(false); // Закрываем шторку при переходе к юзеру
+          }}
           notifications={notifications}
         />
 
