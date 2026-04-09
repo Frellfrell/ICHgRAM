@@ -93,7 +93,10 @@ const MainLayout = ({ children }) => {
         <NotificationDrawer
           open={openNotif}
           onClose={() => setOpenNotif(false)}
-          onPostClick={(post) => setSelectedPost(post)}
+          onPostClick={(post) => {
+            setSelectedPost(post); // 1. Запоминаем пост для модалки
+            setOpenNotif(false); // 2. ЗАКРЫВАЕМ ДРАЙВЕР
+          }}
           notifications={notifications}
         />
 
