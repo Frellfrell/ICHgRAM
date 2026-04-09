@@ -35,26 +35,27 @@ const Home = () => {
         //console.log("ОТПРАВКА ЗАПРОСА: страница", currentPage);
         // Передаем текущую страницу и лимит 4
         const data = await fetchAllPosts(currentPage, 4);
+        console.log(`Пришло постов со страницы ${currentPage}:`, data.length);
 
         if (!data || data.length === 0) {
           setHasMore(false);
         } else {
           if (data.length < 4) setHasMore(false);
 
-          setPosts((prev) => {
-            //if (isFirstLoad) return data;
-            {
-              /*const newItems = data.filter(
+          setPosts((prev) => [...prev, ...data]);
+          //if (isFirstLoad) return data;
+          {
+            /*const newItems = data.filter(
             (newItem) => !prev.some((p) => p._id === newItem._id),
           );
           return [...prev, ...newItems];
         });
         setPage((prev) => prev + 1);*/
-            }
-            const existingIds = new Set(prev.map((p) => p._id));
-            const uniqueNewPosts = data.filter((p) => !existingIds.has(p._id));
-            return isFirstLoad ? data : [...prev, ...uniqueNewPosts];
-          });
+          }
+          // const existingIds = new Set(prev.map((p) => p._id));
+          // const uniqueNewPosts = data.filter((p) => !existingIds.has(p._id));
+          // return isFirstLoad ? data : [...prev, ...uniqueNewPosts];
+          // });
 
           //setPage(isFirstLoad ? 2 : (prev) => prev + 1);
           //setPage((prev) => (isFirstLoad ? 2 : prev + 1));
