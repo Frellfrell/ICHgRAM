@@ -112,6 +112,7 @@ const MainLayout = ({ children }) => {
             width: "100%",
             maxWidth: "1195px",
             flexGrow: 1,
+            pt: "58px",
             px: { xs: "20px", md: "78px" },
           }}
         >
