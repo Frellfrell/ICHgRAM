@@ -32,6 +32,7 @@ const Home = () => {
           if (data.length < 4) setHasMore(false);
 
           setPosts((prev) => {
+            if (isFirstLoad) return data;
             {
               /*const newItems = data.filter(
             (newItem) => !prev.some((p) => p._id === newItem._id),
@@ -42,10 +43,11 @@ const Home = () => {
             }
             const existingIds = new Set(prev.map((p) => p._id));
             const uniqueNewPosts = data.filter((p) => !existingIds.has(p._id));
-            return isFirstLoad ? data : [...prev, ...uniqueNewPosts];
+            return [...prev, ...uniqueNewPosts];
           });
 
-          setPage(isFirstLoad ? 2 : (prev) => prev + 1);
+          //setPage(isFirstLoad ? 2 : (prev) => prev + 1);
+          setPage((prev) => (isFirstLoad ? 2 : prev + 1));
         }
       } catch (err) {
         console.error("Failed to load posts", err);
@@ -57,13 +59,13 @@ const Home = () => {
     [page, loading, hasMore],
   );
 
-  {
-    /* // Первая загрузка
+  // Первая загрузка
   useEffect(() => {
     getPosts();
   }, []);
 
-  // Логика бесконечного скролла
+  {
+    /*// Логика бесконечного скролла
   useEffect(() => {
     const handleScroll = () => {
       const { scrollTop, clientHeight, scrollHeight } =
@@ -138,6 +140,7 @@ const Home = () => {
         sx={{
           width: "100%",
           maxWidth: "847px",
+          //height: "fit-content",
           mb: "23px",
         }}
       >

@@ -63,7 +63,7 @@ const MainLayout = ({ children }) => {
       }}
     >
       <Box sx={{ display: "flex", flexGrow: 1 }}>
-        <Box sx={{ width: "245px", flexShrink: 0, top: 0 }}>
+        <Box sx={{ width: "245px", flexShrink: 0, top: 0, height: "100vh" }}>
           <Sidebar
             onSearchClick={() => {
               setOpenNotif(false);
@@ -100,6 +100,7 @@ const MainLayout = ({ children }) => {
           sx={{
             width: "100%",
             maxWidth: "1195px",
+            height: "100vh",
             display: "flex",
             pt: "58px",
             px: { xs: "20px", md: "78px" },
@@ -110,18 +111,17 @@ const MainLayout = ({ children }) => {
           }}
         >
           {children}
-
-          {/* Футер */}
-          <Box
-            sx={{
-              maxWidth: "1440px",
-              width: "100%",
-              bottom: 0, // В самый низ
-              mt: "auto", // Отодвигаем футер вниз, если контента мало
-            }}
-          >
-            <Footer />
-          </Box>
+        </Box>
+        {/* Футер */}
+        <Box
+          sx={{
+            maxWidth: "1440px",
+            width: "100%",
+            bottom: 0, // В самый низ
+            mt: "auto", // Отодвигаем футер вниз, если контента мало
+          }}
+        >
+          <Footer />
         </Box>
       </Box>
     </Box>
