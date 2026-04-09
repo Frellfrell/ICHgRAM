@@ -14,13 +14,24 @@ const Explore = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await axiosInstance.get("/api/posts");
+        const res = await axiosInstance.get("/api/posts?limit=50");
 
         // Добавляем разметку: каждый 3-й пост будет высоким (span 2)
-        const masonryPosts = res.data.map((post, index) => ({
-          ...post,
-          layout: (index + 1) % 3 === 0 ? "vertical" : "square",
-        }));
+        const masonryPosts = res.data.map((post, index) => {
+          const mod = index % 10;
+          let layout = "square";
+          // ...post,
+          //layout: (index + 1) % 3 === 0 ? "vertical" : "square",
+          // Вычисляем позицию в группе из 10 постов
+
+          // 3-й пост (индекс 2) — высокий справа
+          // 6-й пост (индекс 5) — высокий слева
+          if (mod === 2 || mod === 5) {
+            layout = "vertical";
+          }
+
+          return { ...post, layout };
+        });
 
         setPosts(masonryPosts);
       } catch (err) {
@@ -64,6 +75,9 @@ const Explore = () => {
               // Базовая высота строки 316px
               gridAutoRows: "316px",
               gap: "13px",
+              //  заполнение пустот
+              gridAutoFlow: "dense",
+              justifyContent: "center",
             }}
           >
             {posts.map((post) => (
@@ -86,6 +100,7 @@ const Explore = () => {
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
+                    display: "block",
                     transition: "transform 0.2s",
                     "&:hover": { transform: "scale(1.02)" },
                   }}

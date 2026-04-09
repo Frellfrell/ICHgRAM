@@ -63,7 +63,7 @@ const MainLayout = ({ children }) => {
       }}
     >
       <Box sx={{ display: "flex", flexGrow: 1 }}>
-        <Box sx={{ width: "245px", flexShrink: 0, position: "sticky", top: 0 }}>
+        <Box sx={{ width: "245px", flexShrink: 0, top: 0, height: "100vh" }}>
           <Sidebar
             onSearchClick={() => {
               setOpenNotif(false);
@@ -96,29 +96,44 @@ const MainLayout = ({ children }) => {
 
         {/* Область контента */}
         <Box
-          component="main"
           sx={{
-            width: "100%",
-            maxWidth: "1195px",
+            display: "flex",
+            flexDirection: "column",
             flexGrow: 1,
-            pt: "58px",
-            px: { xs: "20px", md: "78px" },
+            height: "100vh",
           }}
         >
-          {children}
-        </Box>
-      </Box>
+          <Box
+            component="main"
+            sx={{
+              width: "100%",
+              maxWidth: "1195px",
+              height: "100vh",
+              display: "flex",
+              pt: "58px",
+              px: { xs: "20px", md: "78px" },
+              //height: "calc(100vh - 58px)",
+              overflowY: "auto",
+              flexGrow: 1,
+              flexDirection: "column",
+            }}
+          >
+            {children}
+          </Box>
 
-      {/* Футер */}
-      <Box
-        sx={{
-          maxWidth: "1440px",
-          width: "100%",
-          bottom: 0, // В самый низ
-          mt: "auto", // Отодвигаем футер вниз, если контента мало
-        }}
-      >
-        <Footer />
+          {/* Футер */}
+          <Box
+            sx={{
+              maxWidth: "1440px",
+              width: "100%",
+
+              bottom: 0, // В самый низ
+              mt: "auto", // Отодвигаем футер вниз, если контента мало
+            }}
+          >
+            <Footer />
+          </Box>
+        </Box>
       </Box>
     </Box>
   );

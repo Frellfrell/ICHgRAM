@@ -66,9 +66,14 @@ const seed = async () => {
     await Post.insertMany([
       {
         author: sasha._id,
-        image: "/posts/post_mainOt.svg",
+        image: "/posts/exploer_post8.svg",
         caption: "𝘐𝘵’𝘴 𝒈𝒐𝒍𝒅𝒆𝒏, 𝘗𝘰𝘯𝘺𝘣𝘰𝘺!",
         likes: [nikita._id, tonia._id],
+      },
+      {
+        author: tonia._id,
+        image: "/posts/other_prof6.svg",
+        caption: "A student with three children and a big dream!",
       },
       {
         author: sasha._id,
@@ -76,15 +81,52 @@ const seed = async () => {
         caption: "𝘐𝘵’𝘴 𝒈𝒐𝒍𝒅𝒆𝒏, 𝘗𝘰𝘯𝘺𝘣𝘰𝘺!",
       },
       {
+        author: nikita._id,
+        image: "/posts/exploer_post1.svg",
+        caption: "𝘐𝘵’𝘴 𝒈𝒐𝒍𝒅𝒆𝒏, 𝘗𝘰𝘯𝘺𝘣𝘰𝘺!",
+      },
+      {
+        author: fsssociety._id,
+        image: "/posts/exploer_post10.svg",
+        caption: "My Sport and Fitness!",
+      },
+      {
+        author: nikita._id,
+        image: "/posts/other_prof5.svg",
+        caption: "IT!",
+      },
+      {
         author: sasha._id,
         image: "/posts/exploer_post2.svg",
         caption: "𝘐𝘵’𝘴 𝒈𝒐𝒍𝒅𝒆𝒏, 𝘗𝘰𝘯𝘺𝘣𝘰𝘺!",
       },
       {
+        author: fsssociety._id,
+        image: "/posts/other_prof3.svg",
+        caption: "oooooo.....)",
+      },
+      {
+        author: nikita._id,
+        image: "/posts/exploer_post4.svg",
+        caption: "𝘐𝘵’𝘴 𝒈𝒐𝒍𝒅𝒆𝒏, 𝘗𝘰𝘯𝘺𝘣𝘰𝘺!",
+      },
+      {
+        author: tonia._id,
+        image: "/posts/exploer_post3.svg",
+        caption: "𝘐𝘵’𝘴 𝒈𝒐𝒍𝒅𝒆𝒏, 𝘗𝘰𝘯𝘺𝘣𝘰𝘺!",
+      },
+
+      {
         author: sasha._id,
         image: "/posts/post_mainOt.svg",
         caption: "𝘐𝘵’𝘴 𝒈𝒐𝒍𝒅𝒆𝒏, 𝘗𝘰𝘯𝘺𝘣𝘰𝘺!",
         likes: [nikita._id, tonia._id],
+      },
+      {
+        author: tonia._id,
+        image: "/posts/other_prof4.svg",
+        caption:
+          "Youe bonuses are waiting for you! Don't miss out on the opportunity to boost your career with our exclusive offers. Check out the bonuses available for you and take the next step towards your dream job in IT! 🚀",
       },
 
       {
@@ -100,6 +142,12 @@ const seed = async () => {
         // Занимайте место на бесплатной консультации по ссылке в шапке профиля и
         // давайте вместе делать мир лучше! 🌍",
         likes: [nikita._id, tonia._id],
+      },
+      {
+        author: tonia._id,
+        image: "/posts/exploer_post7.svg",
+        caption: "𝘐𝘵’𝘴 the best coffee on this lovely day !",
+        likes: [nikita._id, ichgram._id],
       },
     ]);
 

@@ -34,9 +34,16 @@ export const createPost = async (req, res) => {
 
 export const getAllPosts = async (req, res) => {
   try {
+    // Получаем номер страницы и лимит из запроса (по умолчанию 1 страница и 4 поста)
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 4;
+    const skip = (page - 1) * limit;
+
     const posts = await Post.find()
       .populate("author", "username avatar")
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: -1 })
+      .skip(skip) // Пропускаем посты предыдущих страниц
+      .limit(limit); // Берем только нужное количество
 
     // Добавляем подсчет лайков из LikeModel для каждого поста
     const postsWithLikes = await Promise.all(

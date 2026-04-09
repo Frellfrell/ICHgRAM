@@ -19,6 +19,7 @@ const Footer = () => {
         height: "158px",
         mt: 4,
         py: 4,
+        paddingRight: { xs: "80px", md: "155px" },
         bgcolor: "background.paper",
         display: "flex",
         flexDirection: "column",

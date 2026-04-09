@@ -1,12 +1,21 @@
 import Comment from "../models/commentModel.js";
+import Post from "../models/postModel.js";
+import Notification from "../models/notificationModel.js";
 
 export const addComment = async (req, res) => {
   try {
     const { text } = req.body;
     const { postId } = req.params;
+    const userId = req.user._id;
 
     if (!text) {
       return res.status(400).json({ message: "Комментарий пустой" });
+    }
+
+    // Сначала находим пост, чтобы знать, кому отправить уведомление
+    const post = await Post.findById(postId);
+    if (!post) {
+      return res.status(404).json({ message: "Пост не найден" });
     }
 
     const comment = await Comment.create({
@@ -14,14 +23,25 @@ export const addComment = async (req, res) => {
       post: postId,
       author: req.user._id,
     });
-    await Notification.create({
-      recipient: post.author,
-      sender: req.user.id,
-      type: "comment",
-      post: post._id,
-    });
 
-    res.status(201).json(comment);
+    // Наполняем данными автора
+    const populatedComment = await Comment.findById(comment._id).populate(
+      "author",
+      "username avatar",
+    );
+
+    // Создаем уведомление автору поста (если это не сам автор комментирует)
+    if (post.author.toString() !== req.user._id.toString()) {
+      await Notification.create({
+        recipient: post.author, //кому
+        sender: req.user._id, // от кого
+        type: "comment",
+        post: postId,
+        сomment: comment._id, // ссылка на комментарий
+      });
+    }
+
+    res.status(201).json(populatedComment);
   } catch (error) {
     res.status(500).json({ message: "Ошибка сервера" });
   }
@@ -29,12 +49,15 @@ export const addComment = async (req, res) => {
 
 export const getPostComments = async (req, res) => {
   try {
-    const comments = await Comment.find({ post: req.params.postId })
+    const { postId } = req.params;
+
+    const comments = await Comment.find({ post: postId })
       .populate("author", "username avatar")
       .sort({ createdAt: 1 });
 
     res.json(comments);
   } catch (error) {
+    console.error("Ошибка при получении комментариев:", error);
     res.status(500).json({ message: "Ошибка сервера" });
   }
 };
@@ -56,6 +79,14 @@ export const deleteComment = async (req, res) => {
     }
 
     await comment.deleteOne();
+
+    // Удаляем связанное уведомление
+    await Notification.findOneAndDelete({
+      sender: userId,
+      comment: commentId,
+      type: "comment",
+    });
+
     res.json({ message: "Комментарий удален" });
   } catch (error) {
     console.error("Ошибка при удалении комментария:", error);
