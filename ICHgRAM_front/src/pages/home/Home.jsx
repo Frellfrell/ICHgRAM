@@ -40,12 +40,17 @@ const Home = () => {
   // Логика бесконечного скролла
   useEffect(() => {
     const handleScroll = () => {
-      const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+      const { scrollTop, clientHeight, scrollHeight } =
+        document.documentElement;
       // Если до конца страницы осталось меньше 100px — грузим еще
       if (scrollTop + clientHeight >= scrollHeight - 100) {
         getPosts();
       }
     };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [getPosts]);
 
   {
     /*useEffect(() => {
