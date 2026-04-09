@@ -8,7 +8,13 @@ const Home = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+
+  const getPosts = useCallback(async () => {
+    if (loading || !hasMore) return;
+
+  {/*useEffect(() => {
     const getPosts = async () => {
       try {
         const data = await fetchAllPosts();
@@ -32,7 +38,7 @@ const Home = () => {
         <CircularProgress />
       </Box>
     );
-  }
+  }*/}
 
   return (
     <>
