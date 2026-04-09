@@ -17,12 +17,15 @@ const Home = () => {
 
   const getPosts = useCallback(
     async (isFirstLoad = false) => {
-      if (loading || (!hasMore && !isFirstLoad)) return;
+      //if (loading || (!hasMore && !isFirstLoad)) return;
+      if (loading) return;
+      if (!hasMore && !isFirstLoad) return;
 
       setLoading(true);
       try {
         console.log("Запрос пошел: страница", page);
         const currentPage = isFirstLoad ? 1 : page;
+        console.log("ОТПРАВКА ЗАПРОСА: страница", currentPage);
         // Передаем текущую страницу и лимит 4
         const data = await fetchAllPosts(currentPage, 4);
 
@@ -32,7 +35,7 @@ const Home = () => {
           if (data.length < 4) setHasMore(false);
 
           setPosts((prev) => {
-            if (isFirstLoad) return data;
+            //if (isFirstLoad) return data;
             {
               /*const newItems = data.filter(
             (newItem) => !prev.some((p) => p._id === newItem._id),
@@ -43,7 +46,7 @@ const Home = () => {
             }
             const existingIds = new Set(prev.map((p) => p._id));
             const uniqueNewPosts = data.filter((p) => !existingIds.has(p._id));
-            return [...prev, ...uniqueNewPosts];
+            return isFirstLoad ? data : [...prev, ...uniqueNewPosts];
           });
 
           //setPage(isFirstLoad ? 2 : (prev) => prev + 1);
@@ -145,7 +148,7 @@ const Home = () => {
         }}
       >
         {posts.map((post, index) => (
-          <Grid item xs={6} key={`${post._id}-${index}`}>
+          <Grid size={{ xs: 12, sm: 6 }} key={`${post._id}-${index}`}>
             <PostCard post={post} />
           </Grid>
         ))}
