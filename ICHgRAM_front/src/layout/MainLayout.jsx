@@ -111,17 +111,18 @@ const MainLayout = ({ children }) => {
           }}
         >
           {children}
-        </Box>
-        {/* Футер */}
-        <Box
-          sx={{
-            maxWidth: "1440px",
-            width: "100%",
-            bottom: 0, // В самый низ
-            mt: "auto", // Отодвигаем футер вниз, если контента мало
-          }}
-        >
-          <Footer />
+
+          {/* Футер */}
+          <Box
+            sx={{
+              maxWidth: "1440px",
+              width: "100%",
+              bottom: 0, // В самый низ
+              mt: "auto", // Отодвигаем футер вниз, если контента мало
+            }}
+          >
+            <Footer />
+          </Box>
         </Box>
       </Box>
     </Box>
