@@ -1,4 +1,6 @@
 import Comment from "../models/commentModel.js";
+import Post from "../models/postModel.js";
+import Notification from "../models/notificationModel.js";
 
 export const addComment = async (req, res) => {
   try {
