@@ -88,11 +88,15 @@ const PostModal = ({ open, post, onClose }) => {
       slotProps={{
         backdrop: {
           sx: {
-            left: { xs: "150px", md: "245px" },
+            left: { xs: "0px", md: "245px" },
             bottom: "158px",
             backgroundColor: "rgba(0, 0, 0, 0.65)",
           },
         },
+      }}
+      sx={{
+        left: { xs: "0px", md: "245px" },
+        bottom: "158px",
       }}
     >
       <Box
