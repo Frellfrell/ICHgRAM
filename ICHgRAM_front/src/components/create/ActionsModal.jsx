@@ -6,6 +6,7 @@ const ActionsModal = ({ open, onClose, onDelete, onEdit }) => {
     <Modal
       open={open}
       onClose={onClose}
+      disableEnforceFocus
       closeAfterTransition
       slots={{ backdrop: Backdrop }}
       slotProps={{
@@ -13,8 +14,8 @@ const ActionsModal = ({ open, onClose, onDelete, onEdit }) => {
           sx: {
             backgroundColor: "transparent",
             timeout: 500,
-            ml: { xs: "0px", md: "245px" },
-            zIndex: 1400,
+
+            zIndex: 1500,
           },
         },
       }}
@@ -25,6 +26,7 @@ const ActionsModal = ({ open, onClose, onDelete, onEdit }) => {
           sx={{
             width: "400px",
             bgcolor: "#FFFFFF",
+            ml: { xs: "0px", md: "245px" },
             borderRadius: "12px",
             boxShadow: "0 12px 42px rgba(0,0,0,0.3)",
             overflow: "hidden",
