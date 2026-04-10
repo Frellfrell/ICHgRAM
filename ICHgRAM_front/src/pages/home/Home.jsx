@@ -4,7 +4,7 @@ import { fetchAllPosts } from "../../api/postApi";
 import { Grid } from "@mui/material";
 import HomeEndBlock from "../../components/ui/HomeEndBlock.jsx";
 
-const Home = () => {
+const Home = ({ onPostClick }) => {
   const [posts, setPosts] = useState([]);
   //const [loading, setLoading] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -121,7 +121,7 @@ const Home = () => {
       >
         {posts.map((post, index) => (
           <Grid size={{ xs: 12, sm: 6 }} key={`${post._id}-${index}`}>
-            <PostCard post={post} />
+            <PostCard post={post} onPostClick={onPostClick} />
           </Grid>
         ))}
       </Grid>
