@@ -14,6 +14,7 @@ const ActionsModal = ({ open, onClose, onDelete, onEdit }) => {
             backgroundColor: "transparent",
             timeout: 500,
             ml: { xs: "0px", md: "245px" },
+            zIndex: 1400,
           },
         },
       }}
