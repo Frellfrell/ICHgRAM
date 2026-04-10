@@ -104,7 +104,7 @@ const CreatePostModal = ({
             bottom: "158px",
             // Если isNested true — прозрачно, иначе — темный фон
             backgroundColor: isNested ? "transparent" : "rgba(0, 0, 0, 0.5)",
-            // zIndex: -1, // Уводим фон под модальное окно
+            zIndex: -1, // Уводим фон под модальное окно
           },
           timeout: 500,
         },
