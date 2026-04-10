@@ -32,13 +32,15 @@ const PostModal = ({ open, post, onClose }) => {
   // Достаем текущего юзера из localStorage, чтобы сравнить ID
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const myId = currentUser?._id || currentUser?.id;
-  const isOwner = post.author?._id === myId; // Проверка: мой ли это пост
-  const author = post?.author || {};
+
+  const author =
+    post?.author?._id || post?.user?._id || post?.author || post?.user;
 
   const navigate = useNavigate();
 
   // Проверка: является ли текущий юзер автором поста
-  const isMyPost = currentUser?._id === author?._id;
+  const isMyPost = String(myId) === String(author?._id || author);
+  //const isMyPost = currentUser?._id === author?._id;
 
   // 1. Загружаем комментарии при открытии модалки
   useEffect(() => {
@@ -182,7 +184,7 @@ const PostModal = ({ open, post, onClose }) => {
             </IconButton> */}
             {/* ГРУППА КНОПОК В УГЛУ */}
             <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
-              {isMyPost && (
+              {isMyPost ? (
                 <IconButton
                   onClick={(e) => {
                     e.stopPropagation();
@@ -191,15 +193,16 @@ const PostModal = ({ open, post, onClose }) => {
                 >
                   <MoreHorizIcon />
                 </IconButton>
+              ) : (
+                <IconButton
+                  onClick={(e) => {
+                    e.stopPropagation(); // Чтобы не сработал переход
+                    onClose();
+                  }}
+                >
+                  <CloseIcon />
+                </IconButton>
               )}
-              <IconButton
-                onClick={(e) => {
-                  e.stopPropagation(); // Чтобы не сработал переход
-                  onClose();
-                }}
-              >
-                <CloseIcon />
-              </IconButton>
             </Box>
           </Box>
           <Divider />
@@ -296,7 +299,11 @@ const PostModal = ({ open, post, onClose }) => {
           <ActionsModal
             open={isActionsOpen}
             onClose={() => setIsActionsOpen(false)}
-            onDelete={handleDelete} // Передаем функцию удаления
+            onDelete={() => {
+              handleDelete; // Передаем функцию удаления
+              setIsActionsOpen(false);
+              onClose(); //Закрываем и сам просмотр поста после удаления
+            }}
             onEdit={() => {
               setIsActionsOpen(false);
               setIsEditModalOpen(true); // Открываем окно редактирования
