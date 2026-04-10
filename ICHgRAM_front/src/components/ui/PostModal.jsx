@@ -31,6 +31,8 @@ const PostModal = ({ open, post, onClose }) => {
 
   // Достаем текущего юзера из localStorage, чтобы сравнить ID
   const currentUser = JSON.parse(localStorage.getItem("user"));
+  const myId = currentUser?._id || currentUser?.id;
+  const isOwner = post.author?._id === myId; // Проверка: мой ли это пост
   const author = post?.author || {};
 
   const navigate = useNavigate();
