@@ -306,6 +306,7 @@ const PostModal = ({ open, post, onClose }) => {
             }}
             onEdit={() => {
               setIsActionsOpen(false);
+              onClose();
               setIsEditModalOpen(true); // Открываем окно редактирования
             }}
           />
