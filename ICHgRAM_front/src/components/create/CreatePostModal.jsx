@@ -92,6 +92,7 @@ const CreatePostModal = ({
     <Modal
       open={open}
       onClose={onClose}
+      disableEnforceFocus
       closeAfterTransition
       slots={{ backdrop: Backdrop }}
       slotProps={{
