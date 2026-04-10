@@ -8,7 +8,7 @@ import LikeButton from "../ui/LikeButton";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post, onPostClick }) => {
   const navigate = useNavigate();
   // Проверяем, как называется поле автора: post.author или post.user
 
@@ -95,7 +95,9 @@ const PostCard = ({ post }) => {
         <Box
           component="img"
           src={postImgSrc}
+          onClick={() => onPostClick(post)}
           alt="post"
+          style={{ cursor: "pointer" }}
           sx={{
             width: "100%",
             height: "100%",
