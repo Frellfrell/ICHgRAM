@@ -88,6 +88,7 @@ const PostModal = ({ open, post, onClose }) => {
     <Modal
       open={open}
       onClose={onClose}
+      disablePortal //чтобы модалка знала границы родителя
       slotProps={{
         backdrop: {
           sx: {
@@ -307,6 +308,7 @@ const PostModal = ({ open, post, onClose }) => {
               //onClose();
               setIsEditModalOpen(true); // Открываем окно редактирования
             }}
+            sx={{ zIndex: 1600 }}
           />
           {/* МОДАЛКА САМОГО РЕДАКТИРОВАНИЯ (CreatePostModal в режиме edit) */}
           <CreatePostModal
@@ -315,6 +317,7 @@ const PostModal = ({ open, post, onClose }) => {
             editPost={post} // Передаем пост для правки
             user={currentUser}
             isNested={true}
+            sx={{ zIndex: 1700 }}
           />
         </Box>
       </Box>
