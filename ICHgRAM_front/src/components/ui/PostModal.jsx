@@ -81,7 +81,7 @@ const PostModal = ({ open, post, onClose }) => {
         console.error("Error deleting post:", err);
       }
   };
-   const handleEditOpen = () => {
+  const handleEditOpen = () => {
     setIsActionsOpen(false);
 
     setTimeout(() => {
@@ -96,7 +96,7 @@ const PostModal = ({ open, post, onClose }) => {
       <Modal
         open={open}
         onClose={onClose}
-       // disablePortal //чтобы модалка знала границы родителя
+        // disablePortal //чтобы модалка знала границы родителя
         slotProps={{
           backdrop: {
             sx: {
@@ -304,31 +304,17 @@ const PostModal = ({ open, post, onClose }) => {
                 Send
               </Button>
             </Box>
-             </Box>
+          </Box>
         </Box>
       </Modal>
 
-            <ActionsModal
-              open={isActionsOpen}
-              onClose={() => setIsActionsOpen(false)}
-               onDelete={handleDelete}
-              onEdit={handleEditOpen}
-             {/* onDelete={() => {
-                handleDelete(); // Передаем функцию удаления
-                setIsActionsOpen(false);
-              }}
-              onEdit={() => {
-                setIsActionsOpen(false);
-                document.activeElement?.blur();
-                //onClose();
-                setTimeout(() => {
-                  setIsEditModalOpen(true); // Открываем окно редактирования
-                }, 500);
-              }}*/
-             }
+      <ActionsModal
+        open={isActionsOpen}
+        onClose={() => setIsActionsOpen(false)}
+        onDelete={handleDelete}
+        onEdit={handleEditOpen}
+      />
 
-            />
-         
       {/* МОДАЛКА САМОГО РЕДАКТИРОВАНИЯ (CreatePostModal в режиме edit) */}
       <CreatePostModal
         open={isEditModalOpen}
