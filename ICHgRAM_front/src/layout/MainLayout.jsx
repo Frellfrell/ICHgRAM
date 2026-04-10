@@ -127,7 +127,8 @@ const MainLayout = ({ children }) => {
               flexDirection: "column",
             }}
           >
-            {children}
+            {React.cloneElement(children, { onPostClick: setSelectedPost })}
+            //{children}
           </Box>
 
           {/* Футер */}
@@ -146,7 +147,7 @@ const MainLayout = ({ children }) => {
       </Box>
       {selectedPost && (
         <PostModal
-          open={Boolean(selectedPost)}
+          open={!!selectedPost}
           onClose={() => setSelectedPost(null)}
           post={selectedPost}
         />
