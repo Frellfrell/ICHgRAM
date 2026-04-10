@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 import axiosInstance from "../../api/axiosInstance";
 
@@ -13,6 +13,13 @@ const FollowButton = ({ userId, initialIsFollowing }) => {
 
   const handleFollow = async (e) => {
     e.stopPropagation();
+    if (!userId) {
+      console.error("Ошибка: userId не передан в FollowButton");
+      return;
+    }
+
+    console.log("Пытаюсь подписаться/отписаться от:", userId);
+
     setLoading(true);
     try {
       if (isFollowing) {
@@ -23,7 +30,7 @@ const FollowButton = ({ userId, initialIsFollowing }) => {
         setIsFollowing(true);
       }
     } catch (error) {
-      console.error("Ошибка при подписке/отписке:", error);
+      console.error("Ошибка при подписке/отписке:", error.response?.data);
     } finally {
       setLoading(false);
     }
@@ -32,7 +39,7 @@ const FollowButton = ({ userId, initialIsFollowing }) => {
   return (
     <Button
       onClick={handleFollow}
-      disabled={loading}
+      disabled={loading || !userId}
       sx={{
         color: isFollowing ? "text.primary" : "#0095F6",
         fontWeight: 600,

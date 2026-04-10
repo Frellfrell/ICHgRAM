@@ -1,12 +1,19 @@
 import Like from "../models/likeModel.js";
 import Post from "../models/postModel.js";
+import Notification from "../models/notificationModel.js";
 
 export const toggleLike = async (req, res) => {
   try {
     const { postId } = req.params;
     const userId = req.user._id; // Получаем id пользователя из токена
 
-    // Ищем лайк этого пользователя для данного поста
+    //  Ищем пост, чтобы узнать, кто автор (нужно для уведомления)
+    const post = await Post.findById(postId);
+    if (!post) {
+      return res.status(404).json({ message: "Пост не найден" });
+    }
+
+    // Ищем лайк пользователя для данного поста
     const existingLike = await Like.findOne({
       post: postId,
       user: userId,
@@ -14,7 +21,13 @@ export const toggleLike = async (req, res) => {
 
     if (existingLike) {
       await existingLike.deleteOne();
-      //const post = await Post.findById(postId);
+
+      await Notification.findOneAndDelete({
+        sender: userId,
+        post: postId,
+        type: "like",
+      });
+
       const likesCount = await Like.countDocuments({ post: postId }); // Пересчитываем количество лайков
 
       return res.json({ liked: false, likesCount }); // Отдаем обновленное количество лайков
@@ -26,7 +39,16 @@ export const toggleLike = async (req, res) => {
       user: userId,
     });
 
-    //const post = await Post.findById(postId);
+    // 2. СОЗДАЕМ УВЕДОМЛЕНИЕ (только если лайкаешь не свой пост)
+    if (post.author.toString() !== userId.toString()) {
+      await Notification.create({
+        recipient: post.author, // Автор поста
+        sender: userId, // Тот, кто лайкнул
+        type: "like",
+        post: postId, // Передаем ID поста, чтобы в списке была картинка!
+      });
+    }
+
     const likesCount = await Like.countDocuments({ post: postId }); // Пересчитываем количество лайков
 
     return res.json({ liked: true, likesCount }); // Отдаем обновленное количество лайков
@@ -35,21 +57,6 @@ export const toggleLike = async (req, res) => {
     res.status(500).json({ message: "Ошибка сервера" });
   }
 };
-
-{
-  /*  await Notification.create({
-      recipient: post.author,
-      sender: req.user.id,
-      type: "like",
-      post: post._id,
-    });
-
-    res.json({ liked: true });
-  } catch (error) {
-    res.status(500).json({ message: "Ошибка сервера" });
-  }
-};*/
-}
 
 export const getPostLikes = async (req, res) => {
   try {

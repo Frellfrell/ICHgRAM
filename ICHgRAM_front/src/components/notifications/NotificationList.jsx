@@ -1,9 +1,24 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import AppAvatar from "../ui/AppAvatar";
+import { formatUrl } from "../ui/helpers";
+import { useNavigate } from "react-router-dom";
 
-const NotificationList = ({ notifications }) => {
-  const BE_URL = "http://localhost:5000";
+const NotificationList = ({ notifications, onPostClick, onUserClick }) => {
+  //const BE_URL = "http://localhost:5000";
+  const navigate = useNavigate();
+
+  const handleUserNavigation = (userId) => {
+    console.log("Переход на ID пользователя:", userId);
+
+    if (!userId) {
+      console.error("Ошибка: ID пользователя отсутствует!");
+      return;
+    }
+
+    if (onUserClick) onUserClick(); // Закрываем Drawer
+    navigate(`/profile/${userId}`); // Переходим в профиль
+  };
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
@@ -19,14 +34,15 @@ const NotificationList = ({ notifications }) => {
             borderBottom: "1px solid rgba(219,219,219,1)",
           }}
         >
-          <AppAvatar
-            src={
-              note.sender?.avatar?.startsWith("data")
-                ? note.sender.avatar
-                : `${BE_URL}${note.sender?.avatar}`
-            }
-            size={44}
-          />
+          <Box
+            onClick={() => handleUserNavigation(`${note.sender._id}`)}
+            sx={{ cursor: "pointer" }}
+          >
+            <AppAvatar
+              src={note.sender?.avatar ? formatUrl(note.sender?.avatar) : null}
+              size={44}
+            />
+          </Box>
 
           <Box sx={{ flex: 1 }}>
             <Typography sx={{ fontSize: "14px" }}>
@@ -40,16 +56,15 @@ const NotificationList = ({ notifications }) => {
           {note.post && (
             <Box
               component="img"
-              src={
-                note.post.image?.startsWith("data")
-                  ? note.post.image
-                  : `${BE_URL}${note.post.image}`
-              }
+              src={formatUrl(note.post?.image)}
+              onClick={() => onPostClick && onPostClick(note.post)}
               sx={{
                 width: 44,
                 height: 44,
                 objectFit: "cover",
                 borderRadius: "4px",
+                cursor: "pointer",
+                "&:hover": { opacity: 0.8 },
               }}
             />
           )}

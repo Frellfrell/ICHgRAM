@@ -4,7 +4,7 @@ import Notification from "../models/notificationModel.js";
 // Подписаться
 export const followUser = async (req, res) => {
   try {
-    const followerId = req.user.id; // из JWT
+    const followerId = req.user._id; // из JWT
     const { userId } = req.params;
 
     if (followerId === userId) {
@@ -31,12 +31,13 @@ export const followUser = async (req, res) => {
 
     await Notification.create({
       recipient: userId, // на кого подписались
-      sender: req.user.id, // кто подписался
+      sender: followerId, // кто подписался
       type: "follow",
     });
 
     res.json({ message: "Подписка оформлена" });
   } catch (error) {
+    console.error("Follow Error:", error);
     res.status(500).json({ message: "Ошибка сервера" });
   }
 };
@@ -44,7 +45,7 @@ export const followUser = async (req, res) => {
 // Отписаться
 export const unfollowUser = async (req, res) => {
   try {
-    const followerId = req.user.id;
+    const followerId = req.user._id;
     const { userId } = req.params;
 
     const deletedFollow = await Follow.findOneAndDelete({

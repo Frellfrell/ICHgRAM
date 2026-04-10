@@ -6,8 +6,10 @@ import { formatUrl, timeAgo, BE_URL } from "../ui/helpers";
 import FollowButton from "../ui/FollowButton";
 import LikeButton from "../ui/LikeButton";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const PostCard = ({ post }) => {
+  const navigate = useNavigate();
   // Проверяем, как называется поле автора: post.author или post.user
 
   const author = post.author || post.user || {}; // Если нет author, берем user или пустой объект
@@ -50,7 +52,13 @@ const PostCard = ({ post }) => {
             "&:hover": { opacity: 0.8 },
           }}
         >
-          <AppAvatar src={avatarSrc} alt={author?.username} size={27} />
+          <Box
+            onClick={() => navigate(`/profile/${author._id}`)}
+            sx={{ cursor: "pointer" }}
+          >
+            <AppAvatar src={avatarSrc} alt={author?.username} size={27} />
+          </Box>
+
           <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>
             {author?.username}
           </AppTypography>
