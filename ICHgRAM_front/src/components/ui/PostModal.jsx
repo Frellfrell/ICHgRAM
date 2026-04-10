@@ -306,9 +306,10 @@ const PostModal = ({ open, post, onClose }) => {
             onEdit={() => {
               setIsActionsOpen(false);
               //onClose();
-              setIsEditModalOpen(true); // Открываем окно редактирования
+              setTimeout(() => {
+                setIsEditModalOpen(true); // Открываем окно редактирования
+              }, 100);
             }}
-            sx={{ zIndex: 1600 }}
           />
           {/* МОДАЛКА САМОГО РЕДАКТИРОВАНИЯ (CreatePostModal в режиме edit) */}
           <CreatePostModal
