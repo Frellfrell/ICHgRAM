@@ -10,8 +10,12 @@ const ActionsModal = ({ open, onClose, onDelete, onEdit }) => {
       slots={{ backdrop: Backdrop }}
       slotProps={{
         backdrop: {
-          sx: { backgroundColor: "transparent" },
-          timeout: 500,
+          sx: {
+            backgroundColor: "transparent",
+            ml: { xs: "0px", md: "245px" },
+            mb: "158px",
+            timeout: 500,
+          },
         },
       }}
       sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
