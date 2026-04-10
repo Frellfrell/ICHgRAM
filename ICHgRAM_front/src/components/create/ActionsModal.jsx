@@ -12,9 +12,8 @@ const ActionsModal = ({ open, onClose, onDelete, onEdit }) => {
         backdrop: {
           sx: {
             backgroundColor: "transparent",
-            ml: { xs: "0px", md: "245px" },
-            mb: "158px",
             timeout: 500,
+            ml: { xs: "0px", md: "245px" },
           },
         },
       }}
