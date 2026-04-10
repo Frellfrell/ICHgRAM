@@ -3,6 +3,7 @@ import PostCard from "../../components/post/PostCard.jsx";
 import { fetchAllPosts } from "../../api/postApi";
 import { Grid } from "@mui/material";
 import HomeEndBlock from "../../components/ui/HomeEndBlock.jsx";
+import PostModal from "../../components/ui/PostModal.jsx";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
