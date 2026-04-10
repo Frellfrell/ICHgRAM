@@ -127,8 +127,7 @@ const MainLayout = ({ children }) => {
               flexDirection: "column",
             }}
           >
-            {React.cloneElement(children, { onPostClick: setSelectedPost })}
-            //{children}
+            {children}
           </Box>
 
           {/* Футер */}
