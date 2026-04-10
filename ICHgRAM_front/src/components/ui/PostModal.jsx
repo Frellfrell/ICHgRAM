@@ -33,8 +33,7 @@ const PostModal = ({ open, post, onClose }) => {
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const myId = currentUser?._id || currentUser?.id;
 
-  const author =
-    post?.author?._id || post?.user?._id || post?.author || post?.user;
+  const author = post?.author || post?.user || {};
 
   const navigate = useNavigate();
 
@@ -300,9 +299,8 @@ const PostModal = ({ open, post, onClose }) => {
             open={isActionsOpen}
             onClose={() => setIsActionsOpen(false)}
             onDelete={() => {
-              handleDelete; // Передаем функцию удаления
+              handleDelete(); // Передаем функцию удаления
               setIsActionsOpen(false);
-              onClose(); //Закрываем и сам просмотр поста после удаления
             }}
             onEdit={() => {
               setIsActionsOpen(false);
