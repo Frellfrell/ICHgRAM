@@ -14,8 +14,6 @@ const ActionsModal = ({ open, onClose, onDelete, onEdit }) => {
           sx: {
             backgroundColor: "transparent",
             timeout: 500,
-
-            zIndex: 1500,
           },
         },
       }}
