@@ -14,6 +14,7 @@ import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import EmojiEmotionsOutlinedIcon from "@mui/icons-material/EmojiEmotionsOutlined";
 import AppTypography from "../ui/AppTypography";
 import axiosInstance from "../../api/axiosInstance";
+import { formatUrl } from "../ui/helpers";
 
 const CreatePostModal = ({
   open,
@@ -92,16 +93,18 @@ const CreatePostModal = ({
     <Modal
       open={open}
       onClose={onClose}
-      disableEnforceFocus
-      disablePortal={false}
-      closeAfterTransition
+      disablePortal
+      keepMounted
+      //closeAfterTransition
       slots={{ backdrop: Backdrop }}
       slotProps={{
         backdrop: {
           sx: {
+            left: { xs: 0, md: "245px" },
+            bottom: "158px",
             // Если isNested true — прозрачно, иначе — темный фон
             backgroundColor: isNested ? "transparent" : "rgba(0, 0, 0, 0.5)",
-            zIndex: -1, // Уводим фон под модальное окно
+            // zIndex: -1, // Уводим фон под модальное окно
           },
           timeout: 500,
         },
@@ -125,7 +128,7 @@ const CreatePostModal = ({
             display: "flex",
             flexDirection: "column",
             outline: "none",
-            zIndex: 10,
+            //zIndex: 10,
             boxShadow: "0 12px 42px rgba(0,0,0,0.2)",
           }}
         >
@@ -194,7 +197,7 @@ const CreatePostModal = ({
               {preview ? (
                 <Box
                   component="img"
-                  src={preview}
+                  src={formatUrl(preview)}
                   sx={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
               ) : (
@@ -244,7 +247,10 @@ const CreatePostModal = ({
                     mb: "16px",
                   }}
                 >
-                  <Avatar src={user?.avatar} sx={{ width: 28, height: 28 }} />
+                  <Avatar
+                    src={user?.avatar ? formatUrl(user.avatar) : ""}
+                    sx={{ width: 28, height: 28 }}
+                  />
                   <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>
                     {user?.username}
                   </AppTypography>
