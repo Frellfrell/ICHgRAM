@@ -22,7 +22,7 @@ const MainLayout = ({ children }) => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editPost, setEditPost] = useState(null);
-  //const currentUser = JSON.parse(localStorage.getItem("user"));
+  const currentUser = JSON.parse(localStorage.getItem("user"));
 
   // Поиск пользователей
   const handleSearchChange = async (query) => {
@@ -166,7 +166,7 @@ const MainLayout = ({ children }) => {
       <CreatePostModal
         open={isCreateModalOpen}
         onClose={() => setIsCreateModalOpen(false)}
-        //user={user}
+        user={currentUser}
       />
 
       {editPost && (
