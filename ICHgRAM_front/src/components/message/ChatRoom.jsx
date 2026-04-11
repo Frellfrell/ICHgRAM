@@ -202,3 +202,5 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
     </Box>
   );
 };
+
+export default ChatRoom;
