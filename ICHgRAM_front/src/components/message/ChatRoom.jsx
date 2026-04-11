@@ -9,3 +9,28 @@ import {
   Divider,
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
+
+
+
+import axiosInstance from "../../api/axiosInstance";
+
+const ChatRoom = ({ selectedChat, currentUserId }) => {
+  const [messages, setMessages] = useState([]);
+  const [text, setText] = useState("");
+  const socket = useContext(SocketContext);
+  const scrollRef = useRef(null);
+
+  // 1. Загрузка истории сообщений при смене чата
+  useEffect(() => {
+    if (selectedChat) {
+      const fetchHistory = async () => {
+        try {
+          const res = await axiosInstance.get(`/api/messages/${selectedChat._id}`);
+          setMessages(res.data);
+        } catch (err) {
+          console.error("History load error:", err);
+        }
+      };
+      fetchHistory();
+    }
+  }, [selectedChat]);
