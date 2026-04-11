@@ -101,3 +101,7 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
             View profile
           </Paper>
         </Box>
+
+        {messages.map((msg, idx) => {
+          const isMe = msg.sender === currentUserId;
+          return (
