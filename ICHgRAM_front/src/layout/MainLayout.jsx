@@ -80,6 +80,7 @@ const MainLayout = ({ children }) => {
               setOpenSearch(false);
               setOpenNotif(!openNotif);
             }}
+            onCreateClick={() => setIsCreateModalOpen(true)}
           />
         </Box>
 
