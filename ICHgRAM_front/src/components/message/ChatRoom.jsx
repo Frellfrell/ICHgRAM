@@ -53,3 +53,11 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
     socket.on("receiveMessage", handleNewMessage);
     return () => socket.off("receiveMessage", handleNewMessage);
   }, [socket, selectedChat, currentUserId]);
+
+  // 3. Скролл
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  const handleSend = () => {
+    if (!text.trim() || !socket || !selectedChat) return;
