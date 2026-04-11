@@ -155,6 +155,11 @@ const MainLayout = ({ children }) => {
           open={!!selectedPost}
           onClose={() => setSelectedPost(null)}
           post={selectedPost}
+          onEdit={(post) => {
+            setSelectedPost(null);
+            setEditPost(post);
+            setIsEditModalOpen(true);
+          }}
         />
       )}
     </Box>
