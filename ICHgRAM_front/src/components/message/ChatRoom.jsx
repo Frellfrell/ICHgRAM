@@ -44,3 +44,8 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
       const isRelevant = 
         newMessage.sender === selectedChat?._id || 
         (newMessage.sender === currentUserId && newMessage.receiver === selectedChat?._id);
+
+       if (isRelevant) {
+        setMessages((prev) => [...prev, newMessage]);
+      }
+    }; 
