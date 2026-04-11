@@ -22,12 +22,12 @@ import CreatePostModal from "../create/CreatePostModal";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { useNavigate } from "react-router-dom";
 
-const PostModal = ({ open, post, onClose }) => {
+const PostModal = ({ open, post, onClose, onEdit }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
 
   const [isActionsOpen, setIsActionsOpen] = useState(false); // Для открытия ActionsModal
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  //const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   // Достаем текущего юзера из localStorage, чтобы сравнить ID
   const currentUser = JSON.parse(localStorage.getItem("user"));
@@ -84,9 +84,8 @@ const PostModal = ({ open, post, onClose }) => {
   const handleEditOpen = () => {
     setIsActionsOpen(false);
 
-    setTimeout(() => {
-      setIsEditModalOpen(true);
-    }, 200);
+    onClose();
+    onEdit(post);
   };
 
   if (!post) return null;
@@ -96,6 +95,7 @@ const PostModal = ({ open, post, onClose }) => {
       <Modal
         open={open}
         onClose={onClose}
+        closeAfterTransition
         // disablePortal //чтобы модалка знала границы родителя
         slotProps={{
           backdrop: {
@@ -313,16 +313,6 @@ const PostModal = ({ open, post, onClose }) => {
         onClose={() => setIsActionsOpen(false)}
         onDelete={handleDelete}
         onEdit={handleEditOpen}
-      />
-
-      {/* МОДАЛКА САМОГО РЕДАКТИРОВАНИЯ (CreatePostModal в режиме edit) */}
-      <CreatePostModal
-        open={isEditModalOpen}
-        onClose={() => setIsEditModalOpen(false)}
-        editPost={post} // Передаем пост для правки
-        user={currentUser}
-        isNested={true}
-        //sx={{ zIndex: 1700 }}
       />
     </>
   );
