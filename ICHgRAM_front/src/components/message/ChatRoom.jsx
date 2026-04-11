@@ -113,3 +113,5 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
             </Box>
           );
         })}
+        <div ref={scrollRef} />
+      </Box>
