@@ -38,3 +38,9 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
   // 2. Слушатель сокета
   useEffect(() => {
     if (!socket) return;
+
+    const handleNewMessage = (newMessage) => {
+      // Проверяем: сообщение относится к ЭТОМУ открытому диалогу?
+      const isRelevant = 
+        newMessage.sender === selectedChat?._id || 
+        (newMessage.sender === currentUserId && newMessage.receiver === selectedChat?._id);
