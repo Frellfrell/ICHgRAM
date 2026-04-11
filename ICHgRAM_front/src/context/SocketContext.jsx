@@ -4,3 +4,7 @@ import { AuthContext } from "./AuthContext";
 import { formatUrl } from "../components/ui/helpers";
 
 export const SocketContext = createContext(null);
+
+export const SocketProvider = ({ children }) => {
+  const { isAuth } = useContext(AuthContext);
+  const [socket, setSocket] = useState(null);
