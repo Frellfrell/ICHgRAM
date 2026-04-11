@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { formatUrl } from "../ui/helpers";
+import { SocketContext } from "../../context/SocketContext";
 
 
 
@@ -83,7 +84,7 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
     <Box sx={{ flexGrow: 1, display: "flex", flexDirection: "column", bgcolor: "white" }}>
       {/* Header */}
       <Box sx={{ p: 2, display: "flex", alignItems: "center", borderBottom: "1px solid #dbdbdb" }}>
-        <Avatar src={selectedChat.avatar ? `formatUrl${selectedChat.avatar}` : ""} sx={{ mr: 2, width: 32, height: 32 }} />
+        <Avatar src={formatUrl(selectedChat.avatar)} sx={{ mr: 2, width: 32, height: 32 }} />
         <Typography fontWeight={600}>{selectedChat.username}</Typography>
       </Box>
 
@@ -92,11 +93,11 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
         {/* Info Header */}
         <Box sx={{ textAlign: "center", my: 4 }}>
           <Avatar 
-            src={selectedChat.avatar ? `http://localhost:5000${selectedChat.avatar}` : ""} 
+            src={formatUrl(selectedChat.avatar)} 
             sx={{ width: 96, height: 96, mx: "auto", mb: 1 }} 
-          />
+            />
           <Typography variant="h6" fontWeight="bold">{selectedChat.username}</Typography>
-          <Typography variant="body2" color="text.secondary">ICHgram User</Typography>
+          <Typography variant="body2" color="text.secondary">ICHgRam User</Typography>
           <Paper variant="outlined" sx={{ display: "inline-block", px: 2, py: 0.5, mt: 1, cursor: "pointer", borderRadius: 2 }}>
             View profile
           </Paper>
@@ -105,3 +106,10 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
         {messages.map((msg, idx) => {
           const isMe = msg.sender === currentUserId;
           return (
+            <Box key={msg._id || idx} sx={{ alignSelf: isMe ? "flex-end" : "flex-start", maxWidth: "70%", mb: 1 }}>
+              <Box sx={{ p: 1.5, borderRadius: "18px", bgcolor: isMe ? "#4c00ff" : "#efefef", color: isMe ? "white" : "black" }}>
+                <Typography variant="body2">{msg.text}</Typography>
+              </Box>
+            </Box>
+          );
+        })}
