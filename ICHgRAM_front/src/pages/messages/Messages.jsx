@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Box } from "@mui/material";
 import { AuthContext } from "../../context/AuthContext";
+import ChatRoom from "../../components/message/ChatRoom";
 
 const Messages = () => {
   const { user } = useContext(AuthContext); // Достаем текущего юзера
