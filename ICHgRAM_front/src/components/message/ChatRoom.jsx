@@ -61,3 +61,21 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
 
   const handleSend = () => {
     if (!text.trim() || !socket || !selectedChat) return;
+
+    socket.emit("sendMessage", {
+      receiverId: selectedChat._id,
+      text: text.trim()
+    });
+    setText("");
+  };
+
+
+  if (!selectedChat) return (
+    <Box sx={{ flexGrow: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+      <Typography variant="h5" fontWeight="bold">Your Messages</Typography>
+      <Typography color="text.secondary">Select a friend to start chatting</Typography>
+    </Box>
+  );
+
+
+  
