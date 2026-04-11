@@ -107,7 +107,7 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
           const isMe = msg.sender === currentUserId;
           return (
             <Box key={msg._id || idx} sx={{ alignSelf: isMe ? "flex-end" : "flex-start", maxWidth: "70%", mb: 1 }}>
-              <Box sx={{ p: 1.5, borderRadius: "18px", bgcolor: isMe ? "#4c00ff" : "#efefef", color: isMe ? "white" : "black" }}>
+              <Box sx={{ p: 1.5, borderRadius: "18px", bgcolor: isMe ? "secondary.main" : "#efefef", color: isMe ? "white" : "black" }}>
                 <Typography variant="body2">{msg.text}</Typography>
               </Box>
             </Box>
@@ -129,7 +129,7 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
             sx: { borderRadius: "25px" },
             endAdornment: (
               <IconButton onClick={handleSend}>
-                <SendIcon sx={{ color: "#4c00ff" }} />
+                <SendIcon sx={{ color:"secondary.main" }} />
               </IconButton>
             )
           }}
