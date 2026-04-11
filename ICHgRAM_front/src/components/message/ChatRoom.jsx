@@ -86,3 +86,18 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
         <Avatar src={selectedChat.avatar ? `formatUrl${selectedChat.avatar}` : ""} sx={{ mr: 2, width: 32, height: 32 }} />
         <Typography fontWeight={600}>{selectedChat.username}</Typography>
       </Box>
+
+      {/* Messages Area */}
+      <Box sx={{ flexGrow: 1, overflowY: "auto", p: 2, display: "flex", flexDirection: "column" }}>
+        {/* Info Header */}
+        <Box sx={{ textAlign: "center", my: 4 }}>
+          <Avatar 
+            src={selectedChat.avatar ? `http://localhost:5000${selectedChat.avatar}` : ""} 
+            sx={{ width: 96, height: 96, mx: "auto", mb: 1 }} 
+          />
+          <Typography variant="h6" fontWeight="bold">{selectedChat.username}</Typography>
+          <Typography variant="body2" color="text.secondary">ICHgram User</Typography>
+          <Paper variant="outlined" sx={{ display: "inline-block", px: 2, py: 0.5, mt: 1, cursor: "pointer", borderRadius: 2 }}>
+            View profile
+          </Paper>
+        </Box>
