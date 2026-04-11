@@ -19,6 +19,11 @@ const MainLayout = ({ children }) => {
   const [notifications, setNotifications] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
 
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [editPost, setEditPost] = useState(null);
+  const currentUser = JSON.parse(localStorage.getItem("user"));
+
   // Поиск пользователей
   const handleSearchChange = async (query) => {
     if (!query) {
