@@ -93,9 +93,9 @@ const CreatePostModal = ({
     <Modal
       open={open}
       onClose={onClose}
-      disablePortal
-      keepMounted
-      //closeAfterTransition
+      //disablePortal
+      //keepMounted
+      closeAfterTransition
       slots={{ backdrop: Backdrop }}
       slotProps={{
         backdrop: {
@@ -113,8 +113,8 @@ const CreatePostModal = ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        ml: { xs: "0px", md: "245px" }, // Сдвиг от сайдбара
-        mb: "158px",
+        //ml: { xs: "0px", md: "245px" }, // Сдвиг от сайдбара
+        //mb: "158px",
       }}
     >
       <Fade in={open}>
