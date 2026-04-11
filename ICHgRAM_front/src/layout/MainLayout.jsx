@@ -146,7 +146,7 @@ const MainLayout = ({ children }) => {
       </Box>
       {selectedPost && (
         <PostModal
-          open={Boolean(selectedPost)}
+          open={!!selectedPost}
           onClose={() => setSelectedPost(null)}
           post={selectedPost}
         />

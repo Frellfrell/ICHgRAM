@@ -3,9 +3,13 @@ import PostCard from "../../components/post/PostCard.jsx";
 import { fetchAllPosts } from "../../api/postApi";
 import { Grid } from "@mui/material";
 import HomeEndBlock from "../../components/ui/HomeEndBlock.jsx";
+import PostModal from "../../components/ui/PostModal.jsx";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
+
+  const [activePost, setActivePost] = useState(null);
+
   //const [loading, setLoading] = useState(true);
   const [loading, setLoading] = useState(false);
 
@@ -121,7 +125,7 @@ const Home = () => {
       >
         {posts.map((post, index) => (
           <Grid size={{ xs: 12, sm: 6 }} key={`${post._id}-${index}`}>
-            <PostCard post={post} />
+            <PostCard post={post} onPostClick={(p) => setActivePost(p)} />
           </Grid>
         ))}
       </Grid>
@@ -129,6 +133,14 @@ const Home = () => {
       {/* Маяк (невидимый div) */}
       <div ref={loaderRef} style={{ height: "10px", margin: "20px 0" }} />
       <HomeEndBlock />
+
+      {activePost && (
+        <PostModal
+          open={!!activePost}
+          post={activePost}
+          onClose={() => setActivePost(null)}
+        />
+      )}
     </>
   );
 };
