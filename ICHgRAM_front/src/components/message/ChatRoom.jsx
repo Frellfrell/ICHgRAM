@@ -115,3 +115,15 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
         })}
         <div ref={scrollRef} />
       </Box>
+
+
+      <Box sx={{ p: 2 }}>
+        <TextField
+          fullWidth
+          placeholder="Write message..."
+          size="small"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+          InputProps={{
+            sx: { borderRadius: "25px" },
