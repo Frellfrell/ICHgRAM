@@ -34,3 +34,7 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
       fetchHistory();
     }
   }, [selectedChat]);
+
+  // 2. Слушатель сокета
+  useEffect(() => {
+    if (!socket) return;
