@@ -8,6 +8,7 @@ import { SearchDrawer } from "../components/search/SearchDrawer.jsx";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PostModal from "../components/ui/PostModal.jsx";
+import { }
 
 const MainLayout = ({ children }) => {
   const [openSearch, setOpenSearch] = useState(false);
@@ -160,6 +161,25 @@ const MainLayout = ({ children }) => {
             setEditPost(post);
             setIsEditModalOpen(true);
           }}
+        />
+       )}
+
+          <CreatePostModal
+            open={isCreateModalOpen}
+            onClose={() => setIsCreateModalOpen(false)}
+            user={user}
+          />
+
+       {editPost && (
+        <CreatePostModal
+          open={isEditModalOpen}
+          onClose={() => {
+            setIsEditModalOpen(false);
+            setEditPost(null);
+          }}
+          editPost={editPost}
+          user={JSON.parse(localStorage.getItem("user"))}
+          isNested={true}
         />
       )}
     </Box>
