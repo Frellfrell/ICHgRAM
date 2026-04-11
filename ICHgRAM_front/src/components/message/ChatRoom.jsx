@@ -12,8 +12,6 @@ import SendIcon from "@mui/icons-material/Send";
 import { formatUrl } from "../ui/helpers";
 import { SocketContext } from "../../context/SocketContext";
 
-
-
 import axiosInstance from "../../api/axiosInstance";
 
 const ChatRoom = ({ selectedChat, currentUserId }) => {
@@ -27,7 +25,9 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
     if (selectedChat) {
       const fetchHistory = async () => {
         try {
-          const res = await axiosInstance.get(`/api/messages/${selectedChat._id}`);
+          const res = await axiosInstance.get(
+            `/api/messages/${selectedChat._id}`,
+          );
           setMessages(res.data);
         } catch (err) {
           console.error("History load error:", err);
@@ -43,14 +43,15 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
 
     const handleNewMessage = (newMessage) => {
       // Проверяем: сообщение относится к ЭТОМУ открытому диалогу?
-      const isRelevant = 
-        newMessage.sender === selectedChat?._id || 
-        (newMessage.sender === currentUserId && newMessage.receiver === selectedChat?._id);
+      const isRelevant =
+        newMessage.sender === selectedChat?._id ||
+        (newMessage.sender === currentUserId &&
+          newMessage.receiver === selectedChat?._id);
 
-       if (isRelevant) {
+      if (isRelevant) {
         setMessages((prev) => [...prev, newMessage]);
       }
-    }; 
+    };
 
     socket.on("receiveMessage", handleNewMessage);
     return () => socket.off("receiveMessage", handleNewMessage);
@@ -66,39 +67,89 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
 
     socket.emit("sendMessage", {
       receiverId: selectedChat._id,
-      text: text.trim()
+      text: text.trim(),
     });
     setText("");
   };
 
-
-  if (!selectedChat) return (
-    <Box sx={{ flexGrow: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-      <Typography variant="h5" fontWeight="bold">Your Messages</Typography>
-      <Typography color="text.secondary">Select a friend to start chatting</Typography>
-    </Box>
-  );
-
+  if (!selectedChat)
+    return (
+      <Box
+        sx={{
+          flexGrow: 1,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Typography variant="h5" fontWeight="bold">
+          Your Messages
+        </Typography>
+        <Typography color="text.secondary">
+          Select a friend to start chatting
+        </Typography>
+      </Box>
+    );
 
   return (
-    <Box sx={{ flexGrow: 1, display: "flex", flexDirection: "column", bgcolor: "white" }}>
+    <Box
+      sx={{
+        flexGrow: 1,
+        display: "flex",
+        flexDirection: "column",
+        bgcolor: "white",
+      }}
+    >
       {/* Header */}
-      <Box sx={{ p: 2, display: "flex", alignItems: "center", borderBottom: "1px solid #dbdbdb" }}>
-        <Avatar src={formatUrl(selectedChat.avatar)} sx={{ mr: 2, width: 32, height: 32 }} />
+      <Box
+        sx={{
+          p: 2,
+          display: "flex",
+          alignItems: "center",
+          borderBottom: "1px solid #dbdbdb",
+        }}
+      >
+        <Avatar
+          src={formatUrl(selectedChat.avatar)}
+          sx={{ mr: 2, width: 32, height: 32 }}
+        />
         <Typography fontWeight={600}>{selectedChat.username}</Typography>
       </Box>
 
       {/* Messages Area */}
-      <Box sx={{ flexGrow: 1, overflowY: "auto", p: 2, display: "flex", flexDirection: "column" }}>
+      <Box
+        sx={{
+          flexGrow: 1,
+          overflowY: "auto",
+          p: 2,
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         {/* Info Header */}
         <Box sx={{ textAlign: "center", my: 4 }}>
-          <Avatar 
-            src={formatUrl(selectedChat.avatar)} 
-            sx={{ width: 96, height: 96, mx: "auto", mb: 1 }} 
-            />
-          <Typography variant="h6" fontWeight="bold">{selectedChat.username}</Typography>
-          <Typography variant="body2" color="text.secondary">ICHgRam User</Typography>
-          <Paper variant="outlined" sx={{ display: "inline-block", px: 2, py: 0.5, mt: 1, cursor: "pointer", borderRadius: 2 }}>
+          <Avatar
+            src={formatUrl(selectedChat.avatar)}
+            sx={{ width: 96, height: 96, mx: "auto", mb: 1 }}
+          />
+          <Typography variant="h6" fontWeight="bold">
+            {selectedChat.username}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            ICHgRam User
+          </Typography>
+          <Paper
+            variant="outlined"
+            sx={{
+              display: "inline-block",
+              px: 2,
+              py: 0.5,
+              mt: 1,
+              cursor: "pointer",
+              borderRadius: 2,
+            }}
+          >
             View profile
           </Paper>
         </Box>
@@ -106,8 +157,22 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
         {messages.map((msg, idx) => {
           const isMe = msg.sender === currentUserId;
           return (
-            <Box key={msg._id || idx} sx={{ alignSelf: isMe ? "flex-end" : "flex-start", maxWidth: "70%", mb: 1 }}>
-              <Box sx={{ p: 1.5, borderRadius: "18px", bgcolor: isMe ? "secondary.main" : "#efefef", color: isMe ? "white" : "black" }}>
+            <Box
+              key={msg._id || idx}
+              sx={{
+                alignSelf: isMe ? "flex-end" : "flex-start",
+                maxWidth: "70%",
+                mb: 1,
+              }}
+            >
+              <Box
+                sx={{
+                  p: 1.5,
+                  borderRadius: "18px",
+                  bgcolor: isMe ? "secondary.main" : "#efefef",
+                  color: isMe ? "white" : "black",
+                }}
+              >
                 <Typography variant="body2">{msg.text}</Typography>
               </Box>
             </Box>
@@ -116,7 +181,6 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
         <div ref={scrollRef} />
       </Box>
 
-
       <Box sx={{ p: 2 }}>
         <TextField
           fullWidth
@@ -124,13 +188,17 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
           size="small"
           value={text}
           onChange={(e) => setText(e.target.value)}
-          onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+          onKeyPress={(e) => e.key === "Enter" && handleSend()}
           InputProps={{
             sx: { borderRadius: "25px" },
             endAdornment: (
               <IconButton onClick={handleSend}>
-                <SendIcon sx={{ color:"secondary.main" }} />
+                <SendIcon sx={{ color: "secondary.main" }} />
               </IconButton>
-            )
+            ),
           }}
         />
+      </Box>
+    </Box>
+  );
+};
