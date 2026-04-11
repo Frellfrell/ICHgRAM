@@ -127,3 +127,10 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
           onKeyPress={(e) => e.key === 'Enter' && handleSend()}
           InputProps={{
             sx: { borderRadius: "25px" },
+            endAdornment: (
+              <IconButton onClick={handleSend}>
+                <SendIcon sx={{ color: "#4c00ff" }} />
+              </IconButton>
+            )
+          }}
+        />
