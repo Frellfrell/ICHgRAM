@@ -9,6 +9,7 @@ import {
   Divider,
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
+import { formatUrl } from "../ui/helpers";
 
 
 
@@ -79,3 +80,9 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
 
 
   return (
+    <Box sx={{ flexGrow: 1, display: "flex", flexDirection: "column", bgcolor: "white" }}>
+      {/* Header */}
+      <Box sx={{ p: 2, display: "flex", alignItems: "center", borderBottom: "1px solid #dbdbdb" }}>
+        <Avatar src={selectedChat.avatar ? `formatUrl${selectedChat.avatar}` : ""} sx={{ mr: 2, width: 32, height: 32 }} />
+        <Typography fontWeight={600}>{selectedChat.username}</Typography>
+      </Box>
