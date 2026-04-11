@@ -16,17 +16,17 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import CreatePostModal from "../create/CreatePostModal.jsx";
-import { useState } from "react";
+//import { useState } from "react";
 import AppAvatar from "../ui/AppAvatar";
 import { formatUrl } from "../ui/helpers";
 
-const Sidebar = ({ onSearchClick, onNotifClick }) => {
+const Sidebar = ({ onSearchClick, onNotifClick, onCreateClick }) => {
   const theme = useTheme();
   const navigate = useNavigate();
   const { logout, user: contextUser } = useContext(AuthContext);
   const user = contextUser || JSON.parse(localStorage.getItem("user"));
 
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  // const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
@@ -100,7 +100,8 @@ const Sidebar = ({ onSearchClick, onNotifClick }) => {
 
           <SidebarItem
             label="Create"
-            onClick={() => setIsCreateModalOpen(true)}
+            //onClick={() => setIsCreateModalOpen(true)}
+            onClick={onCreateClick}
             icon={CreateIcon}
           />
 
@@ -146,11 +147,11 @@ const Sidebar = ({ onSearchClick, onNotifClick }) => {
         <Box sx={{ flexGrow: 1 }} />
       </Box>
 
-      <CreatePostModal
+      {/*<CreatePostModal
         open={isCreateModalOpen}
         onClose={() => setIsCreateModalOpen(false)}
         user={user}
-      />
+      />*/}
     </>
   );
 };
