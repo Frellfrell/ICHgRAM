@@ -49,3 +49,7 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
         setMessages((prev) => [...prev, newMessage]);
       }
     }; 
+
+    socket.on("receiveMessage", handleNewMessage);
+    return () => socket.off("receiveMessage", handleNewMessage);
+  }, [socket, selectedChat, currentUserId]);
