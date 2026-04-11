@@ -25,7 +25,10 @@ const Messages = () => {
         onSelectChat={setSelectedChat}
         selectedChatId={selectedChat?._id}
       />
-      <ChatRoom selectedChat={selectedChat} currentUserId={user?.id} />
+      <ChatRoom
+        selectedChat={selectedChat}
+        currentUserId={user?.id || user?._id}
+      />
     </Box>
   );
 };
