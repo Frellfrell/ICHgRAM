@@ -34,7 +34,7 @@ const CreatePostModal = ({
   useEffect(() => {
     if (editPost && open) {
       setCaption(editPost.caption || "");
-      setPreview(editPost.image);
+      setPreview(formatUrl(editPost.image));
       setFile(editPost.image);
     } else if (open) {
       setCaption("");
@@ -56,14 +56,14 @@ const CreatePostModal = ({
   };
 
   const handleShare = async () => {
-    if (!file) return;
+    if (!file && !editPost) return;
     setLoading(true);
     try {
       //const formData = new FormData();
       //formData.append("image", file);
       //formData.append("caption", caption);
       const payload = {
-        image: file, // строка Base64
+        image: file || editPost?.image, // строка Base64
         caption: caption,
       };
 
@@ -197,7 +197,7 @@ const CreatePostModal = ({
               {preview ? (
                 <Box
                   component="img"
-                  src={formatUrl(preview)}
+                  src={preview}
                   sx={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
               ) : (
