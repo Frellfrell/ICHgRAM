@@ -10,31 +10,31 @@ import {
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { formatUrl } from "../ui/helpers";
-import { AuthProvider } from "../../context/AuthProvider";
+import { SocketContext } from "../../context/SocketContext";
 
 import axiosInstance from "../../api/axiosInstance";
 
 const ChatRoom = ({ selectedChat, currentUserId }) => {
+  const socket = useContext(SocketContext);
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState("");
-  const socket = useContext(AuthProvider);
+
   const scrollRef = useRef(null);
 
   // 1. Загрузка истории сообщений при смене чата
   useEffect(() => {
-    if (selectedChat) {
-      const fetchHistory = async () => {
-        try {
-          const res = await axiosInstance.get(
-            `/api/messages/${selectedChat._id}`,
-          );
-          setMessages(res.data);
-        } catch (err) {
-          console.error("History load error:", err);
-        }
-      };
-      fetchHistory();
-    }
+    if (!selectedChat) return;
+    const fetchMessages = async () => {
+      try {
+        const res = await axiosInstance.get(
+          `/api/messages/${selectedChat._id}`,
+        );
+        setMessages(res.data);
+      } catch (err) {
+        console.error("History load error:", err);
+      }
+    };
+    fetchMessages();
   }, [selectedChat]);
 
   // 2. Слушатель сокета
@@ -43,19 +43,18 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
 
     const handleNewMessage = (newMessage) => {
       // Проверяем: сообщение относится к ЭТОМУ открытому диалогу?
-      const isRelevant =
+      const isCurrentChat =
         newMessage.sender === selectedChat?._id ||
-        (newMessage.sender === currentUserId &&
-          newMessage.receiver === selectedChat?._id);
+        newMessage.receiver === selectedChat?._id;
 
-      if (isRelevant) {
+      if (isCurrentChat) {
         setMessages((prev) => [...prev, newMessage]);
       }
     };
 
     socket.on("receiveMessage", handleNewMessage);
     return () => socket.off("receiveMessage", handleNewMessage);
-  }, [socket, selectedChat, currentUserId]);
+  }, [socket, selectedChat]);
 
   // 3. Скролл
   useEffect(() => {
@@ -63,11 +62,13 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
   }, [messages]);
 
   const handleSend = () => {
-    if (!text.trim() || !socket || !selectedChat) return;
+    if (!text.trim()) return;
+    if (!socket) return;
+    if (!selectedChat) return;
 
     socket.emit("sendMessage", {
       receiverId: selectedChat._id,
-      text: text.trim(),
+      text,
     });
     setText("");
   };
