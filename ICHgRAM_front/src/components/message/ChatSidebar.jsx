@@ -30,3 +30,5 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
         setLoading(false);
       }
     };
+    fetchContacts();
+  }, []);
