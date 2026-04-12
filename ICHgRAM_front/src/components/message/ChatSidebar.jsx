@@ -83,8 +83,12 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
                   //{{ fontWeight: 600, fontSize: "0.9rem" }}
                 //</ListItemText>*/}
                 <ListItemText
-                  primary={contact.following.username}
-                  secondary="Active now"
+                  primary={
+                    <Typography sx={{ fontWeight: 600, fontSize: "0.9rem" }}>
+                      primary={contact.following.username}
+                    </Typography>
+                  }
+                  //secondary="Active now"
                 />
               </ListItem>
             ))}
