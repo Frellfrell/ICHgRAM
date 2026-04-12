@@ -45,3 +45,6 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
         <Typography variant="h6" sx={{ fontWeight: "bold" }}>
             itcareerhub
         </Typography>
+
+        </Box>
+      <Divider />
