@@ -8,6 +8,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import { theme } from "./theme/theme.js";
 import { useContext } from "react";
+import SocketProvider from "./context/SocketContext.jsx";
 
 // Импорт страниц
 import Login from "./pages/auth/Login.jsx";
@@ -22,7 +23,7 @@ import MainLayout from "./layout/MainLayout.jsx";
 import Explore from "./pages/explore/Explore.jsx";
 import Profile from "./pages/profile/Profile.jsx";
 import EditProfile from "./pages/profile/EditProfile.jsx";
-//import Messages from "./pages/messages/Messages.jsx";
+import Messages from "./pages/messages/Messages.jsx";
 
 import "./App.css";
 
@@ -99,16 +100,18 @@ function AppRoutes() {
         path="/explore"
         element={isAuth ? <Explore /> : <Navigate to="/login" replace />}
       />
-      {/*<Route
-            path="/messages"
-            element={
-              <ProtectedRoute>
-                <MainLayout>
-                  <Messages />
-                </MainLayout>
-              </ProtectedRoute>
-            }
-          />*/}
+      <Route
+        path="/messages"
+        element={
+          isAuth ? (
+            <MainLayout>
+              <Messages />
+            </MainLayout>
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      />
       <Route
         path="/profile/edit"
         element={isAuth ? <EditProfile /> : <Navigate to="/login" replace />}
@@ -132,9 +135,11 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <AuthProvider>
-        <Router>
-          <AppRoutes />
-        </Router>
+        <SocketProvider>
+          <Router>
+            <AppRoutes />
+          </Router>
+        </SocketProvider>
       </AuthProvider>
     </ThemeProvider>
   );
