@@ -8,6 +8,7 @@ import { SearchDrawer } from "../components/search/SearchDrawer.jsx";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PostModal from "../components/ui/PostModal.jsx";
+import CreatePostModal from "../components/create/CreatePostModal.jsx";
 
 const MainLayout = ({ children }) => {
   const [openSearch, setOpenSearch] = useState(false);
