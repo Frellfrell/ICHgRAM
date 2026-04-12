@@ -7,7 +7,7 @@ const router = express.Router();
 
 // Получить переписку с пользователем
 
+router.get("/chats", authMiddleware, getChats);
+
 router.get("/:userId", authMiddleware, getConversation);
 export default router;
-
-router.get("/chats", authMiddleware, getChats);
