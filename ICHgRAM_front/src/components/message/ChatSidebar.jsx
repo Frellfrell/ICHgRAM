@@ -54,3 +54,14 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
           <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
             <CircularProgress size={24} />
           </Box>
+
+          ) : (
+          <List disablePadding>
+            {contacts.map((contact) => (
+              <ListItem 
+                button 
+                key={contact._id}
+                selected={selectedChatId === contact._id}
+                onClick={() => onSelectChat(contact)}
+                sx={{ py: 1.5 }}
+              ></ListItem>
