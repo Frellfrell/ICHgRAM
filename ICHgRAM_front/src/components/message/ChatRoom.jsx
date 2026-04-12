@@ -10,14 +10,14 @@ import {
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { formatUrl } from "../ui/helpers";
-import { SocketContext } from "../../context/SocketContext";
+import { AuthProvider } from "../../context/AuthProvider";
 
 import axiosInstance from "../../api/axiosInstance";
 
 const ChatRoom = ({ selectedChat, currentUserId }) => {
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState("");
-  const socket = useContext(SocketContext);
+  const socket = useContext(AuthProvider);
   const scrollRef = useRef(null);
 
   // 1. Загрузка истории сообщений при смене чата
