@@ -42,4 +42,6 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
       flexDirection: "column" 
     }}>
       <Box sx={{ p: 2 }}>
-        <Typography variant="h6" sx={{ fontWeight: "bold" }}></Typography>
+        <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            itcareerhub
+        </Typography>
