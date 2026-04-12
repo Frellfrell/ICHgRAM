@@ -40,7 +40,7 @@ export const register = async (req, res) => {
 
     // 5. JWT
 
-    const token = generateToken(user.id);
+    const token = generateToken(user._id);
 
     res.status(201).json({
       user: {
