@@ -42,12 +42,11 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
         flexDirection: "column",
       }}
     >
-      <Box sx={{ p: 2 }}>
+      <Box sx={{ pt: "37px", paddingLeft: "24px" }}>
         <Typography variant="h5" sx={{ fontWeight: "bold" }}>
           itcareerhub
         </Typography>
       </Box>
-      <Divider />
 
       <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
         {loading ? (
