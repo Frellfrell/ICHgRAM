@@ -12,3 +12,7 @@ import {
 } from "@mui/material";
 import axiosInstance from "../../api/axiosInstance";
 import { formatUrl } from "../../utils/formatUrl";
+
+const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
+  const [contacts, setContacts] = useState([]);
+  const [loading, setLoading] = useState(true);
