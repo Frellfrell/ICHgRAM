@@ -14,7 +14,6 @@ const Messages = () => {
         display: "flex",
         height: "calc(100vh - 158px)", // Учитываем отступы MainLayout
         bgcolor: "background.paper",
-        borderColor: "divider",
         borderRadius: "4px",
         overflow: "hidden",
         width: "100%",
