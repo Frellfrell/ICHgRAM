@@ -28,6 +28,7 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setIsAuth(false);
+    setUser(null);
   };
 
   return (
