@@ -18,7 +18,8 @@ const Messages = () => {
         overflow: "hidden",
         width: "100%",
         maxWidth: "1195px",
-        mx: "auto",
+        m: 0,
+        p: 0,
       }}
     >
       <ChatSidebar
