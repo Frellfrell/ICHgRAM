@@ -5,7 +5,7 @@ const onlineUsers = new Map();
 export const socketHandler = (io) => {
   io.on("connection", (socket) => {
     // userId берём из JWT (уже проверенного в server.js)
-    const userId = socket.user._id;
+    const userId = socket.user.id;
 
     console.log(`User connected: ${userId}`);
 
