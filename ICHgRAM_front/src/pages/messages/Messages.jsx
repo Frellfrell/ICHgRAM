@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Box } from "@mui/material";
 import { AuthContext } from "../../context/AuthContext";
 import ChatRoom from "../../components/message/ChatRoom";
+import ChatSidebar from "../../components/message/ChatRoom";
 
 const Messages = () => {
   const { user } = useContext(AuthContext); // Достаем текущего юзера
@@ -11,14 +12,14 @@ const Messages = () => {
     <Box
       sx={{
         display: "flex",
-        height: "calc(100vh - 120px)", // Учитываем отступы MainLayout
+        height: "calc(100vh - 158px)", // Учитываем отступы MainLayout
         bgcolor: "background.paper",
         border: "1px solid",
         borderColor: "divider",
         borderRadius: "4px",
         overflow: "hidden",
         width: "100%",
-        maxWidth: "1195px", // Согласно вашим размерам
+        maxWidth: "1195px",
         mx: "auto",
       }}
     >
