@@ -8,3 +8,5 @@ const router = express.Router();
 
 router.get("/:userId", authMiddleware, getConversation);
 export default router;
+
+router.get("/chats", authMiddleware, getChats);
