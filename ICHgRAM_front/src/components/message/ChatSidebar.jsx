@@ -88,7 +88,11 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
                       primary={contact.following.username}
                     </Typography>
                   }
-                  //secondary="Active now"
+                  secondary={
+                    <Typography sx={{ fontSize: "0.75rem", color: "gray" }}>
+                      • 2 hours ago
+                    </Typography>
+                  }
                 />
               </ListItem>
             ))}
