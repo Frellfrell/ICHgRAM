@@ -32,3 +32,14 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
     };
     fetchContacts();
   }, []);
+
+  return (
+    <Box sx={{ 
+      width: "350px", 
+      borderRight: "1px solid", 
+      borderColor: "divider", 
+      display: "flex", 
+      flexDirection: "column" 
+    }}>
+      <Box sx={{ p: 2 }}>
+        <Typography variant="h6" sx={{ fontWeight: "bold" }}></Typography>
