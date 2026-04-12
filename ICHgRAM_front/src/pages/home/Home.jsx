@@ -120,6 +120,8 @@ const Home = () => {
           width: "100%",
           maxWidth: "847px",
           //height: "fit-content",
+          pt: "58px",
+          paddingLeft: { xs: "20px", md: "78px" },
           mb: "23px",
         }}
       >

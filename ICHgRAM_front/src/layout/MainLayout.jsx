@@ -8,6 +8,7 @@ import { SearchDrawer } from "../components/search/SearchDrawer.jsx";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PostModal from "../components/ui/PostModal.jsx";
+import CreatePostModal from "../components/create/CreatePostModal.jsx";
 
 const MainLayout = ({ children }) => {
   const [openSearch, setOpenSearch] = useState(false);
@@ -18,6 +19,11 @@ const MainLayout = ({ children }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [notifications, setNotifications] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
+
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [editPost, setEditPost] = useState(null);
+  const currentUser = JSON.parse(localStorage.getItem("user"));
 
   // Поиск пользователей
   const handleSearchChange = async (query) => {
@@ -75,6 +81,7 @@ const MainLayout = ({ children }) => {
               setOpenSearch(false);
               setOpenNotif(!openNotif);
             }}
+            onCreateClick={() => setIsCreateModalOpen(true)}
           />
         </Box>
 
@@ -119,8 +126,8 @@ const MainLayout = ({ children }) => {
               maxWidth: "1195px",
               height: "100vh",
               display: "flex",
-              pt: "58px",
-              px: { xs: "20px", md: "78px" },
+              //pt: "58px",
+              //px: { xs: "20px", md: "78px" },
               //height: "calc(100vh - 58px)",
               overflowY: "auto",
               flexGrow: 1,
@@ -149,6 +156,30 @@ const MainLayout = ({ children }) => {
           open={!!selectedPost}
           onClose={() => setSelectedPost(null)}
           post={selectedPost}
+          onEdit={(post) => {
+            setSelectedPost(null);
+            setEditPost(post);
+            setIsEditModalOpen(true);
+          }}
+        />
+      )}
+
+      <CreatePostModal
+        open={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        user={currentUser}
+      />
+
+      {editPost && (
+        <CreatePostModal
+          open={isEditModalOpen}
+          onClose={() => {
+            setIsEditModalOpen(false);
+            setEditPost(null);
+          }}
+          editPost={editPost}
+          user={JSON.parse(localStorage.getItem("user"))}
+          isNested={true}
         />
       )}
     </Box>

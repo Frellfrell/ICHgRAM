@@ -77,7 +77,7 @@ export const getFollowers = async (req, res) => {
     const { userId } = req.params;
     const followers = await Follow.find({
       following: userId,
-    }).populate("follower", "username fullName");
+    }).populate("follower", "username fullName avatar");
 
     res.json(followers);
   } catch (error) {
@@ -88,11 +88,11 @@ export const getFollowers = async (req, res) => {
 // Получить тех, на кого подписан
 export const getFollowing = async (req, res) => {
   try {
-    const { userId } = req.params;
+    const { userId } = req.user.id;
 
     const following = await Follow.find({
       follower: userId,
-    }).populate("following", "username fullName");
+    }).populate("following", "username fullName avatar");
 
     res.json(following);
   } catch (error) {
