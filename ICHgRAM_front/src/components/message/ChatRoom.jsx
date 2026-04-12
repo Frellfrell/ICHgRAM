@@ -64,7 +64,7 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
   const handleSend = () => {
     if (!text.trim()) return;
     if (!socket) return;
-    if (!selectedChat) return;
+    //if (!selectedChat) return;
 
     socket.emit("sendMessage", {
       receiverId: selectedChat._id,
