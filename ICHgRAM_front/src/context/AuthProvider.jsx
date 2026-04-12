@@ -35,6 +35,7 @@ const AuthProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         isAuth,
+        user,
         loading,
         login,
         logout,
