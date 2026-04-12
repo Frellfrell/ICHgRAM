@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { AuthContext } from "./AuthContext.jsx";
-import { SocketContext } from "./SocketContext";
+import { SocketContext } from "./SocketContext.jsx";
 import { BE_URL } from "../components/ui/helpers.js";
 
 const SocketProvider = ({ children }) => {
