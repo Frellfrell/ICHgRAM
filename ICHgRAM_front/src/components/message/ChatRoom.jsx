@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { formatUrl } from "../ui/helpers";
-import { SocketContext } from "../../context/SocketContext";
+import { SocketContext } from "../../context/SocketProvider";
 
 import axiosInstance from "../../api/axiosInstance";
 

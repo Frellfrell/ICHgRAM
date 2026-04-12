@@ -8,7 +8,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import { theme } from "./theme/theme.js";
 import { useContext } from "react";
-import SocketProvider from "./context/SocketContext.jsx";
+import SocketProvider from "./context/SocketProvider.jsx";
 
 // Импорт страниц
 import Login from "./pages/auth/Login.jsx";

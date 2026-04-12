@@ -1,34 +1,47 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
-import { AuthContext } from "./AuthContext";
-import { BE_URL } from "../components/ui/helpers";
+import { AuthContext } from "./AuthContext.jsx";
+import { BE_URL } from "../components/ui/helpers.js";
 
 export const SocketContext = createContext(null);
 
-export const SocketProvider = ({ children }) => {
+const SocketProvider = ({ children }) => {
   const { isAuth } = useContext(AuthContext);
-  const [socket, setSocket] = useState(null);
+  const socketRef = useRef(null);
 
   useEffect(() => {
-    if (isAuth) {
-      const token = localStorage.getItem("token");
+    if (!isAuth) return;
+    const token = localStorage.getItem("token");
 
-      const newSocket = io(BE_URL, {
+    socketRef.current = io(BE_URL, {
+      auth: { token },
+    });
+
+    return () => {
+      socketRef.current?.disconnect();
+      socketRef.current = null;
+    };
+  }, [isAuth]);
+
+  {
+    /*const newSocket = io(BE_URL, {
         auth: { token },
       });
 
       setSocket(newSocket);
 
-      return () => newSocket.close();
-    } else {
-      if (socket) {
-        socket.close();
-        setSocket(null);
-      }
-    }
-  }, [isAuth]);
+       return () => {
+      newSocket.disconnect();
+      setSocket(null);
+    };
+  }, [isAuth]);*/
+  }
 
   return (
-    <SocketContext.Provider value={socket}>{children}</SocketContext.Provider>
+    <SocketContext.Provider value={socketRef.current}>
+      {children}
+    </SocketContext.Provider>
   );
 };
+
+export default SocketProvider;
