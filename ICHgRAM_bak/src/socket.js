@@ -24,14 +24,15 @@ export const socketHandler = (io) => {
         const message = await Message.create({
           sender: userId,
           receiver: receiverId,
-          text,
+          text: text.trim(),
         });
 
+        const populatedMessage = await Message.findById(message._id);
         // отправляем получателю
-        io.to(receiverId).emit("receiveMessage", message);
+        io.to(receiverId).emit("receiveMessage", populatedMessage);
 
         // возвращаем отправителю
-        io.to(userId).emit("receiveMessage", message);
+        io.to(userId).emit("receiveMessage", populatedMessage);
       } catch (error) {
         console.error("Ошибка отправки сообщения:", error);
       }
