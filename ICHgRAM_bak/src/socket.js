@@ -1,4 +1,4 @@
-import Message from "./models/messageModel.js";
+import Message from "./models/messegeModel.js";
 
 const onlineUsers = new Map();
 
