@@ -10,7 +10,7 @@ export const socketHandler = (io) => {
     console.log(`User connected: ${userId}`);
 
     // Сохраняем пользователя как онлайн
-    onlineUsers.set(userId, socket._id);
+    onlineUsers.set(userId, socket.id);
 
     // Добавляем пользователя в комнату с его ID
     socket.join(userId);
