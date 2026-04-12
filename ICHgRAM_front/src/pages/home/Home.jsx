@@ -120,6 +120,8 @@ const Home = () => {
           width: "100%",
           maxWidth: "847px",
           //height: "fit-content",
+          pt: "41px",
+          mx: "auto",
           mb: "23px",
         }}
       >
