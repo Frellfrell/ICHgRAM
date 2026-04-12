@@ -48,3 +48,9 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
 
         </Box>
       <Divider />
+
+      <Box sx={{ flexGrow: 1, overflowY: "auto" }}>
+        {loading ? (
+          <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+            <CircularProgress size={24} />
+          </Box>
