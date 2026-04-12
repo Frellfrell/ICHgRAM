@@ -63,7 +63,14 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
                 key={contact.following._id}
                 selected={selectedChatId === contact.following._id}
                 onClick={() => onSelectChat(contact.following)}
-                sx={{ py: 1.5 }}
+                sx={{
+                  py: 1.5,
+                  cursor: "pointer",
+                  bgcolor:
+                    selectedChatId === contact.following._id
+                      ? "#efefef"
+                      : "transparent",
+                }}
               >
                 <ListItemAvatar>
                   <Avatar src={formatUrl(contact.following.avatar)} />
