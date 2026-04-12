@@ -3,10 +3,13 @@ import { AuthContext } from "./AuthContext";
 
 const AuthProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false);
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const savedUser = localStorage.getItem("user");
+
     setIsAuth(!!token);
     setLoading(false);
   }, []);
