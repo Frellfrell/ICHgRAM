@@ -10,11 +10,19 @@ const AuthProvider = ({ children }) => {
     const token = localStorage.getItem("token");
     const savedUser = localStorage.getItem("user");
 
-    setIsAuth(!!token);
+    if (token && savedUser) {
+      setIsAuth(true);
+      setUser(JSON.parse(savedUser));
+    }
     setLoading(false);
   }, []);
 
-  const login = () => setIsAuth(true);
+  const login = (userData, token) => {
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(userData));
+    setIsAuth(true);
+    setUser(userData);
+  };
 
   const logout = () => {
     localStorage.removeItem("token");
