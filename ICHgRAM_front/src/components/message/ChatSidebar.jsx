@@ -16,3 +16,17 @@ import { formatUrl } from "../../utils/formatUrl";
 const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
+
+
+  useEffect(() => {
+    const fetchContacts = async () => {
+      try {
+        // Запрос к списку подписок
+        const res = await axiosInstance.get("/api/follows/following"); 
+        setContacts(res.data); 
+      } catch (err) {
+        console.error("Ошибка при загрузке контактов:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
