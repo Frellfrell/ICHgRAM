@@ -9,7 +9,6 @@ export const SocketProvider = ({ children }) => {
   const { isAuth } = useContext(AuthContext);
   const [socket, setSocket] = useState(null);
 
-
   useEffect(() => {
     if (isAuth) {
       const token = localStorage.getItem("token");
@@ -18,9 +17,9 @@ export const SocketProvider = ({ children }) => {
         auth: { token },
       });
 
-        setSocket(newSocket);
+      setSocket(newSocket);
 
-        return () => newSocket.close();
+      return () => newSocket.close();
     } else {
       if (socket) {
         socket.close();
@@ -28,3 +27,8 @@ export const SocketProvider = ({ children }) => {
       }
     }
   }, [isAuth]);
+
+  return (
+    <SocketContext.Provider value={socket}>{children}</SocketContext.Provider>
+  );
+};
