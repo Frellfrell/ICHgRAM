@@ -69,11 +69,16 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
                   <Avatar src={formatUrl(contact.avatar)} />
                 </ListItemAvatar>
 
-                <ListItemText>
+                {/*<ListItemText>
+                  //primary={contact.username}
+                  //secondary="Active now" 
+                  //primaryTypographyProps=
+                  //{{ fontWeight: 600, fontSize: "0.9rem" }}
+                //</ListItemText>*/}
+                <ListItemText
                   primary={contact.username}
-                  secondary="Active now" primaryTypographyProps=
-                  {{ fontWeight: 600, fontSize: "0.9rem" }}
-                </ListItemText>
+                  secondary="Active now"
+                />
               </ListItem>
             ))}
           </List>
