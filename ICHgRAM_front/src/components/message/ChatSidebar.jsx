@@ -11,7 +11,7 @@ import {
   CircularProgress,
 } from "@mui/material";
 import axiosInstance from "../../api/axiosInstance";
-import { formatUrl } from "../ui/helpers.js";
+import { formatUrl, timeAgo } from "../ui/helpers.js";
 import { AuthContext } from "../../context/AuthContext.jsx";
 
 const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
