@@ -11,7 +11,7 @@ import {
   CircularProgress,
 } from "@mui/material";
 import axiosInstance from "../../api/axiosInstance";
-import { formatUrl } from "../../helpers.js";
+import { formatUrl } from "../ui/helpers.js";
 
 const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
   const [contacts, setContacts] = useState([]);
