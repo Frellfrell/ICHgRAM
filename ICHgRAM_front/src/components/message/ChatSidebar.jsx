@@ -60,13 +60,13 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
             {contacts.map((contact) => (
               <ListItem
                 button
-                key={contact._id}
-                selected={selectedChatId === contact._id}
-                onClick={() => onSelectChat(contact)}
+                key={contact.following._id}
+                selected={selectedChatId === contact.following._id}
+                onClick={() => onSelectChat(contact.following)}
                 sx={{ py: 1.5 }}
               >
                 <ListItemAvatar>
-                  <Avatar src={formatUrl(contact.avatar)} />
+                  <Avatar src={formatUrl(contact.following.avatar)} />
                 </ListItemAvatar>
 
                 {/*<ListItemText>
@@ -76,7 +76,7 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
                   //{{ fontWeight: 600, fontSize: "0.9rem" }}
                 //</ListItemText>*/}
                 <ListItemText
-                  primary={contact.username}
+                  primary={contact.following.username}
                   secondary="Active now"
                 />
               </ListItem>
