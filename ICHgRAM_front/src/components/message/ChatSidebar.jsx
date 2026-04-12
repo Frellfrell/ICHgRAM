@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   Box,
   Typography,
@@ -12,10 +12,12 @@ import {
 } from "@mui/material";
 import axiosInstance from "../../api/axiosInstance";
 import { formatUrl } from "../ui/helpers.js";
+import { AuthContext } from "../../context/AuthContext.jsx";
 
 const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchContacts = async () => {
@@ -44,7 +46,7 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
     >
       <Box sx={{ pt: "37px", paddingLeft: "24px" }}>
         <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-          itcareerhub
+          {user?.username}
         </Typography>
       </Box>
 
