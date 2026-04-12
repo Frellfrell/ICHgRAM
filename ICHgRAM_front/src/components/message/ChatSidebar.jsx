@@ -64,4 +64,15 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
                 selected={selectedChatId === contact._id}
                 onClick={() => onSelectChat(contact)}
                 sx={{ py: 1.5 }}
-              ></ListItem>
+              >
+              <ListItemAvatar>
+                <Avatar src={formatUrl(contact.avatar)} />
+                </ListItemAvatar>  
+
+                <ListItemText>
+                    primary={contact.username} 
+                  secondary="Active now" 
+                  primaryTypographyProps={{ fontWeight: 600, fontSize: "0.9rem" }}
+                    </ListItemText>    
+
+              </ListItem>
