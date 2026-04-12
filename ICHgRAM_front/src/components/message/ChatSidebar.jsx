@@ -57,45 +57,47 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
           </Box>
         ) : (
           <List disablePadding>
-            {contacts.map((contact) => (
-              <ListItem
-                button
-                key={contact.following._id}
-                selected={selectedChatId === contact.following._id}
-                onClick={() => onSelectChat(contact.following)}
-                sx={{
-                  py: 1.5,
-                  cursor: "pointer",
-                  bgcolor:
-                    selectedChatId === contact.following._id
-                      ? "#efefef"
-                      : "transparent",
-                }}
-              >
-                <ListItemAvatar>
-                  <Avatar src={formatUrl(contact.following.avatar)} />
-                </ListItemAvatar>
+            {contacts.map((contact) => {
+              const user = contact.following;
 
-                {/*<ListItemText>
+              return (
+                <ListItem
+                  button
+                  key={contact._id}
+                  selected={selectedChatId === contact._id}
+                  onClick={() => onSelectChat(user)}
+                  sx={{
+                    py: 1.5,
+                    cursor: "pointer",
+                    bgcolor:
+                      selectedChatId === user._id ? "#efefef" : "transparent",
+                  }}
+                >
+                  <ListItemAvatar>
+                    <Avatar src={formatUrl(user.avatar)} />
+                  </ListItemAvatar>
+
+                  {/*<ListItemText>
                   //primary={contact.username}
                   //secondary="Active now" 
                   //primaryTypographyProps=
                   //{{ fontWeight: 600, fontSize: "0.9rem" }}
                 //</ListItemText>*/}
-                <ListItemText
-                  primary={
-                    <Typography sx={{ fontWeight: 600, fontSize: "0.9rem" }}>
-                      primary={contact.following.username}
-                    </Typography>
-                  }
-                  secondary={
-                    <Typography sx={{ fontSize: "0.75rem", color: "gray" }}>
-                      • 2 hours ago
-                    </Typography>
-                  }
-                />
-              </ListItem>
-            ))}
+                  <ListItemText
+                    primary={
+                      <Typography sx={{ fontWeight: 600, fontSize: "0.9rem" }}>
+                        {user.username}
+                      </Typography>
+                    }
+                    secondary={
+                      <Typography sx={{ fontSize: "0.75rem", color: "gray" }}>
+                        • 2 hours ago
+                      </Typography>
+                    }
+                  />
+                </ListItem>
+              );
+            })}
           </List>
         )}
       </Box>
