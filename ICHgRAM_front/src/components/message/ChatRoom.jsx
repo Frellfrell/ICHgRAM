@@ -173,7 +173,8 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
             variant="outlined"
             sx={{
               display: "inline-block",
-              maxWidth: "172px"
+              width: "100%",
+              maxWidth: "172px",
               px: 2,
               py: 0.5,
               mt: "18px",
