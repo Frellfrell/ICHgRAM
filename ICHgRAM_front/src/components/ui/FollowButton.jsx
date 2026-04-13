@@ -21,9 +21,9 @@ const FollowButton = ({ userId, initialIsFollowing, onFollowChange }) => {
 
     try {
       if (isFollowing) {
-        await axiosInstance.delete(`/api/follow/${userId}`);
+        await axiosInstance.delete(`/api/follows/${userId}`);
       } else {
-        await axiosInstance.post(`/api/follow/${userId}`);
+        await axiosInstance.post(`/api/follows/${userId}`);
       }
 
       //  update
