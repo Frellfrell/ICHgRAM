@@ -72,7 +72,7 @@ const PostCard = ({ post, onPostClick }) => {
         <Box sx={{ ml: "auto" }}>
           <FollowButton
             userId={author._id}
-            initialIsFollowing={author.isFollowed}
+            //initialIsFollowing={author.isFollowed}
           />
         </Box>
       </Box>
