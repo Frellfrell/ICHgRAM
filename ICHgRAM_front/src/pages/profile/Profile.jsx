@@ -158,6 +158,7 @@ const Profile = () => {
                     initialIsFollowing={user.isFollowed}
                   />
                   <Button
+                    onClick={() => navigate(`/messages?user=${user._id}`)}
                     sx={{
                       height: "32px",
                       px: 3,
