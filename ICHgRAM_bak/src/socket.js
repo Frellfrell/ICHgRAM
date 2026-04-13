@@ -6,7 +6,7 @@ export const socketHandler = (io) => {
   io.on("connection", (socket) => {
     console.log("USER CONNECTED SOCKET");
     // userId берём из JWT (уже проверенного в server.js)
-    const userId = socket.user.id;
+    const userId = socket.user.id || socket.user._id;
 
     console.log(`User connected: ${userId}`);
 
