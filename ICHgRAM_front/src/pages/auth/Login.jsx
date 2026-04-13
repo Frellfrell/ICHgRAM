@@ -41,7 +41,7 @@ const Login = () => {
       const result = await loginUser(formData);
       console.log(result);
 
-      login(); // Обновляем состояние аутентификации в контексте
+      login(result.user, result.token); // Обновляем состояние аутентификации в контексте
 
       console.log("Вход выполнен успешно:", result);
 
