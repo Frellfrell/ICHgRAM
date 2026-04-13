@@ -79,8 +79,9 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
     setText("");
   };
 
-  if (!selectedChat)
-    return (
+  {
+    /*  if (!selectedChat)
+    return ( 
       <Box
         sx={{
           flexGrow: 1,
@@ -97,7 +98,8 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
           Select a friend to start chatting
         </Typography>
       </Box>
-    );
+    );*/
+  }
 
   return (
     <Box
