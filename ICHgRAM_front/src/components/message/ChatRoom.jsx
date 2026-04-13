@@ -173,17 +173,18 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
             variant="outlined"
             sx={{
               display: "inline-block",
+              maxWidth: "172px"
               px: 2,
               py: 0.5,
-              mt: 1,
+              mt: "18px",
               cursor: "pointer",
-              borderRadius: 2,
+              borderRadius: 1,
             }}
           >
             View profile
           </Paper>
 
-          <Typography variant="body2" color="text.secondary" sx={{ mt: 3 }}>
+          <Typography variant="body2" color="text.secondary" sx={{ mt: "65px" }}>
             {new Date().toLocaleString()}
           </Typography>
         </Box>
