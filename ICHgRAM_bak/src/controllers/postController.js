@@ -3,7 +3,10 @@ import Like from "../models/likeModel.js";
 
 export const createPost = async (req, res) => {
   try {
-    const { caption } = req.body;
+    const { caption, image } = req.body;
+
+    {
+      /*} const { caption } = req.body;
 
     let image = "";
 
@@ -11,6 +14,7 @@ export const createPost = async (req, res) => {
     if (req.file) {
       const base64Image = req.file.buffer.toString("base64");
       image = `data:${req.file.mimetype};base64,${base64Image}`;
+    }*/
     }
 
     // запрет пустого поста
@@ -23,7 +27,7 @@ export const createPost = async (req, res) => {
     const post = await Post.create({
       author: req.user._id,
       caption,
-      image: image,
+      image: image || "",
     });
 
     res.status(201).json(post);
@@ -110,13 +114,18 @@ export const updatePost = async (req, res) => {
       return res.status(403).json({ message: "Нет доступа" });
     }
 
+    const { caption, image } = req.body;
+
     if (req.body.caption !== undefined) {
       post.caption = req.body.caption;
     }
+    if (image !== undefined) post.image = image;
 
-    if (req.file) {
+    {
+      /*if (req.file) {
       const base64Image = req.file.buffer.toString("base64");
       post.image = `data:${req.file.mimetype};base64,${base64Image}`;
+    }*/
     }
 
     if (!post.caption && !post.image) {
