@@ -20,10 +20,20 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
   const [text, setText] = useState("");
 
   const { user } = useContext(AuthContext);
+  const location = useLocation();
 
   const scrollRef = useRef(null);
 
-  // 1. Загрузка истории сообщений при смене чата
+  useEffect(() => {
+    const userId = new URLSearchParams(location.search).get("user");
+    if (userId) {
+      axiosInstance.get(`/api/users/${userId}`).then((res) => {
+        setSelectedChat(res.data);
+      });
+    }
+  }, []);
+
+  //  Загрузка истории сообщений при смене чата
   useEffect(() => {
     if (!selectedChat) return;
     const fetchMessages = async () => {
@@ -39,7 +49,7 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
     fetchMessages();
   }, [selectedChat]);
 
-  // 2. Слушатель сокета
+  //  Слушатель сокета
   useEffect(() => {
     if (!socket) return;
 
@@ -58,7 +68,7 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
     return () => socket.off("receiveMessage", handleNewMessage); //отписаться от сокета
   }, [socket, selectedChat]);
 
-  // 3. Скролл
+  //  Скролл
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
