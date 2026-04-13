@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 import axiosInstance from "../../api/axiosInstance";
 
-const FollowButton = ({ userId, initialIsFollowing }) => {
+const FollowButton = ({ userId, initialIsFollowing, onFollowChange }) => {
   const [isFollowing, setIsFollowing] = useState(initialIsFollowing);
   const [loading, setLoading] = useState(false);
 
@@ -24,7 +24,25 @@ const FollowButton = ({ userId, initialIsFollowing }) => {
     try {
       if (isFollowing) {
         await axiosInstance.delete(`/api/follows/${userId}`);
-        setIsFollowing(false);
+      } else {
+        await axiosInstance.post(`/api/follow/${userId}`);
+      }
+
+      //  update
+      setIsFollowing(!isFollowing);
+
+      // refetch profile
+      if (onFollowChange) {
+        onFollowChange();
+      }
+    } catch (error) {
+      console.error("Follow error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  {
+    /* setIsFollowing(false);
       } else {
         await axiosInstance.post(`/api/follows/${userId}`);
         setIsFollowing(true);
@@ -34,7 +52,8 @@ const FollowButton = ({ userId, initialIsFollowing }) => {
     } finally {
       setLoading(false);
     }
-  };
+  };*/
+  }
 
   return (
     <Button
