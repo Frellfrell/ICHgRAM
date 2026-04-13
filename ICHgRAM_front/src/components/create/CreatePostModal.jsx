@@ -113,6 +113,8 @@ const CreatePostModal = ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        left: { xs: "0px", md: "245px" },
+        bottom: "158px",
         //ml: { xs: "0px", md: "245px" }, // Сдвиг от сайдбара
         //mb: "158px",
       }}
@@ -130,7 +132,7 @@ const CreatePostModal = ({
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            flexDirection: { xs: "column", md: "row" },
+            flexDirection: "column",
             outline: "none",
             //zIndex: 10,
             boxShadow: "0 12px 42px rgba(0,0,0,0.2)",
