@@ -180,12 +180,17 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
               mt: "18px",
               cursor: "pointer",
               borderRadius: 1,
+              bgcolor: "borders",
             }}
           >
             View profile
           </Paper>
 
-          <Typography variant="body2" color="text.secondary" sx={{ mt: "65px" }}>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ mt: "65px" }}
+          >
             {new Date().toLocaleString()}
           </Typography>
         </Box>
