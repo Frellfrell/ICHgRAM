@@ -115,8 +115,6 @@ const CreatePostModal = ({
         justifyContent: "center",
         left: { xs: "0px", md: "245px" },
         bottom: "158px",
-        //ml: { xs: "0px", md: "245px" }, // Сдвиг от сайдбара
-        //mb: "158px",
       }}
     >
       <Fade in={open}>
