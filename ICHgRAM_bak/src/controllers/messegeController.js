@@ -20,26 +20,26 @@ export const getConversation = async (req, res) => {
 
 export const getChats = async (req, res) => {
   try {
-    const userId = req.user.id;
+    const currentUserId = req.user._id.toString();
 
     const messages = await Message.find({
-      $or: [{ sender: userId }, { receiver: userId }],
+      $or: [{ sender: currentUserId }, { receiver: currentUserId }],
     }).sort({ createdAt: -1 });
 
     const chatMap = new Map();
 
     for (const msg of messages) {
-      const otherId =
-        msg.sender.toString() === userId
+      const otherUserId =
+        msg.sender.toString() === currentUserId
           ? msg.receiver.toString()
           : msg.sender.toString();
 
-      if (!chatMap.has(otherId)) {
-        const user = await User.findById(otherId).select(
+      if (!chatMap.has(otherUserId)) {
+        const user = await User.findById(otherUserId).select(
           "username avatar fullName",
         );
 
-        chatMap.set(otherId, {
+        chatMap.set(otherUserId, {
           user,
           lastMessage: msg.text,
           createdAt: msg.createdAt,
@@ -49,6 +49,7 @@ export const getChats = async (req, res) => {
 
     res.json(Array.from(chatMap.values()));
   } catch (err) {
+    console.error("getChats error:", error);
     res.status(500).json({ message: "error" });
   }
 };
