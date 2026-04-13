@@ -24,6 +24,11 @@ const Profile = () => {
 
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
+
+  const handlePostCreated = (newPost) => {
+    setPosts((prev) => [newPost, ...prev]);
+  };
+
   const [loading, setLoading] = useState(true);
   const [isMyProfile, setIsMyProfile] = useState(false);
 
@@ -291,6 +296,7 @@ const Profile = () => {
             open={isModalOpen}
             post={selectedPost}
             onClose={() => setIsModalOpen(false)}
+            onPostCreated={handlePostCreated}
           />
         )}
       </Box>
