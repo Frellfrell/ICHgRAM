@@ -23,7 +23,10 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
     const fetchContacts = async () => {
       try {
         // Запрос к списку подписок
-        const res = await axiosInstance.get("/api/follows/following");
+        const res = await axiosInstance.get("/api/mesages/chats");
+
+        console.log("CHATS RESPONSE:", res.data);
+
         setContacts(res.data);
       } catch (err) {
         console.error("Ошибка при загрузке контактов:", err);
@@ -57,14 +60,16 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
           </Box>
         ) : (
           <List disablePadding>
-            {contacts.map((contact) => {
-              const user = contact.following;
+            {contacts.map((chat) => {
+              const user = chat.user;
+
+              if (!user) return null;
 
               return (
                 <ListItem
                   button
-                  key={contact._id}
-                  selected={selectedChatId === contact._id}
+                  key={user._id}
+                  selected={selectedChatId === user._id}
                   onClick={() => onSelectChat(user)}
                   sx={{
                     py: 1.5,
@@ -91,7 +96,9 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
                     }
                     secondary={
                       <Typography sx={{ fontSize: "0.75rem", color: "gray" }}>
-                        • 2 hours ago
+                        {chat.lastMessage
+                          ? `${chat.lastMessage} • ${timeAgo(chat.createdAt)}`
+                          : "No messages yet"}
                       </Typography>
                     }
                   />
