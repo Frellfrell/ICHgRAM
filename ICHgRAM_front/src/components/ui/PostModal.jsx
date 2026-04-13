@@ -189,7 +189,7 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
               {!isMyPost && (
                 <FollowButton
                   userId={author._id}
-                  initialIsFollowing={author.isFollowed}
+                  //initialIsFollowing={author.isFollowed}
                 />
               )}
               {/* <IconButton onClick={onClose} sx={{ ml: "auto" }}>
