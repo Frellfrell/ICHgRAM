@@ -39,7 +39,7 @@ export const getAllPosts = async (req, res) => {
     const limit = parseInt(req.query.limit) || 4;
     const skip = (page - 1) * limit;
 
-    const currentUserId = req.user?._id;
+    //const currentUserId = req.user?._id;
 
     const posts = await Post.find()
       .populate("author", "username avatar")
@@ -51,18 +51,16 @@ export const getAllPosts = async (req, res) => {
     const postsWithLikes = await Promise.all(
       posts.map(async (post) => {
         const likesCount = await Like.countDocuments({ post: post._id });
-        const isFollowed = await Follow.findOne({
+        {
+          /*const isFollowed = await Follow.findOne({
           follower: currentUserId,
           following: post.author._id,
-        });
+        });*/
+        }
 
         return {
           ...post._doc,
           likesCount: likesCount,
-          author: {
-            ...post.author._doc,
-            isFollowed: !!isFollowed, // Добавляем статус подписки
-          },
         };
       }),
     );
