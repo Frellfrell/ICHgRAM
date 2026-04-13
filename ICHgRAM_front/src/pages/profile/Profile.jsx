@@ -31,42 +31,42 @@ const Profile = () => {
   const [selectedPost, setSelectedPost] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      setLoading(true);
-      try {
-        // запрашиваю профиль
-        // Если в URL нет userId, значит мы идем на /profile (это "Я")
-        const targetUrl = userId ? `/api/users/${userId}` : `/api/users/me`;
-        //const targetUrl = `/api/users/${userId}`;
+  //useEffect(() => {
+  const fetchProfile = async () => {
+    setLoading(true);
+    try {
+      // запрашиваю профиль
+      // Если в URL нет userId, значит мы идем на /profile (это "Я")
+      const targetUrl = userId ? `/api/users/${userId}` : `/api/users/me`;
+      //const targetUrl = `/api/users/${userId}`;
 
-        const userRes = await axiosInstance.get(targetUrl);
-        setUser(userRes.data);
+      const userRes = await axiosInstance.get(targetUrl);
+      setUser(userRes.data);
 
-        // 2. Проверяем, мой ли это профиль (для отображения кнопки Edit)
-        // Если мы запрашивали /me или если ID из базы совпал с ID в URL
-        if (
-          !userId ||
-          userRes.data._id === String(localStorage.getItem("userId"))
-        ) {
-          setIsMyProfile(true);
-        } else {
-          setIsMyProfile(false);
-        }
-
-        // 3. Загружаем посты этого пользователя по его ID
-        const postsRes = await axiosInstance.get(
-          `/api/posts/user/${userRes.data._id}`,
-        );
-        setPosts(postsRes.data);
-      } catch (error) {
-        console.error("Error loading profile:", error);
-        // Если ошибка 404 (пользователь не найден), перенаправляем на NotFound
-      } finally {
-        setLoading(false);
+      // 2. Проверяем, мой ли это профиль (для отображения кнопки Edit)
+      // Если мы запрашивали /me или если ID из базы совпал с ID в URL
+      if (
+        !userId ||
+        userRes.data._id === String(localStorage.getItem("userId"))
+      ) {
+        setIsMyProfile(true);
+      } else {
+        setIsMyProfile(false);
       }
-    };
 
+      // 3. Загружаем посты этого пользователя по его ID
+      const postsRes = await axiosInstance.get(
+        `/api/posts/user/${userRes.data._id}`,
+      );
+      setPosts(postsRes.data);
+    } catch (error) {
+      console.error("Error loading profile:", error);
+      // Если ошибка 404 (пользователь не найден), перенаправляем на NotFound
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
     fetchProfile();
   }, [userId]);
 
