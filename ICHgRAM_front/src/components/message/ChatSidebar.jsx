@@ -23,7 +23,10 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
     const fetchContacts = async () => {
       try {
         // Запрос к списку подписок
-        const res = await axiosInstance.get("/api/follows/following");
+        const res = await axiosInstance.get("/api/messages/chats");
+
+        console.log("CHATS RESPONSE:", res.data);
+
         setContacts(res.data);
       } catch (err) {
         console.error("Ошибка при загрузке контактов:", err);
@@ -37,7 +40,8 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
   return (
     <Box
       sx={{
-        width: "350px",
+        width: "100%",
+        maxWidth: "350px",
         borderRight: "1px solid",
         borderColor: "divider",
         display: "flex",
@@ -57,15 +61,20 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
           </Box>
         ) : (
           <List disablePadding>
-            {contacts.map((contact) => {
-              const user = contact.following;
+            {contacts.map((chat) => {
+              const contactUser = chat.user;
+
+              if (!contactUser) return null;
 
               return (
                 <ListItem
                   button
-                  key={contact._id}
-                  selected={selectedChatId === contact._id}
-                  onClick={() => onSelectChat(user)}
+                  key={contactUser._id}
+                  selected={selectedChatId === contactUser._id}
+                  onClick={() => {
+                    console.log("Selected chat:", contactUser);
+                    onSelectChat(contactUser);
+                  }}
                   sx={{
                     py: 1.5,
                     cursor: "pointer",
@@ -74,7 +83,7 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
                   }}
                 >
                   <ListItemAvatar>
-                    <Avatar src={formatUrl(user.avatar)} />
+                    <Avatar src={formatUrl(contactUser.avatar)} />
                   </ListItemAvatar>
 
                   {/*<ListItemText>
@@ -86,12 +95,14 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
                   <ListItemText
                     primary={
                       <Typography sx={{ fontWeight: 600, fontSize: "0.9rem" }}>
-                        {user.username}
+                        {contactUser.username}
                       </Typography>
                     }
                     secondary={
                       <Typography sx={{ fontSize: "0.75rem", color: "gray" }}>
-                        • 2 hours ago
+                        {chat.lastMessage
+                          ? `${chat.lastMessage} • ${timeAgo(chat.createdAt)}`
+                          : "No messages yet"}
                       </Typography>
                     }
                   />

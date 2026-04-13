@@ -11,7 +11,7 @@ import {
 import SendIcon from "@mui/icons-material/Send";
 import { formatUrl } from "../ui/helpers";
 import { SocketContext } from "../../context/SocketContext";
-
+import { AuthContext } from "../../context/AuthContext";
 import axiosInstance from "../../api/axiosInstance";
 
 const ChatRoom = ({ selectedChat, currentUserId }) => {
@@ -19,9 +19,22 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState("");
 
+  const { user } = useContext(AuthContext);
+
   const scrollRef = useRef(null);
 
-  // 1. Загрузка истории сообщений при смене чата
+  {
+    /*useEffect(() => {
+    const userId = new URLSearchParams(location.search).get("user");
+    if (userId) {
+      axiosInstance.get(`/api/users/${userId}`).then((res) => {
+        setSelectedChat(res.data);
+      });
+    }
+  }, []);*/
+  }
+
+  //  Загрузка истории сообщений при смене чата
   useEffect(() => {
     if (!selectedChat) return;
     const fetchMessages = async () => {
@@ -37,7 +50,7 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
     fetchMessages();
   }, [selectedChat]);
 
-  // 2. Слушатель сокета
+  //  Слушатель сокета
   useEffect(() => {
     if (!socket) return;
 
@@ -53,18 +66,29 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
     };
 
     socket.on("receiveMessage", handleNewMessage);
-    return () => socket.off("receiveMessage", handleNewMessage);
+    return () => socket.off("receiveMessage", handleNewMessage); //отписаться от сокета
   }, [socket, selectedChat]);
 
-  // 3. Скролл
+  //  Скролл
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   const handleSend = () => {
+    console.log("SEND CLICKED");
+    console.log("socket:", socket);
+    console.log("selectedChat:", selectedChat);
+    console.log("text:", text);
     if (!text.trim()) return;
-    if (!socket) return;
-    //if (!selectedChat) return;
+    if (!socket) {
+      console.log("Socket not ");
+      return; // Проверяем, что сокет подключен)
+    }
+
+    if (!selectedChat) {
+      console.log("No selected chat");
+      return;
+    }
 
     socket.emit("sendMessage", {
       receiverId: selectedChat._id,
@@ -73,8 +97,9 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
     setText("");
   };
 
-  if (!selectedChat)
-    return (
+  {
+    /*  if (!selectedChat)
+    return ( 
       <Box
         sx={{
           flexGrow: 1,
@@ -91,7 +116,8 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
           Select a friend to start chatting
         </Typography>
       </Box>
-    );
+    );*/
+  }
 
   return (
     <Box
@@ -112,10 +138,14 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
         }}
       >
         <Avatar
-          src={formatUrl(selectedChat.avatar)}
+          src={formatUrl(selectedChat?.avatar || user?.avatar)}
           sx={{ mr: 2, width: 32, height: 32 }}
         />
-        <Typography fontWeight={600}>{selectedChat.username}</Typography>
+        <Typography fontWeight={600}>
+          {selectedChat?.username || user?.username}
+        </Typography>
+
+        <Divider />
       </Box>
 
       {/* Messages Area */}
@@ -131,32 +161,45 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
         {/* Info Header */}
         <Box sx={{ textAlign: "center", my: 4 }}>
           <Avatar
-            src={formatUrl(selectedChat.avatar)}
+            src={formatUrl(selectedChat?.avatar || user?.avatar)}
             sx={{ width: 96, height: 96, mx: "auto", mb: 1 }}
           />
           <Typography variant="h6" fontWeight="bold">
-            {selectedChat.username}
+            {selectedChat?.username || user?.username}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            ICHgRam User
+            {selectedChat
+              ? `${user?.username} • chatting with ${selectedChat.username}`
+              : `${user?.username} • no active chat`}
           </Typography>
           <Paper
             variant="outlined"
             sx={{
               display: "inline-block",
+              width: "100%",
+              maxWidth: "172px",
               px: 2,
               py: 0.5,
-              mt: 1,
+              mt: "18px",
               cursor: "pointer",
-              borderRadius: 2,
+              borderRadius: 1,
+              bgcolor: "borders",
             }}
           >
             View profile
           </Paper>
+
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ mt: "65px" }}
+          >
+            {new Date().toLocaleString()}
+          </Typography>
         </Box>
 
         {messages.map((msg, idx) => {
-          const isMe = msg.sender === currentUserId;
+          const isMe = msg.sender?.toString() === currentUserId.toString();
           return (
             <Box
               key={msg._id || idx}

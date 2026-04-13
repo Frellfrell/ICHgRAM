@@ -4,8 +4,9 @@ const onlineUsers = new Map();
 
 export const socketHandler = (io) => {
   io.on("connection", (socket) => {
+    console.log("USER CONNECTED SOCKET");
     // userId берём из JWT (уже проверенного в server.js)
-    const userId = socket.user.id;
+    const userId = socket.user.id || socket.user._id;
 
     console.log(`User connected: ${userId}`);
 
@@ -16,8 +17,12 @@ export const socketHandler = (io) => {
     socket.join(userId);
 
     // отправка сообщения
-    socket.on("sendMessage", async ({ receiverId, text }) => {
+    socket.on("sendMessage", async (data) => {
       try {
+        const { receiverId, text } = data;
+
+        console.log("MESSAGE RECEIVED ON BACKEND:", data);
+
         if (!receiverId || !text) return;
 
         // Сохраняем сообщение в базе

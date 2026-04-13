@@ -1,5 +1,6 @@
 import User from "../models/userModel.js";
 import Post from "../models/postModel.js";
+import Follow from "../models/followModel.js";
 
 export const getUserProfile = async (req, res) => {
   try {
@@ -11,12 +12,20 @@ export const getUserProfile = async (req, res) => {
     //если юзер найден
     const postsCount = await Post.countDocuments({ author: userId });
 
+    const followersCount = await Follow.countDocuments({
+      following: user._id,
+    });
+
+    const followingCount = await Follow.countDocuments({
+      follower: user._id,
+    });
+
     // Возвращаем данные пользователя + статистику
     res.status(200).json({
       ...user._doc,
       postsCount,
-      followersCount: user.followers?.length || 0,
-      followingCount: user.following?.length || 0,
+      followersCount,
+      followingCount,
     });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });

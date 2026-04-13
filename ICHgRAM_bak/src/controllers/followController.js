@@ -88,7 +88,7 @@ export const getFollowers = async (req, res) => {
 // Получить тех, на кого подписан
 export const getFollowing = async (req, res) => {
   try {
-    const { userId } = req.user.id;
+    const { userId } = req.user._id;
 
     const following = await Follow.find({
       follower: userId,
