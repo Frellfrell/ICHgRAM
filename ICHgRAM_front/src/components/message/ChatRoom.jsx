@@ -199,7 +199,7 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
         </Box>
 
         {messages.map((msg, idx) => {
-          const isMe = msg.sender === currentUserId;
+          const isMe = msg.sender?.toString() === currentUserId.toString();
           return (
             <Box
               key={msg._id || idx}
