@@ -11,13 +11,15 @@ import {
 import SendIcon from "@mui/icons-material/Send";
 import { formatUrl } from "../ui/helpers";
 import { SocketContext } from "../../context/SocketContext";
-
+import { AuthContext } from "../../context/AuthContext";
 import axiosInstance from "../../api/axiosInstance";
 
 const ChatRoom = ({ selectedChat, currentUserId }) => {
   const socket = useContext(SocketContext);
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState("");
+
+  const { user } = useContext(AuthContext);
 
   const scrollRef = useRef(null);
 
@@ -120,10 +122,12 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
         }}
       >
         <Avatar
-          src={formatUrl(selectedChat.avatar)}
+          src={formatUrl(selectedChat?.avatar || user?.avatar)}
           sx={{ mr: 2, width: 32, height: 32 }}
         />
-        <Typography fontWeight={600}>{selectedChat.username}</Typography>
+        <Typography fontWeight={600}>
+          {selectedChat?.username || user?.avatar}
+        </Typography>
 
         <Divider />
       </Box>
@@ -141,14 +145,16 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
         {/* Info Header */}
         <Box sx={{ textAlign: "center", my: 4 }}>
           <Avatar
-            src={formatUrl(selectedChat.avatar)}
+            src={formatUrl(selectedChat?.avatar || user?.avatar)}
             sx={{ width: 96, height: 96, mx: "auto", mb: 1 }}
           />
           <Typography variant="h6" fontWeight="bold">
-            {selectedChat.username}
+            {selectedChat?.username || user?.username}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            ICHgRam User
+            {selectedChat
+              ? `${user?.username} • chatting with ${selectedChat.username}`
+              : `${user?.username} • no active chat`}
           </Typography>
           <Paper
             variant="outlined"
@@ -163,6 +169,10 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
           >
             View profile
           </Paper>
+
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 3 }}>
+            {new Date().toLocaleString()}
+          </Typography>
         </Box>
 
         {messages.map((msg, idx) => {
