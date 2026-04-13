@@ -62,18 +62,18 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
         ) : (
           <List disablePadding>
             {contacts.map((chat) => {
-              //const user = chat.user;
+              const contactUser = chat.user;
 
-              if (!user) return null;
+              if (!contactUser) return null;
 
               return (
                 <ListItem
                   button
-                  key={user._id}
-                  selected={selectedChatId === user._id}
+                  key={contactUser._id}
+                  selected={selectedChatId === contactUser._id}
                   onClick={() => {
-                    console.log("Selected chat:", user);
-                    onSelectChat(user);
+                    console.log("Selected chat:", contactUser);
+                    onSelectChat(contactUser);
                   }}
                   sx={{
                     py: 1.5,
@@ -83,7 +83,7 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
                   }}
                 >
                   <ListItemAvatar>
-                    <Avatar src={formatUrl(user.avatar)} />
+                    <Avatar src={formatUrl(contactUser.avatar)} />
                   </ListItemAvatar>
 
                   {/*<ListItemText>
@@ -95,7 +95,7 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
                   <ListItemText
                     primary={
                       <Typography sx={{ fontWeight: 600, fontSize: "0.9rem" }}>
-                        {user.username}
+                        {contactUser.username}
                       </Typography>
                     }
                     secondary={

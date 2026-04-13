@@ -17,8 +17,12 @@ export const socketHandler = (io) => {
     socket.join(userId);
 
     // отправка сообщения
-    socket.on("sendMessage", async ({ receiverId, text }) => {
+    socket.on("sendMessage", async (data) => {
       try {
+        const { receiverId, text } = data;
+
+        console.log("MESSAGE RECEIVED ON BACKEND:", data);
+
         if (!receiverId || !text) return;
 
         // Сохраняем сообщение в базе
