@@ -20,18 +20,8 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
   const [text, setText] = useState("");
 
   const { user } = useContext(AuthContext);
-  const location = useLocation();
 
   const scrollRef = useRef(null);
-
-  useEffect(() => {
-    const userId = new URLSearchParams(location.search).get("user");
-    if (userId) {
-      axiosInstance.get(`/api/users/${userId}`).then((res) => {
-        setSelectedChat(res.data);
-      });
-    }
-  }, []);
 
   //  Загрузка истории сообщений при смене чата
   useEffect(() => {
