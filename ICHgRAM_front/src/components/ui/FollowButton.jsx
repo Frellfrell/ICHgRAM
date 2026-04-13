@@ -23,13 +23,13 @@ const FollowButton = ({ userId, initialIsFollowing, onFollowChange }) => {
     setLoading(true);
     try {
       if (isFollowing) {
-        await axiosInstance.delete(`/api/follows/${userId}`);
+        await axiosInstance.delete(`/api/follow/${userId}`);
       } else {
         await axiosInstance.post(`/api/follow/${userId}`);
       }
 
       //  update
-      setIsFollowing(!isFollowing);
+      setIsFollowing((prev) => !prev);
 
       // refetch profile
       if (onFollowChange) {
