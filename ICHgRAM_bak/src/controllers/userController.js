@@ -24,8 +24,8 @@ export const getUserProfile = async (req, res) => {
     res.status(200).json({
       ...user._doc,
       postsCount,
-      followersCount: user.followers?.length || 0,
-      followingCount: user.following?.length || 0,
+      followersCount,
+      followingCount,
     });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
