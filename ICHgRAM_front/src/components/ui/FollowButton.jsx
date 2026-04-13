@@ -9,7 +9,7 @@ const FollowButton = ({ userId, initialIsFollowing, onFollowChange }) => {
   //Обновляеь стейт кнопкт при преходе на другой профиль, иначе при открытии нового профиля кнопка будет показывать статус предыдущего
   useEffect(() => {
     setIsFollowing(initialIsFollowing);
-  }, [initialIsFollowing, userId]);
+  }, [userId]);
 
   const handleFollow = async (e) => {
     e.stopPropagation();
