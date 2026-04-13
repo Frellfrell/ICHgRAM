@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button } from "@mui/material";
 import axiosInstance from "../../api/axiosInstance";
 
-const FollowButton = ({ userId, initialIsFollowing, onFollowChange }) => {
-  const [isFollowing, setIsFollowing] = useState(initialIsFollowing);
+const FollowButton = ({ userId, onFollowChange }) => {
+  // const [isFollowing, setIsFollowing] = useState(initialIsFollowing);
   const [loading, setLoading] = useState(false);
 
   //Обновляеь стейт кнопкт при преходе на другой профиль, иначе при открытии нового профиля кнопка будет показывать статус предыдущего
-  useEffect(() => {
-    setIsFollowing(initialIsFollowing);
-  }, [userId]);
+  // useEffect(() => {
+  //  setIsFollowing(initialIsFollowing);
+  // }, [initialIsFollowing, userId]);
+  const [isFollowing, setIsFollowing] = useState(false);
 
   const handleFollow = async (e) => {
     e.stopPropagation();
@@ -18,6 +19,9 @@ const FollowButton = ({ userId, initialIsFollowing, onFollowChange }) => {
     console.log("Пытаюсь подписаться/отписаться от:", userId);
 
     setLoading(true);
+
+    //const nextState = !isFollowing;
+    //setIsFollowing(nextState);
 
     try {
       if (isFollowing) {
@@ -29,13 +33,11 @@ const FollowButton = ({ userId, initialIsFollowing, onFollowChange }) => {
       }
 
       //  update
-      setIsFollowing((prev) => !prev);
+      //setIsFollowing((prev) => !prev);
 
       // refetch profile
       if (onFollowChange) {
-        setTimeout(() => {
-          onFollowChange();
-        }, 200);
+        onFollowChange();
       }
     } catch (error) {
       console.error("Follow error:", error);
