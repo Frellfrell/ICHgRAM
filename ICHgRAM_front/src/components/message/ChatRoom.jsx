@@ -63,8 +63,14 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
 
   const handleSend = () => {
     if (!text.trim()) return;
-    if (!socket) return;
-    if (!selectedChat) return;
+    if (!socket || !socket.connected) {
+      console.log("Socket not ");
+      return; // Проверяем, что сокет подключен)
+    }
+    if (!selectedChat) {
+      console.log("No selected chat");
+      return;
+    }
 
     socket.emit("sendMessage", {
       receiverId: selectedChat._id,
