@@ -116,6 +116,8 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
           sx={{ mr: 2, width: 32, height: 32 }}
         />
         <Typography fontWeight={600}>{selectedChat.username}</Typography>
+
+        <Divider />
       </Box>
 
       {/* Messages Area */}
