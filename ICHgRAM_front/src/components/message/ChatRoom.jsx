@@ -76,7 +76,7 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
 
   const handleSend = () => {
     if (!text.trim()) return;
-    if (!socket || !socket.connected) {
+    if (!socket) {
       console.log("Socket not ");
       return; // Проверяем, что сокет подключен)
     }
