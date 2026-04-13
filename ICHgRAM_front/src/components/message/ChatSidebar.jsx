@@ -23,7 +23,7 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
     const fetchContacts = async () => {
       try {
         // Запрос к списку подписок
-        const res = await axiosInstance.get("/api/mesages/chats");
+        const res = await axiosInstance.get("/api/messages/chats");
 
         console.log("CHATS RESPONSE:", res.data);
 
