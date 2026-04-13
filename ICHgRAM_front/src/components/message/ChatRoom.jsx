@@ -75,6 +75,10 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
   }, [messages]);
 
   const handleSend = () => {
+    console.log("SEND CLICKED");
+    console.log("socket:", socket);
+    console.log("selectedChat:", selectedChat);
+    console.log("text:", text);
     if (!text.trim()) return;
     if (!socket) {
       console.log("Socket not ");
