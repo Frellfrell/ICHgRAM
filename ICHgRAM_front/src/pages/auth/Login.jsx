@@ -39,6 +39,7 @@ const Login = () => {
 
     try {
       const result = await loginUser(formData);
+      console.log(result);
 
       login(); // Обновляем состояние аутентификации в контексте
 
