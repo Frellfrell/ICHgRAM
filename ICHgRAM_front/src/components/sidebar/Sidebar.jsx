@@ -111,7 +111,7 @@ const Sidebar = ({ onSearchClick, onNotifClick, onCreateClick }) => {
               label="Profile"
               to="/profile"
               icon={
-                user?.avatar ? (
+                user?.avatar && user.avatar.trim() !== "" ? (
                   //user?.avatar ||
                   //JSON.parse(localStorage.getItem("user"))?.avatar ? (
                   <AppAvatar
