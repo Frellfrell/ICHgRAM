@@ -71,7 +71,10 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
                   button
                   key={user._id}
                   selected={selectedChatId === user._id}
-                  onClick={() => onSelectChat(user)}
+                  onClick={() => {
+                    console.log("Selected chat:", user);
+                    onSelectChat(user);
+                  }}
                   sx={{
                     py: 1.5,
                     cursor: "pointer",
