@@ -80,11 +80,10 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
       console.log("Socket not ");
       return; // Проверяем, что сокет подключен)
     }
-    {
-      /*if (!selectedChat) {
+
+    if (!selectedChat) {
       console.log("No selected chat");
       return;
-    }*/
     }
 
     socket.emit("sendMessage", {
