@@ -13,30 +13,32 @@ const FollowButton = ({ userId, initialIsFollowing, onFollowChange }) => {
 
   const handleFollow = async (e) => {
     e.stopPropagation();
-    if (!userId) {
-      console.error("Ошибка: userId не передан в FollowButton");
-      return;
-    }
+    if (!userId || loading) return;
 
     console.log("Пытаюсь подписаться/отписаться от:", userId);
 
     setLoading(true);
+
     try {
-      if (isFollowing) {
+      const newState = !isFollowing;
+
+      setIsFollowing(newState);
+
+      //if (isFollowing) {
+      if (newState) {
         await axiosInstance.delete(`/api/follow/${userId}`);
       } else {
         await axiosInstance.post(`/api/follow/${userId}`);
       }
 
-      //  update
-      setIsFollowing((prev) => !prev);
-
       // refetch profile
       if (onFollowChange) {
-        onFollowChange();
+        onFollowChange(newState);
       }
     } catch (error) {
       console.error("Follow error:", error);
+      //  update
+      setIsFollowing((prev) => !prev);
     } finally {
       setLoading(false);
     }
