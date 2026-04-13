@@ -40,7 +40,8 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
   return (
     <Box
       sx={{
-        width: "350px",
+        width: "100%",
+        maxWidth: "350px",
         borderRight: "1px solid",
         borderColor: "divider",
         display: "flex",
@@ -61,7 +62,7 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
         ) : (
           <List disablePadding>
             {contacts.map((chat) => {
-              const user = chat.user;
+              //const user = chat.user;
 
               if (!user) return null;
 
