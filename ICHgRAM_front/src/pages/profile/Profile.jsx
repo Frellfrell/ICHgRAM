@@ -156,6 +156,7 @@ const Profile = () => {
                   <FollowButton
                     userId={user._id}
                     initialIsFollowing={user.isFollowed}
+                    onFollowChange={fetchProfile}
                   />
                   <Button
                     onClick={() => navigate(`/messages`)}
