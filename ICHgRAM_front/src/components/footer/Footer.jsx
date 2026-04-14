@@ -9,7 +9,7 @@ const Footer = ({ onCreateClick }) => {
     { label: "Message", type: "link", path: "/messages" },
     { label: "Search", type: "action", path: "/search" },
     { label: "Notification", type: "text" },
-    { label: "Create", type: "action", path: "/create" },
+    { label: "Create", type: "action", onClick: onCreateClick },
   ];
 
   return (
