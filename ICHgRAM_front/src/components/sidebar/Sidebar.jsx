@@ -49,7 +49,8 @@ const Sidebar = ({ onSearchClick, onNotifClick, onCreateClick }) => {
           top: 0,
           width: "245px",
           height: "calc(100vh - 158px)",
-          //borderRight: `1px solid ${theme.palette.borders}`,
+          borderRight: `1px solid ${theme.palette.borders}`,
+
           paddingTop: "33px",
           paddingLeft: "24px",
           paddingRight: "24px",
