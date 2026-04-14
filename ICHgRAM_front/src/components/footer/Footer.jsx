@@ -6,7 +6,7 @@ const Footer = () => {
   const links = [
     { label: "Home", type: "link", path: "/home" },
     { label: "Explore", type: "link", path: "/explore" },
-    { label: "Message", type: "link", path: "/message" },
+    { label: "Message", type: "link", path: "/messages" },
     { label: "Search", type: "action", path: "/search" },
     { label: "Notification", type: "text" },
     { label: "Create", type: "action", path: "/create" },
