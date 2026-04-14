@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Box,
   TextField,
@@ -14,6 +14,7 @@ import { formatUrl } from "../../components/ui/helpers";
 import { useNavigate } from "react-router-dom";
 import AppButton from "../../components/ui/AppButton";
 import LinkIcon from "@mui/icons-material/Link";
+import { AuthContext } from "../../context/AuthContext";
 
 const EditProfile = () => {
   const navigate = useNavigate();
@@ -26,6 +27,8 @@ const EditProfile = () => {
     website: "",
     avatar: "",
   });
+
+  const { setUser } = useContext(AuthContext);
 
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState("");
@@ -83,9 +86,12 @@ const EditProfile = () => {
     if (file) data.append("avatar", file);
 
     try {
-      await axiosInstance.put("/api/users", data, {
+      const res = await axiosInstance.put("/api/users", data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
+
+      localStorage.setItem("user", JSON.stringify(res.data));
+      setUser(res.data);
 
       // уведомление об успехе
       navigate("/profile");
