@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "@mui/material";
 import axiosInstance from "../../api/axiosInstance";
 
-const FollowButton = ({ userId, onFollowChange }) => {
+const FollowButton = ({ userId, onFollowChange, sx = {} }) => {
   // const [isFollowing, setIsFollowing] = useState(initialIsFollowing);
   const [loading, setLoading] = useState(false);
 
@@ -71,6 +71,7 @@ const FollowButton = ({ userId, onFollowChange }) => {
         minWidth: "auto",
         p: 0,
         "&:hover": { backgroundColor: "transparent", opacity: 0.7 },
+        ...sx,
       }}
     >
       {isFollowing ? "Following" : "follow"}
