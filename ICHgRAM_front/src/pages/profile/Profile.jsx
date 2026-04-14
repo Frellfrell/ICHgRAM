@@ -146,9 +146,10 @@ const Profile = () => {
                   <Button
                     onClick={() => navigate("/profile/edit")}
                     sx={{
+                      maxWidth: "168px",
                       height: "32px",
                       px: 2,
-                      bgcolor: "theme.grey.100",
+                      bgcolor: "grey.100",
                       color: "text.primary",
                       textTransform: "none",
                       fontWeight: 600,
