@@ -3,10 +3,13 @@ import { Box } from "@mui/material";
 import AppAvatar from "../ui/AppAvatar";
 import AppTypography from "../ui/AppTypography";
 import { formatUrl, timeAgo } from "../ui/helpers";
+import { useNavigate } from "react-router-dom";
 
-const CommentItem = ({ comment, onClose, handleAvatarClick }) => {
+const CommentItem = ({ comment, onClose }) => {
   if (!comment) return null;
   const author = comment.author || {};
+
+  const navigate = useNavigate();
 
   return (
     <Box
@@ -19,10 +22,9 @@ const CommentItem = ({ comment, onClose, handleAvatarClick }) => {
     >
       <AppAvatar
         src={formatUrl(author.avatar)}
-        onClick={(e) => {
-          e.stopPropagation();
-          onClose?.();
-          handleAvatarClick(author._id);
+        onClick={() => {
+          navigate("/profile");
+          onClose();
         }}
         size={32}
       />

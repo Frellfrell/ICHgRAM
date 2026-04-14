@@ -33,15 +33,17 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const myId = currentUser?._id || currentUser?.id;
 
-  const author = post?.author || post?.user || {};
+  const author = post.author || {};
 
   const navigate = useNavigate();
 
-  const handleAvatarClick = (userId) => {
+  {
+    /*const handleAvatarClick = (userId) => {
     console.log("Navigating to profile with ID:", userId);
     if (!userId) return;
     navigate(`/profile/${userId}`);
-  };
+  };*/
+  }
 
   // Проверка: является ли текущий юзер автором поста
   const isMyPost = String(myId) === String(author?._id || author);
@@ -102,9 +104,6 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
         open={open}
         onClose={onClose}
         closeAfterTransition
-        sx={{
-          zIndex: 2000,
-        }}
         // disablePortal //чтобы модалка знала границы родителя
         slotProps={{
           backdrop: {
@@ -112,14 +111,13 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
               left: { xs: "0px", md: "245px" },
               bottom: "158px",
               backgroundColor: "rgba(0, 0, 0, 0.65)",
-              zIndex: 1999,
             },
           },
         }}
-        // sx={{
-        //  left: { xs: "0px", md: "245px" },
-        // bottom: "158px",
-        //}}
+        sx={{
+          left: { xs: "0px", md: "245px" },
+          bottom: "158px",
+        }}
       >
         <Box
           sx={{
@@ -192,12 +190,7 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
               >
                 <AppAvatar
                   src={formatUrl(author.avatar)}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    console.log("AVATAR CLICK");
-                    handleAvatarClick(post.author._id);
-                    onClose();
-                  }}
+                  onClick={() => navigate(`/profile/${author._id}`)}
                   size={32}
                 />
                 <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>
