@@ -124,7 +124,10 @@ const CreatePostModal = ({
         <Box
           sx={{
             width: "913px",
-            height: "564px",
+            maxWidth: "913px",
+            maxHeight: "90vh",
+            height: "auto",
+            minHeight: "564px",
             bgcolor: "#FFFFFF",
             borderRadius: "12px",
             overflow: "hidden",
@@ -176,11 +179,17 @@ const CreatePostModal = ({
           </Box>
 
           {/* MAIN CONTENT */}
-          <Box sx={{ display: "flex", flex: 1 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flex: 1,
+              flexDirection: { xs: "column", md: "row" },
+            }}
+          >
             {/* LEFT */}
             <Box
               sx={{
-                width: "573px",
+                width: { xs: "100%", md: "573px" },
                 height: "521px",
                 display: "flex",
                 flexDirection: "column",
@@ -227,8 +236,7 @@ const CreatePostModal = ({
             {/* RIGHT: CAPTION & SETTINGS */}
             <Box
               sx={{
-                maxWidth: "339px",
-                width: "100%",
+                width: { xs: "100%", md: "339px" },
                 height: "521px",
                 display: "flex",
                 flexDirection: "column",
