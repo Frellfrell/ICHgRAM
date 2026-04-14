@@ -64,6 +64,8 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
     }
   }, [open, post?._id]);
 
+  if (!open || !post._id) return null;
+
   // 2. Функция отправки нового комментария
   const handleAddComment = async () => {
     if (!newComment.trim()) return;
@@ -95,8 +97,6 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
     onClose();
     onEdit(post);
   };
-
-  if (!post) return null;
 
   return (
     <>
