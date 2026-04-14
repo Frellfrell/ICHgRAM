@@ -42,8 +42,8 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
     navigate(`/profile/${userId}`);
   };*/
   }
-
-  const author = post.author || {};
+  const postId = post?._id;
+  const author = post?.author || {};
 
   // Проверка: является ли текущий юзер автором поста
   const isMyPost = String(myId) === String(author?._id || author);
@@ -51,26 +51,26 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
 
   // 1. Загружаем комментарии при открытии модалки
   useEffect(() => {
-    if (open && post?._id) {
-      const fetchComments = async () => {
-        try {
-          const res = await axiosInstance.get(`/api/comments/${post._id}`);
-          setComments(res.data);
-        } catch (err) {
-          console.error("Ошибка загрузки комментариев:", err);
-        }
-      };
-      fetchComments();
-    }
-  }, [open, post?._id]);
+    // if (open && post?._id) {
+    if (!open || !postId) return;
+    const fetchComments = async () => {
+      try {
+        const res = await axiosInstance.get(`/api/comments/${postId}`);
+        setComments(res.data);
+      } catch (err) {
+        console.error("Ошибка загрузки комментариев:", err);
+      }
+    };
+    fetchComments();
+  }, [open, postId]);
 
-  if (!open || !post._id) return null;
+  if (!open || !postId) return null;
 
   // 2. Функция отправки нового комментария
   const handleAddComment = async () => {
     if (!newComment.trim()) return;
     try {
-      const res = await axiosInstance.post(`/api/comments/${post._id}`, {
+      const res = await axiosInstance.post(`/api/comments/${postId}`, {
         text: newComment,
       });
       setComments((prev) => [...prev, res.data]); // Добавляем в список локально
@@ -83,7 +83,7 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
   const handleDelete = async () => {
     if (window.confirm("Delete this post?"))
       try {
-        await axiosInstance.delete(`/api/posts/${post._id}`);
+        await axiosInstance.delete(`/api/posts/${postId}`);
         setIsActionsOpen(false);
         onClose(); // Закрываем модалку после удаления
         window.location.reload(); // Перезагружаем страницу, чтобы обновить ленту
