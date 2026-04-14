@@ -38,6 +38,7 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
   const navigate = useNavigate();
 
   const handleAvatarClick = (userId) => {
+    console.log("Navigating to profile with ID:", userId);
     if (!userId) return;
     navigate(`/profile/${userId}`);
   };
