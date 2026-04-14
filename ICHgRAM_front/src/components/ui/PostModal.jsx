@@ -252,7 +252,12 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
 
               {/* Сами комментарии из базы */}
               {comments.map((c) => (
-                <CommentItem key={c._id} comment={c} />
+                <CommentItem
+                  key={c._id}
+                  comment={c}
+                  onClose={onClose}
+                  handleAvatarClick={handleAvatarClick}
+                />
               ))}
             </Box>
             <Divider />
