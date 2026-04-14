@@ -15,6 +15,7 @@ import EmojiEmotionsOutlinedIcon from "@mui/icons-material/EmojiEmotionsOutlined
 import AppTypography from "../ui/AppTypography";
 import axiosInstance from "../../api/axiosInstance";
 import { formatUrl } from "../ui/helpers";
+import { useNavigate } from "react-router-dom";
 
 const CreatePostModal = ({
   open,
@@ -42,6 +43,8 @@ const CreatePostModal = ({
       setFile(null);
     }
   }, [editPost, open]);
+
+  const navigate = useNavigate();
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -244,6 +247,10 @@ const CreatePostModal = ({
                 }}
               >
                 <Box
+                  onClick={() => {
+                    onClose();
+                    navigate("/profile");
+                  }}
                   sx={{
                     display: "flex",
                     alignItems: "center",
