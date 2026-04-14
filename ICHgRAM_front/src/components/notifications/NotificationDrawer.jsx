@@ -23,6 +23,7 @@ export const NotificationDrawer = ({
           width: "100vw",
           height: "calc(100vh - 158px)",
           backgroundColor: "rgba(0,0,0,0.65)",
+          boxShadow: "-4px 0 10px rgba(0,0,0,0.1)",
           zIndex: 1499,
         }}
       />
