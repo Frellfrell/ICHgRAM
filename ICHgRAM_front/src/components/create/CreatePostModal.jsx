@@ -248,8 +248,8 @@ const CreatePostModal = ({
               >
                 <Box
                   onClick={() => {
-                    onClose();
                     navigate("/profile");
+                    onClose();
                   }}
                   sx={{
                     display: "flex",
