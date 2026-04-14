@@ -19,7 +19,8 @@ const CommentItem = ({ comment, handleAvatarClick }) => {
     >
       <AppAvatar
         src={formatUrl(author.avatar)}
-        onClick={() => {
+        onClick={(e) => {
+          e.stopPropagation();
           handleAvatarClick(author._id);
           //onClose?.();
         }}
