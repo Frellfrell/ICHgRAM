@@ -23,8 +23,8 @@ import { formatUrl } from "../ui/helpers";
 const Sidebar = ({ onSearchClick, onNotifClick, onCreateClick }) => {
   const theme = useTheme();
   const navigate = useNavigate();
-  const { logout } = useContext(AuthContext);
-  const user = JSON.parse(localStorage.getItem("user"));
+  const { logout, user } = useContext(AuthContext);
+  //const user = JSON.parse(localStorage.getItem("user"));
 
   // const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
