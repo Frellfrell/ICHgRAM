@@ -188,7 +188,14 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
                   flexGrow: 1,
                 }}
               >
-                <AppAvatar src={formatUrl(author.avatar)} size={32} />
+                <AppAvatar
+                  src={formatUrl(author.avatar)}
+                  size={32}
+                  onClick={() => {
+                    navigate(`/profile/${author._id}`);
+                    onClose();
+                  }}
+                />
                 <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>
                   {author.username}
                 </AppTypography>
@@ -228,6 +235,14 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
             </Box>
             <Divider />
 
+            {/* POST CAPTION */}
+            <Box sx={{ p: 2, display: "flex", gap: 1 }}>
+              <AppAvatar src={formatUrl(author.avatar)} size={32} />
+              <AppTypography>
+                <b>{author.username}</b> {post.caption}
+              </AppTypography>
+            </Box>
+
             {/* Комментарии */}
             <Box
               sx={{
@@ -236,7 +251,7 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
                 overflowY: "auto",
               }}
             >
-              <CommentItem
+              {/*<CommentItem
                 comment={{
                   text: post.caption,
                   author: author,
@@ -244,7 +259,7 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
                 }}
                 //onClose={onClose}
                 //handleAvatarClick={handleAvatarClick}
-              />
+              />*/}
 
               {/* Сами комментарии из базы */}
               {comments.map((c) => (

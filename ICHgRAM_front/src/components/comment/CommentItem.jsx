@@ -8,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 const CommentItem = ({ comment, onClose }) => {
   const navigate = useNavigate();
   if (!comment) return null;
-  const authorCom = comment.author || {};
+  const authorCom = comment?.author || {};
+  if (!authorCom) return null;
 
   return (
     <Box
@@ -23,7 +24,6 @@ const CommentItem = ({ comment, onClose }) => {
         src={formatUrl(authorCom.avatar)}
         size={32}
         onClick={() => {
-          if (!authorCom?._id) return;
           navigate(`/profile/${authorCom._id}`);
           onClose?.();
         }}
