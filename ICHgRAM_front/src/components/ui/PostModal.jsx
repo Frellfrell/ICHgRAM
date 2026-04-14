@@ -18,7 +18,7 @@ import axiosInstance from "../../api/axiosInstance";
 import { formatUrl, timeAgo } from "../ui/helpers";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import ActionsModal from "../create/ActionsModal";
-import CreatePostModal from "../create/CreatePostModal";
+//import CreatePostModal from "../create/CreatePostModal";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { useNavigate } from "react-router-dom";
 
@@ -246,6 +246,8 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
                   author: author,
                   createdAt: post.createdAt,
                 }}
+                onClose={onClose}
+                handleAvatarClick={handleAvatarClick}
               />
 
               {/* Сами комментарии из базы */}
