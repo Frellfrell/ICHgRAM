@@ -23,11 +23,12 @@ const Profile = () => {
   const navigate = useNavigate();
 
   const [user, setUser] = useState(null);
-  const [posts, setPosts] = useState([]);
 
   const handlePostCreated = (newPost) => {
     setPosts((prev) => [newPost, ...prev]);
   };
+
+  const [posts, setPosts] = useState([]);
 
   const [loading, setLoading] = useState(true);
   const [isMyProfile, setIsMyProfile] = useState(false);
