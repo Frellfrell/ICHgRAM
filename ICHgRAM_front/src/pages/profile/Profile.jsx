@@ -73,14 +73,14 @@ const Profile = () => {
     }
   };
   useEffect(() => {
+    fetchProfile();
     const refreshProfile = () => fetchProfile();
     window.addEventListener("postCreated", refreshProfile);
 
     return () => {
       window.removeEventListener("postCreated", refreshProfile);
     };
-  }, []);
-  //}, [userId]);
+  }, [userId]);
 
   if (loading)
     return (
