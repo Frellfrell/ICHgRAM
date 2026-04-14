@@ -4,7 +4,7 @@ import AppAvatar from "../ui/AppAvatar";
 import AppTypography from "../ui/AppTypography";
 import { formatUrl, timeAgo } from "../ui/helpers";
 
-const CommentItem = ({ comment }) => {
+const CommentItem = ({ comment, onClose, handleAvatarClick }) => {
   if (!comment) return null;
   const author = comment.author || {};
 
@@ -17,7 +17,14 @@ const CommentItem = ({ comment }) => {
         alignItems: "flex-start",
       }}
     >
-      <AppAvatar src={formatUrl(author.avatar)} size={32} />
+      <AppAvatar
+        src={formatUrl(author.avatar)}
+        onClick={() => {
+          handleAvatarClick(comment.user?._id);
+          onClose();
+        }}
+        size={32}
+      />
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <AppTypography
           sx={{ fontWeight: 600, fontSize: "14px", lineHeight: "18px" }}

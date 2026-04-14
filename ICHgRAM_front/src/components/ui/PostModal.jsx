@@ -37,6 +37,11 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
 
   const navigate = useNavigate();
 
+  const handleAvatarClick = (userId) => {
+    if (!userId) return;
+    navigate(`/profile/${userId}`);
+  };
+
   // Проверка: является ли текущий юзер автором поста
   const isMyPost = String(myId) === String(author?._id || author);
   //const isMyPost = currentUser?._id === author?._id;
@@ -168,10 +173,10 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
               }}
             >
               <Box
-                onClick={() => {
-                  navigate(`/profile/${author._id}`);
-                  onClose(); // Закрываем модалку при переходе
-                }}
+                //onClick={() => {
+                //navigate(`/profile/${author._id}`);
+                //onClose(); // Закрываем модалку при переходе
+                //}}
                 sx={{
                   display: "flex",
                   alignItems: "center",
@@ -181,11 +186,11 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
                 }}
               >
                 <AppAvatar
+                  src={formatUrl(author.avatar)}
                   onClick={() => {
-                    navigate("/profile");
+                    handleAvatarClick(post.author?._id);
                     onClose();
                   }}
-                  src={formatUrl(author.avatar)}
                   size={32}
                 />
                 <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>
