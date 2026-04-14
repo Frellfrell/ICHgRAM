@@ -79,6 +79,7 @@ export const SearchDrawer = ({
             border: "1px solid rgba(219,219,219,1)",
             borderRadius: 1,
             p: 1,
+            backgroundColor: "grey.50",
           }}
         >
           <SearchIcon sx={{ color: "#8E8E8E", fontSize: "20px", mr: "12px" }} />
