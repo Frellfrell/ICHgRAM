@@ -115,7 +115,7 @@ const Profile = () => {
               display: "flex",
               justifyContent: "center",
               width: { md: "290px" },
-              ml: { md: "67px" },
+              //ml: { md: "67px" },
               mt: { md: "32px" },
             }}
           >
@@ -142,10 +142,11 @@ const Profile = () => {
 
               {isMyProfile ? (
                 // КНОПКИ ДЛЯ МОЕГО ПРОФИЛЯ
-                <Box sx={{ display: "flex", gap: 1 }}>
+                <Box sx={{ display: "flex", gap: 3 }}>
                   <Button
                     onClick={() => navigate("/profile/edit")}
                     sx={{
+                      width: "100%",
                       maxWidth: "168px",
                       height: "32px",
                       px: 2,
@@ -153,33 +154,51 @@ const Profile = () => {
                       color: "text.primary",
                       textTransform: "none",
                       fontWeight: 600,
-                      border: "1px solid #dbdbdb",
-                      "&:hover": { bgcolor: "theme.grey.100" },
+                      //border: "1px solid #dbdbdb",
+                      "&:hover": { bgcolor: "text.secondary" },
                     }}
                   >
                     Edit profile
                   </Button>
-                  <IconButton size="small">
-                    <SettingsIcon />
-                  </IconButton>
                 </Box>
               ) : (
                 // КНОПКИ ДЛЯ ЧУЖОГО ПРОФИЛЯ
-                <Box sx={{ display: "flex", gap: 1 }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    gap: 3,
+                  }}
+                >
                   <FollowButton
                     userId={user._id}
                     initialIsFollowing={user.isFollowed}
                     onFollowChange={fetchProfile}
+                    sx={{
+                      width: "100%",
+                      maxWidth: "93px",
+                      height: "32px",
+                      px: 2,
+                      bgcolor: "primary.main",
+                      color: "primary.contastText",
+                      textTransform: "none",
+                      fontWeight: 600,
+                      //border: "1px solid #dbdbdb",
+                      "&:hover": { bgcolor: "rgb(3, 134, 222)" },
+                    }}
                   />
                   <Button
                     onClick={() => navigate(`/messages`)}
                     sx={{
+                      width: "100%",
+                      maxWidth: "190px",
                       height: "32px",
-                      px: 3,
-                      bgcolor: "primary",
+                      px: 2,
+                      bgcolor: "grey.100",
                       color: "text.primary",
                       textTransform: "none",
                       fontWeight: 600,
+                      //border: "1px solid #dbdbdb",
+                      "&:hover": { bgcolor: "text.secondary" },
                     }}
                   >
                     Message

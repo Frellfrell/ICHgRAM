@@ -168,8 +168,8 @@ const EditProfile = () => {
               gap: "16px",
               p: "14px 24px",
               mb: "24px",
-              bgcolor: "theme.grey.100",
-              borderRadius: "20px",
+              bgcolor: "grey.100",
+              borderRadius: "10px",
               width: "610px",
               height: "88px",
               boxSizing: "border-box",
@@ -204,7 +204,7 @@ const EditProfile = () => {
                 fontWeight: 600,
                 bgcolor: "theme.primary.main",
                 color: "theme.primary.contrastText",
-                borderRadius: "8px",
+                borderRadius: "4px",
                 px: 2,
                 height: "32px",
                 "&:hover": { bgcolor: "#1877F2" },
@@ -318,6 +318,7 @@ const EditProfile = () => {
               sx={{
                 width: "223px", // Переопределяем ширину (т.к. в компоненте стоит fullWidth)
                 bgcolor: "theme.primary.main",
+                height: "32px",
                 borderRadius: "4px",
                 textTransform: "none",
                 fontWeight: 600,
