@@ -6,17 +6,12 @@ import { formatUrl, timeAgo } from "../ui/helpers";
 import { useNavigate } from "react-router-dom";
 
 const CommentItem = ({ comment, onClose }) => {
+  const navigate = useNavigate();
   if (!comment) return null;
   const authorCom = comment.author || {};
 
-  const navigate = useNavigate();
-
   return (
     <Box
-      onClick={() => {
-        navigate(`/profile/${authorCom._id}`);
-        onClose();
-      }}
       sx={{
         display: "flex",
         gap: "14px",
@@ -24,7 +19,16 @@ const CommentItem = ({ comment, onClose }) => {
         alignItems: "flex-start",
       }}
     >
-      <AppAvatar src={formatUrl(authorCom.avatar)} size={32} />
+      <AppAvatar
+        src={formatUrl(authorCom.avatar)}
+        size={32}
+        onClick={() => {
+          if (!authorCom?._id) return;
+          navigate(`/profile/${authorCom._id}`);
+          onClose?.();
+        }}
+        sx={{ cursor: "pointer" }}
+      />
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <AppTypography
           sx={{ fontWeight: 600, fontSize: "14px", lineHeight: "18px" }}

@@ -33,8 +33,6 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const myId = currentUser?._id || currentUser?.id;
 
-  const author = post.author || {};
-
   const navigate = useNavigate();
 
   {
@@ -44,6 +42,8 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
     navigate(`/profile/${userId}`);
   };*/
   }
+
+  const author = post.author || {};
 
   // Проверка: является ли текущий юзер автором поста
   const isMyPost = String(myId) === String(author?._id || author);
