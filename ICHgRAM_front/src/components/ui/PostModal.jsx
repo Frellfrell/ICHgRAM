@@ -176,10 +176,10 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
               }}
             >
               <Box
-                //onClick={() => {
-                //navigate(`/profile/${author._id}`);
-                //onClose(); // Закрываем модалку при переходе
-                //}}
+                onClick={() => {
+                  navigate(`/profile/${author._id}`);
+                  onClose(); // Закрываем модалку при переходе
+                }}
                 sx={{
                   display: "flex",
                   alignItems: "center",
@@ -188,11 +188,7 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
                   flexGrow: 1,
                 }}
               >
-                <AppAvatar
-                  src={formatUrl(author.avatar)}
-                  onClick={() => navigate(`/profile/${author._id}`)}
-                  size={32}
-                />
+                <AppAvatar src={formatUrl(author.avatar)} size={32} />
                 <AppTypography sx={{ fontWeight: 600, fontSize: "14px" }}>
                   {author.username}
                 </AppTypography>
