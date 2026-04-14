@@ -52,7 +52,7 @@ const Footer = ({ onCreateClick, onSearchClick }) => {
             <Typography
               key={index}
               onClick={() => {
-                if (item.label === "Create") onCreateClick?.();
+                item.onClick;
               }}
               sx={{ cursor: "pointer", color: "text.secondary" }}
             >
