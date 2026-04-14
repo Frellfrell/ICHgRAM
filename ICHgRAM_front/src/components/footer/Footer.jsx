@@ -7,7 +7,7 @@ const Footer = ({ onCreateClick, onSearchClick }) => {
     { label: "Home", type: "link", path: "/home" },
     { label: "Explore", type: "link", path: "/explore" },
     { label: "Message", type: "link", path: "/messages" },
-    { label: "Search", type: "action", path: "#", onClick: onSearchClick },
+    { label: "Search", type: "action", onClick: onSearchClick },
     { label: "Notification", type: "text" },
     { label: "Create", type: "action", onClick: onCreateClick },
   ];
@@ -45,7 +45,6 @@ const Footer = ({ onCreateClick, onSearchClick }) => {
               to={item.path}
               underline="none"
               color="text.secondary"
-              onClick={item.onClick ? item.onClick : null}
             >
               {item.label}
             </Link>
