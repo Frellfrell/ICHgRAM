@@ -4,7 +4,7 @@ import AppAvatar from "../ui/AppAvatar";
 import AppTypography from "../ui/AppTypography";
 import { formatUrl, timeAgo } from "../ui/helpers";
 
-const CommentItem = ({ comment, onClose, handleAvatarClick }) => {
+const CommentItem = ({ comment, handleAvatarClick }) => {
   if (!comment) return null;
   const author = comment.author || {};
 
@@ -21,7 +21,7 @@ const CommentItem = ({ comment, onClose, handleAvatarClick }) => {
         src={formatUrl(author.avatar)}
         onClick={() => {
           handleAvatarClick(author._id);
-          onClose?.();
+          //onClose?.();
         }}
         size={32}
       />

@@ -102,6 +102,9 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
         open={open}
         onClose={onClose}
         closeAfterTransition
+        sx={{
+          zIndex: 2000,
+        }}
         // disablePortal //чтобы модалка знала границы родителя
         slotProps={{
           backdrop: {
@@ -109,13 +112,14 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
               left: { xs: "0px", md: "245px" },
               bottom: "158px",
               backgroundColor: "rgba(0, 0, 0, 0.65)",
+              zIndex: 1999,
             },
           },
         }}
-        sx={{
-          left: { xs: "0px", md: "245px" },
-          bottom: "158px",
-        }}
+        // sx={{
+        //  left: { xs: "0px", md: "245px" },
+        // bottom: "158px",
+        //}}
       >
         <Box
           sx={{
@@ -189,8 +193,9 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
                 <AppAvatar
                   src={formatUrl(author.avatar)}
                   onClick={() => {
+                    console.log("AVATAR CLICK");
                     handleAvatarClick(post.author._id);
-                    onClose();
+                    // onClose();
                   }}
                   size={32}
                 />
