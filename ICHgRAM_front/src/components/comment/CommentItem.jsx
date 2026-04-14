@@ -6,7 +6,7 @@ import { formatUrl, timeAgo } from "../ui/helpers";
 
 const CommentItem = ({ comment, onClose, handleAvatarClick }) => {
   if (!comment) return null;
-  const author = comment.author || {};
+  const author = comment.author || comment.user || {};
 
   return (
     <Box
@@ -20,8 +20,8 @@ const CommentItem = ({ comment, onClose, handleAvatarClick }) => {
       <AppAvatar
         src={formatUrl(author.avatar)}
         onClick={() => {
-          handleAvatarClick(comment.user?._id);
-          onClose();
+          handleAvatarClick(author?._id);
+          onClose?.();
         }}
         size={32}
       />
