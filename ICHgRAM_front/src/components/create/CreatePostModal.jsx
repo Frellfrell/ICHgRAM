@@ -75,7 +75,7 @@ const CreatePostModal = ({
         const res = await axiosInstance.post("/api/posts", payload);
         if (onPostCreated) onPostCreated(res.data); // Передаем созданный пост
       }
-
+      window.dispatchEvent(new Event("postCreated"));
       // headers: { "Content-Type": "application/json" },
 
       onClose();
