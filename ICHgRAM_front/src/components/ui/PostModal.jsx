@@ -192,10 +192,11 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
               >
                 <AppAvatar
                   src={formatUrl(author.avatar)}
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation();
                     console.log("AVATAR CLICK");
                     handleAvatarClick(post.author._id);
-                    // onClose();
+                    onClose();
                   }}
                   size={32}
                 />
@@ -252,8 +253,8 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
                   author: author,
                   createdAt: post.createdAt,
                 }}
-                onClose={onClose}
-                handleAvatarClick={handleAvatarClick}
+                //onClose={onClose}
+                //handleAvatarClick={handleAvatarClick}
               />
 
               {/* Сами комментарии из базы */}
@@ -261,8 +262,8 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
                 <CommentItem
                   key={c._id}
                   comment={c}
-                  onClose={onClose}
-                  handleAvatarClick={handleAvatarClick}
+                  // onClose={onClose}
+                  //handleAvatarClick={handleAvatarClick}
                 />
               ))}
             </Box>
