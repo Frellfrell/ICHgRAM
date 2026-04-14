@@ -188,7 +188,7 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
                 <AppAvatar
                   src={formatUrl(author.avatar)}
                   onClick={() => {
-                    handleAvatarClick(post.author?._id);
+                    handleAvatarClick(post.author._id);
                     onClose();
                   }}
                   size={32}
