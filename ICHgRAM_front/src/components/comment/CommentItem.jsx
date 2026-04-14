@@ -19,14 +19,14 @@ const CommentItem = ({ comment, onClose }) => {
         mb: "16px",
         alignItems: "flex-start",
       }}
+      onClick={() => {
+        onClose?.();
+        navigate(`/profile/${authorCom._id}`);
+      }}
     >
       <AppAvatar
         src={formatUrl(authorCom.avatar)}
         size={32}
-        onClick={() => {
-          navigate(`/profile/${authorCom._id}`);
-          onClose?.();
-        }}
         sx={{ cursor: "pointer" }}
       />
       <Box sx={{ display: "flex", flexDirection: "column" }}>

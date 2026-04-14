@@ -179,7 +179,7 @@ const Profile = () => {
                       height: "32px",
                       px: 2,
                       bgcolor: "primary.main",
-                      color: "primary.contastText",
+                      color: "primary.contrastText",
                       textTransform: "none",
                       fontWeight: 600,
                       //border: "1px solid #dbdbdb",
