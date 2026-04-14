@@ -8,7 +8,7 @@ import LikeButton from "../ui/LikeButton";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-const PostCard = ({ post, onPostClick }) => {
+const PostCard = ({ post, onPostClick, onOpenComments }) => {
   const navigate = useNavigate();
   // Проверяем, как называется поле автора: post.author или post.user
 
@@ -72,7 +72,7 @@ const PostCard = ({ post, onPostClick }) => {
         <Box sx={{ ml: "auto" }}>
           <FollowButton
             userId={author._id}
-            initialIsFollowing={author.isFollowed}
+            //initialIsFollowing={author.isFollowed}
           />
         </Box>
       </Box>
@@ -111,6 +111,7 @@ const PostCard = ({ post, onPostClick }) => {
         <LikeButton postId={post._id} initialLikesCount={post.likesCount} />
 
         <IconButton
+          onClick={() => onOpenComments(post)}
           sx={{
             color: "text.primary",
             p: "0",

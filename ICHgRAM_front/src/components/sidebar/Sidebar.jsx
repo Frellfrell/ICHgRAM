@@ -23,8 +23,10 @@ import { formatUrl } from "../ui/helpers";
 const Sidebar = ({ onSearchClick, onNotifClick, onCreateClick }) => {
   const theme = useTheme();
   const navigate = useNavigate();
-  const { logout, user: contextUser } = useContext(AuthContext);
-  const user = contextUser || JSON.parse(localStorage.getItem("user"));
+  const { logout, user } = useContext(AuthContext);
+
+  const currentUser = user || JSON.parse(localStorage.getItem("user"));
+  //const user = JSON.parse(localStorage.getItem("user"));
 
   // const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
@@ -111,11 +113,11 @@ const Sidebar = ({ onSearchClick, onNotifClick, onCreateClick }) => {
               label="Profile"
               to="/profile"
               icon={
-                user?.avatar ? (
+                currentUser?.avatar && currentUser.avatar.trim() !== "" ? (
                   //user?.avatar ||
                   //JSON.parse(localStorage.getItem("user"))?.avatar ? (
                   <AppAvatar
-                    src={formatUrl(user.avatar)}
+                    src={formatUrl(currentUser.avatar)}
                     size={24}
                     sx={{
                       border:

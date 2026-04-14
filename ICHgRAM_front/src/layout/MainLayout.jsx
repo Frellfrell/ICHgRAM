@@ -25,6 +25,15 @@ const MainLayout = ({ children }) => {
   const [editPost, setEditPost] = useState(null);
   const currentUser = JSON.parse(localStorage.getItem("user"));
 
+  const handleCreateClick = () => {
+    setOpenSearch(false);
+    setOpenNotif(false);
+    setIsCreateModalOpen(true);
+  };
+  const handleOpenSearch = () => {
+    setOpenNotif(false);
+    setOpenSearch(true);
+  };
   // Поиск пользователей
   const handleSearchChange = async (query) => {
     if (!query) {
@@ -147,7 +156,10 @@ const MainLayout = ({ children }) => {
               mt: "auto", // Отодвигаем футер вниз, если контента мало
             }}
           >
-            <Footer />
+            <Footer
+              onCreateClick={handleCreateClick}
+              onSearchClick={handleOpenSearch}
+            />
           </Box>
         </Box>
       </Box>

@@ -1,30 +1,52 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button } from "@mui/material";
 import axiosInstance from "../../api/axiosInstance";
 
-const FollowButton = ({ userId, initialIsFollowing }) => {
-  const [isFollowing, setIsFollowing] = useState(initialIsFollowing);
+const FollowButton = ({ userId, onFollowChange }) => {
+  // const [isFollowing, setIsFollowing] = useState(initialIsFollowing);
   const [loading, setLoading] = useState(false);
 
   //Обновляеь стейт кнопкт при преходе на другой профиль, иначе при открытии нового профиля кнопка будет показывать статус предыдущего
-  useEffect(() => {
-    setIsFollowing(initialIsFollowing);
-  }, [initialIsFollowing, userId]);
+  // useEffect(() => {
+  //  setIsFollowing(initialIsFollowing);
+  // }, [initialIsFollowing, userId]);
+  const [isFollowing, setIsFollowing] = useState(false);
 
   const handleFollow = async (e) => {
     e.stopPropagation();
-    if (!userId) {
-      console.error("Ошибка: userId не передан в FollowButton");
-      return;
-    }
+    if (!userId || loading) return;
 
     console.log("Пытаюсь подписаться/отписаться от:", userId);
 
     setLoading(true);
+
+    //const nextState = !isFollowing;
+    //setIsFollowing(nextState);
+
     try {
       if (isFollowing) {
         await axiosInstance.delete(`/api/follows/${userId}`);
         setIsFollowing(false);
+      } else {
+        await axiosInstance.post(`/api/follows/${userId}`);
+        setIsFollowing(true);
+      }
+
+      //  update
+      //setIsFollowing((prev) => !prev);
+
+      // refetch profile
+      if (onFollowChange) {
+        onFollowChange();
+      }
+    } catch (error) {
+      console.error("Follow error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  {
+    /* setIsFollowing(false);
       } else {
         await axiosInstance.post(`/api/follows/${userId}`);
         setIsFollowing(true);
@@ -34,7 +56,8 @@ const FollowButton = ({ userId, initialIsFollowing }) => {
     } finally {
       setLoading(false);
     }
-  };
+  };*/
+  }
 
   return (
     <Button

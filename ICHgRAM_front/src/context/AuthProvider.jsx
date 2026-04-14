@@ -43,6 +43,7 @@ const AuthProvider = ({ children }) => {
       value={{
         isAuth,
         user,
+        setUser,
         loading,
         login,
         logout,

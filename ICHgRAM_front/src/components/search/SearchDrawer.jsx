@@ -50,7 +50,7 @@ export const SearchDrawer = ({
           borderBottomRightRadius: "16px",
           padding: 2,
           zIndex: 1500,
-          boxShadow: "2px 0 8px rgba(0,0,0,0.2)",
+          boxShadow: "-4px 0 10px rgba(0,0,0,0.1)",
           overflowY: "auto",
         }}
       >
@@ -79,6 +79,7 @@ export const SearchDrawer = ({
             border: "1px solid rgba(219,219,219,1)",
             borderRadius: 1,
             p: 1,
+            backgroundColor: "grey.100",
           }}
         >
           <SearchIcon sx={{ color: "#8E8E8E", fontSize: "20px", mr: "12px" }} />

@@ -2,14 +2,14 @@ import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Box, Typography, Link } from "@mui/material";
 
-const Footer = () => {
+const Footer = ({ onCreateClick, onSearchClick }) => {
   const links = [
     { label: "Home", type: "link", path: "/home" },
     { label: "Explore", type: "link", path: "/explore" },
-    { label: "Message", type: "link", path: "/message" },
-    { label: "Search", type: "action", path: "/search" },
+    { label: "Message", type: "link", path: "/messages" },
+    { label: "Search", type: "action", onClick: onSearchClick },
     { label: "Notification", type: "text" },
-    { label: "Create", type: "action", path: "/create" },
+    { label: "Create", type: "action", onClick: onCreateClick },
   ];
 
   return (
@@ -48,6 +48,14 @@ const Footer = () => {
             >
               {item.label}
             </Link>
+          ) : item.type === "action" ? (
+            <Typography
+              key={index}
+              onClick={item.onClick}
+              sx={{ cursor: "pointer", color: "text.secondary" }}
+            >
+              {item.label}
+            </Typography>
           ) : (
             <Typography key={index} color="text.secondary">
               {item.label}

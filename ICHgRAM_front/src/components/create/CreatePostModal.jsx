@@ -75,7 +75,7 @@ const CreatePostModal = ({
         const res = await axiosInstance.post("/api/posts", payload);
         if (onPostCreated) onPostCreated(res.data); // Передаем созданный пост
       }
-
+      window.dispatchEvent(new Event("postCreated"));
       // headers: { "Content-Type": "application/json" },
 
       onClose();
@@ -113,8 +113,8 @@ const CreatePostModal = ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        //ml: { xs: "0px", md: "245px" }, // Сдвиг от сайдбара
-        //mb: "158px",
+        left: { xs: "0px", md: "245px" },
+        bottom: "158px",
       }}
     >
       <Fade in={open}>
@@ -126,6 +126,10 @@ const CreatePostModal = ({
             borderRadius: "12px",
             overflow: "hidden",
             display: "flex",
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
             flexDirection: "column",
             outline: "none",
             //zIndex: 10,

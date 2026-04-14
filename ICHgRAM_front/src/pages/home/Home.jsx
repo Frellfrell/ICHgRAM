@@ -127,7 +127,11 @@ const Home = () => {
       >
         {posts.map((post, index) => (
           <Grid size={{ xs: 12, sm: 6 }} key={`${post._id}-${index}`}>
-            <PostCard post={post} onPostClick={(p) => setActivePost(p)} />
+            <PostCard
+              post={post}
+              onPostClick={(p) => setActivePost(p)}
+              onOpenComments={(p) => setActivePost(p)}
+            />
           </Grid>
         ))}
       </Grid>

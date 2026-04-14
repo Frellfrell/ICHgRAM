@@ -9,6 +9,10 @@ export const getUserProfile = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
+    const isFollowed = await Follow.findOne({
+      follower: req.user._id,
+      following: user._id,
+    });
     //если юзер найден
     const postsCount = await Post.countDocuments({ author: userId });
 
@@ -26,6 +30,7 @@ export const getUserProfile = async (req, res) => {
       postsCount,
       followersCount,
       followingCount,
+      isFollowed: !!isFollowed,
     });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
