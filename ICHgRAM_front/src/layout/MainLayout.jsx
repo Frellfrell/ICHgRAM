@@ -181,6 +181,7 @@ const MainLayout = ({ children }) => {
       )}
 
       <CreatePostModal
+        key="create"
         open={isCreateModalOpen}
         onClose={() => setIsCreateModalOpen(false)}
         user={currentUser}
@@ -188,6 +189,7 @@ const MainLayout = ({ children }) => {
 
       {/*{editPost && (*/}
       <CreatePostModal
+        key="edit"
         open={isEditModalOpen}
         onClose={() => {
           setIsEditModalOpen(false);
