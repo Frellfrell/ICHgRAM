@@ -96,7 +96,7 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
     setIsActionsOpen(false);
     if (onEdit && post) {
       //onClose();
-
+      console.log("CALLING onEdit");
       onEdit(post);
     }
   };
