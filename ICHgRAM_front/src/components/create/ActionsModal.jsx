@@ -51,7 +51,10 @@ const ActionsModal = ({ open, onClose, onDelete, onEdit }) => {
 
           {/* Кнопка Edit (400x48) */}
           <Button
-            onClick={onEdit}
+            onClick={() => {
+              onClose();
+              onEdit();
+            }}
             sx={{
               height: "48px",
               color: "#262626",
