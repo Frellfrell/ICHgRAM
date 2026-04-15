@@ -169,7 +169,9 @@ const MainLayout = ({ children }) => {
           onClose={() => setSelectedPost(null)}
           post={selectedPost}
           onEdit={(post) => {
-            setSelectedPost(null);
+            {
+              /*setSelectedPost(null);*/
+            }
             setTimeout(() => {
               setEditPost(post);
               setIsEditModalOpen(true);
