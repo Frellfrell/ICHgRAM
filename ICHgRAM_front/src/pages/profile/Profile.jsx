@@ -115,7 +115,6 @@ const Profile = () => {
               display: "flex",
               justifyContent: "center",
               width: { md: "290px" },
-              //ml: { md: "67px" },
               mt: { md: "32px" },
             }}
           >
@@ -154,7 +153,6 @@ const Profile = () => {
                       color: "text.primary",
                       textTransform: "none",
                       fontWeight: 600,
-                      //border: "1px solid #dbdbdb",
                       "&:hover": { bgcolor: "text.secondary" },
                     }}
                   >
@@ -182,7 +180,6 @@ const Profile = () => {
                       color: "primary.contrastText",
                       textTransform: "none",
                       fontWeight: 600,
-                      //border: "1px solid #dbdbdb",
                       "&:hover": { bgcolor: "rgb(3, 134, 222)" },
                     }}
                   />
@@ -197,7 +194,6 @@ const Profile = () => {
                       color: "text.primary",
                       textTransform: "none",
                       fontWeight: 600,
-                      //border: "1px solid #dbdbdb",
                       "&:hover": { bgcolor: "text.secondary" },
                     }}
                   >
@@ -281,7 +277,6 @@ const Profile = () => {
               >
                 <Box
                   onClick={() => {
-                    //if (post && post._id && post.author) {
                     setSelectedPost(post);
                     setIsModalOpen(true);
                   }}

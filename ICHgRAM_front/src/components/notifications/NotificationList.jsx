@@ -5,7 +5,6 @@ import { formatUrl } from "../ui/helpers";
 import { useNavigate } from "react-router-dom";
 
 const NotificationList = ({ notifications, onPostClick, onUserClick }) => {
-  //const BE_URL = "http://localhost:5000";
   const navigate = useNavigate();
 
   const handleUserNavigation = (userId) => {

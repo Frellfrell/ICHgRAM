@@ -23,17 +23,6 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
 
   const scrollRef = useRef(null);
 
-  {
-    /*useEffect(() => {
-    const userId = new URLSearchParams(location.search).get("user");
-    if (userId) {
-      axiosInstance.get(`/api/users/${userId}`).then((res) => {
-        setSelectedChat(res.data);
-      });
-    }
-  }, []);*/
-  }
-
   //  Загрузка истории сообщений при смене чата
   useEffect(() => {
     if (!selectedChat) return;
@@ -96,28 +85,6 @@ const ChatRoom = ({ selectedChat, currentUserId }) => {
     });
     setText("");
   };
-
-  {
-    /*  if (!selectedChat)
-    return ( 
-      <Box
-        sx={{
-          flexGrow: 1,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Typography variant="h5" fontWeight="bold">
-          Your Messages
-        </Typography>
-        <Typography color="text.secondary">
-          Select a friend to start chatting
-        </Typography>
-      </Box>
-    );*/
-  }
 
   return (
     <Box

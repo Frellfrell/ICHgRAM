@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Box, Button, Divider, Fade, Backdrop } from "@mui/material";
 
-const ActionsModal = ({ open, onClose, onDelete, onEdit }) => {
+const ActionsModal = ({ open, onClose, onDelete, onEdit, isEditModalOpen }) => {
   return (
     <Modal
       open={open}
@@ -56,6 +56,7 @@ const ActionsModal = ({ open, onClose, onDelete, onEdit }) => {
               onClose();
               onEdit();
             }}
+            disabled={isEditModalOpen}
             sx={{
               height: "48px",
               color: "#262626",

@@ -32,19 +32,6 @@ function AppRoutes() {
 
   if (loading) return null; // Или спиннер загрузки
 
-  {
-    /* // Защищённый роут (только для авторизованных)
-  const ProtectedRoute = ({ children }) => {
-    console.log("ProtectedRoute isAuth:", isAuth);
-    return isAuth ? children : <Navigate to="/login" replace />;
-  };
-
-  // Публичный роут (только для неавторизованных)
-  const PublicRoute = ({ children }) => {
-    return !isAuth ? children : <Navigate to="/home" replace />;
-  };
-*/
-  }
   return (
     <Routes>
       {/* Редирект с главной */}

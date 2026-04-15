@@ -25,7 +25,6 @@ const PostCard = ({ post, onPostClick, onOpenComments }) => {
       sx={{
         width: "100%",
         maxWidth: "404px",
-        //height: "716.6px",
         mb: "23px",
         borderBottom: "1px solid",
         borderColor: "divider",
@@ -70,10 +69,7 @@ const PostCard = ({ post, onPostClick, onOpenComments }) => {
 
         {/* Кнопка Follow (показываем только если не подписан) */}
         <Box sx={{ ml: "auto" }}>
-          <FollowButton
-            userId={author._id}
-            //initialIsFollowing={author.isFollowed}
-          />
+          <FollowButton userId={author._id} />
         </Box>
       </Box>
 

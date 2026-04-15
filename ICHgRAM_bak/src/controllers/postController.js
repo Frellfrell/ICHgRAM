@@ -5,18 +5,6 @@ export const createPost = async (req, res) => {
   try {
     const { caption, image } = req.body;
 
-    {
-      /*} const { caption } = req.body;
-
-    let image = "";
-
-    // если изображение передано
-    if (req.file) {
-      const base64Image = req.file.buffer.toString("base64");
-      image = `data:${req.file.mimetype};base64,${base64Image}`;
-    }*/
-    }
-
     // запрет пустого поста
     if (!caption && !image) {
       return res.status(400).json({
@@ -55,12 +43,6 @@ export const getAllPosts = async (req, res) => {
     const postsWithLikes = await Promise.all(
       posts.map(async (post) => {
         const likesCount = await Like.countDocuments({ post: post._id });
-        {
-          /*const isFollowed = await Follow.findOne({
-          follower: currentUserId,
-          following: post.author._id,
-        });*/
-        }
 
         return {
           ...post._doc,
@@ -120,13 +102,6 @@ export const updatePost = async (req, res) => {
       post.caption = req.body.caption;
     }
     if (image !== undefined) post.image = image;
-
-    {
-      /*if (req.file) {
-      const base64Image = req.file.buffer.toString("base64");
-      post.image = `data:${req.file.mimetype};base64,${base64Image}`;
-    }*/
-    }
 
     if (!post.caption && !post.image) {
       return res.status(400).json({

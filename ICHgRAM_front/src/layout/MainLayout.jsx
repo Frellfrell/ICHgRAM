@@ -135,9 +135,6 @@ const MainLayout = ({ children }) => {
               maxWidth: "1195px",
               height: "100vh",
               display: "flex",
-              //pt: "58px",
-              //px: { xs: "20px", md: "78px" },
-              //height: "calc(100vh - 58px)",
               overflowY: "auto",
               flexGrow: 1,
               flexDirection: "column",
@@ -169,7 +166,9 @@ const MainLayout = ({ children }) => {
           onClose={() => setSelectedPost(null)}
           post={selectedPost}
           onEdit={(post) => {
-            setSelectedPost(null);
+            {
+              /*setSelectedPost(null);*/
+            }
             setTimeout(() => {
               setEditPost(post);
               setIsEditModalOpen(true);
@@ -179,6 +178,7 @@ const MainLayout = ({ children }) => {
       )}
 
       <CreatePostModal
+        key="create"
         open={isCreateModalOpen}
         onClose={() => setIsCreateModalOpen(false)}
         user={currentUser}
@@ -186,12 +186,12 @@ const MainLayout = ({ children }) => {
 
       {/*{editPost && (*/}
       <CreatePostModal
+        key="edit"
         open={isEditModalOpen}
         onClose={() => {
           setIsEditModalOpen(false);
-          setTimeout(() => {
-            setEditPost(null);
-          }, 0);
+
+          setEditPost(null);
         }}
         editPost={editPost}
         user={JSON.parse(localStorage.getItem("user"))}

@@ -24,13 +24,6 @@ export const loginUser = async (credentials) => {
       localStorage.setItem("user", JSON.stringify(user));
     }
 
-    {
-      /* if (response.data.token) {
-      localStorage.setItem("token", response.data.token); //сохраняем
-      localStorage.setItem("user", JSON.stringify(response.data.user)); // сохраняем данные юзера
-    }*/
-    }
-
     return response.data;
   } catch (error) {
     const message = error.response?.data?.message || "Invalid credentials";

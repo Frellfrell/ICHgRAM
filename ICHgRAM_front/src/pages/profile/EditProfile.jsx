@@ -18,6 +18,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 const EditProfile = () => {
   const navigate = useNavigate();
+
   const [loading, setLoading] = useState(false);
   const [fetching, setFetching] = useState(true); // Загрузка начальных данных
   const [formData, setFormData] = useState({
@@ -177,6 +178,7 @@ const EditProfile = () => {
           >
             <Avatar
               src={preview || formatUrl(formData.avatar)}
+              onClick={() => navigate("/profile")}
               sx={{ width: 60, height: 60, border: "1px solid #dbdbdb" }}
             />
 

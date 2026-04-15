@@ -16,7 +16,6 @@ const HomeEndBlock = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        //borderTop: "1px solid #DBDBDB",
         py: 4,
       }}
     >

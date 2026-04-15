@@ -20,12 +20,7 @@ const Explore = () => {
         const masonryPosts = res.data.map((post, index) => {
           const mod = index % 10;
           let layout = "square";
-          // ...post,
-          //layout: (index + 1) % 3 === 0 ? "vertical" : "square",
-          // Вычисляем позицию в группе из 10 постов
 
-          // 3-й пост (индекс 2) — высокий справа
-          // 6-й пост (индекс 5) — высокий слева
           if (mod === 2 || mod === 5) {
             layout = "vertical";
           }
@@ -56,7 +51,6 @@ const Explore = () => {
           width: "100%",
           maxWidth: "975px",
           minHeight: "1376px",
-          //pl: { xs: 2, md: "103px" },
           pt: "41px",
           mx: "auto",
           boxSizing: "border-box",
