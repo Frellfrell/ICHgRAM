@@ -52,6 +52,7 @@ const ActionsModal = ({ open, onClose, onDelete, onEdit }) => {
           {/* Кнопка Edit (400x48) */}
           <Button
             onClick={() => {
+              console.log("EDIT BUTTON CLICK");
               onClose();
               onEdit();
             }}
