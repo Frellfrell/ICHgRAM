@@ -43,6 +43,7 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
         width: "100%",
         maxWidth: "350px",
         borderRight: "1px solid",
+        borderLeft: "1px solid",
         borderColor: "divider",
         display: "flex",
         flexDirection: "column",

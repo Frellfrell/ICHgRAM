@@ -3,10 +3,13 @@ import { Box } from "@mui/material";
 import AppAvatar from "../ui/AppAvatar";
 import AppTypography from "../ui/AppTypography";
 import { formatUrl, timeAgo } from "../ui/helpers";
+import { useNavigate } from "react-router-dom";
 
-const CommentItem = ({ comment }) => {
+const CommentItem = ({ comment, onClose }) => {
+  const navigate = useNavigate();
   if (!comment) return null;
-  const author = comment.author || {};
+  const authorCom = comment?.author || {};
+  if (!authorCom) return null;
 
   return (
     <Box
@@ -16,14 +19,22 @@ const CommentItem = ({ comment }) => {
         mb: "16px",
         alignItems: "flex-start",
       }}
+      onClick={() => {
+        onClose?.();
+        navigate(`/profile/${authorCom._id}`);
+      }}
     >
-      <AppAvatar src={formatUrl(author.avatar)} size={32} />
+      <AppAvatar
+        src={formatUrl(authorCom.avatar)}
+        size={32}
+        sx={{ cursor: "pointer" }}
+      />
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <AppTypography
           sx={{ fontWeight: 600, fontSize: "14px", lineHeight: "18px" }}
         >
           <span style={{ fontWeight: 700, marginRight: "8px" }}>
-            {author.username}
+            {authorCom.username}
           </span>
           {comment.text}
         </AppTypography>

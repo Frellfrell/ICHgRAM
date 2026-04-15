@@ -170,8 +170,10 @@ const MainLayout = ({ children }) => {
           post={selectedPost}
           onEdit={(post) => {
             setSelectedPost(null);
-            setEditPost(post);
-            setIsEditModalOpen(true);
+            setTimeout(() => {
+              setEditPost(post);
+              setIsEditModalOpen(true);
+            }, 0);
           }}
         />
       )}
@@ -182,18 +184,19 @@ const MainLayout = ({ children }) => {
         user={currentUser}
       />
 
-      {editPost && (
-        <CreatePostModal
-          open={isEditModalOpen}
-          onClose={() => {
-            setIsEditModalOpen(false);
+      {/*{editPost && (*/}
+      <CreatePostModal
+        open={isEditModalOpen}
+        onClose={() => {
+          setIsEditModalOpen(false);
+          setTimeout(() => {
             setEditPost(null);
-          }}
-          editPost={editPost}
-          user={JSON.parse(localStorage.getItem("user"))}
-          isNested={true}
-        />
-      )}
+          }, 0);
+        }}
+        editPost={editPost}
+        user={JSON.parse(localStorage.getItem("user"))}
+        isNested={true}
+      />
     </Box>
   );
 };

@@ -16,12 +16,11 @@ const router = express.Router();
 
 router.post("/", authMiddleware, upload.single("image"), createPost);
 router.get("/", getAllPosts);
+// Explore — случайные посты
+router.get("/explore", authMiddleware, getExplorePosts);
 router.get("/user/:userId", getUserPost);
 router.get("/:postId", getPostById);
 router.delete("/:postId", authMiddleware, deletePost);
 router.put("/:postId", authMiddleware, upload.single("image"), updatePost);
-
-// Explore — случайные посты
-router.get("/explore", authMiddleware, getExplorePosts);
 
 export default router;

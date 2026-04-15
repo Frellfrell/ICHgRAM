@@ -18,7 +18,7 @@ import axiosInstance from "../../api/axiosInstance";
 import { formatUrl, timeAgo } from "../ui/helpers";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import ActionsModal from "../create/ActionsModal";
-import CreatePostModal from "../create/CreatePostModal";
+//import CreatePostModal from "../create/CreatePostModal";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { useNavigate } from "react-router-dom";
 
@@ -33,9 +33,17 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const myId = currentUser?._id || currentUser?.id;
 
-  const author = post?.author || post?.user || {};
-
   const navigate = useNavigate();
+
+  {
+    /*const handleAvatarClick = (userId) => {
+    console.log("Navigating to profile with ID:", userId);
+    if (!userId) return;
+    navigate(`/profile/${userId}`);
+  };*/
+  }
+  const postId = post?._id;
+  const author = post?.author || {};
 
   // Проверка: является ли текущий юзер автором поста
   const isMyPost = String(myId) === String(author?._id || author);
@@ -43,24 +51,26 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
 
   // 1. Загружаем комментарии при открытии модалки
   useEffect(() => {
-    if (open && post?._id) {
-      const fetchComments = async () => {
-        try {
-          const res = await axiosInstance.get(`/api/comments/${post._id}`);
-          setComments(res.data);
-        } catch (err) {
-          console.error("Ошибка загрузки комментариев:", err);
-        }
-      };
-      fetchComments();
-    }
-  }, [open, post?._id]);
+    // if (open && post?._id) {
+    if (!open || !postId) return;
+    const fetchComments = async () => {
+      try {
+        const res = await axiosInstance.get(`/api/comments/${postId}`);
+        setComments(res.data);
+      } catch (err) {
+        console.error("Ошибка загрузки комментариев:", err);
+      }
+    };
+    fetchComments();
+  }, [open, postId]);
+
+  if (!open || !postId) return null;
 
   // 2. Функция отправки нового комментария
   const handleAddComment = async () => {
     if (!newComment.trim()) return;
     try {
-      const res = await axiosInstance.post(`/api/comments/${post._id}`, {
+      const res = await axiosInstance.post(`/api/comments/${postId}`, {
         text: newComment,
       });
       setComments((prev) => [...prev, res.data]); // Добавляем в список локально
@@ -73,7 +83,7 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
   const handleDelete = async () => {
     if (window.confirm("Delete this post?"))
       try {
-        await axiosInstance.delete(`/api/posts/${post._id}`);
+        await axiosInstance.delete(`/api/posts/${postId}`);
         setIsActionsOpen(false);
         onClose(); // Закрываем модалку после удаления
         window.location.reload(); // Перезагружаем страницу, чтобы обновить ленту
@@ -82,13 +92,15 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
       }
   };
   const handleEditOpen = () => {
+    console.log("EDIT CLICKED", post);
     setIsActionsOpen(false);
-
-    onClose();
-    onEdit(post);
+    if (onEdit && post) {
+      //onClose();
+      setTimeout(() => {
+        onEdit(post);
+      }, 0);
+    }
   };
-
-  if (!post) return null;
 
   return (
     <>
@@ -201,6 +213,7 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
                   <IconButton
                     onClick={(e) => {
                       e.stopPropagation();
+                      e.currentTarget.blur();
                       setIsActionsOpen(true);
                     }}
                   >
@@ -220,6 +233,20 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
             </Box>
             <Divider />
 
+            {/* POST CAPTION */}
+            <Box
+              sx={{ p: 2, display: "flex", gap: 1 }}
+              onClick={() => {
+                navigate(`/profile/${author._id}`);
+                onClose();
+              }}
+            >
+              <AppAvatar src={formatUrl(author.avatar)} size={32} />
+              <AppTypography>
+                <b>{author.username}</b> {post.caption}
+              </AppTypography>
+            </Box>
+
             {/* Комментарии */}
             <Box
               sx={{
@@ -228,17 +255,24 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
                 overflowY: "auto",
               }}
             >
-              <CommentItem
+              {/*<CommentItem
                 comment={{
                   text: post.caption,
                   author: author,
                   createdAt: post.createdAt,
                 }}
-              />
+                //onClose={onClose}
+                //handleAvatarClick={handleAvatarClick}
+              />*/}
 
               {/* Сами комментарии из базы */}
               {comments.map((c) => (
-                <CommentItem key={c._id} comment={c} />
+                <CommentItem
+                  key={c._id}
+                  comment={c}
+                  // onClose={onClose}
+                  //handleAvatarClick={handleAvatarClick}
+                />
               ))}
             </Box>
             <Divider />
