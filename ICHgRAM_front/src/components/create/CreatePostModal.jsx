@@ -33,7 +33,8 @@ const CreatePostModal = ({
 
   // Если открыли для редактирования — подставляем данные поста
   useEffect(() => {
-    if (editPost && open) {
+    if (editPost) {
+      //if (editPost && open) {
       setCaption(editPost.caption || "");
       setPreview(formatUrl(editPost.image));
       setFile(editPost.image);
