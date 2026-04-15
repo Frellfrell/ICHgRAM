@@ -40,10 +40,13 @@ const CreatePostModal = ({
       setCaption(editPost.caption || "");
       setPreview(formatUrl(editPost.image));
       setFile(editPost.image);
-    } else {
+    }
+    {
+      /*else {
       setCaption("");
       setPreview(null);
       setFile(null);
+    }*/
     }
   }, [editPost]);
 
