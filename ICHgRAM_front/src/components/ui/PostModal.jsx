@@ -92,6 +92,7 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
       }
   };
   const handleEditOpen = () => {
+    console.log("EDIT CLICKED", post);
     setIsActionsOpen(false);
     if (onEdit && post) {
       //onClose();
@@ -212,6 +213,7 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
                   <IconButton
                     onClick={(e) => {
                       e.stopPropagation();
+                      e.currentTarget.blur();
                       setIsActionsOpen(true);
                     }}
                   >
