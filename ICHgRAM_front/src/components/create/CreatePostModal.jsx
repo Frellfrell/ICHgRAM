@@ -33,17 +33,19 @@ const CreatePostModal = ({
 
   // Если открыли для редактирования — подставляем данные поста
   useEffect(() => {
+    console.log("editPost:", editPost);
+    console.log("open:", open);
     if (editPost) {
       //if (editPost && open) {
       setCaption(editPost.caption || "");
       setPreview(formatUrl(editPost.image));
       setFile(editPost.image);
-    } else if (open) {
+    } else {
       setCaption("");
       setPreview(null);
       setFile(null);
     }
-  }, [editPost, open]);
+  }, [editPost]);
 
   const navigate = useNavigate();
 
