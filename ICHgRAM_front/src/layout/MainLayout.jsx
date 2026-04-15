@@ -189,9 +189,8 @@ const MainLayout = ({ children }) => {
         open={isEditModalOpen}
         onClose={() => {
           setIsEditModalOpen(false);
-          setTimeout(() => {
-            setEditPost(null);
-          }, 0);
+
+          setEditPost(null);
         }}
         editPost={editPost}
         user={JSON.parse(localStorage.getItem("user"))}
