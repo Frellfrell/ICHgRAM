@@ -170,8 +170,10 @@ const MainLayout = ({ children }) => {
           post={selectedPost}
           onEdit={(post) => {
             setSelectedPost(null);
-            setEditPost(post);
-            setIsEditModalOpen(true);
+            setTimeout(() => {
+              setEditPost(post);
+              setIsEditModalOpen(true);
+            }, 0);
           }}
         />
       )}
@@ -187,7 +189,9 @@ const MainLayout = ({ children }) => {
           open={isEditModalOpen}
           onClose={() => {
             setIsEditModalOpen(false);
-            setEditPost(null);
+            setTimeout(() => {
+              setEditPost(null);
+            }, 0);
           }}
           editPost={editPost}
           user={JSON.parse(localStorage.getItem("user"))}
