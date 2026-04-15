@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Box, Button, Divider, Fade, Backdrop } from "@mui/material";
 
-const ActionsModal = ({ open, onClose, onDelete, onEdit, post }) => {
+const ActionsModal = ({ open, onClose, onDelete, onEdit }) => {
   return (
     <Modal
       open={open}
@@ -53,7 +53,7 @@ const ActionsModal = ({ open, onClose, onDelete, onEdit, post }) => {
           <Button
             onClick={() => {
               onClose();
-              onEdit(post);
+              onEdit();
             }}
             sx={{
               height: "48px",
