@@ -184,20 +184,19 @@ const MainLayout = ({ children }) => {
         user={currentUser}
       />
 
-      {editPost && (
-        <CreatePostModal
-          open={isEditModalOpen}
-          onClose={() => {
-            setIsEditModalOpen(false);
-            setTimeout(() => {
-              setEditPost(null);
-            }, 0);
-          }}
-          editPost={editPost}
-          user={JSON.parse(localStorage.getItem("user"))}
-          isNested={true}
-        />
-      )}
+      {/*{editPost && (*/}
+      <CreatePostModal
+        open={isEditModalOpen}
+        onClose={() => {
+          setIsEditModalOpen(false);
+          setTimeout(() => {
+            setEditPost(null);
+          }, 0);
+        }}
+        editPost={editPost}
+        user={JSON.parse(localStorage.getItem("user"))}
+        isNested={true}
+      />
     </Box>
   );
 };
