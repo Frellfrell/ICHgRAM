@@ -92,12 +92,12 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
       }
   };
   const handleEditOpen = () => {
-    if (onEdit) {
-      // setIsActionsOpen(false);
-
-      onClose();
-
-      onEdit(post);
+    setIsActionsOpen(false);
+    if (onEdit && post) {
+      //onClose();
+      setTimeout(() => {
+        onEdit(post);
+      }, 0);
     }
   };
 
