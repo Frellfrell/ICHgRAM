@@ -70,17 +70,13 @@ const NotFound = () => {
             display: "flex",
             textAlign: isMobile ? "center" : "left",
             flexDirection: "column",
-            //justifyContent: "center",
             maxWidth: "625px",
             width: "100%",
-            //height: "460px",
           }}
         >
           <Typography
             variant="h4"
             sx={{
-              //width: "625px",
-              // height: "57px",
               fontSize: { xs: "24px", sm: "30px", md: "36px" },
               fontWeight: 700,
               lineHeight: "normal",
@@ -93,8 +89,6 @@ const NotFound = () => {
 
           <Typography
             sx={{
-              //width: "475px",
-              //height: "66px",
               fontSize: "16px",
               fontWeight: 600,
               lineHeight: "1.4",

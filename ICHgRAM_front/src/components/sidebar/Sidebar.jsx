@@ -16,7 +16,6 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import CreatePostModal from "../create/CreatePostModal.jsx";
-//import { useState } from "react";
 import AppAvatar from "../ui/AppAvatar";
 import { formatUrl } from "../ui/helpers";
 
@@ -26,9 +25,6 @@ const Sidebar = ({ onSearchClick, onNotifClick, onCreateClick }) => {
   const { logout, user } = useContext(AuthContext);
 
   const currentUser = user || JSON.parse(localStorage.getItem("user"));
-  //const user = JSON.parse(localStorage.getItem("user"));
-
-  // const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
@@ -49,8 +45,6 @@ const Sidebar = ({ onSearchClick, onNotifClick, onCreateClick }) => {
           top: 0,
           width: "245px",
           height: "calc(100vh - 158px)",
-          // borderRight: `1px solid ${theme.palette.borders}`,
-
           paddingTop: "33px",
           paddingLeft: "24px",
           paddingRight: "24px",
@@ -103,7 +97,6 @@ const Sidebar = ({ onSearchClick, onNotifClick, onCreateClick }) => {
 
           <SidebarItem
             label="Create"
-            //onClick={() => setIsCreateModalOpen(true)}
             onClick={onCreateClick}
             icon={CreateIcon}
           />
@@ -115,8 +108,6 @@ const Sidebar = ({ onSearchClick, onNotifClick, onCreateClick }) => {
               to="/profile"
               icon={
                 currentUser?.avatar && currentUser.avatar.trim() !== "" ? (
-                  //user?.avatar ||
-                  //JSON.parse(localStorage.getItem("user"))?.avatar ? (
                   <AppAvatar
                     src={formatUrl(currentUser.avatar)}
                     size={24}
@@ -149,12 +140,6 @@ const Sidebar = ({ onSearchClick, onNotifClick, onCreateClick }) => {
         {/* Spacer */}
         <Box sx={{ flexGrow: 1 }} />
       </Box>
-
-      {/*<CreatePostModal
-        open={isCreateModalOpen}
-        onClose={() => setIsCreateModalOpen(false)}
-        user={user}
-      />*/}
     </>
   );
 };

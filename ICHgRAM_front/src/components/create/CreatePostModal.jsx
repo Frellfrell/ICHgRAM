@@ -68,9 +68,6 @@ const CreatePostModal = ({
     if (!file && !editPost) return;
     setLoading(true);
     try {
-      //const formData = new FormData();
-      //formData.append("image", file);
-      //formData.append("caption", caption);
       const payload = {
         image: file || editPost?.image, // строка Base64
         caption: caption,
@@ -88,9 +85,6 @@ const CreatePostModal = ({
       // headers: { "Content-Type": "application/json" },
 
       onClose();
-      {
-        /*window.location.reload();*/
-      }
     } catch (error) {
       console.error(error);
     } finally {
@@ -102,8 +96,6 @@ const CreatePostModal = ({
     <Modal
       open={open}
       onClose={onClose}
-      //disablePortal
-      //keepMounted
       closeAfterTransition
       slots={{ backdrop: Backdrop }}
       slotProps={{
@@ -144,7 +136,6 @@ const CreatePostModal = ({
             transform: "translate(-50%, -50%)",
             flexDirection: "column",
             outline: "none",
-            //zIndex: 10,
             boxShadow: "0 12px 42px rgba(0,0,0,0.2)",
           }}
         >
@@ -208,14 +199,6 @@ const CreatePostModal = ({
                 "&:hover": { bgcolor: preview ? "#FAFAFA" : "#F5F5F5" },
               }}
             >
-              {/* <input
-                type="file"
-                hidden
-                ref={fileInputRef}
-                accept="image/*"
-                onChange={handleFileChange}
-              />*/}
-
               {preview ? (
                 <Box
                   component="img"

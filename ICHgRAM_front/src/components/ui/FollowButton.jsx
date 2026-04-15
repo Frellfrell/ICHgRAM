@@ -3,13 +3,8 @@ import { Button } from "@mui/material";
 import axiosInstance from "../../api/axiosInstance";
 
 const FollowButton = ({ userId, onFollowChange, sx = {} }) => {
-  // const [isFollowing, setIsFollowing] = useState(initialIsFollowing);
   const [loading, setLoading] = useState(false);
 
-  //Обновляеь стейт кнопкт при преходе на другой профиль, иначе при открытии нового профиля кнопка будет показывать статус предыдущего
-  // useEffect(() => {
-  //  setIsFollowing(initialIsFollowing);
-  // }, [initialIsFollowing, userId]);
   const [isFollowing, setIsFollowing] = useState(false);
 
   const handleFollow = async (e) => {
@@ -20,9 +15,6 @@ const FollowButton = ({ userId, onFollowChange, sx = {} }) => {
 
     setLoading(true);
 
-    //const nextState = !isFollowing;
-    //setIsFollowing(nextState);
-
     try {
       if (isFollowing) {
         await axiosInstance.delete(`/api/follows/${userId}`);
@@ -31,9 +23,6 @@ const FollowButton = ({ userId, onFollowChange, sx = {} }) => {
         await axiosInstance.post(`/api/follows/${userId}`);
         setIsFollowing(true);
       }
-
-      //  update
-      //setIsFollowing((prev) => !prev);
 
       // refetch profile
       if (onFollowChange) {
@@ -45,19 +34,6 @@ const FollowButton = ({ userId, onFollowChange, sx = {} }) => {
       setLoading(false);
     }
   };
-  {
-    /* setIsFollowing(false);
-      } else {
-        await axiosInstance.post(`/api/follows/${userId}`);
-        setIsFollowing(true);
-      }
-    } catch (error) {
-      console.error("Ошибка при подписке/отписке:", error.response?.data);
-    } finally {
-      setLoading(false);
-    }
-  };*/
-  }
 
   return (
     <Button

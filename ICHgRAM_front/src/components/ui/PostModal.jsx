@@ -18,7 +18,6 @@ import axiosInstance from "../../api/axiosInstance";
 import { formatUrl, timeAgo } from "../ui/helpers";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import ActionsModal from "../create/ActionsModal";
-//import CreatePostModal from "../create/CreatePostModal";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { useNavigate } from "react-router-dom";
 
@@ -27,7 +26,6 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
   const [newComment, setNewComment] = useState("");
 
   const [isActionsOpen, setIsActionsOpen] = useState(false); // Для открытия ActionsModal
-  //const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   // Достаем текущего юзера из localStorage, чтобы сравнить ID
   const currentUser = JSON.parse(localStorage.getItem("user"));
@@ -35,19 +33,11 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
 
   const navigate = useNavigate();
 
-  {
-    /*const handleAvatarClick = (userId) => {
-    console.log("Navigating to profile with ID:", userId);
-    if (!userId) return;
-    navigate(`/profile/${userId}`);
-  };*/
-  }
   const postId = post?._id;
   const author = post?.author || {};
 
   // Проверка: является ли текущий юзер автором поста
   const isMyPost = String(myId) === String(author?._id || author);
-  //const isMyPost = currentUser?._id === author?._id;
 
   // 1. Загружаем комментарии при открытии модалки
   useEffect(() => {
@@ -107,7 +97,6 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
         open={open}
         onClose={onClose}
         closeAfterTransition
-        // disablePortal //чтобы модалка знала границы родителя
         slotProps={{
           backdrop: {
             sx: {
@@ -203,9 +192,7 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
                   //initialIsFollowing={author.isFollowed}
                 />
               )}
-              {/* <IconButton onClick={onClose} sx={{ ml: "auto" }}>
-              <CloseIcon />
-            </IconButton> */}
+
               {/* ГРУППА КНОПОК В УГЛУ */}
               <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
                 {isMyPost ? (
@@ -254,16 +241,6 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
                 overflowY: "auto",
               }}
             >
-              {/*<CommentItem
-                comment={{
-                  text: post.caption,
-                  author: author,
-                  createdAt: post.createdAt,
-                }}
-                //onClose={onClose}
-                //handleAvatarClick={handleAvatarClick}
-              />*/}
-
               {/* Сами комментарии из базы */}
               {comments.map((c) => (
                 <CommentItem
