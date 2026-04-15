@@ -77,7 +77,7 @@ const CreatePostModal = ({
         // РЕДАКТИРОВАНИЕ
         await axiosInstance.put(`/api/posts/${editPost._id}`, payload);
       } else {
-        // СОЗДАНИЕ
+        // СОЗДАНИЕ new post
         const res = await axiosInstance.post("/api/posts", payload);
         if (onPostCreated) onPostCreated(res.data); // Передаем созданный пост
       }
