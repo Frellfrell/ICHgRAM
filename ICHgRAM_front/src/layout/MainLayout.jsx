@@ -25,6 +25,11 @@ const MainLayout = ({ children }) => {
   const [editPost, setEditPost] = useState(null);
   const currentUser = JSON.parse(localStorage.getItem("user"));
 
+  useEffect(() => {
+    console.log("=> MainLayout | isEditModalOpen:", isEditModalOpen);
+    console.log("=> MainLayout | editPost:", editPost);
+  }, [isEditModalOpen, editPost]);
+
   const handleCreateClick = () => {
     setOpenSearch(false);
     setOpenNotif(false);
