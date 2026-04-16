@@ -35,6 +35,7 @@ const ActionsPopover = ({ anchorEl, onClose, onDelete, onEdit }) => {
         <Button
           onClick={() => {
             console.log("EDIT BUTTON CLICK");
+            console.log("onEdit type in ActionsPopover:", typeof onEdit);
             onClose();
             if (onEdit) {
               onEdit();
