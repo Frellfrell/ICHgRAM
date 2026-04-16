@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/likes";
+const API_URL = "/api/likes";
 
 export const toggleLike = async (postId, token) => {
   const response = await axios.post(

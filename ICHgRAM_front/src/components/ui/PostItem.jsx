@@ -4,7 +4,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 
 const PostGridItem = ({ post, onClick }) => {
-  const BE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  const BE_URL = import.meta.env.VITE_API_URL || "http:///api";
 
   return (
     <Box

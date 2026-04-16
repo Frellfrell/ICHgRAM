@@ -9,7 +9,7 @@ const Explore = () => {
   const [loading, setLoading] = useState(true);
   const [selectedPost, setSelectedPost] = useState(null);
 
-  const BE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  const BE_URL = import.meta.env.VITE_API_URL || "http:///api";
 
   useEffect(() => {
     const fetchPosts = async () => {
