@@ -1,6 +1,6 @@
 import { Popover, Box, Button, Divider } from "@mui/material";
 
-const ActionsPopover = ({ anchorEl, onClose, onDelete, onEdit }) => {
+const ActionsPopover = ({ anchorEl, onClose, onDelete, onEditSubmit }) => {
   return (
     <Popover
       open={Boolean(anchorEl)}
@@ -37,8 +37,8 @@ const ActionsPopover = ({ anchorEl, onClose, onDelete, onEdit }) => {
             console.log("EDIT BUTTON CLICK");
             console.log("onEdit type in ActionsPopover:", typeof onEdit);
             onClose();
-            if (onEdit) {
-              onEdit();
+            if (onEditSubmit) {
+              onEditSubmit();
             }
           }}
           sx={{

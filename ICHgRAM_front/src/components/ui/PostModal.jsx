@@ -22,8 +22,8 @@ import ActionsPopover from "../create/ActionsPopover.jsx";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { useNavigate } from "react-router-dom";
 
-const PostModal = ({ open, post, onClose, onEdit }) => {
-  console.log("PostModal props:", { open, post, onEdit });
+const PostModal = ({ open, post, onClose, onEditSubmit }) => {
+  console.log("PostModal props:", { open, post, onEditSubmit });
   console.log("PostModal file loaded from: ../components/ui/PostModal.jsx");
   console.log("onEdit type in PostModal:", typeof onEdit);
   console.log("PostModal file loaded from: ../components/ui/PostModal.jsx");
@@ -353,7 +353,7 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
         anchorEl={anchorEl}
         onClose={() => setAnchorEl(null)}
         onDelete={handleDelete}
-        onEdit={onEdit}
+        onEditSubmit={onEditSubmit}
       />
     </>
   );

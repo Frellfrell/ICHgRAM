@@ -25,8 +25,12 @@ const MainLayout = ({ children }) => {
   const [editPostForModal, setEditPostForModal] = useState(null);
   const currentUser = JSON.parse(localStorage.getItem("user"));
 
+  const handleEditFromPost = (post) => {
+    setEditPostForModal(post);
+    setIsEditModalOpen(true);
+  };
+
   useEffect(() => {
-    console.log("=> MainLayout | isEditModalOpen:", isEditModalOpen);
     console.log("=> MainLayout | editPostForModal:", editPostForModal);
   }, [isEditModalOpen, editPostForModal]);
 
@@ -171,15 +175,14 @@ const MainLayout = ({ children }) => {
           open={!!selectedPost}
           onClose={() => setSelectedPost(null)}
           post={selectedPost}
-          onEdit={(post) => {
-            console.log("MAIN LAYOUT onEdit", post);
-            {
-              /*setSelectedPost(null);*/
-            }
+          onEditSubmit={handleEditFromPost}
+          //onEdit={(post) => {
+          // console.log("MAIN LAYOUT onEdit", post);
+          // {
+          // setSelectedPost(null); */}
 
-            setEditPostForModal(post);
-            setIsEditModalOpen(true);
-          }}
+          // setEditPostForModal(post);
+          //setIsEditModalOpen(true);
         />
       )}
       <CreatePostModal

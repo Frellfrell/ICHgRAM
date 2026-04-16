@@ -33,6 +33,7 @@ const CreatePostModal = ({
 
   // Если открыли для редактирования — подставляем данные поста
   useEffect(() => {
+    console.log("=> CreatePostModal: open =", open, "editPost =", editPost);
     console.log("editPost:", editPost);
     console.log("open:", open);
     if (open && editPost) {
