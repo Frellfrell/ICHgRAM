@@ -30,9 +30,7 @@ const MainLayout = ({ children }) => {
     setIsEditModalOpen(true);
   };
 
-  useEffect(() => {
-    console.log("=> MainLayout | editPostForModal:", editPostForModal);
-  }, [isEditModalOpen, editPostForModal]);
+  useEffect(() => {}, [isEditModalOpen, editPostForModal]);
 
   const handleCreateClick = () => {
     setOpenSearch(false);
@@ -176,13 +174,6 @@ const MainLayout = ({ children }) => {
           onClose={() => setSelectedPost(null)}
           post={selectedPost}
           onEditSubmit={handleEditFromPost}
-          //onEdit={(post) => {
-          // console.log("MAIN LAYOUT onEdit", post);
-          // {
-          // setSelectedPost(null); */}
-
-          // setEditPostForModal(post);
-          //setIsEditModalOpen(true);
         />
       )}
       <CreatePostModal
@@ -200,7 +191,8 @@ const MainLayout = ({ children }) => {
 
           setEditPostForModal(null);
         }}
-        editPost={setEditPostForModal}
+        editPost={editPostForModal}
+        //editPost={setEditPostForModal}
         user={JSON.parse(localStorage.getItem("user"))}
         isNested={true}
       />

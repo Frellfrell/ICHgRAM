@@ -90,19 +90,7 @@ const PostModal = ({ open, post, onClose, onEditSubmit }) => {
         console.error("Error deleting post:", err);
       }
   };
-  {
-    /*  const handleEditOpen = () => {
-    console.log("EDIT CLICKED", post);
-    console.log("onEdit exists:", !!onEdit);
-    console.log("post exists:", !!post);
-    setIsActionsOpen(false);
-    if (onEdit && post) {
-      //onClose();
-      console.log("CALLING onEdit");
-      onEdit(post);
-    }
-  };*/
-  }
+
   const handleOpenActions = (e) => {
     e.stopPropagation();
     e.currentTarget.blur();
@@ -204,24 +192,12 @@ const PostModal = ({ open, post, onClose, onEditSubmit }) => {
                 </AppTypography>
               </Box>
 
-              {!isMyPost && (
-                <FollowButton
-                  userId={author._id}
-                  //initialIsFollowing={author.isFollowed}
-                />
-              )}
+              {!isMyPost && <FollowButton userId={author._id} />}
 
               {/* ГРУППА КНОПОК В УГЛУ */}
               <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
                 {isMyPost ? (
-                  <IconButton
-                    onClick={handleOpenActions}
-                    //{(e) => {
-                    // e.stopPropagation();
-                    //e.currentTarget.blur();
-                    //setIsActionsOpen(true);
-                    // }
-                  >
+                  <IconButton onClick={handleOpenActions}>
                     <MoreHorizIcon />
                   </IconButton>
                 ) : (
@@ -262,12 +238,7 @@ const PostModal = ({ open, post, onClose, onEditSubmit }) => {
             >
               {/* Сами комментарии из базы */}
               {comments.map((c) => (
-                <CommentItem
-                  key={c._id}
-                  comment={c}
-                  // onClose={onClose}
-                  //handleAvatarClick={handleAvatarClick}
-                />
+                <CommentItem key={c._id} comment={c} />
               ))}
             </Box>
             <Divider />
