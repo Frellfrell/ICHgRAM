@@ -42,13 +42,6 @@ const CreatePostModal = ({
       setPreview(formatUrl(editPost.image));
       setFile(editPost.image);
     }
-    {
-      /*else {
-      setCaption("");
-      setPreview(null);
-      setFile(null);
-    }*/
-    }
   }, [editPost, open]);
 
   const navigate = useNavigate();
@@ -83,7 +76,6 @@ const CreatePostModal = ({
         if (onPostCreated) onPostCreated(res.data); // Передаем созданный пост
       }
       window.dispatchEvent(new Event("postCreated"));
-      // headers: { "Content-Type": "application/json" },
 
       onClose();
     } catch (error) {
