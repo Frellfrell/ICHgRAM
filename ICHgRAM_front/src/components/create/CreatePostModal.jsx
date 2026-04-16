@@ -35,7 +35,7 @@ const CreatePostModal = ({
   useEffect(() => {
     console.log("editPost:", editPost);
     console.log("open:", open);
-    if (editPost) {
+    if (open && editPost) {
       //if (editPost && open) {
       setCaption(editPost.caption || "");
       setPreview(formatUrl(editPost.image));
@@ -48,7 +48,7 @@ const CreatePostModal = ({
       setFile(null);
     }*/
     }
-  }, [editPost]);
+  }, [editPost, open]);
 
   const navigate = useNavigate();
 
