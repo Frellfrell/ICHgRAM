@@ -83,6 +83,8 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
   };
   const handleEditOpen = () => {
     console.log("EDIT CLICKED", post);
+    console.log("onEdit exists:", !!onEdit);
+    console.log("post exists:", !!post);
     setIsActionsOpen(false);
     if (onEdit && post) {
       //onClose();
