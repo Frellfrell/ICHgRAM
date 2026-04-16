@@ -169,10 +169,9 @@ const MainLayout = ({ children }) => {
             {
               /*setSelectedPost(null);*/
             }
-            setTimeout(() => {
-              setEditPost(post);
-              setIsEditModalOpen(true);
-            }, 0);
+
+            setEditPost(post);
+            setIsEditModalOpen(true);
           }}
         />
       )}
