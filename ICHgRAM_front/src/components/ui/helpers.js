@@ -1,4 +1,4 @@
-export const BE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+export const BE_URL = import.meta.env.VITE_API_URL || "http:///api";
 
 export const formatUrl = (url) => {
   if (!url || typeof url !== "string") return "";

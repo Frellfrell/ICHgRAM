@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 import AppAvatar from "../ui/AppAvatar";
 
 const SearchResults = ({ results, onUserClick }) => {
-  const BE_URL = "http://localhost:5000";
+  const BE_URL = "http:///api";
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
