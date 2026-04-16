@@ -171,6 +171,7 @@ const MainLayout = ({ children }) => {
           onClose={() => setSelectedPost(null)}
           post={selectedPost}
           onEdit={(post) => {
+            console.log("MAIN LAYOUT onEdit", post);
             {
               /*setSelectedPost(null);*/
             }
