@@ -81,7 +81,8 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
         console.error("Error deleting post:", err);
       }
   };
-  const handleEditOpen = () => {
+  {
+    /*  const handleEditOpen = () => {
     console.log("EDIT CLICKED", post);
     console.log("onEdit exists:", !!onEdit);
     console.log("post exists:", !!post);
@@ -91,7 +92,8 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
       console.log("CALLING onEdit");
       onEdit(post);
     }
-  };
+  };*/
+  }
 
   return (
     <>
@@ -329,7 +331,8 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
         open={isActionsOpen}
         onClose={() => setIsActionsOpen(false)}
         onDelete={handleDelete}
-        onEdit={handleEditOpen}
+        onEdit={onEdit}
+        //onEdit={handleEditOpen}
       />
     </>
   );

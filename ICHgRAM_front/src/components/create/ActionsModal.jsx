@@ -61,7 +61,9 @@ const ActionsModal = ({
             onClick={() => {
               console.log("EDIT BUTTON CLICK");
               onClose();
-              onEdit(post);
+              if (onEdit) {
+                onEdit(post);
+              }
             }}
             disabled={isEditModalOpen}
             sx={{
