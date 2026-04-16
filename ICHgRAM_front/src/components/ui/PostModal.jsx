@@ -23,17 +23,10 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { useNavigate } from "react-router-dom";
 
 const PostModal = ({ open, post, onClose, onEditSubmit }) => {
-  console.log("PostModal props:", { open, post, onEditSubmit });
-  console.log("PostModal file loaded from: ../components/ui/PostModal.jsx");
-  console.log("onEdit type in PostModal:", typeof onEdit);
-  console.log("PostModal file loaded from: ../components/ui/PostModal.jsx");
-
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
 
   const [anchorEl, setAnchorEl] = useState(null);
-
-  //const [isActionsOpen, setIsActionsOpen] = useState(false); // Для открытия ActionsModal
 
   // Достаем текущего юзера из localStorage, чтобы сравнить ID
   const currentUser = JSON.parse(localStorage.getItem("user"));

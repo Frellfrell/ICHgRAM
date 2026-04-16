@@ -167,7 +167,7 @@ const MainLayout = ({ children }) => {
           </Box>
         </Box>
       </Box>
-      console.log("Loaded PostModal type:", typeof PostModal);
+
       {selectedPost && (
         <PostModal
           open={!!selectedPost}
