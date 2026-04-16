@@ -22,6 +22,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { useNavigate } from "react-router-dom";
 
 const PostModal = ({ open, post, onClose, onEdit }) => {
+  console.log("PostModal props:", { open, post, onEdit });
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
 
