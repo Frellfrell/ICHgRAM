@@ -24,6 +24,10 @@ import { useNavigate } from "react-router-dom";
 
 const PostModal = ({ open, post, onClose, onEdit }) => {
   console.log("PostModal props:", { open, post, onEdit });
+  console.log("PostModal file loaded from: ../components/ui/PostModal.jsx");
+  console.log("onEdit type in PostModal:", typeof onEdit);
+  console.log("PostModal file loaded from: ../components/ui/PostModal.jsx");
+
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
 

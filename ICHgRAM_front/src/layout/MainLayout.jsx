@@ -165,6 +165,7 @@ const MainLayout = ({ children }) => {
           </Box>
         </Box>
       </Box>
+      console.log("Loaded PostModal type:", typeof PostModal);
       {selectedPost && (
         <PostModal
           open={!!selectedPost}
@@ -181,14 +182,12 @@ const MainLayout = ({ children }) => {
           }}
         />
       )}
-
       <CreatePostModal
         key="create"
         open={isCreateModalOpen}
         onClose={() => setIsCreateModalOpen(false)}
         user={currentUser}
       />
-
       {/*{editPost && (*/}
       <CreatePostModal
         key="edit"
