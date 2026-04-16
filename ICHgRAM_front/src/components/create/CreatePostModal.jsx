@@ -33,22 +33,16 @@ const CreatePostModal = ({
 
   // Если открыли для редактирования — подставляем данные поста
   useEffect(() => {
-    console.log("editPost:", editPost);
-    console.log("open:", open);
-    if (editPost) {
+    //console.log("=> CreatePostModal: open =", open, "editPost =", editPost);
+    //console.log("editPost:", editPost);
+    //console.log("open:", open);
+    if (open && editPost) {
       //if (editPost && open) {
       setCaption(editPost.caption || "");
       setPreview(formatUrl(editPost.image));
       setFile(editPost.image);
     }
-    {
-      /*else {
-      setCaption("");
-      setPreview(null);
-      setFile(null);
-    }*/
-    }
-  }, [editPost]);
+  }, [editPost, open]);
 
   const navigate = useNavigate();
 
@@ -82,7 +76,6 @@ const CreatePostModal = ({
         if (onPostCreated) onPostCreated(res.data); // Передаем созданный пост
       }
       window.dispatchEvent(new Event("postCreated"));
-      // headers: { "Content-Type": "application/json" },
 
       onClose();
     } catch (error) {

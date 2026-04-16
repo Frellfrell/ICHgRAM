@@ -1,7 +1,14 @@
 import React from "react";
 import { Modal, Box, Button, Divider, Fade, Backdrop } from "@mui/material";
 
-const ActionsModal = ({ open, onClose, onDelete, onEdit, isEditModalOpen }) => {
+const ActionsModal = ({
+  open,
+  onClose,
+  onDelete,
+  onEdit,
+  post,
+  isEditModalOpen,
+}) => {
   return (
     <Modal
       open={open}
@@ -54,7 +61,9 @@ const ActionsModal = ({ open, onClose, onDelete, onEdit, isEditModalOpen }) => {
             onClick={() => {
               console.log("EDIT BUTTON CLICK");
               onClose();
-              onEdit();
+              if (onEdit) {
+                onEdit(post);
+              }
             }}
             disabled={isEditModalOpen}
             sx={{

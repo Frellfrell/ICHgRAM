@@ -22,8 +22,15 @@ const MainLayout = ({ children }) => {
 
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [editPost, setEditPost] = useState(null);
+  const [editPostForModal, setEditPostForModal] = useState(null);
   const currentUser = JSON.parse(localStorage.getItem("user"));
+
+  const handleEditFromPost = (post) => {
+    setEditPostForModal(post);
+    setIsEditModalOpen(true);
+  };
+
+  useEffect(() => {}, [isEditModalOpen, editPostForModal]);
 
   const handleCreateClick = () => {
     setOpenSearch(false);
@@ -160,30 +167,21 @@ const MainLayout = ({ children }) => {
           </Box>
         </Box>
       </Box>
+
       {selectedPost && (
         <PostModal
           open={!!selectedPost}
           onClose={() => setSelectedPost(null)}
           post={selectedPost}
-          onEdit={(post) => {
-            {
-              /*setSelectedPost(null);*/
-            }
-            setTimeout(() => {
-              setEditPost(post);
-              setIsEditModalOpen(true);
-            }, 0);
-          }}
+          onEditSubmit={handleEditFromPost}
         />
       )}
-
       <CreatePostModal
         key="create"
         open={isCreateModalOpen}
         onClose={() => setIsCreateModalOpen(false)}
         user={currentUser}
       />
-
       {/*{editPost && (*/}
       <CreatePostModal
         key="edit"
@@ -191,9 +189,10 @@ const MainLayout = ({ children }) => {
         onClose={() => {
           setIsEditModalOpen(false);
 
-          setEditPost(null);
+          setEditPostForModal(null);
         }}
-        editPost={editPost}
+        editPost={editPostForModal}
+        //editPost={setEditPostForModal}
         user={JSON.parse(localStorage.getItem("user"))}
         isNested={true}
       />
