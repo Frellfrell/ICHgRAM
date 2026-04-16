@@ -29,12 +29,9 @@ const Home = () => {
       // Берем номер страницы: либо 1 (если первая загрузка), либо из Ref
       const currentPage = isFirstLoad ? 1 : pageRef.current;
 
-      console.log("ОТПРАВКА ЗАПРОСА: страница", currentPage);
-
       try {
         // Передаем текущую страницу и лимит 4
         const data = await fetchAllPosts(currentPage, 4);
-        console.log(`Пришло постов со страницы ${currentPage}:`, data.length);
 
         if (!data || data.length === 0) {
           setHasMore(false);
