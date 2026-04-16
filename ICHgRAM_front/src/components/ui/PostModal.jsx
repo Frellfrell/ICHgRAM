@@ -17,7 +17,8 @@ import CommentItem from "../comment/CommentItem";
 import axiosInstance from "../../api/axiosInstance";
 import { formatUrl, timeAgo } from "../ui/helpers";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-import ActionsModal from "../create/ActionsModal";
+//import ActionsModal from "../create/ActionsModal";
+import ActionsPopover from "../create/ActionsPopover.jsx";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { useNavigate } from "react-router-dom";
 
@@ -26,7 +27,9 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
 
-  const [isActionsOpen, setIsActionsOpen] = useState(false); // Для открытия ActionsModal
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  //const [isActionsOpen, setIsActionsOpen] = useState(false); // Для открытия ActionsModal
 
   // Достаем текущего юзера из localStorage, чтобы сравнить ID
   const currentUser = JSON.parse(localStorage.getItem("user"));
@@ -75,7 +78,8 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
     if (window.confirm("Delete this post?"))
       try {
         await axiosInstance.delete(`/api/posts/${postId}`);
-        setIsActionsOpen(false);
+        //setIsActionsOpen(false);
+
         onClose(); // Закрываем модалку после удаления
         window.location.reload(); // Перезагружаем страницу, чтобы обновить ленту
       } catch (err) {
@@ -95,6 +99,11 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
     }
   };*/
   }
+  const handleOpenActions = (e) => {
+    e.stopPropagation();
+    e.currentTarget.blur();
+    setAnchorEl(e.currentTarget);
+  };
 
   return (
     <>
@@ -202,11 +211,12 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
               <Box sx={{ ml: "auto", display: "flex", alignItems: "center" }}>
                 {isMyPost ? (
                   <IconButton
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      e.currentTarget.blur();
-                      setIsActionsOpen(true);
-                    }}
+                    onClick={handleOpenActions}
+                    //{(e) => {
+                    // e.stopPropagation();
+                    //e.currentTarget.blur();
+                    //setIsActionsOpen(true);
+                    // }
                   >
                     <MoreHorizIcon />
                   </IconButton>
@@ -328,12 +338,18 @@ const PostModal = ({ open, post, onClose, onEdit }) => {
         </Box>
       </Modal>
 
-      <ActionsModal
+      {/*<ActionsModal
         open={isActionsOpen}
         onClose={() => setIsActionsOpen(false)}
         onDelete={handleDelete}
         onEdit={onEdit}
         //onEdit={handleEditOpen}
+      />*/}
+      <ActionsPopover
+        anchorEl={anchorEl}
+        onClose={() => setAnchorEl(null)}
+        onDelete={handleDelete}
+        onEdit={onEdit}
       />
     </>
   );
