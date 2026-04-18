@@ -64,7 +64,9 @@ const Profile = () => {
       const postsRes = await axiosInstance.get(
         `/api/posts/user/${userRes.data._id}`,
       );
-      setPosts(postsRes.data);
+      //setPosts(postsRes.data);
+      console.log(postsRes.data); // Логируем данные постов
+    setPosts(Array.isArray(postsRes.data) ? postsRes.data : []);
     } catch (error) {
       console.error("Error loading profile:", error);
       // Если ошибка 404 (пользователь не найден), перенаправляем на NotFound

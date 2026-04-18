@@ -16,6 +16,8 @@ const Explore = () => {
       try {
         const res = await axiosInstance.get("/api/posts?limit=50");
 
+        const posts = Array.isArray(res.data) ? res.data : [];
+
         // Добавляем разметку: каждый 3-й пост будет высоким (span 2)
         const masonryPosts = res.data.map((post, index) => {
           const mod = index % 10;
@@ -24,6 +26,7 @@ const Explore = () => {
           if (mod === 2 || mod === 5) {
             layout = "vertical";
           }
+
 
           return { ...post, layout };
         });
