@@ -33,9 +33,14 @@ app.use(express.urlencoded({ extended: true, limit: "20mb" }));
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*", // "http://localhost:5173"
+     origin: "https://ichgram-d22c.onrender.com",
+    methods: ["GET", "POST"],
+    credentials: true,
   },
-});
+  transports: ["websocket", "polling"],
+   // origin: "*", // "http://localhost:5173"
+  },
+);
 
 // Подключаемся к MongoDB
 connectDB();
