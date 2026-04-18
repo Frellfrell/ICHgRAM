@@ -9,12 +9,14 @@ const Explore = () => {
   const [loading, setLoading] = useState(true);
   const [selectedPost, setSelectedPost] = useState(null);
 
-  const BE_URL = import.meta.env.VITE_API_URL || "/api";
+  //const BE_URL = import.meta.env.VITE_API_URL || "/api";
+  const BE_URL = import.meta.env.VITE_API_URL ;
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await axiosInstance.get("/api/posts?limit=50");
+       // const res = await axiosInstance.get("/api/posts?limit=50");
+       const res = await axiosInstance.get("/api/posts?limit=50");
 
         const posts = Array.isArray(res.data) ? res.data : [];
 

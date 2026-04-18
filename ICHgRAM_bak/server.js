@@ -33,7 +33,9 @@ app.use(express.urlencoded({ extended: true, limit: "20mb" }));
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-     origin: "https://ichgram-d22c.onrender.com",
+     //origin: "https://ichgram-d22c.onrender.com",
+     origin: process.env.CLIENT_URL,
+     //origin: true,
     methods: ["GET", "POST"],
     credentials: true,
   },
