@@ -9,7 +9,7 @@ const Explore = () => {
   const [loading, setLoading] = useState(true);
   const [selectedPost, setSelectedPost] = useState(null);
 
-  const BE_URL = import.meta.env.VITE_API_URL || "http:///api";
+  const BE_URL = import.meta.env.VITE_API_URL || "/api";
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -40,7 +40,10 @@ const Explore = () => {
 
   const formatUrl = (url) => {
     if (!url) return "";
-    if (url.startsWith("data:") || url.startsWith("http")) return url;
+    if (url.startsWith("data:") || url.startsWith("http") ||  url.startsWith("https://")
+  ) {
+    return url;
+  } 
     return `${BE_URL.replace(/\/$/, "")}${url.startsWith("/") ? url : "/" + url}`;
   };
 

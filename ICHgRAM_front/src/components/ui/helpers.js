@@ -1,8 +1,11 @@
-export const BE_URL = import.meta.env.VITE_API_URL || "http:///api";
+export const BE_URL = import.meta.env.VITE_API_URL || "/api";
 
 export const formatUrl = (url) => {
   if (!url || typeof url !== "string") return "";
-  if (url.startsWith("data:") || url.startsWith("http")) {
+  if (url.startsWith("data:") ||
+   url.startsWith("http") ||
+    url.startsWith("https://")
+  ) {
     return url;
   }
   // Убираем лишние слэши и склеиваем
