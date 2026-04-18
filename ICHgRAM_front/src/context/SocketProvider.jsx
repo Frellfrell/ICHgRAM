@@ -12,7 +12,7 @@ const SocketProvider = ({ children }) => {
     if (!isAuth) return;
     const token = localStorage.getItem("token");
 
-    const newSocket = io(BE_URL, {
+    const newSocket = io(import.meta.env.VITE_SOCKET_URL, {
       auth: { token },
     });
 
