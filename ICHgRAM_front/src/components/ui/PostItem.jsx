@@ -2,9 +2,10 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
+import { formatUrl } from "../components/ui/helpers";
 
 const PostGridItem = ({ post, onClick }) => {
-  const BE_URL = import.meta.env.VITE_API_URL || "/api";
+  const postImgSrc = formatUrl(post.image);
 
   return (
     <Box
@@ -19,7 +20,7 @@ const PostGridItem = ({ post, onClick }) => {
       <Box
         component="img"
         src={
-          post.image.startsWith("data") ? post.image : `${BE_URL}${post.image}`
+          post.image.startsWith("data") ? post.image : postImgSrc
         }
         sx={{ width: "100%", height: "100%", objectFit: "cover" }}
       />

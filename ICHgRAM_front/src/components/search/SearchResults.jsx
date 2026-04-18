@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import AppAvatar from "../ui/AppAvatar";
+import { formatUrl } from "../ui/helpers";
 
 const SearchResults = ({ results, onUserClick }) => {
   const BE_URL = "/api";
@@ -26,7 +27,7 @@ const SearchResults = ({ results, onUserClick }) => {
             src={
               user.avatar?.startsWith("data")
                 ? user.avatar
-                : `${BE_URL}${user.avatar}`
+                : formatUrl(user.avatar)
             }
           />
 
