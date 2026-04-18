@@ -37,7 +37,7 @@ const Profile = () => {
   const [selectedPost, setSelectedPost] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  //useEffect(() => {
+  
   const fetchProfile = async () => {
     setLoading(true);
     try {
@@ -45,6 +45,7 @@ const Profile = () => {
       // Если в URL нет userId, значит мы идем на /profile (это "Я")
       const targetUrl = userId ? `/api/users/${userId}` : `/api/users/me`;
       //const targetUrl = `/api/users/${userId}`;
+      
 
       const userRes = await axiosInstance.get(targetUrl);
       setUser(userRes.data);
