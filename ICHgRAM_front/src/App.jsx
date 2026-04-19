@@ -87,6 +87,19 @@ function AppRoutes() {
         path="/explore"
         element={isAuth ? <Explore /> : <Navigate to="/login" replace />}
       />
+
+      <Route
+        path="/messages/:userId"
+        element={
+          isAuth ? (
+            <MainLayout>
+              <Messages />
+            </MainLayout>
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      />
       <Route
         path="/messages"
         element={
