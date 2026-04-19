@@ -1,11 +1,13 @@
 import React, { useState, useContext } from "react";
 import { Box } from "@mui/material";
+import { useParams } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import ChatRoom from "../../components/message/ChatRoom";
 import ChatSidebar from "../../components/message/ChatSidebar";
 
 const Messages = () => {
   const { user } = useContext(AuthContext); // Достаем текущего юзера
+  const { userId } = useParams();
   const [selectedChat, setSelectedChat] = useState(null);
 
   return (
@@ -25,6 +27,7 @@ const Messages = () => {
       <ChatSidebar
         onSelectChat={setSelectedChat}
         selectedChatId={selectedChat?._id}
+        targetUserId={userId}
       />
       <ChatRoom
         selectedChat={selectedChat}

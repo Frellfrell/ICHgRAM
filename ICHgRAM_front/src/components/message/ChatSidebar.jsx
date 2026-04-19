@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useCallback } from "react";
 import {
   Box,
   Typography,
@@ -14,7 +14,7 @@ import axiosInstance from "../../api/axiosInstance";
 import { formatUrl, timeAgo } from "../ui/helpers.js";
 import { AuthContext } from "../../context/AuthContext.jsx";
 
-const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
+const ChatSidebar = ({ onSelectChat, selectedChatId, targetUserId }) => {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useContext(AuthContext);
@@ -36,6 +36,34 @@ const ChatSidebar = ({ onSelectChat, selectedChatId }) => {
     };
     fetchContacts();
   }, []);
+
+  const selectTargetChat = useCallback(async () => {
+    if (!targetUserId) return;
+
+    try {
+      const targetChat = contacts.find(
+        (chat) => chat.user._id === targetUserId,
+      );
+
+      if (targetChat) {
+        console.log("Найден чат:", targetChat.user);
+        onSelectChat(targetChat.user);
+      } else {
+        console.log("Создаём новый чат с:", targetUserId);
+        const res = await axiosInstance.post("/api/messages/create-chat", {
+          receiverId: targetUserId,
+        });
+        setContacts((prev) => [res.data, ...prev]);
+        onSelectChat(res.data.user);
+      }
+    } catch (err) {
+      console.error("Ошибка:", err);
+    }
+  }, [targetUserId, contacts, onSelectChat]);
+
+  useEffect(() => {
+    selectTargetChat();
+  }, [selectTargetChat]);
 
   return (
     <Box
