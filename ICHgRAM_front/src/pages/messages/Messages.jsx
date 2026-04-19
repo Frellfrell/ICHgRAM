@@ -26,7 +26,7 @@ const Messages = () => {
     >
       <ChatSidebar
         onSelectChat={setSelectedChat}
-        selectedChatId={selectedChat?._id}
+        selectedUserId={selectedChat?._id}
         targetUserId={userId}
       />
       <ChatRoom

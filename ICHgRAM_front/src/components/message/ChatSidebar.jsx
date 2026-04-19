@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useCallback } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   Box,
   Typography,
@@ -37,7 +37,8 @@ const ChatSidebar = ({ onSelectChat, selectedChatId, targetUserId }) => {
     fetchContacts();
   }, []);
 
-  const selectTargetChat = useCallback(async () => {
+  {
+    /*const selectTargetChat = useCallback(async () => {
     if (!targetUserId) return;
 
     try {
@@ -63,7 +64,21 @@ const ChatSidebar = ({ onSelectChat, selectedChatId, targetUserId }) => {
 
   useEffect(() => {
     selectTargetChat();
-  }, [selectTargetChat]);
+  }, [selectTargetChat]);*/
+  }
+
+  useEffect(() => {
+    if (!targetUserId || loading) return;
+
+    const targetChat = contacts.find((chat) => chat.user._id === targetUserId);
+    if (targetChat) {
+      console.log("AUTO-SELECT:", targetChat.user.username);
+      onSelectChat(targetChat.user);
+    } else {
+      console.log("CREATE NEW CHAT:", targetUserId);
+      // Создать чат можно позже, при клике
+    }
+  }, [targetUserId, contacts, onSelectChat, loading]);
 
   return (
     <Box
